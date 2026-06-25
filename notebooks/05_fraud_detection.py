@@ -402,7 +402,7 @@ def score_batch(batch_df, batch_id):
     log.info(f"Batch {batch_id}: {len(pdf):,} txns scored | {len(alerts_pdf):,} alerts raised")
 
 
-CHECKPOINT_PATH = "/tmp/prime_capital/fraud_detection_checkpoint"
+CHECKPOINT_PATH = "dbfs:/user/hive/warehouse/prime_capital/fraud_detection_checkpoint"
 
 # ── Start streaming job (runs continuously in production; trigger once in batch mode) ──
 streaming_query = (

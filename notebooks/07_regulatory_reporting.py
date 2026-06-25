@@ -20,6 +20,7 @@ log = logging.getLogger("regulatory_reporting")
 GOLD               = "gold"
 SILVER             = "silver"
 ADLS_ACCOUNT       = "primecapitaladls"
+OUTPUT_BASE        = "dbfs:/user/hive/warehouse/prime_capital/regulatory"
 REPORT_DATE        = date.today().replace(day=1) - relativedelta(days=1)  # last day of previous month
 REPORT_DATE_STR    = REPORT_DATE.strftime("%Y%m%d")
 REPORT_PERIOD      = REPORT_DATE.strftime("%Y-%m")
