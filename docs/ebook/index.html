@@ -601,6 +601,7 @@
     <div class="metric-card"><span class="mv">500</span><span class="ml">Power BI Users</span></div>
   </div>
 
+  <p>The two charts below break down the platform&#x2019;s most critical headline numbers: how the R312.6 billion loan book is distributed across product categories, and how the bank&#x2019;s capital ratios compare to SARB minimum requirements.</p>
 
   <div class="chart-section">
     <div class="chart-title">Figure 1.1 — Loan Portfolio Composition &amp; Capital Adequacy</div>
@@ -730,6 +731,7 @@
     </tbody>
   </table>
 
+  <p>The chart below visualises the relative scale of each Bronze source table, making the volume disparity immediately clear and highlighting which feeds drive the platform&#x2019;s throughput requirements.</p>
 
   <div class="chart-section">
     <div class="chart-title">Figure 3.1 — Bronze Layer — Data Volumes by Source Table</div>
@@ -805,8 +807,7 @@
     <p class="chart-explain">
       Great Expectations quality suites enforce 7 categories of validation before any record is promoted from Bronze to Silver.
       The <strong>99.94% pass rate</strong> reflects the high data quality of the bank's core systems post-cleansing. The 0.06%
-      quarantine rate is stable and dominated by late-arriving GL corrections and card UAT test records — both filtered
-      deterministically. Quarantined records are never discarded; they are available for manual review and retrospective inclusion.
+      quarantine rate breaks down into five failure types — late GL corrections (38%) and card UAT test records (31%) dominate, followed by missing reference data (14%), format errors (11%), and duplicate keys (6%). All categories are filtered deterministically; no records are permanently deleted — quarantined rows are available for manual review and retrospective promotion.
     </p>
     <div class="chart-wrap dbl">
       <canvas id="ch4Donut"></canvas>
@@ -1102,8 +1103,7 @@ seeds/               <span class="cm">-- Reference data CSVs (risk codes, curren
     <p class="chart-explain">
       The production daily pipeline executes as a 9-task Directed Acyclic Graph (DAG) orchestrated by Databricks Workflows.
       The pipeline begins at 00:30 with cluster setup and Bronze ingestion, progresses through Silver cleansing, then fans out
-      into three parallel ML scoring tasks (Credit, Fraud, AML) running concurrently with Gold star schema build — the longest
-      individual stage at approximately 25 minutes. Regulatory reporting and the master orchestrator complete the pipeline by
+      into three parallel ML scoring tasks (Credit, Fraud, AML) running concurrently with Gold star schema build (25 min) and three parallel ML scoring tasks. AML Risk Scoring is the longest individual stage at 30 minutes. Regulatory reporting and the master orchestrator complete the pipeline by
       approximately 02:15, comfortably within the 05:00 Gold SLA.
     </p>
     <div class="chart-wrap tall">

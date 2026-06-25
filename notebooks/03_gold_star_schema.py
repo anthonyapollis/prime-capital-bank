@@ -276,8 +276,25 @@ build_dim_date()
 
 def build_dim_product():
     TABLE = f"`{GOLD}`.`dim_product`"
-    src   = spark.table(f"`{BRONZE}`.`bronze_products`") \
-                 .withColumn("_gold_loaded_at", F.current_timestamp())
+    from pyspark.sql import Row
+    import datetime as _dt
+    _products = [
+        ("PROD_001","HOME_LOAN",       "Retail Mortgage",       "Mortgage",         0.35, 9.8,  "Retail"),
+        ("PROD_002","PERSONAL_LOAN",   "Personal Loan",         "Unsecured Retail", 1.00, 22.4, "Retail"),
+        ("PROD_003","VEHICLE_FINANCE", "Vehicle Finance",       "Secured Retail",   0.75, 11.2, "Retail"),
+        ("PROD_004","BUSINESS_LOAN",   "Business Loan",         "Corporate",        0.85, 12.6, "Corporate"),
+        ("PROD_005","CREDIT_CARD",     "Credit Card",           "Revolving Credit", 1.50, 24.8, "Retail"),
+        ("PROD_006","OVERDRAFT",       "Overdraft Facility",    "Unsecured Retail", 1.00, 18.5, "Retail"),
+        ("PROD_007","FIXED_DEPOSIT",   "Fixed Deposit",         "Deposit",          0.00, 7.2,  "Retail"),
+        ("PROD_008","CURRENT_ACCOUNT", "Current Account",       "Transaction",      0.00, 0.0,  "Retail"),
+        ("PROD_009","SAVINGS_ACCOUNT", "Savings Account",       "Deposit",          0.00, 5.5,  "Retail"),
+    ]
+    _now = _dt.datetime.now()
+    _rows = [Row(product_id=pid, product_code=code, product_name=name, product_family=family,
+                 rwa_weight=rwa, avg_interest_rate=rate, customer_segment=seg,
+                 is_active=True, _gold_loaded_at=_now)
+             for pid, code, name, family, rwa, rate, seg in _products]
+    src = spark.createDataFrame(_rows).withColumn("_gold_loaded_at", F.current_timestamp())
     src.write.format("delta").mode("overwrite").option("overwriteSchema", "true").saveAsTable(TABLE)
     log.info(f"dim_product — {src.count():,} rows")
 
