@@ -313,6 +313,19 @@ with mlflow.start_run(run_name="Fraud_Threshold_Calibration", nested=True):
     ensemble_auc = roc_auc_score(y_test, ENSEMBLE_SCORES)
     mlflow.log_metric("ensemble_auc",    ensemble_auc)
 
+    # Precision / Recall / F1 at calibrated threshold
+    from sklearn.metrics import precision_score, recall_score, f1_score
+    y_pred_thresh = (ENSEMBLE_SCORES >= ALERT_THRESHOLD).astype(int)
+    thresh_precision = precision_score(y_test, y_pred_thresh, zero_division=0)
+    thresh_recall    = recall_score(y_test, y_pred_thresh, zero_division=0)
+    thresh_f1        = f1_score(y_test, y_pred_thresh, zero_division=0)
+    mlflow.log_metrics({
+        "threshold_precision": thresh_precision,
+        "threshold_recall":    thresh_recall,
+        "threshold_f1":        thresh_f1,
+    })
+    log.info(f"Precision={thresh_precision:.4f}  Recall={thresh_recall:.4f}  F1={thresh_f1:.4f}")
+
 log.info(f"Ensemble AUC: {ensemble_auc:.4f} | Alert threshold: {ALERT_THRESHOLD:.4f}")
 
 # COMMAND ----------

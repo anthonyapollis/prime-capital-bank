@@ -438,7 +438,26 @@ SCORED_PDF = batch_score_portfolio()
 
 # COMMAND ----------
 
-# -- ## 7 — Model Performance Summary
+# -- ## 7 — Model Drift Monitoring (PSI)
+
+# COMMAND ----------
+
+# PSI between training score distribution and portfolio score distribution
+# PSI < 0.1: no shift  |  0.1–0.2: moderate  |  >0.2: significant drift
+avail_pd_cols = [f for f in PD_FEATURES if f in FEATURES_PDF.columns]
+train_scores  = PD_MODEL.predict_proba(FEATURES_PDF[avail_pd_cols])[:, 1]
+prod_scores   = SCORED_PDF["pd_score"].values
+
+psi_value = population_stability_index(train_scores, prod_scores)
+drift_flag = "STABLE" if psi_value < 0.1 else ("MODERATE" if psi_value < 0.2 else "DRIFT_ALERT")
+log.info(f"PSI (train vs portfolio): {psi_value:.4f} — {drift_flag}")
+with mlflow.start_run(run_name="PD_Drift_Monitor") as _run:
+    mlflow.log_metric("psi_train_vs_portfolio", psi_value)
+    mlflow.log_param("drift_status", drift_flag)
+
+# COMMAND ----------
+
+# -- ## 8 — Model Performance Summary
 
 # COMMAND ----------
 
@@ -449,4 +468,5 @@ print(f"Mean PD score          : {SCORED_PDF['pd_score'].mean():.4f}")
 print(f"Mean LGD score         : {SCORED_PDF['lgd_score'].mean():.4f}")
 print(f"Total ECL (ZAR)        : {SCORED_PDF['ecl_amount_zar'].sum():,.0f}")
 print(f"NPL count              : {SCORED_PDF['is_npl'].sum():,}")
+print(f"PSI (drift)            : {psi_value:.4f} ({drift_flag})")
 print(f"\n04_ml_credit_scoring — COMPLETE")

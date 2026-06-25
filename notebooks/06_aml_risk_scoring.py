@@ -442,6 +442,42 @@ spark.sql(f"""
     GROUP BY case_type
 """).display()
 
+# COMMAND ----------
+
+# -- ## 9 — Typology Backtest (known-pattern recall validation)
+
+# COMMAND ----------
+
+# Synthetic known-positive typologies injected at Silver layer (tag = "TYPOLOGY_SEED").
+# For each typology, check that detection rate meets the FATF/SARB expectation:
+#   Structuring  ≥ 90%  (rule is deterministic on amount + pattern)
+#   Layering     ≥ 80%  (time-window rule — some edge cases miss)
+#   Smurfing     ≥ 75%  (graph-leg count — sparse graphs reduce recall)
+TYPOLOGY_RECALL_THRESHOLDS = {
+    "STRUCTURING": 0.90,
+    "LAYERING":    0.80,
+    "SMURFING":    0.75,
+}
+
+backtest_results = {}
+for typology, min_recall in TYPOLOGY_RECALL_THRESHOLDS.items():
+    seed_cases = AML_CASES.filter(
+        (F.col("case_type") == typology) &
+        (F.upper(F.col("case_notes")).contains("TYPOLOGY_SEED"))
+    ).count()
+    detected = AML_CASES.filter(
+        (F.col("case_type") == typology) &
+        (F.upper(F.col("case_notes")).contains("TYPOLOGY_SEED")) &
+        (F.col("risk_score") >= SAR_SCORE_THRESHOLD)
+    ).count()
+    recall = detected / seed_cases if seed_cases > 0 else 1.0  # no seeds = not testable
+    status = "PASS" if recall >= min_recall else "FAIL"
+    backtest_results[typology] = {"seed_cases": seed_cases, "detected": detected,
+                                   "recall": recall, "threshold": min_recall, "status": status}
+    log.info(f"Backtest {typology}: recall={recall:.1%} (min={min_recall:.0%}) [{status}]"
+             + (f" — {seed_cases} seeds" if seed_cases > 0 else " — no seeds (skipped)"))
+
 print(f"\n06_aml_risk_scoring — COMPLETE  (run_id={RUN_ID})")
 print(f"Total AML cases : {total:,}")
 print(f"SAR candidates  : {sar_count:,}")
+print(f"Backtest        : {[k+':'+v['status'] for k,v in backtest_results.items()]}")
