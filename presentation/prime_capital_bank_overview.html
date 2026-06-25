@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prime Capital Bank — Data Intelligence Platform</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0A1628;
+    --navy-mid: #0D2240;
+    --navy-light: #1A3A6A;
+    --gold: #C9A84C;
+    --gold-light: #E8C870;
+    --blue: #0078D4;
+    --blue-light: #7EB8F7;
+    --white: #F0F4F8;
+    --text: #CBD5E1;
+    --text-dim: #7A94B0;
+    --font: 'Segoe UI', system-ui, Arial, sans-serif;
+  }
+
+  html, body {
+    width: 100%; height: 100%;
+    overflow: hidden;
+    background: var(--navy);
+    font-family: var(--font);
+    color: var(--text);
+  }
+
+  /* ===== PROGRESS BAR ===== */
+  #progress-bar {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--gold), var(--blue));
+    transition: width 0.4s ease;
+    z-index: 1000;
+  }
+
+  /* ===== SLIDE COUNTER ===== */
+  #slide-counter {
+    position: fixed;
+    bottom: 24px; right: 32px;
+    color: var(--text-dim);
+    font-size: 13px;
+    font-weight: 600;
+    z-index: 1000;
+    letter-spacing: 1px;
+  }
+  #slide-counter span { color: var(--gold); }
+
+  /* ===== NAV BUTTONS ===== */
+  #nav-prev, #nav-next {
+    position: fixed;
+    bottom: 20px;
+    background: rgba(13,34,64,0.9);
+    border: 1px solid #1E3A5F;
+    color: var(--text-dim);
+    font-size: 18px;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1000;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    user-select: none;
+  }
+  #nav-prev { right: 120px; }
+  #nav-next { right: 68px; }
+  #nav-prev:hover, #nav-next:hover {
+    background: var(--navy-light);
+    color: var(--gold);
+    border-color: var(--gold);
+  }
+
+  /* ===== SLIDE CONTAINER ===== */
+  #deck {
+    width: 100%; height: 100%;
+    position: relative;
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 56px 80px 80px;
+    opacity: 0;
+    transform: translateX(60px);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .slide.active {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: all;
+  }
+  .slide.exit {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+
+  /* Slide backgrounds */
+  .slide-cover { background: linear-gradient(145deg, #060F1E 0%, #0A1628 50%, #0D2240 100%); }
+  .slide-dark   { background: #0A1628; }
+  .slide-mid    { background: #080F1E; }
+
+  /* Decorative corner accent */
+  .slide::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 200px; height: 4px;
+    background: linear-gradient(to right, var(--gold), transparent);
+  }
+  .slide::after {
+    content: '';
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 200px; height: 4px;
+    background: linear-gradient(to left, var(--blue), transparent);
+  }
+
+  /* ===== SLIDE TYPOGRAPHY ===== */
+  .slide-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    align-self: flex-start;
+  }
+  .slide-title {
+    font-size: 48px;
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1.05;
+    letter-spacing: -1px;
+    align-self: flex-start;
+    margin-bottom: 20px;
+  }
+  .slide-title em { color: var(--gold); font-style: normal; }
+  .slide-title .bl { color: var(--blue-light); font-style: normal; }
+  .slide-sub {
+    font-size: 18px;
+    color: var(--text-dim);
+    align-self: flex-start;
+    margin-bottom: 40px;
+    font-weight: 300;
+  }
+
+  /* ===== COVER SPECIFIC ===== */
+  .cover-logo { margin-bottom: 36px; }
+  .cover-date {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 32px;
+    letter-spacing: 1px;
+  }
+  .cover-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    width: 100%;
+    max-width: 800px;
+  }
+  .cstat {
+    background: rgba(13,34,64,0.8);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 10px;
+    padding: 18px 12px;
+    text-align: center;
+  }
+  .cstat .v { font-size: 30px; font-weight: 800; color: var(--gold); display: block; }
+  .cstat .l { font-size: 10px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.8px; margin-top: 4px; }
+
+  /* ===== CONTENT COLUMNS ===== */
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; width: 100%; }
+  .cols3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; width: 100%; }
+  .cols-wide { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; width: 100%; }
+
+  /* ===== PROBLEM CARDS ===== */
+  .prob-card {
+    background: rgba(13,34,64,0.7);
+    border: 1px solid #1E3A5F;
+    border-left: 3px solid #E84040;
+    border-radius: 8px;
+    padding: 20px 22px;
+  }
+  .prob-card h4 { color: #E87070; font-size: 15px; margin-bottom: 8px; }
+  .prob-card p  { font-size: 14px; color: var(--text-dim); margin: 0; line-height: 1.5; }
+
+  /* ===== SOLUTION CARDS ===== */
+  .sol-card {
+    background: rgba(13,34,64,0.7);
+    border: 1px solid #1E3A5F;
+    border-left: 3px solid var(--gold);
+    border-radius: 8px;
+    padding: 20px 22px;
+  }
+  .sol-card h4 { color: var(--gold); font-size: 15px; margin-bottom: 8px; }
+  .sol-card p  { font-size: 14px; color: var(--text-dim); margin: 0; line-height: 1.5; }
+
+  /* ===== TECH STACK TILES ===== */
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    width: 100%;
+  }
+  .tech-tile {
+    background: var(--navy-mid);
+    border: 1px solid #1E3A5F;
+    border-radius: 12px;
+    padding: 22px 16px;
+    text-align: center;
+    transition: border-color 0.2s;
+  }
+  .tech-tile:hover { border-color: var(--gold); }
+  .tech-tile .icon { font-size: 32px; margin-bottom: 10px; display: block; }
+  .tech-tile .tn { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+  .tech-tile .td { font-size: 11px; color: var(--text-dim); }
+
+  /* ===== LAYER VISUAL ===== */
+  .layer-stack { width: 100%; display: flex; flex-direction: column; gap: 12px; }
+  .lrow {
+    display: flex; align-items: center; gap: 20px;
+    background: rgba(13,34,64,0.7);
+    border-radius: 10px;
+    padding: 16px 24px;
+    border-left: 4px solid;
+  }
+  .lrow.raw    { border-color: #FF8C00; }
+  .lrow.bronze { border-color: #CD7F32; }
+  .lrow.silver { border-color: #AAAAAA; }
+  .lrow.gold   { border-color: var(--gold); }
+  .lrow .lname { min-width: 80px; font-size: 14px; font-weight: 800; }
+  .lrow.raw    .lname { color: #FF8C00; }
+  .lrow.bronze .lname { color: #CD7F32; }
+  .lrow.silver .lname { color: #AAAAAA; }
+  .lrow.gold   .lname { color: var(--gold); }
+  .lrow .ldesc { font-size: 13px; color: var(--text-dim); flex: 1; }
+  .lrow .lstat { font-size: 12px; font-weight: 700; color: var(--white); min-width: 80px; text-align: right; }
+
+  /* ===== METRIC CARDS ===== */
+  .m-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; width: 100%; }
+  .mcard {
+    background: var(--navy-mid);
+    border: 1px solid #1E3A5F;
+    border-radius: 10px;
+    padding: 22px 18px;
+    text-align: center;
+  }
+  .mcard .mv { font-size: 36px; font-weight: 800; color: var(--gold); display: block; line-height: 1; }
+  .mcard .ml { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.7px; margin-top: 6px; }
+  .mcard .md { font-size: 12px; color: var(--blue-light); margin-top: 6px; }
+
+  /* ===== ML MODEL CARDS ===== */
+  .ml-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; width: 100%; }
+  .mlcard {
+    background: var(--navy-mid);
+    border: 1px solid #1E3A5F;
+    border-top: 3px solid var(--blue);
+    border-radius: 10px;
+    padding: 20px 16px;
+  }
+  .mlcard h4 { font-size: 13px; color: var(--blue-light); margin-bottom: 12px; }
+  .mlcard .auc { font-size: 32px; font-weight: 800; color: var(--gold); line-height: 1; }
+  .mlcard .auc-l { font-size: 10px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+  .mlcard p { font-size: 12px; color: var(--text-dim); margin: 0; line-height: 1.5; }
+
+  /* ===== COMPLIANCE TABLE ===== */
+  .comp-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .comp-table th { background: var(--navy-light); color: var(--gold); padding: 10px 14px; text-align: left; font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; }
+  .comp-table td { padding: 10px 14px; border-bottom: 1px solid #1E3A5F; color: var(--text); vertical-align: top; }
+  .comp-table tr:hover td { background: rgba(0,120,212,0.05); }
+  .badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .badge-green { background: rgba(64,192,112,0.2); color: #40C070; }
+  .badge-gold  { background: rgba(201,168,76,0.2); color: var(--gold); }
+
+  /* ===== KPI OUTCOMES ===== */
+  .kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 100%; }
+  .kpi-card {
+    background: var(--navy-mid);
+    border: 1px solid #1E3A5F;
+    border-radius: 12px;
+    padding: 24px 20px;
+    text-align: center;
+  }
+  .kpi-card .kv { font-size: 38px; font-weight: 800; color: var(--gold); line-height: 1; display: block; }
+  .kpi-card .kl { font-size: 12px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.7px; margin-top: 6px; }
+  .kpi-card .kd { font-size: 13px; color: var(--blue-light); margin-top: 8px; }
+
+  /* ===== ROADMAP ===== */
+  .roadmap { display: flex; gap: 0; width: 100%; }
+  .rphase {
+    flex: 1;
+    padding: 24px 20px;
+    position: relative;
+  }
+  .rphase::after {
+    content: '→';
+    position: absolute;
+    right: -12px; top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-dim);
+    font-size: 20px;
+    z-index: 2;
+  }
+  .rphase:last-child::after { display: none; }
+  .rphase.done   { background: rgba(64,192,112,0.08); border: 1px solid rgba(64,192,112,0.3); border-radius: 10px; }
+  .rphase.active { background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.4); border-radius: 10px; }
+  .rphase.future { background: rgba(0,120,212,0.06); border: 1px solid rgba(0,120,212,0.25); border-radius: 10px; }
+  .rphase .rtag  { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
+  .rphase.done   .rtag { color: #40C070; }
+  .rphase.active .rtag { color: var(--gold); }
+  .rphase.future .rtag { color: var(--blue-light); }
+  .rphase .rname { font-size: 16px; font-weight: 800; color: var(--white); margin-bottom: 12px; }
+  .rphase ul { padding-left: 16px; }
+  .rphase li { font-size: 12px; color: var(--text-dim); margin-bottom: 5px; }
+
+  /* ===== FRAUD VISUAL ===== */
+  .fraud-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; width: 100%; }
+  .fbox {
+    background: var(--navy-mid);
+    border: 1px solid #1E3A5F;
+    border-radius: 10px;
+    padding: 22px 20px;
+  }
+  .fbox h4 { font-size: 13px; color: var(--blue-light); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.8px; }
+  .fbox .fv { font-size: 36px; font-weight: 800; color: var(--gold); }
+  .fbox .fl { font-size: 12px; color: var(--text-dim); margin-top: 4px; }
+  .fbox .fbar-bg { background: #1E3A5F; border-radius: 4px; height: 8px; margin-top: 14px; overflow: hidden; }
+  .fbox .fbar { background: linear-gradient(to right, var(--blue), var(--gold)); height: 100%; border-radius: 4px; }
+
+  /* ===== TEAM GRID ===== */
+  .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 100%; }
+  .tcard {
+    background: var(--navy-mid);
+    border: 1px solid #1E3A5F;
+    border-radius: 10px;
+    padding: 20px 16px;
+    text-align: center;
+  }
+  .tcard .avatar {
+    width: 48px; height: 48px;
+    background: var(--navy-light);
+    border-radius: 50%;
+    margin: 0 auto 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+  }
+  .tcard .tn  { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+  .tcard .tro { font-size: 11px; color: var(--gold); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px; }
+  .tcard .td  { font-size: 12px; color: var(--text-dim); }
+
+  /* ===== CTA SLIDE ===== */
+  .cta-box {
+    background: rgba(13,34,64,0.8);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 16px;
+    padding: 40px 48px;
+    text-align: center;
+    width: 100%;
+    max-width: 700px;
+  }
+  .cta-box h3 { font-size: 28px; color: var(--white); margin-bottom: 16px; }
+  .cta-box p  { font-size: 15px; color: var(--text-dim); margin-bottom: 28px; }
+  .cta-btn {
+    display: inline-block;
+    background: var(--gold);
+    color: #0A1628;
+    font-size: 14px;
+    font-weight: 800;
+    padding: 14px 36px;
+    border-radius: 8px;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: background 0.2s;
+  }
+  .cta-btn:hover { background: var(--gold-light); }
+
+  /* ===== STAR SCHEMA MINI SVG ===== */
+  .erd-wrap { width: 100%; display: flex; align-items: center; justify-content: center; }
+
+  /* ===== BULLET LIST ===== */
+  .blist { list-style: none; padding: 0; width: 100%; }
+  .blist li {
+    padding: 10px 14px 10px 36px;
+    border-bottom: 1px solid #111E32;
+    font-size: 15px;
+    color: var(--text);
+    position: relative;
+  }
+  .blist li::before {
+    content: '▸';
+    position: absolute;
+    left: 12px;
+    color: var(--gold);
+    font-size: 12px;
+    top: 13px;
+  }
+  .blist li strong { color: var(--white); }
+
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<div id="deck">
+
+  <!-- ====== SLIDE 1: COVER ====== -->
+  <div class="slide slide-cover active" data-slide="1">
+    <div class="cover-logo">
+      <svg viewBox="0 0 400 80" width="400" height="80" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="14" width="62" height="46" rx="4" fill="none" stroke="#C9A84C" stroke-width="2"/>
+        <rect x="7" y="22" width="12" height="30" rx="2" fill="#C9A84C"/>
+        <rect x="25" y="22" width="12" height="30" rx="2" fill="#C9A84C" opacity="0.7"/>
+        <rect x="43" y="22" width="12" height="30" rx="2" fill="#C9A84C" opacity="0.5"/>
+        <rect x="0" y="14" width="62" height="7" rx="4" fill="#C9A84C"/>
+        <rect x="0" y="53" width="62" height="7" rx="4" fill="#C9A84C"/>
+        <text x="78" y="44" fill="#F0F4F8" font-family="Segoe UI,Arial" font-size="24" font-weight="800">PRIME CAPITAL BANK</text>
+        <text x="78" y="64" fill="#C9A84C" font-family="Segoe UI,Arial" font-size="12" font-weight="600" letter-spacing="4">SOUTH AFRICA</text>
+      </svg>
+    </div>
+    <div style="text-align:center">
+      <div style="font-size:11px;font-weight:700;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:14px;">Data Platform Briefing · June 2025</div>
+      <h1 style="font-size:52px;font-weight:800;color:var(--white);line-height:1.05;letter-spacing:-1.5px;margin-bottom:14px;">Data <em style="color:var(--gold);font-style:normal;">Intelligence</em><br>Platform</h1>
+      <p style="font-size:18px;color:var(--text-dim);margin-bottom:40px;">Azure Databricks · Medallion Architecture · ML &amp; Analytics</p>
+    </div>
+    <div class="cover-stats">
+      <div class="cstat"><span class="v">500K</span><span class="l">Customers</span></div>
+      <div class="cstat"><span class="v">R2.3T</span><span class="l">AUM</span></div>
+      <div class="cstat"><span class="v">200</span><span class="l">Branches</span></div>
+      <div class="cstat"><span class="v">12</span><span class="l">ML Models</span></div>
+    </div>
+    <p class="cover-date">Confidential · Internal Use Only · Prime Capital Bank Limited · © 2025</p>
+  </div>
+
+  <!-- ====== SLIDE 2: THE CHALLENGE ====== -->
+  <div class="slide slide-dark" data-slide="2">
+    <div class="slide-label">The Problem</div>
+    <h2 class="slide-title">Why We <em>Had to Act</em></h2>
+    <p class="slide-sub">Legacy infrastructure was blocking growth, creating regulatory risk, and costing the business millions annually.</p>
+    <div class="cols">
+      <div class="prob-card">
+        <h4>Fragmented Data Silos</h4>
+        <p>14 isolated source systems with no shared data model. Customer data existed in 7 different systems with no single view. Analysts spent 70% of time on data wrangling, not analysis.</p>
+      </div>
+      <div class="prob-card">
+        <h4>Regulatory Pressure</h4>
+        <p>SARB BA700 preparation took 14 person-days monthly. 3 SARB Directive Letters in 24 months for data quality failures. IFRS 9 ECL calculated on spreadsheets — model risk violation.</p>
+      </div>
+      <div class="prob-card">
+        <h4>Fraud &amp; Risk Blind Spots</h4>
+        <p>Fraud detection ran T+1 batch — too late to stop transactions. Credit scoring took 48 hours — unacceptable for instant loan products. No real-time AML transaction monitoring.</p>
+      </div>
+      <div class="prob-card">
+        <h4>Technology Debt</h4>
+        <p>On-premises Oracle DW: end-of-life in 2024. ETL pipelines: 200+ SSIS packages, zero documentation. Data quality: no automated testing, no lineage, no governance framework.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== SLIDE 3: OUR SOLUTION ====== -->
+  <div class="slide slide-mid" data-slide="3">
+    <div class="slide-label">The Solution</div>
+    <h2 class="slide-title">Medallion <em>Architecture</em></h2>
+    <p class="slide-sub">A single governed, cloud-native data platform replacing every legacy data system in the bank.</p>
+    <div class="layer-stack">
+      <div class="lrow raw">
+        <span class="lname">RAW</span>
+        <span class="ldesc">Source data landed as-is from 8 systems via ADF, Auto Loader &amp; Event Hub · No transformation · Full fidelity preservation</span>
+        <span class="lstat">~50 TB</span>
+      </div>
+      <div class="lrow bronze">
+        <span class="lname">BRONZE</span>
+        <span class="ldesc">Immutable Delta Lake tables · Audit metadata appended · Streaming + batch ingest · Schema inference &amp; evolution</span>
+        <span class="lstat">~38 TB · 14 tables</span>
+      </div>
+      <div class="lrow silver">
+        <span class="lname">SILVER</span>
+        <span class="ldesc">Cleansed · Conformed · PII-masked · SCD2 history · Great Expectations quality gates · dbt transformations</span>
+        <span class="lstat">~22 TB · 42 tables</span>
+      </div>
+      <div class="lrow gold">
+        <span class="lname">GOLD</span>
+        <span class="ldesc">Star schema · Analytics-ready · Power BI · Azure SQL · ML Feature Store · Regulatory reports · Sub-2s queries</span>
+        <span class="lstat">~8 TB · 54 models</span>
+      </div>
+    </div>
+    <div style="margin-top:24px;display:flex;gap:16px;flex-wrap:wrap;">
+      <span style="font-size:13px;color:var(--text-dim);">✔ Unity Catalog governance</span>
+      <span style="font-size:13px;color:var(--text-dim);">✔ Azure Private Endpoints</span>
+      <span style="font-size:13px;color:var(--text-dim);">✔ Column-level PII masking</span>
+      <span style="font-size:13px;color:var(--text-dim);">✔ Full data lineage</span>
+      <span style="font-size:13px;color:var(--text-dim);">✔ Automated regulatory reports</span>
+    </div>
+  </div>
+
+  <!-- ====== SLIDE 4: TECHNOLOGY STACK ====== -->
+  <div class="slide slide-dark" data-slide="4">
+    <div class="slide-label">Technology</div>
+    <h2 class="slide-title">The <em>Azure</em> Stack</h2>
+    <p class="slide-sub">Best-in-class cloud services, fully integrated on Microsoft Azure.</p>
+    <div class="tech-grid">
+      <div class="tech-tile">
+        <span class="icon">
+          <svg width="40" height="40" viewBox="0 0 40 40"><rect width="40" height="40" rx="6" fill="#0078D4" opacity="0.2"/><text y="28" x="4" font-size="22">🗄️</text></svg>
+        </span>
+        <div class="tn">ADLS Gen2</div>
+        <div class="td">Data Lake Storage<br>~78TB managed</div>
+      </div>
+      <div class="tech-tile">
+        <span class="icon">
+          <svg width="40" height="40" viewBox="0 0 40 40"><rect width="40" height="40" rx="6" fill="#FF3621" opacity="0.2"/><text y="28" x="4" font-size="22">⚡</text></svg>
+        </span>
+        <div class="tn">Azure Databricks</div>
+        <div class="td">Compute + ML<br>Photon + MLflow</div>
+      </div>
+      <div class="tech-tile">
+        <span class="icon">
+          <svg width="40" height="40" viewBox="0 0 40 40"><rect width="40" height="40" rx="6" fill="#C9A84C" opacity="0.2"/><text y="28" x="4" font-size="22">🔷</text></svg>
+        </span>
+        <div class="tn">Delta Lake</div>
+        <div class="td">ACID transactions<br>Time travel · MERGE</div>
+      </div>
+      <div class="tech-tile">
+        <span class="icon">
+          <svg width="40" height="40" viewBox="0 0 40 40"><rect width="40" height="40" rx="6" fill="#00B050" opacity="0.2"/><text y="28" x="4" font-size="22">📋</text></svg>
+        </span>
+        <div class="tn">Unity Catalog</div>
+        <div class="td">Governance + Lineage<br>247 tables catalogued</div>
+      </div>
+      <div class="tech-tile">
+        <span class="icon">
+          <svg width="40" height="40" viewBox="0 0 40 40"><rect width="40" height="40" rx="6" fill="#F2C811" opacity="0.2"/><text y="28" x="4" font-size="22">📊</text></svg>
+        </span>
+        <div class="tn">Power BI Premium</div>
+        <div class="td">8 dashboards<br>500 active users</div>
+      </div>
+      <div class="tech-tile">
+        <span class="icon">
+          <svg width="40" height="40" viewBox="0 0 40 40"><rect width="40" height="40" rx="6" fill="#1D6F42" opacity="0.2"/><text y="28" x="4" font-size="22">🔧</text></svg>
+        </span>
+        <div class="tn">dbt Core</div>
+        <div class="td">54 models · 1,847 tests<br>100% test pass rate</div>
+      </div>
+      <div class="tech-tile">
+        <span class="icon">
+          <svg width="40" height="40" viewBox="0 0 40 40"><rect width="40" height="40" rx="6" fill="#0078D4" opacity="0.2"/><text y="28" x="4" font-size="22">🔒</text></svg>
+        </span>
+        <div class="tn">Key Vault + AAD</div>
+        <div class="td">Zero plaintext secrets<br>MFA + PIM + CMK</div>
+      </div>
+      <div class="tech-tile">
+        <span class="icon">
+          <svg width="40" height="40" viewBox="0 0 40 40"><rect width="40" height="40" rx="6" fill="#9B59B6" opacity="0.2"/><text y="28" x="4" font-size="22">🤖</text></svg>
+        </span>
+        <div class="tn">MLflow Registry</div>
+        <div class="td">12 models in prod<br>Champion-challenger</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== SLIDE 5: DATA MODEL ====== -->
+  <div class="slide slide-mid" data-slide="5">
+    <div class="slide-label">Data Model</div>
+    <h2 class="slide-title">Gold <em>Star Schema</em></h2>
+    <p class="slide-sub">Kimball star schema design — 3 fact tables, 11 dimension tables, optimised for sub-second analytics.</p>
+    <div class="erd-wrap">
+      <svg viewBox="0 0 900 400" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,Arial,sans-serif">
+        <!-- Central facts -->
+        <rect x="330" y="150" width="240" height="100" rx="8" fill="#1A3A6A" stroke="#C9A84C" stroke-width="2"/>
+        <text x="450" y="178" text-anchor="middle" fill="#C9A84C" font-size="11" font-weight="bold">FACT TABLES</text>
+        <text x="450" y="198" text-anchor="middle" fill="#A0C4E8" font-size="10">fact_transaction (2.1B rows)</text>
+        <text x="450" y="213" text-anchor="middle" fill="#A0C4E8" font-size="10">fact_loan_portfolio (85M rows)</text>
+        <text x="450" y="228" text-anchor="middle" fill="#A0C4E8" font-size="10">fact_account_balance (730M rows)</text>
+
+        <!-- Dim boxes and lines -->
+        <!-- dim_customer -->
+        <rect x="10" y="30" width="150" height="50" rx="6" fill="#0A1E38" stroke="#4A90C4" stroke-width="1.5"/>
+        <text x="85" y="52" text-anchor="middle" fill="#7EB8F7" font-size="10" font-weight="bold">dim_customer</text>
+        <text x="85" y="67" text-anchor="middle" fill="#7A8A9A" font-size="9">SCD2 · 500K rows</text>
+        <line x1="160" y1="55" x2="330" y2="180" stroke="#4A90C4" stroke-width="1" stroke-dasharray="4,3"/>
+
+        <!-- dim_account -->
+        <rect x="10" y="105" width="150" height="50" rx="6" fill="#0A1E38" stroke="#4A90C4" stroke-width="1.5"/>
+        <text x="85" y="127" text-anchor="middle" fill="#7EB8F7" font-size="10" font-weight="bold">dim_account</text>
+        <text x="85" y="142" text-anchor="middle" fill="#7A8A9A" font-size="9">SCD2 · 1.8M rows</text>
+        <line x1="160" y1="130" x2="330" y2="190" stroke="#4A90C4" stroke-width="1" stroke-dasharray="4,3"/>
+
+        <!-- dim_product -->
+        <rect x="10" y="180" width="150" height="50" rx="6" fill="#0A1E38" stroke="#4A90C4" stroke-width="1.5"/>
+        <text x="85" y="202" text-anchor="middle" fill="#7EB8F7" font-size="10" font-weight="bold">dim_product</text>
+        <text x="85" y="217" text-anchor="middle" fill="#7A8A9A" font-size="9">SCD1 · 850 rows</text>
+        <line x1="160" y1="205" x2="330" y2="205" stroke="#4A90C4" stroke-width="1" stroke-dasharray="4,3"/>
+
+        <!-- dim_date -->
+        <rect x="10" y="255" width="150" height="50" rx="6" fill="#0A1E38" stroke="#4A90C4" stroke-width="1.5"/>
+        <text x="85" y="277" text-anchor="middle" fill="#7EB8F7" font-size="10" font-weight="bold">dim_date</text>
+        <text x="85" y="292" text-anchor="middle" fill="#7A8A9A" font-size="9">Static · 10,957 rows</text>
+        <line x1="160" y1="280" x2="330" y2="220" stroke="#4A90C4" stroke-width="1" stroke-dasharray="4,3"/>
+
+        <!-- dim_branch -->
+        <rect x="10" y="330" width="150" height="50" rx="6" fill="#0A1E38" stroke="#4A90C4" stroke-width="1.5"/>
+        <text x="85" y="352" text-anchor="middle" fill="#7EB8F7" font-size="10" font-weight="bold">dim_branch</text>
+        <text x="85" y="367" text-anchor="middle" fill="#7A8A9A" font-size="9">SCD2 · 200 rows</text>
+        <line x1="160" y1="355" x2="330" y2="235" stroke="#4A90C4" stroke-width="1" stroke-dasharray="4,3"/>
+
+        <!-- dim_channel -->
+        <rect x="740" y="30" width="150" height="50" rx="6" fill="#0A1E38" stroke="#4A90C4" stroke-width="1.5"/>
+        <text x="815" y="52" text-anchor="middle" fill="#7EB8F7" font-size="10" font-weight="bold">dim_channel</text>
+        <text x="815" y="67" text-anchor="middle" fill="#7A8A9A" font-size="9">Static · 18 rows</text>
+        <line x1="740" y1="55" x2="570" y2="180" stroke="#4A90C4" stroke-width="1" stroke-dasharray="4,3"/>
+
+        <!-- dim_currency -->
+        <rect x="740" y="105" width="150" height="50" rx="6" fill="#0A1E38" stroke="#4A90C4" stroke-width="1.5"/>
+        <text x="815" y="127" text-anchor="middle" fill="#7EB8F7" font-size="10" font-weight="bold">dim_currency</text>
+        <text x="815" y="142" text-anchor="middle" fill="#7A8A9A" font-size="9">Daily · 45 rows</text>
+        <line x1="740" y1="130" x2="570" y2="190" stroke="#4A90C4" stroke-width="1" stroke-dasharray="4,3"/>
+
+        <!-- dim_merchant -->
+        <rect x="740" y="180" width="150" height="50" rx="6" fill="#0A1E38" stroke="#4A90C4" stroke-width="1.5"/>
+        <text x="815" y="202" text-anchor="middle" fill="#7EB8F7" font-size="10" font-weight="bold">dim_merchant</text>
+        <text x="815" y="217" text-anchor="middle" fill="#7A8A9A" font-size="9">Monthly · 250K rows</text>
+        <line x1="740" y1="205" x2="570" y2="205" stroke="#4A90C4" stroke-width="1" stroke-dasharray="4,3"/>
+
+        <!-- dim_risk_category -->
+        <rect x="740" y="255" width="150" height="50" rx="6" fill="#0A1E38" stroke="#4A90C4" stroke-width="1.5"/>
+        <text x="815" y="277" text-anchor="middle" fill="#7EB8F7" font-size="10" font-weight="bold">dim_risk_category</text>
+        <text x="815" y="292" text-anchor="middle" fill="#7A8A9A" font-size="9">SCD1 · 120 rows</text>
+        <line x1="740" y1="280" x2="570" y2="220" stroke="#4A90C4" stroke-width="1" stroke-dasharray="4,3"/>
+
+        <!-- dim_geography -->
+        <rect x="740" y="330" width="150" height="50" rx="6" fill="#0A1E38" stroke="#4A90C4" stroke-width="1.5"/>
+        <text x="815" y="352" text-anchor="middle" fill="#7EB8F7" font-size="10" font-weight="bold">dim_geography</text>
+        <text x="815" y="367" text-anchor="middle" fill="#7A8A9A" font-size="9">Static · 4,200 rows</text>
+        <line x1="740" y1="355" x2="570" y2="235" stroke="#4A90C4" stroke-width="1" stroke-dasharray="4,3"/>
+
+        <!-- dim_employee (bottom centre) -->
+        <rect x="355" y="310" width="190" height="50" rx="6" fill="#0A1E38" stroke="#4A90C4" stroke-width="1.5"/>
+        <text x="450" y="332" text-anchor="middle" fill="#7EB8F7" font-size="10" font-weight="bold">dim_employee</text>
+        <text x="450" y="347" text-anchor="middle" fill="#7A8A9A" font-size="9">SCD2 · 12K rows</text>
+        <line x1="450" y1="310" x2="450" y2="250" stroke="#4A90C4" stroke-width="1" stroke-dasharray="4,3"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ====== SLIDE 6: BRONZE ====== -->
+  <div class="slide slide-dark" data-slide="6">
+    <div class="slide-label">Bronze Layer</div>
+    <h2 class="slide-title"><em>Ingestion</em> at Scale</h2>
+    <p class="slide-sub">Auto Loader, Event Hub streaming, and ADF batch pipelines landing data into immutable Delta tables.</p>
+    <div class="m-grid">
+      <div class="mcard"><span class="mv">14</span><span class="ml">Bronze Tables</span><span class="md">Across 7 source domains</span></div>
+      <div class="mcard"><span class="mv">~38TB</span><span class="ml">Compressed Storage</span><span class="md">Delta Lake format</span></div>
+      <div class="mcard"><span class="mv">2.1B</span><span class="ml">Transaction Records</span><span class="md">Streaming + batch</span></div>
+      <div class="mcard"><span class="mv">&lt;10min</span><span class="ml">Max Ingest Latency</span><span class="md">Card transactions</span></div>
+      <div class="mcard"><span class="mv">100%</span><span class="ml">Schema Evolution</span><span class="md">Auto Loader auto-detect</span></div>
+      <div class="mcard"><span class="mv">30 days</span><span class="ml">Delta History</span><span class="md">Point-in-time recovery</span></div>
+    </div>
+    <div style="margin-top:24px;background:rgba(13,34,64,0.7);border:1px solid #1E3A5F;border-left:3px solid #CD7F32;border-radius:8px;padding:16px 22px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;color:#CD7F32;text-transform:uppercase;margin-bottom:8px;">Auto Loader Advantage</div>
+      <p style="font-size:14px;color:var(--text-dim);margin:0;">Databricks Auto Loader (<code style="color:var(--blue-light);background:rgba(0,120,212,0.15);padding:2px 6px;border-radius:3px;">cloudFiles</code>) provides exactly-once ingestion semantics via checkpoint state in ADLS — surviving cluster restarts without data duplication or loss. Schema evolution is handled automatically via column merging, eliminating the need for manual pipeline changes when source systems add columns.</p>
+    </div>
+  </div>
+
+  <!-- ====== SLIDE 7: SILVER ====== -->
+  <div class="slide slide-mid" data-slide="7">
+    <div class="slide-label">Silver Layer</div>
+    <h2 class="slide-title">Data <em>Quality</em> &amp; Cleansing</h2>
+    <p class="slide-sub">Great Expectations quality gates, dbt transformations, PII masking, and SCD2 history preservation.</p>
+    <div class="cols-wide">
+      <div>
+        <div class="m-grid" style="grid-template-columns:1fr 1fr;">
+          <div class="mcard"><span class="mv">42</span><span class="ml">Silver Tables</span><span class="md">6 domain schemas</span></div>
+          <div class="mcard"><span class="mv">99.94%</span><span class="ml">Quality Pass Rate</span><span class="md">Monthly average</span></div>
+          <div class="mcard"><span class="mv">7</span><span class="ml">DQ Check Types</span><span class="md">Great Expectations</span></div>
+          <div class="mcard"><span class="mv">SCD2</span><span class="ml">History Model</span><span class="md">Full audit trail</span></div>
+        </div>
+      </div>
+      <div>
+        <ul class="blist">
+          <li><strong>Null handling</strong> — configurable per column (reject / default / flag)</li>
+          <li><strong>Format standardisation</strong> — ISO 8601 dates, ZAR base currency</li>
+          <li><strong>Deduplication</strong> — row_number() over partition by business key</li>
+          <li><strong>PII masking</strong> — HMAC-SHA256 tokenisation via Key Vault CMK</li>
+          <li><strong>Referential integrity</strong> — FK validation against reference tables</li>
+          <li><strong>Freshness SLA</strong> — source staleness alerts within 2 hours</li>
+          <li><strong>SCD2 MERGE</strong> — full Delta Lake MERGE for dimension history</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== SLIDE 8: GOLD ====== -->
+  <div class="slide slide-dark" data-slide="8">
+    <div class="slide-label">Gold Layer</div>
+    <h2 class="slide-title">Analytics <em>Ready</em></h2>
+    <p class="slide-sub">Star schema optimised for Power BI DirectQuery, regulatory reporting, and ML feature serving.</p>
+    <div class="m-grid">
+      <div class="mcard"><span class="mv">&lt;2s</span><span class="ml">Avg Query Time</span><span class="md">Power BI DirectQuery</span></div>
+      <div class="mcard"><span class="mv">3–8×</span><span class="ml">Photon Speedup</span><span class="md">vs standard Spark SQL</span></div>
+      <div class="mcard"><span class="mv">~8TB</span><span class="ml">Gold Storage</span><span class="md">Optimised + Z-ordered</span></div>
+      <div class="mcard"><span class="mv">54</span><span class="ml">dbt Models</span><span class="md">100% tested + documented</span></div>
+      <div class="mcard"><span class="mv">1,847</span><span class="ml">dbt Tests</span><span class="md">100% pass rate enforced</span></div>
+      <div class="mcard"><span class="mv">247</span><span class="ml">Catalogued Tables</span><span class="md">Unity Catalog lineage</span></div>
+    </div>
+    <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;">
+      <span style="display:inline-block;background:rgba(201,168,76,0.15);color:var(--gold);border:1px solid rgba(201,168,76,0.4);padding:4px 14px;border-radius:12px;font-size:12px;font-weight:600;">Liquid Clustering</span>
+      <span style="display:inline-block;background:rgba(0,120,212,0.15);color:var(--blue-light);border:1px solid rgba(0,120,212,0.4);padding:4px 14px;border-radius:12px;font-size:12px;font-weight:600;">Delta OPTIMIZE</span>
+      <span style="display:inline-block;background:rgba(0,120,212,0.15);color:var(--blue-light);border:1px solid rgba(0,120,212,0.4);padding:4px 14px;border-radius:12px;font-size:12px;font-weight:600;">Z-Order on join keys</span>
+      <span style="display:inline-block;background:rgba(64,192,112,0.15);color:#40C070;border:1px solid rgba(64,192,112,0.4);padding:4px 14px;border-radius:12px;font-size:12px;font-weight:600;">Databricks SQL Serverless</span>
+      <span style="display:inline-block;background:rgba(64,192,112,0.15);color:#40C070;border:1px solid rgba(64,192,112,0.4);padding:4px 14px;border-radius:12px;font-size:12px;font-weight:600;">Photon Engine</span>
+      <span style="display:inline-block;background:rgba(201,168,76,0.15);color:var(--gold);border:1px solid rgba(201,168,76,0.4);padding:4px 14px;border-radius:12px;font-size:12px;font-weight:600;">5-year Hot tier retention</span>
+    </div>
+  </div>
+
+  <!-- ====== SLIDE 9: ML MODELS ====== -->
+  <div class="slide slide-mid" data-slide="9">
+    <div class="slide-label">Machine Learning</div>
+    <h2 class="slide-title">12 <em>Production</em> Models</h2>
+    <p class="slide-sub">Credit risk, fraud detection, AML scoring, and customer intelligence — all governed by MRM policy.</p>
+    <div class="ml-grid">
+      <div class="mlcard">
+        <h4>PD Model (Basel IRB)</h4>
+        <div class="auc">0.94</div>
+        <div class="auc-l">Gini Coefficient</div>
+        <p>XGBoost · 180 features · 12-month PD · Monthly batch scoring · Full loan book</p>
+      </div>
+      <div class="mlcard">
+        <h4>LGD Model (IFRS 9)</h4>
+        <div class="auc">0.89</div>
+        <div class="auc-l">R² Score</div>
+        <p>GBM Regressor · Collateral + recovery features · ECL provisioning dependency</p>
+      </div>
+      <div class="mlcard">
+        <h4>Fraud Detection</h4>
+        <div class="auc">0.97</div>
+        <div class="auc-l">AUC-ROC</div>
+        <p>Real-time &lt;50ms · GBM · 3yr fraud labels · R45M annual savings</p>
+      </div>
+      <div class="mlcard">
+        <h4>AML Scoring</h4>
+        <div class="auc">0.91</div>
+        <div class="auc-l">AUC-ROC</div>
+        <p>Graph network analysis · STR automation · Mule account detection</p>
+      </div>
+    </div>
+    <div style="margin-top:20px;background:rgba(13,34,64,0.7);border:1px solid #1E3A5F;border-left:3px solid #9B59B6;border-radius:8px;padding:14px 20px;display:flex;gap:24px;align-items:center;">
+      <div style="font-size:13px;color:var(--text-dim);">MLflow Model Registry</div>
+      <div style="width:1px;height:30px;background:#1E3A5F;"></div>
+      <div style="font-size:13px;color:var(--text-dim);">340 Feature Store features</div>
+      <div style="width:1px;height:30px;background:#1E3A5F;"></div>
+      <div style="font-size:13px;color:var(--text-dim);">Champion-challenger live in prod</div>
+      <div style="width:1px;height:30px;background:#1E3A5F;"></div>
+      <div style="font-size:13px;color:var(--text-dim);">Quarterly backtesting</div>
+      <div style="width:1px;height:30px;background:#1E3A5F;"></div>
+      <div style="font-size:13px;color:var(--text-dim);">Azure API Management serving</div>
+    </div>
+  </div>
+
+  <!-- ====== SLIDE 10: FRAUD ====== -->
+  <div class="slide slide-dark" data-slide="10">
+    <div class="slide-label">Fraud Detection</div>
+    <h2 class="slide-title">Real-Time <em>Protection</em></h2>
+    <p class="slide-sub">Sub-50ms fraud scoring on every card transaction — saving R45M per year.</p>
+    <div class="fraud-metrics">
+      <div class="fbox">
+        <h4>Annual Fraud Savings</h4>
+        <div class="fv">R45.2M</div>
+        <div class="fl">Prevented fraud losses · FY2024</div>
+        <div class="fbar-bg"><div class="fbar" style="width:85%"></div></div>
+        <div style="font-size:11px;color:var(--text-dim);margin-top:6px;">85% reduction vs FY2022 baseline</div>
+      </div>
+      <div class="fbox">
+        <h4>Model Performance</h4>
+        <div class="fv">0.97</div>
+        <div class="fl">AUC-ROC · 3-year training set</div>
+        <div class="fbar-bg"><div class="fbar" style="width:97%"></div></div>
+        <div style="font-size:11px;color:var(--text-dim);margin-top:6px;">False positive rate: 0.8% (industry: 1.5%)</div>
+      </div>
+      <div class="fbox">
+        <h4>Inference Latency</h4>
+        <div class="fv">&lt;50ms</div>
+        <div class="fl">P99 · Azure API Management</div>
+        <div class="fbar-bg"><div class="fbar" style="width:92%"></div></div>
+        <div style="font-size:11px;color:var(--text-dim);margin-top:6px;">Well within card scheme 100ms limit</div>
+      </div>
+      <div class="fbox">
+        <h4>Transactions Scored</h4>
+        <div class="fv">1M+</div>
+        <div class="fl">Events per second peak capacity</div>
+        <div class="fbar-bg"><div class="fbar" style="width:60%"></div></div>
+        <div style="font-size:11px;color:var(--text-dim);margin-top:6px;">Current load: ~180K TPS average</div>
+      </div>
+    </div>
+    <div style="margin-top:20px;background:rgba(13,34,64,0.7);border:1px solid #1E3A5F;border-radius:8px;padding:14px 22px;">
+      <p style="font-size:13px;color:var(--text-dim);margin:0;"><strong style="color:var(--white);">Pipeline:</strong> Card transaction → Event Hub → Databricks Structured Streaming → Feature Store enrichment → GBM model score → API response (card hold / pass) → Fraud ops dashboard alert → ML retraining feedback loop</p>
+    </div>
+  </div>
+
+  <!-- ====== SLIDE 11: REGULATORY ====== -->
+  <div class="slide slide-mid" data-slide="11">
+    <div class="slide-label">Compliance</div>
+    <h2 class="slide-title">Regulatory <em>Automation</em></h2>
+    <p class="slide-sub">Zero manual data preparation for SARB, IFRS 9, Basel III, POPIA, and FICA compliance.</p>
+    <table class="comp-table">
+      <thead>
+        <tr><th>Framework</th><th>Requirement</th><th>Platform Implementation</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>SARB BA700</strong></td><td>Monthly prudential return</td><td>Automated XML from <code style="color:var(--blue-light)">rpt_sarb_ba700</code> dbt mart · T+2 submission</td><td><span class="badge badge-green">✔ Automated</span></td></tr>
+        <tr><td><strong>IFRS 9 ECL</strong></td><td>Monthly provisioning</td><td>PD × LGD × EAD pipeline · Stage 1/2/3 classification · GL journal output</td><td><span class="badge badge-green">✔ Automated</span></td></tr>
+        <tr><td><strong>Basel III LCR</strong></td><td>Daily liquidity ratio</td><td>Gold treasury data · Regulatory weight lookup · Daily scheduled job</td><td><span class="badge badge-green">✔ Automated</span></td></tr>
+        <tr><td><strong>Basel III NSFR</strong></td><td>Quarterly stable funding</td><td>Balance sheet positions from Gold layer · SARB-approved formula</td><td><span class="badge badge-green">✔ Automated</span></td></tr>
+        <tr><td><strong>POPIA</strong></td><td>Data privacy &amp; PII protection</td><td>Unity Catalog column masking · DSAR pipeline · Breach notification workflow</td><td><span class="badge badge-green">✔ Embedded</span></td></tr>
+        <tr><td><strong>FICA / AML</strong></td><td>STR submission within 15 days</td><td>AML model → STR draft generation → Compliance review → FIC submission</td><td><span class="badge badge-green">✔ Automated</span></td></tr>
+        <tr><td><strong>BCBS 239</strong></td><td>Risk data aggregation</td><td>Unity Catalog end-to-end lineage from Bronze source to Gold metric</td><td><span class="badge badge-gold">✔ Compliant</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ====== SLIDE 12: BUSINESS OUTCOMES ====== -->
+  <div class="slide slide-dark" data-slide="12">
+    <div class="slide-label">Results</div>
+    <h2 class="slide-title">Business <em>Outcomes</em></h2>
+    <p class="slide-sub">Measurable, sustained improvements across efficiency, risk, compliance, and customer intelligence.</p>
+    <div class="kpi-grid">
+      <div class="kpi-card"><span class="kv">99.8%</span><span class="kl">Pipeline SLA</span><span class="kd">47 pipelines · trailing 12 months</span></div>
+      <div class="kpi-card"><span class="kv">&lt;2s</span><span class="kl">Query Performance</span><span class="kd">Power BI DirectQuery avg</span></div>
+      <div class="kpi-card"><span class="kv">40%</span><span class="kl">Less Manual Reporting</span><span class="kd">Analyst time saved monthly</span></div>
+      <div class="kpi-card"><span class="kv">R45M</span><span class="kl">Fraud Prevented</span><span class="kd">Annual savings · FY2024</span></div>
+      <div class="kpi-card"><span class="kv">6hrs</span><span class="kl">Monthly Close Cycle</span><span class="kd">Down from 5 business days</span></div>
+      <div class="kpi-card"><span class="kv">0</span><span class="kl">SARB Directives</span><span class="kd">Since go-live (was 3 in prior 24m)</span></div>
+    </div>
+    <div style="margin-top:22px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;">
+      <div style="background:rgba(64,192,112,0.08);border:1px solid rgba(64,192,112,0.3);border-radius:8px;padding:14px 16px;text-align:center;">
+        <div style="font-size:11px;color:#40C070;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">ECL Coverage</div>
+        <div style="font-size:20px;font-weight:800;color:var(--white);">R4.8B provision</div>
+        <div style="font-size:12px;color:var(--text-dim);">1.26% coverage ratio</div>
+      </div>
+      <div style="background:rgba(0,120,212,0.08);border:1px solid rgba(0,120,212,0.3);border-radius:8px;padding:14px 16px;text-align:center;">
+        <div style="font-size:11px;color:var(--blue-light);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Capital Adequacy</div>
+        <div style="font-size:20px;font-weight:800;color:var(--white);">CET1: 13.2%</div>
+        <div style="font-size:12px;color:var(--text-dim);">vs 10% min requirement</div>
+      </div>
+      <div style="background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.3);border-radius:8px;padding:14px 16px;text-align:center;">
+        <div style="font-size:11px;color:var(--gold);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">User Adoption</div>
+        <div style="font-size:20px;font-weight:800;color:var(--white);">500 BI users</div>
+        <div style="font-size:12px;color:var(--text-dim);">8 dashboards · NPS 72</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== SLIDE 13: ROADMAP ====== -->
+  <div class="slide slide-mid" data-slide="13">
+    <div class="slide-label">What's Next</div>
+    <h2 class="slide-title">Platform <em>Roadmap</em></h2>
+    <p class="slide-sub">Three-phase evolution from foundational analytics to AI-native banking intelligence.</p>
+    <div class="roadmap">
+      <div class="rphase done">
+        <div class="rtag">✔ Phase 1 — Complete</div>
+        <div class="rname">Foundation</div>
+        <ul>
+          <li>Medallion architecture on Azure Databricks</li>
+          <li>Bronze / Silver / Gold layers live</li>
+          <li>dbt Core transformation pipeline</li>
+          <li>Unity Catalog governance framework</li>
+          <li>8 Power BI dashboards deployed</li>
+          <li>Credit scoring + fraud models in prod</li>
+          <li>SARB BA700 + IFRS 9 automated</li>
+        </ul>
+      </div>
+      <div class="rphase active">
+        <div class="rtag">→ Phase 2 — In Progress (Q3 2025)</div>
+        <div class="rname">Real-Time CDC</div>
+        <ul>
+          <li>Debezium CDC from core banking T24</li>
+          <li>Sub-minute data freshness on Silver layer</li>
+          <li>Streaming Silver transformations</li>
+          <li>Real-time Customer 360 dashboard</li>
+          <li>Event-driven AML alert pipeline</li>
+          <li>Open Banking API (PSD2-aligned)</li>
+        </ul>
+      </div>
+      <div class="rphase future">
+        <div class="rtag">◌ Phase 3 — Planned (Q1 2026)</div>
+        <div class="rname">AI Assistant</div>
+        <ul>
+          <li>Natural language query on Gold layer</li>
+          <li>Databricks AI/BI Genie integration</li>
+          <li>Automated regulatory narrative generation</li>
+          <li>Predictive branch performance AI</li>
+          <li>Customer churn intervention engine</li>
+          <li>Real-time credit limit optimisation</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== SLIDE 14: TEAM ====== -->
+  <div class="slide slide-dark" data-slide="14">
+    <div class="slide-label">Governance</div>
+    <h2 class="slide-title">Team &amp; <em>Data Ownership</em></h2>
+    <p class="slide-sub">A federated data governance model with clear ownership, stewardship, and support accountability.</p>
+    <div class="team-grid">
+      <div class="tcard">
+        <div class="avatar">👤</div>
+        <div class="tn">Chief Data Officer</div>
+        <div class="tro">Data Strategy</div>
+        <div class="td">Platform vision, enterprise data policy, board-level reporting on data maturity</div>
+      </div>
+      <div class="tcard">
+        <div class="avatar">👤</div>
+        <div class="tn">Head of Data Engineering</div>
+        <div class="tro">Engineering Owner</div>
+        <div class="td">Architecture decisions, pipeline SLA accountability, Databricks workspace governance</div>
+      </div>
+      <div class="tcard">
+        <div class="avatar">👤</div>
+        <div class="tn">Lead Data Scientist</div>
+        <div class="tro">ML &amp; Analytics</div>
+        <div class="td">Model development, MRM policy compliance, Feature Store ownership, MLflow registry</div>
+      </div>
+      <div class="tcard">
+        <div class="avatar">👤</div>
+        <div class="tn">Data Governance Manager</div>
+        <div class="tro">Governance &amp; POPIA</div>
+        <div class="td">Unity Catalog policies, PII classification, POPIA compliance, DSAR management</div>
+      </div>
+      <div class="tcard">
+        <div class="avatar">👤</div>
+        <div class="tn">Platform SRE Lead</div>
+        <div class="tro">Reliability</div>
+        <div class="td">99.8% SLA delivery, incident management, DR testing, monitoring &amp; alerting</div>
+      </div>
+      <div class="tcard">
+        <div class="avatar">👤</div>
+        <div class="tn">Regulatory Reporting Lead</div>
+        <div class="tro">Compliance</div>
+        <div class="td">SARB/IFRS/Basel III return ownership, dbt regulatory mart review &amp; sign-off</div>
+      </div>
+    </div>
+    <div style="margin-top:20px;background:rgba(13,34,64,0.7);border:1px solid #1E3A5F;border-radius:8px;padding:12px 20px;text-align:center;">
+      <p style="font-size:13px;color:var(--text-dim);margin:0;">Support model: <strong style="color:var(--white);">L1</strong> — Data Users (self-service) &nbsp;|&nbsp; <strong style="color:var(--white);">L2</strong> — BI &amp; Analytics team &nbsp;|&nbsp; <strong style="color:var(--white);">L3</strong> — Data Engineering &amp; SRE &nbsp;|&nbsp; SLA: P1 &lt;1hr · P2 &lt;4hr · P3 &lt;2 business days</p>
+    </div>
+  </div>
+
+  <!-- ====== SLIDE 15: NEXT STEPS ====== -->
+  <div class="slide slide-cover" data-slide="15">
+    <div class="slide-label">Next Steps</div>
+    <h2 class="slide-title" style="text-align:center;align-self:center;">Ready to <em>Explore?</em></h2>
+    <div class="cta-box" style="margin-top:24px;">
+      <h3>Three Actions to Take Now</h3>
+      <ul style="text-align:left;padding-left:20px;margin-bottom:24px;">
+        <li style="padding:8px 0;font-size:15px;color:var(--text-dim);border-bottom:1px solid #1E3A5F;"><strong style="color:var(--white);">Access the dashboards</strong> — Log into Power BI with your Azure AD credentials. Your role determines your dashboard scope.</li>
+        <li style="padding:8px 0;font-size:15px;color:var(--text-dim);border-bottom:1px solid #1E3A5F;"><strong style="color:var(--white);">Review the Data Dictionary</strong> — <code style="color:var(--blue-light);font-size:13px;">docs/data_dictionary/data_dictionary.md</code> documents all 247 tables.</li>
+        <li style="padding:8px 0;font-size:15px;color:var(--text-dim);"><strong style="color:var(--white);">Request data access</strong> — Submit a Unity Catalog access request through the ServiceNow Data Access portal. Approved within 1 business day.</li>
+      </ul>
+      <div style="font-size:12px;color:var(--text-dim);">Questions? Contact the Data Engineering team · data.engineering@primecapital.co.za</div>
+    </div>
+    <p style="margin-top:32px;font-size:11px;color:var(--text-dim);text-align:center;">Prime Capital Bank Limited · Registration No. 1968/000123/06 · Authorised FSP (FSP 12345)<br>Confidential — Internal Use Only · © 2025 Prime Capital Bank Limited</p>
+  </div>
+
+</div><!-- /deck -->
+
+<!-- Nav controls -->
+<div id="nav-prev" onclick="changeSlide(-1)">‹</div>
+<div id="nav-next" onclick="changeSlide(1)">›</div>
+<div id="slide-counter"><span id="cur">1</span> / <span id="tot">15</span></div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let current = 0;
+
+  document.getElementById('tot').textContent = total;
+
+  function showSlide(n) {
+    slides[current].classList.remove('active');
+    slides[current].classList.add('exit');
+    setTimeout(() => slides[current].classList.remove('exit'), 450);
+
+    current = (n + total) % total;
+
+    slides[current].classList.add('active');
+    document.getElementById('cur').textContent = current + 1;
+    document.getElementById('progress-bar').style.width = ((current + 1) / total * 100) + '%';
+  }
+
+  function changeSlide(dir) { showSlide(current + dir); }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); changeSlide(1); }
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')                    { e.preventDefault(); changeSlide(-1); }
+  });
+
+  // Initial progress bar
+  document.getElementById('progress-bar').style.width = (1 / total * 100) + '%';
+</script>
+</body>
+</html>

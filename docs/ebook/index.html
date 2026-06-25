@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prime Capital Bank — Data Intelligence Platform</title>
+<style>
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0A1628;
+    --navy-mid: #0D2240;
+    --navy-light: #1A3A6A;
+    --gold: #C9A84C;
+    --gold-light: #E8C870;
+    --blue: #0078D4;
+    --blue-light: #7EB8F7;
+    --white: #F0F4F8;
+    --text: #CBD5E1;
+    --text-dim: #7A94B0;
+    --sidebar-w: 260px;
+    --font: 'Segoe UI', system-ui, -apple-system, Arial, sans-serif;
+  }
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body {
+    background: var(--navy);
+    color: var(--text);
+    font-family: var(--font);
+    line-height: 1.7;
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* ===== SIDEBAR ===== */
+  #sidebar {
+    width: var(--sidebar-w);
+    min-width: var(--sidebar-w);
+    background: #060F1E;
+    border-right: 1px solid #1E3A5F;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+  }
+  #sidebar-brand {
+    padding: 28px 20px 20px;
+    border-bottom: 1px solid #1E3A5F;
+  }
+  #sidebar-brand .logo-text {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  #sidebar-brand .logo-sub {
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 0.5px;
+    margin-top: 4px;
+  }
+  #sidebar nav { padding: 16px 0; flex: 1; }
+  #sidebar nav a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 20px;
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 12.5px;
+    font-weight: 500;
+    border-left: 3px solid transparent;
+    transition: all 0.2s;
+    line-height: 1.3;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    color: var(--gold);
+    background: rgba(201,168,76,0.08);
+    border-left-color: var(--gold);
+  }
+  #sidebar nav a .ch-num {
+    min-width: 22px;
+    height: 22px;
+    background: var(--navy-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--blue-light);
+  }
+  #sidebar-footer {
+    padding: 16px 20px;
+    border-top: 1px solid #1E3A5F;
+    font-size: 10px;
+    color: var(--text-dim);
+  }
+
+  /* ===== MAIN CONTENT ===== */
+  #main {
+    flex: 1;
+    max-width: calc(100vw - var(--sidebar-w));
+    overflow-x: hidden;
+  }
+
+  /* ===== COVER PAGE ===== */
+  #cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(160deg, #060F1E 0%, #0A1628 40%, #0D2240 100%);
+    padding: 60px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  #cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 30%, rgba(0,120,212,0.12) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .cover-badge {
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: 20px;
+    margin-bottom: 40px;
+  }
+  .cover-logo {
+    margin-bottom: 32px;
+  }
+  .cover-title {
+    font-size: 48px;
+    font-weight: 800;
+    color: var(--white);
+    text-align: center;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: 12px;
+  }
+  .cover-title span { color: var(--gold); }
+  .cover-subtitle {
+    font-size: 20px;
+    color: var(--blue-light);
+    text-align: center;
+    font-weight: 300;
+    margin-bottom: 48px;
+    letter-spacing: 0.5px;
+  }
+  .cover-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    max-width: 760px;
+    width: 100%;
+    margin-bottom: 48px;
+  }
+  .cover-stat {
+    background: rgba(13,34,64,0.8);
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 10px;
+    padding: 18px 14px;
+    text-align: center;
+  }
+  .cover-stat .val {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--gold);
+    display: block;
+    line-height: 1.1;
+  }
+  .cover-stat .lbl {
+    font-size: 10px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-top: 4px;
+  }
+  .cover-meta {
+    font-size: 12px;
+    color: var(--text-dim);
+    text-align: center;
+  }
+  .cover-meta strong { color: var(--text); }
+
+  /* ===== CHAPTERS ===== */
+  .chapter {
+    padding: 64px 56px;
+    border-bottom: 1px solid #111E32;
+    max-width: 900px;
+  }
+  .chapter-header {
+    margin-bottom: 36px;
+  }
+  .chapter-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .chapter-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, rgba(201,168,76,0.4), transparent);
+    max-width: 120px;
+  }
+  .chapter-title {
+    font-size: 34px;
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+  .chapter-intro {
+    font-size: 16px;
+    color: var(--blue-light);
+    font-weight: 400;
+  }
+
+  /* ===== TYPOGRAPHY ===== */
+  h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+    margin: 32px 0 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #1E3A5F;
+  }
+  h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--gold-light);
+    margin: 24px 0 8px;
+  }
+  p { margin-bottom: 16px; font-size: 15px; }
+  ul, ol { margin: 12px 0 20px 24px; }
+  li { margin-bottom: 6px; font-size: 15px; }
+  strong { color: var(--white); font-weight: 600; }
+
+  /* ===== CALLOUT BOXES ===== */
+  .callout {
+    background: rgba(13,34,64,0.9);
+    border-left: 4px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    padding: 18px 22px;
+    margin: 24px 0;
+  }
+  .callout.blue { border-color: var(--blue); }
+  .callout.green { border-color: #40C070; }
+  .callout.red { border-color: #E84040; }
+  .callout-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .callout.blue .callout-title { color: var(--blue-light); }
+  .callout.green .callout-title { color: #40C070; }
+  .callout.red .callout-title { color: #E87070; }
+  .callout p { margin-bottom: 0; font-size: 14px; }
+
+  /* ===== METRIC GRID ===== */
+  .metric-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .metric-card {
+    background: var(--navy-mid);
+    border: 1px solid #1E3A5F;
+    border-radius: 10px;
+    padding: 20px 16px;
+    text-align: center;
+  }
+  .metric-card .mv {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--gold);
+    display: block;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .metric-card .ml {
+    font-size: 11px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+  }
+
+  /* ===== TABLE ===== */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin: 20px 0;
+  }
+  .data-table th {
+    background: var(--navy-light);
+    color: var(--gold);
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--gold);
+  }
+  .data-table td {
+    padding: 9px 12px;
+    border-bottom: 1px solid #1E3A5F;
+    color: var(--text);
+    vertical-align: top;
+  }
+  .data-table tr:hover td { background: rgba(0,120,212,0.05); }
+  .data-table code {
+    background: rgba(0,120,212,0.15);
+    color: var(--blue-light);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-family: 'Consolas', monospace;
+  }
+
+  /* ===== CODE BLOCK ===== */
+  .code-block {
+    background: #050D1A;
+    border: 1px solid #1E3A5F;
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin: 20px 0;
+    overflow-x: auto;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #A0C4E8;
+  }
+  .code-block .kw { color: #569CD6; }
+  .code-block .fn { color: #DCDCAA; }
+  .code-block .str { color: #CE9178; }
+  .code-block .cm { color: #6A9955; }
+  .code-block .num { color: #B5CEA8; }
+
+  /* ===== DIAGRAM FIGURE ===== */
+  .fig {
+    margin: 28px 0;
+    border: 1px solid #1E3A5F;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .fig img, .fig svg { width: 100%; display: block; }
+  .fig-caption {
+    background: var(--navy-mid);
+    padding: 10px 16px;
+    font-size: 12px;
+    color: var(--text-dim);
+    border-top: 1px solid #1E3A5F;
+    text-align: center;
+  }
+
+  /* ===== INLINE SVG DIAGRAM ===== */
+  .arch-svg { width: 100%; }
+
+  /* ===== LAYER STRIP ===== */
+  .layer-strip {
+    display: flex;
+    gap: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 24px 0;
+    font-size: 13px;
+  }
+  .layer-strip .layer {
+    flex: 1;
+    padding: 16px 14px;
+    text-align: center;
+  }
+  .layer-strip .layer .ln { font-weight: 800; font-size: 16px; display: block; margin-bottom: 4px; }
+  .layer-strip .layer .ld { font-size: 11px; color: var(--text-dim); }
+  .layer-raw  { background: rgba(255,140,0,0.15); border: 1px solid #FF8C00; }
+  .layer-br   { background: rgba(205,127,50,0.15); border: 1px solid #CD7F32; }
+  .layer-si   { background: rgba(192,192,192,0.12); border: 1px solid #999; }
+  .layer-go   { background: rgba(201,168,76,0.15); border: 1px solid var(--gold); }
+  .layer-raw .ln { color: #FF8C00; }
+  .layer-br  .ln { color: #CD7F32; }
+  .layer-si  .ln { color: #B0B0B0; }
+  .layer-go  .ln { color: var(--gold); }
+
+  /* ===== ML MODEL CARD ===== */
+  .ml-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .ml-card {
+    background: var(--navy-mid);
+    border: 1px solid #1E3A5F;
+    border-top: 3px solid var(--blue);
+    border-radius: 8px;
+    padding: 18px 16px;
+  }
+  .ml-card h4 { margin-top: 0; font-size: 14px; color: var(--blue-light); border-bottom: none; padding: 0; margin-bottom: 10px; }
+  .ml-card .auc { font-size: 24px; font-weight: 800; color: var(--gold); }
+  .ml-card .auc-lbl { font-size: 10px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px; }
+  .ml-card p { font-size: 12px; margin-top: 10px; margin-bottom: 0; color: var(--text-dim); }
+
+  /* ===== TAG / BADGE ===== */
+  .tag {
+    display: inline-block;
+    background: rgba(0,120,212,0.2);
+    color: var(--blue-light);
+    border: 1px solid rgba(0,120,212,0.4);
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    margin: 2px;
+  }
+  .tag.gold { background: rgba(201,168,76,0.15); color: var(--gold); border-color: rgba(201,168,76,0.4); }
+  .tag.green { background: rgba(64,192,112,0.15); color: #40C070; border-color: rgba(64,192,112,0.4); }
+  .tag.red { background: rgba(232,64,64,0.15); color: #E87070; border-color: rgba(232,64,64,0.4); }
+
+  /* ===== PRINT STYLES ===== */
+  @media print {
+    body { display: block; background: white; color: #111; }
+    #sidebar { display: none; }
+    #main { max-width: 100%; }
+    #cover { background: #0A1628; min-height: auto; padding: 40px; }
+    .chapter { padding: 32px 24px; page-break-before: always; }
+    .callout { border-left-width: 3px; }
+    .data-table th { background: #1A3A6A; }
+    .code-block { background: #f5f5f5; color: #333; border: 1px solid #ccc; }
+  }
+
+  /* ===== SCROLLBAR ===== */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #060F1E; }
+  ::-webkit-scrollbar-thumb { background: #1E3A5F; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #2A5080; }
+</style>
+</head>
+<body>
+
+<!-- ===== SIDEBAR ===== -->
+<aside id="sidebar">
+  <div id="sidebar-brand">
+    <div class="logo-text">Prime Capital Bank</div>
+    <div class="logo-sub">Data Intelligence Platform · Technical Ebook</div>
+  </div>
+  <nav>
+    <a href="#cover"><span class="ch-num">0</span>Cover</a>
+    <a href="#ch1"><span class="ch-num">1</span>Executive Summary</a>
+    <a href="#ch2"><span class="ch-num">2</span>Architecture Overview</a>
+    <a href="#ch3"><span class="ch-num">3</span>Bronze Layer</a>
+    <a href="#ch4"><span class="ch-num">4</span>Silver Layer</a>
+    <a href="#ch5"><span class="ch-num">5</span>Gold Star Schema</a>
+    <a href="#ch6"><span class="ch-num">6</span>dbt Transformation Layer</a>
+    <a href="#ch7"><span class="ch-num">7</span>ML Models</a>
+    <a href="#ch8"><span class="ch-num">8</span>Regulatory Compliance</a>
+    <a href="#ch9"><span class="ch-num">9</span>Pipeline Orchestration</a>
+    <a href="#ch10"><span class="ch-num">10</span>Business Intelligence</a>
+    <a href="#ch11"><span class="ch-num">11</span>Data Governance</a>
+    <a href="#ch12"><span class="ch-num">12</span>Appendix</a>
+  </nav>
+  <div id="sidebar-footer">
+    Confidential — Internal Use Only<br>
+    Prime Capital Bank Limited &copy; 2025
+  </div>
+</aside>
+
+<!-- ===== MAIN CONTENT ===== -->
+<main id="main">
+
+<!-- ===== COVER ===== -->
+<section id="cover">
+  <div class="cover-badge">Technical Reference Ebook · Confidential</div>
+
+  <!-- SVG Logo -->
+  <div class="cover-logo">
+    <svg viewBox="0 0 360 90" width="360" height="90" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="20" width="70" height="50" rx="4" fill="none" stroke="#C9A84C" stroke-width="2"/>
+      <rect x="8" y="28" width="14" height="34" rx="2" fill="#C9A84C"/>
+      <rect x="28" y="28" width="14" height="34" rx="2" fill="#C9A84C" opacity="0.7"/>
+      <rect x="48" y="28" width="14" height="34" rx="2" fill="#C9A84C" opacity="0.5"/>
+      <rect x="0" y="20" width="70" height="7" rx="4" fill="#C9A84C"/>
+      <rect x="0" y="63" width="70" height="7" rx="4" fill="#C9A84C"/>
+      <text x="88" y="48" fill="#F0F4F8" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="800" letter-spacing="-0.5">PRIME CAPITAL</text>
+      <text x="88" y="72" fill="#C9A84C" font-family="Segoe UI,Arial,sans-serif" font-size="14" font-weight="600" letter-spacing="5">BANK</text>
+    </svg>
+  </div>
+
+  <h1 class="cover-title">Data <span>Intelligence</span><br>Platform</h1>
+  <p class="cover-subtitle">Azure Databricks · Medallion Architecture · ML &amp; Analytics</p>
+
+  <div class="cover-stats">
+    <div class="cover-stat"><span class="val">500K</span><span class="lbl">Active Customers</span></div>
+    <div class="cover-stat"><span class="val">R2.3T</span><span class="lbl">Assets Under Mgmt</span></div>
+    <div class="cover-stat"><span class="val">200</span><span class="lbl">Branch Network</span></div>
+    <div class="cover-stat"><span class="val">12</span><span class="lbl">ML Models Live</span></div>
+  </div>
+
+  <p class="cover-meta"><strong>Version 3.1</strong> &nbsp;|&nbsp; June 2025 &nbsp;|&nbsp; Data Engineering Team &nbsp;|&nbsp; <strong>CONFIDENTIAL</strong></p>
+</section>
+
+<!-- ===== CHAPTER 1: EXECUTIVE SUMMARY ===== -->
+<section class="chapter" id="ch1">
+  <div class="chapter-header">
+    <div class="chapter-label">Chapter 1</div>
+    <h2 class="chapter-title">Executive Summary</h2>
+    <p class="chapter-intro">The strategic vision, key outcomes, and platform metrics for Prime Capital Bank's unified data intelligence initiative.</p>
+  </div>
+
+  <p>Prime Capital Bank has embarked on a transformational journey to consolidate its fragmented data landscape into a single, governed, cloud-native data intelligence platform. Operating across 200 branches with 500,000 active retail, commercial, and corporate customers, and managing a portfolio exceeding <strong>R2.3 trillion in assets under management</strong>, the bank required a platform capable of meeting the dual demands of real-time operational intelligence and rigorous regulatory compliance.</p>
+
+  <p>The legacy environment comprised more than a dozen isolated system-of-record databases — Temenos T24 core banking, Salesforce CRM, a proprietary card management system, Kondor+ treasury, Oracle Financials general ledger, and multiple third-party data feeds from Reuters, the South African Reserve Bank (SARB), and TransUnion credit bureau. Data resided in siloed on-premises servers, batch-transferred nightly through brittle ETL pipelines, with analytical workloads competing for OLTP resources and risk models running days behind the market.</p>
+
+  <div class="callout">
+    <div class="callout-title">Platform Vision</div>
+    <p>To build a <strong>single source of analytical truth</strong> for Prime Capital Bank — a cloud-native, governed, ML-enabled data platform that eliminates data silos, accelerates regulatory reporting, and delivers actionable intelligence to every business unit within the SLA window.</p>
+  </div>
+
+  <h3>Key Business Outcomes</h3>
+  <p>The Data Intelligence Platform has delivered measurable outcomes across four strategic dimensions: operational efficiency, risk management, regulatory compliance, and customer intelligence.</p>
+
+  <div class="metric-grid">
+    <div class="metric-card"><span class="mv">99.8%</span><span class="ml">Pipeline SLA</span></div>
+    <div class="metric-card"><span class="mv">&lt;2s</span><span class="ml">Avg Query Time</span></div>
+    <div class="metric-card"><span class="mv">40%</span><span class="ml">Less Manual Reporting</span></div>
+    <div class="metric-card"><span class="mv">R45M</span><span class="ml">Fraud Savings / Year</span></div>
+    <div class="metric-card"><span class="mv">12</span><span class="ml">Live ML Models</span></div>
+    <div class="metric-card"><span class="mv">247</span><span class="ml">Tables Catalogued</span></div>
+    <div class="metric-card"><span class="mv">78TB</span><span class="ml">Data Under Mgmt</span></div>
+    <div class="metric-card"><span class="mv">500</span><span class="ml">Power BI Users</span></div>
+  </div>
+
+  <h3>Platform Components</h3>
+  <p>The platform is built on <strong>Azure Databricks</strong> with a Medallion (Bronze → Silver → Gold) architecture hosted on Azure Data Lake Storage Gen2 (ADLS Gen2). Data transformation is managed through <strong>dbt Core</strong> running inside Databricks notebooks, with data quality enforced by Great Expectations. The governance layer is powered by <strong>Unity Catalog</strong>, providing column-level security, data lineage, and PII masking at the platform level. Machine learning workloads leverage <strong>MLflow</strong> and the Databricks Feature Store, with 12 production models serving real-time predictions via Azure API Management.</p>
+
+  <p>Business intelligence is delivered through <strong>Power BI Premium</strong> with 8 purpose-built dashboards serving executive leadership, risk management, compliance, branch operations, and treasury. Regulatory reporting — including SARB BA700, IFRS 9 ECL provisioning, Basel III capital adequacy, and FICA/AML returns — is fully automated within the platform, reducing the monthly close cycle from 5 business days to less than 6 hours.</p>
+
+  <div class="callout blue">
+    <div class="callout-title">Regulatory Coverage</div>
+    <p>The platform automates compliance reporting for <strong>SARB BA700</strong>, <strong>IFRS 9 Stage Classification</strong> and ECL provisioning, <strong>Basel III LCR/NSFR</strong> calculations, <strong>POPIA</strong> data subject rights management, and <strong>FICA/AML/CFT</strong> suspicious transaction reporting — all within a single governed data lineage.</p>
+  </div>
+
+  <h3>Strategic Importance</h3>
+  <p>In an increasingly competitive South African banking landscape — with challenger banks, digital wallets, and open banking pressures — Prime Capital Bank's data platform provides a durable competitive advantage. The ability to compute real-time credit scores at point-of-application, detect fraudulent card transactions within 50 milliseconds, and generate SARB-ready regulatory returns at the push of a button positions the bank at the forefront of data-driven banking in sub-Saharan Africa.</p>
+
+  <p>The platform is designed for scale: the Databricks cluster configuration supports linear horizontal scaling to accommodate projected 5-year data growth of 300%, while the Unity Catalog governance model ensures that every new data asset inherits the same security, lineage, and quality standards established at platform launch.</p>
+</section>
+
+<!-- ===== CHAPTER 2: ARCHITECTURE OVERVIEW ===== -->
+<section class="chapter" id="ch2">
+  <div class="chapter-header">
+    <div class="chapter-label">Chapter 2</div>
+    <h2 class="chapter-title">Architecture Overview</h2>
+    <p class="chapter-intro">The Azure cloud-native Medallion architecture underpinning the platform.</p>
+  </div>
+
+  <p>The Prime Capital Bank Data Intelligence Platform is designed around the <strong>Medallion Architecture</strong> pattern — a multi-layered data organisation framework that progressively refines raw source data through Bronze, Silver, and Gold quality tiers. This architecture, hosted entirely on Microsoft Azure, provides a clear separation of concerns between ingestion, transformation, and consumption, enabling independent scaling and governance at each layer.</p>
+
+  <div class="fig">
+    <img src="assets/architecture_diagram.svg" alt="Azure Architecture Diagram" style="width:100%; background:#0A1628;">
+    <div class="fig-caption">Figure 2.1 — Prime Capital Bank Azure Data Platform Architecture. Source systems on the left feed ADLS Gen2 storage zones (centre-left), processed by Databricks notebooks (centre), governed by Unity Catalog, and served to consumption layers (right).</div>
+  </div>
+
+  <h3>Azure Services Deployed</h3>
+  <table class="data-table">
+    <thead>
+      <tr><th>Azure Service</th><th>Role</th><th>SKU / Tier</th><th>Justification</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>ADLS Gen2</code></td><td>Primary data lake storage</td><td>LRS · Hot + Cool tiers</td><td>Hierarchical namespace, ACL-level security, Delta Lake compatible</td></tr>
+      <tr><td><code>Azure Databricks</code></td><td>Compute &amp; transformation</td><td>Premium · E8ds_v4 clusters</td><td>Photon engine, MLflow, Delta Lake native, Unity Catalog integration</td></tr>
+      <tr><td><code>Unity Catalog</code></td><td>Data governance</td><td>Platform-level</td><td>Centralised metadata, column masking, data lineage, RBAC</td></tr>
+      <tr><td><code>Azure Key Vault</code></td><td>Secrets management</td><td>Standard</td><td>Connection strings, API keys, certificates — no plaintext secrets in code</td></tr>
+      <tr><td><code>Azure Event Hub</code></td><td>Real-time streaming</td><td>Standard · 20 TUs</td><td>Kafka-compatible API for fraud detection streaming ingestion</td></tr>
+      <tr><td><code>Azure Monitor</code></td><td>Observability &amp; alerting</td><td>Log Analytics workspace</td><td>Pipeline health, cluster metrics, SLA alerting</td></tr>
+      <tr><td><code>Power BI Premium</code></td><td>BI &amp; dashboards</td><td>P2 capacity</td><td>DirectQuery to Databricks, paginated reports for regulatory output</td></tr>
+      <tr><td><code>Azure SQL</code></td><td>Operational reporting store</td><td>General Purpose · 8 vCores</td><td>Sub-second branch and customer lookup queries for ops teams</td></tr>
+      <tr><td><code>API Management</code></td><td>ML model serving</td><td>Standard v2</td><td>REST endpoints for credit scoring and fraud models, rate limiting</td></tr>
+      <tr><td><code>Azure Active Directory</code></td><td>Identity &amp; access management</td><td>P2</td><td>SSO, MFA, Conditional Access for all platform users</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Data Flow Architecture</h3>
+  <p>Source data enters the platform through two primary ingestion mechanisms. <strong>Batch ingestion</strong> uses Azure Data Factory (ADF) pipelines and Databricks Auto Loader to pull structured data from source systems on defined schedules — typically hourly for core banking and card transactions, daily for HR and GL, and monthly for external credit bureau feeds. <strong>Streaming ingestion</strong> routes card transaction events and ATM activity through Azure Event Hub, processed by Databricks Structured Streaming notebooks into the Bronze layer within seconds.</p>
+
+  <div class="layer-strip">
+    <div class="layer layer-raw"><span class="ln">RAW</span><span class="ld">~50TB · As-is</span></div>
+    <div class="layer layer-br"><span class="ln">BRONZE</span><span class="ld">~38TB · Delta</span></div>
+    <div class="layer layer-si"><span class="ln">SILVER</span><span class="ld">~22TB · Clean</span></div>
+    <div class="layer layer-go"><span class="ln">GOLD</span><span class="ld">~8TB · Analytics</span></div>
+  </div>
+
+  <p>All data at rest is encrypted using AES-256 via Azure Storage Service Encryption. All data in transit is protected by TLS 1.3. Azure Private Endpoints ensure that ADLS Gen2 and Databricks communicate exclusively over the bank's private VNET, with no public internet exposure. Network Security Groups (NSGs) enforce allow-list-only ingress and egress rules for each subnet.</p>
+
+  <div class="callout green">
+    <div class="callout-title">Security Posture</div>
+    <p>The platform achieved an <strong>ISO 27001-aligned security design</strong> with zero public endpoints. All compute clusters use customer-managed keys (CMK) via Key Vault, Managed Identity eliminates credential proliferation, and Unity Catalog enforces row-level and column-level security for every data access regardless of tool used.</p>
+  </div>
+
+  <h3>Network &amp; Identity Design</h3>
+  <p>The Databricks workspace is deployed in a <strong>customer-managed VNET</strong> (VNet injection) with separate subnets for the driver and worker node pools. Azure Private Link connects Databricks to ADLS Gen2, Azure SQL, Key Vault, and Event Hub — ensuring all data movement stays within the Azure backbone. All user access is mediated through Azure Active Directory with Privileged Identity Management (PIM) for Just-In-Time elevation of data engineer and DBA roles.</p>
+</section>
+
+<!-- ===== CHAPTER 3: BRONZE LAYER ===== -->
+<section class="chapter" id="ch3">
+  <div class="chapter-header">
+    <div class="chapter-label">Chapter 3</div>
+    <h2 class="chapter-title">Data Model — Bronze Layer</h2>
+    <p class="chapter-intro">Raw ingestion landing zone: schema preservation, incremental load, and audit trail.</p>
+  </div>
+
+  <p>The Bronze layer is the <strong>first tier of refinement</strong> in the Medallion architecture. Its primary purpose is to faithfully capture and persist data from source systems with the minimum possible transformation — preserving the original schema, data types, and even known data quality issues for full traceability. Bronze is the system of record within the data lake; if a discrepancy arises between the platform and a source system, Bronze is the forensic reference.</p>
+
+  <div class="callout">
+    <div class="callout-title">Bronze Design Principle</div>
+    <p>Every record ingested into Bronze is <strong>immutable and auditable</strong>. Records are never deleted or overwritten — only appended. Each record carries ingestion metadata: <code>_ingestion_timestamp</code>, <code>_source_system</code>, <code>_source_file</code>, <code>_batch_id</code>, and <code>_record_hash</code> for deduplication downstream.</p>
+  </div>
+
+  <h3>Ingestion Mechanisms</h3>
+  <p><strong>Databricks Auto Loader</strong> (<code>cloudFiles</code> format) handles the majority of file-based ingestion from the Raw zone of ADLS Gen2. Auto Loader provides incremental processing with exactly-once semantics via a checkpoint mechanism stored in ADLS, making it resilient to cluster failures. Schema inference and evolution are managed automatically — when a source system adds a new column, Auto Loader detects the schema change and uses column merging to extend the Bronze Delta table without data loss or pipeline failure.</p>
+
+  <p>For core banking and card system feeds arriving as structured database exports, <strong>Azure Data Factory</strong> orchestrates the movement from on-premises SQL Server instances to the Raw zone via a Self-Hosted Integration Runtime (SHIR) installed in the bank's data centre. For real-time card transactions, <strong>Databricks Structured Streaming</strong> consumes from Azure Event Hub using the Kafka consumer API.</p>
+
+  <h3>Bronze Table Inventory</h3>
+  <table class="data-table">
+    <thead>
+      <tr><th>Table Name</th><th>Source System</th><th>Refresh</th><th>Est. Rows</th><th>Format</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>bronze.core_banking.accounts</code></td><td>Temenos T24</td><td>Hourly</td><td>1.8M</td><td>Delta</td></tr>
+      <tr><td><code>bronze.core_banking.transactions</code></td><td>Temenos T24</td><td>Streaming</td><td>2.1B</td><td>Delta</td></tr>
+      <tr><td><code>bronze.core_banking.loans</code></td><td>Temenos T24</td><td>Hourly</td><td>380K</td><td>Delta</td></tr>
+      <tr><td><code>bronze.core_banking.customers</code></td><td>Temenos T24</td><td>Daily</td><td>500K</td><td>Delta</td></tr>
+      <tr><td><code>bronze.crm.contacts</code></td><td>Salesforce</td><td>Daily</td><td>620K</td><td>Delta</td></tr>
+      <tr><td><code>bronze.crm.opportunities</code></td><td>Salesforce</td><td>Daily</td><td>1.4M</td><td>Delta</td></tr>
+      <tr><td><code>bronze.cards.card_transactions</code></td><td>Card Management</td><td>Streaming</td><td>950M</td><td>Delta</td></tr>
+      <tr><td><code>bronze.cards.card_accounts</code></td><td>Card Management</td><td>Hourly</td><td>280K</td><td>Delta</td></tr>
+      <tr><td><code>bronze.payments.eft_transactions</code></td><td>Payment Gateway</td><td>Near-real-time</td><td>420M</td><td>Delta</td></tr>
+      <tr><td><code>bronze.payments.rtc_payments</code></td><td>Payment Gateway</td><td>Streaming</td><td>85M</td><td>Delta</td></tr>
+      <tr><td><code>bronze.treasury.fx_rates</code></td><td>Kondor+</td><td>Hourly</td><td>4.2M</td><td>Delta</td></tr>
+      <tr><td><code>bronze.gl.journal_entries</code></td><td>Oracle Financials</td><td>Daily</td><td>220M</td><td>Delta</td></tr>
+      <tr><td><code>bronze.hr.employees</code></td><td>SAP HCM</td><td>Daily</td><td>12K</td><td>Delta</td></tr>
+      <tr><td><code>bronze.external.credit_bureau</code></td><td>TransUnion</td><td>Monthly</td><td>500K</td><td>Delta</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Schema &amp; Partitioning Strategy</h3>
+  <p>Bronze tables are partitioned by <code>_ingestion_date</code> (date of load) rather than source business date, ensuring partition pruning works effectively even when source systems deliver late-arriving data. High-volume streaming tables (card transactions, EFT) are additionally partitioned by <code>hour</code> to enable efficient time-range queries during fraud investigation workflows.</p>
+
+  <p>Delta Lake's <strong>OPTIMIZE</strong> and <strong>ZORDER</strong> commands are scheduled nightly on high-query Bronze tables to compact small files produced by streaming micro-batch writes. The <code>VACUUM</code> command retains 30 days of Delta history, supporting point-in-time recovery and audit queries within the regulatory retention window.</p>
+
+  <div class="callout blue">
+    <div class="callout-title">Auto Loader Configuration (Example)</div>
+    <p>Bronze ingestion notebooks use <code>spark.readStream.format("cloudFiles").option("cloudFiles.format", "parquet").option("cloudFiles.schemaLocation", schema_path).load(raw_path)</code> with <code>.writeStream.format("delta").option("checkpointLocation", checkpoint_path).outputMode("append").trigger(availableNow=True)</code> for triggered incremental runs — combining the efficiency of batch processing with the correctness guarantees of streaming checkpoints.</p>
+  </div>
+</section>
+
+<!-- ===== CHAPTER 4: SILVER LAYER ===== -->
+<section class="chapter" id="ch4">
+  <div class="chapter-header">
+    <div class="chapter-label">Chapter 4</div>
+    <h2 class="chapter-title">Data Model — Silver Layer</h2>
+    <p class="chapter-intro">Cleansed, standardised, and enriched data ready for domain modelling.</p>
+  </div>
+
+  <p>The Silver layer transforms raw Bronze data into a <strong>clean, conformed, business-meaningful dataset</strong>. Silver applies the bank's master data management (MDM) rules, data quality frameworks, and business logic — producing a set of tables that are source-agnostic and conforming to the bank's canonical data model. Silver is the primary input for the Gold analytics layer and for ad-hoc data science exploration.</p>
+
+  <h3>Transformation Categories</h3>
+  <p>Silver transformations are organised into four categories, each implemented as a discrete set of dbt models executed in dependency order by Databricks Workflows:</p>
+
+  <ul>
+    <li><strong>Cleansing</strong> — null handling, format standardisation (dates to ISO 8601, amounts to ZAR base currency), whitespace trimming, duplicate elimination via <code>row_number() OVER (PARTITION BY ... ORDER BY _ingestion_timestamp DESC)</code> deduplication logic</li>
+    <li><strong>Conforming</strong> — applying the bank's reference data (branch codes, product codes, risk codes) to map source-system identifiers to canonical values stored in the <code>silver.reference</code> schema</li>
+    <li><strong>Enriching</strong> — joining customer demographic data with credit bureau scores, appending ML-generated risk scores, and resolving customer identity across source systems using the Enterprise Customer Master</li>
+    <li><strong>PII Masking</strong> — South African ID numbers are tokenised using HMAC-SHA256 with a Key Vault-managed key; full names are masked using format-preserving initialisation; account numbers are partially masked for display contexts</li>
+  </ul>
+
+  <h3>Data Quality Framework</h3>
+  <p>Silver quality gates are enforced using <strong>Great Expectations</strong> suites embedded in each transformation notebook. Quality checks include:</p>
+
+  <table class="data-table">
+    <thead>
+      <tr><th>Check Type</th><th>Example</th><th>Action on Failure</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Not Null</td><td><code>customer_id</code>, <code>transaction_date</code></td><td>Quarantine to <code>silver.quarantine</code> table</td></tr>
+      <tr><td>Referential Integrity</td><td>account_id exists in dim_account</td><td>Alert + quarantine, pipeline continues</td></tr>
+      <tr><td>Range Check</td><td>transaction_amount between -R10M and R10M</td><td>Flag for manual review</td></tr>
+      <tr><td>Uniqueness</td><td>One record per (account_id, transaction_date, seq_no)</td><td>Dedup and alert</td></tr>
+      <tr><td>Format Validation</td><td>SA ID number passes Luhn-mod-10 check</td><td>Mask and quarantine</td></tr>
+      <tr><td>Freshness</td><td>Max ingestion_timestamp within last 2 hours</td><td>PagerDuty alert to on-call engineer</td></tr>
+      <tr><td>Completeness</td><td>&gt;99% of expected daily transaction volume received</td><td>Escalation to source system owner</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout green">
+    <div class="callout-title">Quality Metrics — Monthly Average</div>
+    <p><strong>99.94%</strong> of records pass all Silver quality gates without quarantine. The quarantine rate of 0.06% is dominated by late-arriving GL corrections and test transactions from the card system's UAT environment, both of which are filtered deterministically by source system flag.</p>
+  </div>
+
+  <h3>SCD Type 2 Implementation</h3>
+  <p>Customer, account, and employee dimensions are implemented as <strong>Slowly Changing Dimension Type 2 (SCD2)</strong> entities at the Silver layer, using the <code>MERGE INTO</code> command on Delta Lake tables. When a source record changes (e.g., a customer changes their residential address or credit segment), a new version row is inserted with an updated <code>scd2_effective_date</code>, the previous row's <code>scd2_expiry_date</code> is set to the change date minus one day, and the <code>is_current_flag</code> is updated accordingly. This approach preserves full change history for regulatory audit and enables point-in-time portfolio analysis — critical for IFRS 9 stage migration reporting.</p>
+
+  <h3>Silver Table Summary</h3>
+  <p>The Silver layer comprises <strong>42 tables</strong> across 6 domain schemas: <code>silver.customers</code>, <code>silver.accounts</code>, <code>silver.transactions</code>, <code>silver.loans</code>, <code>silver.treasury</code>, and <code>silver.reference</code>. Total compressed storage is approximately 22TB across all partitions, with a 60-day active query window supported by Delta Lake's time-travel capability and ADLS Cool tier lifecycle management for data older than 90 days.</p>
+</section>
+
+<!-- ===== CHAPTER 5: GOLD STAR SCHEMA ===== -->
+<section class="chapter" id="ch5">
+  <div class="chapter-header">
+    <div class="chapter-label">Chapter 5</div>
+    <h2 class="chapter-title">Data Model — Gold Star Schema</h2>
+    <p class="chapter-intro">Analytics-ready star schema: dimension tables, fact tables, and query optimisation strategy.</p>
+  </div>
+
+  <p>The Gold layer is the <strong>analytics-serving tier</strong> of the platform — purpose-built for high-performance querying by Power BI, Azure SQL, data scientists, and regulatory reporting engines. Gold implements a classic <strong>Kimball star schema</strong> with denormalised dimension tables and centralised fact tables, partitioned and Z-ordered for sub-second query performance at petabyte scale.</p>
+
+  <div class="fig">
+    <img src="assets/erd_gold_schema.svg" alt="Gold Star Schema ERD" style="width:100%; background:#0A1628;">
+    <div class="fig-caption">Figure 5.1 — Gold Layer Star Schema ERD. Three central fact tables surrounded by eleven dimension tables. All foreign key relationships shown. SCD Type 2 dimensions maintain full history.</div>
+  </div>
+
+  <h3>Fact Tables</h3>
+
+  <h4>fact_transaction</h4>
+  <p>The highest-grain fact table in the schema, storing <strong>2.1 billion individual financial transactions</strong> spanning all channels: teller, ATM, online banking, mobile, POS, and EFT. Each row represents one debit or credit event against an account. Key measures include <code>transaction_amount_zar</code>, <code>running_balance_zar</code>, <code>fraud_score</code>, and <code>aml_alert_flag</code>. Partitioned by <code>transaction_date</code> and Z-ordered by <code>customer_sk, date_sk</code> to optimise customer-level time-series queries used in the Customer 360 dashboard.</p>
+
+  <h4>fact_loan_portfolio</h4>
+  <p>Monthly snapshot of the bank's <strong>R380 billion loan book</strong> — retail mortgages, vehicle finance, personal loans, credit cards, and commercial credit facilities. Each row represents one loan account at month-end, with IFRS 9 Stage classification (1/2/3), PD score, LGD estimate, and ECL provision in ZAR. Partitioned by <code>snapshot_month</code> for regulatory reporting. Total row count: approximately 85 million rows spanning 36 months of history.</p>
+
+  <h4>fact_account_balance</h4>
+  <p>Daily snapshot of every active account's opening balance, closing balance, interest accrued, and days-past-due status — <strong>730 million rows</strong> covering 36 months of daily snapshots across 1.8 million accounts. Used primarily by the Treasury dashboard for liquidity analysis and the Branch Performance dashboard for deposit book tracking. Partitioned by <code>balance_date</code> and Z-ordered by <code>branch_sk, product_sk</code>.</p>
+
+  <h3>Dimension Tables</h3>
+  <table class="data-table">
+    <thead>
+      <tr><th>Dimension</th><th>SCD Type</th><th>Row Count</th><th>Key Attributes</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>dim_customer</code></td><td>SCD2</td><td>~500K current</td><td>Segment, credit rating, FICA status, risk band</td></tr>
+      <tr><td><code>dim_account</code></td><td>SCD2</td><td>~1.8M</td><td>Account type, product, status, credit limit</td></tr>
+      <tr><td><code>dim_product</code></td><td>SCD1</td><td>~850</td><td>Product family, regulatory class, risk weight</td></tr>
+      <tr><td><code>dim_date</code></td><td>Static</td><td>10,957</td><td>Calendar, fiscal calendar, SA public holidays</td></tr>
+      <tr><td><code>dim_branch</code></td><td>SCD2</td><td>200</td><td>Region, province, type, manager, coordinates</td></tr>
+      <tr><td><code>dim_employee</code></td><td>SCD2</td><td>~12K</td><td>Job title, department, branch, employment status</td></tr>
+      <tr><td><code>dim_channel</code></td><td>Static</td><td>18</td><td>Channel type, is_digital, platform</td></tr>
+      <tr><td><code>dim_currency</code></td><td>Daily refresh</td><td>~45</td><td>ISO code, exchange rate to ZAR, SARB source</td></tr>
+      <tr><td><code>dim_geography</code></td><td>Static</td><td>~4,200</td><td>Postal code, suburb, province, income decile</td></tr>
+      <tr><td><code>dim_risk_category</code></td><td>SCD1</td><td>~120</td><td>Basel class, IFRS9 stage, PD/LGD band</td></tr>
+      <tr><td><code>dim_merchant</code></td><td>Monthly</td><td>~250K</td><td>MCC code, risk level, AML classification</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Partitioning &amp; Performance</h3>
+  <p>All Gold tables use <strong>liquid clustering</strong> (Databricks Runtime 13+) on the highest-cardinality filter columns, replacing static partitioning for dimension tables. Fact tables retain date-based partitioning for partition pruning in regulatory reporting queries, supplemented by Z-order on the most common join keys. The Photon vectorised query engine typically delivers <strong>3–8x query speedup</strong> over standard Spark SQL for analytical aggregations on Gold tables.</p>
+
+  <div class="callout">
+    <div class="callout-title">Performance Benchmark</div>
+    <p>Power BI DirectQuery against <code>fact_transaction</code> with a 3-month filter window and branch grouping returns in <strong>1.4 seconds average</strong> on a Databricks SQL Serverless warehouse (2X-Large). Full 36-month regulatory queries complete in under 45 seconds on a dedicated job cluster.</p>
+  </div>
+</section>
+
+<!-- ===== CHAPTER 6: DBT ===== -->
+<section class="chapter" id="ch6">
+  <div class="chapter-header">
+    <div class="chapter-label">Chapter 6</div>
+    <h2 class="chapter-title">dbt Transformation Layer</h2>
+    <p class="chapter-intro">dbt Core project structure, testing strategy, and lineage management within Databricks.</p>
+  </div>
+
+  <p><strong>dbt Core</strong> (data build tool) is the transformation engine for the Silver and Gold layers. Running natively inside Databricks notebooks via the <code>dbt-databricks</code> adapter, dbt provides SQL-first transformations with built-in dependency management, automated documentation, and a rich testing framework — replacing hundreds of ad-hoc Spark notebooks with a structured, version-controlled, testable codebase.</p>
+
+  <h3>Project Structure</h3>
+  <div class="code-block">
+<span class="cm">-- dbt project layout (prime_capital_bank)</span>
+models/
+  staging/           <span class="cm">-- 1:1 mapping from Bronze, minimal transforms</span>
+    stg_core_banking__accounts.sql
+    stg_core_banking__transactions.sql
+    stg_crm__customers.sql
+    stg_cards__transactions.sql
+    stg_payments__eft.sql
+    stg_gl__journal_entries.sql
+    <span class="cm">-- 14 staging models total</span>
+
+  intermediate/      <span class="cm">-- Business logic, joins, SCD2 logic</span>
+    int_customer_master.sql
+    int_account_enriched.sql
+    int_loan_portfolio_classified.sql
+    int_transaction_fraud_scored.sql
+    int_ecl_provision_calculated.sql
+    <span class="cm">-- 18 intermediate models total</span>
+
+  marts/             <span class="cm">-- Gold star schema output</span>
+    dimensions/
+      dim_customer.sql       <span class="cm">-- SCD2 merge logic</span>
+      dim_account.sql
+      dim_product.sql
+      dim_date.sql
+      dim_branch.sql
+    facts/
+      fact_transaction.sql
+      fact_loan_portfolio.sql
+      fact_account_balance.sql
+    regulatory/
+      rpt_ifrs9_ecl.sql
+      rpt_sarb_ba700.sql
+      rpt_basel_lcr.sql
+      <span class="cm">-- 22 mart models total</span>
+
+tests/               <span class="cm">-- Schema + custom data tests</span>
+macros/              <span class="cm">-- Reusable Jinja macros</span>
+snapshots/           <span class="cm">-- SCD2 snapshot definitions</span>
+seeds/               <span class="cm">-- Reference data CSVs (risk codes, currencies)</span>
+  </div>
+
+  <h3>Testing Strategy</h3>
+  <p>dbt tests are categorised into four types, with <strong>1,847 total tests</strong> across the project:</p>
+  <ul>
+    <li><strong>Schema tests</strong> (not_null, unique, accepted_values, relationships) — 1,240 tests covering all primary keys, foreign keys, and enumerated columns</li>
+    <li><strong>Custom SQL tests</strong> — 312 business rule tests (e.g., "ECL provision must be non-negative", "Stage 3 PD must exceed 50%", "transaction amounts must balance to GL journal totals")</li>
+    <li><strong>Freshness tests</strong> — 180 source freshness checks ensuring Silver inputs are within SLA before Gold build commences</li>
+    <li><strong>Singular tests</strong> — 115 full-table assertion queries for cross-table consistency (e.g., "every fact_loan_portfolio record must have a matching dim_customer record")</li>
+  </ul>
+
+  <h3>Lineage &amp; Documentation</h3>
+  <p>dbt generates a fully interactive lineage DAG documenting every model, its upstream sources, downstream consumers, column descriptions, and test results. This lineage is surfaced in Unity Catalog, allowing data consumers to trace any Gold metric back to its Bronze source record — a requirement for IFRS 9 audit trails and SARB regulatory inspections. All 54 models and 847 columns are documented with business-friendly descriptions maintained in <code>schema.yml</code> files, auto-published to the dbt documentation site hosted on Azure Static Web Apps.</p>
+
+  <div class="callout blue">
+    <div class="callout-title">dbt Run Statistics (Daily)</div>
+    <p>Full dbt build: <strong>54 models</strong> · <strong>1,847 tests</strong> · average runtime <strong>22 minutes</strong> on a 4-node E8ds_v4 cluster · test pass rate <strong>100%</strong> required before Gold tables are promoted to production · failures trigger automatic Slack notification and pipeline hold.</p>
+  </div>
+</section>
+
+<!-- ===== CHAPTER 7: ML MODELS ===== -->
+<section class="chapter" id="ch7">
+  <div class="chapter-header">
+    <div class="chapter-label">Chapter 7</div>
+    <h2 class="chapter-title">ML Models</h2>
+    <p class="chapter-intro">Twelve production machine learning models covering credit risk, fraud detection, AML, and customer intelligence.</p>
+  </div>
+
+  <p>The ML capability of the Data Intelligence Platform represents the bank's most significant analytical investment. Twelve models are deployed to production via <strong>MLflow Model Registry</strong> on Databricks, served through Azure API Management as REST endpoints for real-time scoring and as batch jobs for portfolio-level calculations. All models are governed by the bank's <strong>Model Risk Management (MRM) Policy</strong>, requiring independent validation, champion-challenger testing, and quarterly performance reviews.</p>
+
+  <div class="ml-cards">
+    <div class="ml-card">
+      <h4>PD Model (Basel IRB)</h4>
+      <div class="auc">0.94</div><div class="auc-lbl">Gini Coefficient</div>
+      <p>XGBoost classifier predicting 12-month probability of default. 180 features from bureau, transaction, and behavioural data. Monthly batch scoring across full loan book.</p>
+    </div>
+    <div class="ml-card">
+      <h4>LGD Model (IFRS 9)</h4>
+      <div class="auc">0.89</div><div class="auc-lbl">R² Score</div>
+      <p>Gradient Boosting Regressor estimating loss given default. Collateral valuation, recovery history, and product type features. IFRS 9 ECL calculation dependency.</p>
+    </div>
+    <div class="ml-card">
+      <h4>Fraud Detection</h4>
+      <div class="auc">0.97</div><div class="auc-lbl">AUC-ROC</div>
+      <p>Real-time GBM model scoring card transactions within 50ms. Trained on 3 years of confirmed fraud labels. Saves approximately R45M/year in prevented fraud losses.</p>
+    </div>
+    <div class="ml-card">
+      <h4>AML Scoring</h4>
+      <div class="auc">0.91</div><div class="auc-lbl">AUC-ROC</div>
+      <p>Unsupervised + supervised hybrid model for suspicious transaction detection. Graph-based network analysis for mule account identification. FICA STR automation.</p>
+    </div>
+  </div>
+
+  <h3>IFRS 9 ECL Model</h3>
+  <p>The Expected Credit Loss (ECL) model is the regulatory centrepiece of the ML suite. It combines the PD, LGD, and Exposure at Default (EAD) models to compute the three-stage ECL provision required under <strong>IFRS 9 — Financial Instruments</strong>. Stage 1 accounts (performing) receive a 12-month ECL; Stage 2 accounts (significant increase in credit risk) receive a lifetime ECL; Stage 3 accounts (credit-impaired) receive a lifetime ECL with individually assessed components for material exposures exceeding R5 million.</p>
+
+  <p>The ECL pipeline runs monthly — triggered 2 business days before month-end close — producing provisioning entries for the Oracle Financials GL, regulatory disclosures for the <strong>SARB BA210 return</strong>, and IFRS 9 note disclosures for the annual financial statements. Total ECL provision as at the most recent calculation: <strong>R4.8 billion</strong> against a gross loan exposure of R380 billion (1.26% provision coverage ratio).</p>
+
+  <div class="callout red">
+    <div class="callout-title">Model Governance Requirements</div>
+    <p>All production models require: independent validation by the Model Risk team before deployment; Databricks MLflow experiment tracking with full parameter and metric logging; champion-challenger live comparison for 90 days post-deployment; quarterly backtesting against realised outcomes; and annual full model redevelopment review. Model performance degradation below defined AUC thresholds triggers automatic fallback to the champion model.</p>
+  </div>
+
+  <h3>Fraud Detection — Real-Time Architecture</h3>
+  <p>The fraud model operates in a <strong>sub-50ms latency</strong> inference pipeline. Card transaction events arrive at Azure Event Hub, are consumed by a Databricks Structured Streaming job, enriched with the customer's Feature Store features (30-day spend velocity, merchant category history, device fingerprint), and scored by the MLflow-served GBM model. Scores above 0.85 trigger an immediate card hold and SWIFT message to the acquiring bank. Scores between 0.65 and 0.85 are flagged for the Fraud Operations team in their real-time dashboard. In 2024, the model prevented <strong>R45.2 million</strong> in fraudulent transactions with a false positive rate of 0.8% — below the industry benchmark of 1.5%.</p>
+
+  <h3>Feature Store</h3>
+  <p>The Databricks Feature Store contains <strong>340 pre-computed features</strong> organised into 12 feature tables, serving all 12 production models. Features are computed on scheduled Databricks jobs (5-minute cadence for fraud features, hourly for credit features, daily for AML behavioural features) and versioned with point-in-time correctness — preventing training-serving skew by ensuring models trained on historical features see identical feature values during batch scoring of historical periods.</p>
+</section>
+
+<!-- ===== CHAPTER 8: REGULATORY COMPLIANCE ===== -->
+<section class="chapter" id="ch8">
+  <div class="chapter-header">
+    <div class="chapter-label">Chapter 8</div>
+    <h2 class="chapter-title">Regulatory Compliance</h2>
+    <p class="chapter-intro">Automated compliance for SARB, IFRS 9, Basel III, POPIA, FICA, and AML/CFT frameworks.</p>
+  </div>
+
+  <p>Prime Capital Bank operates under one of the most demanding regulatory environments in Africa. As a Systemically Important Financial Institution (SIFI) designated by the <strong>South African Reserve Bank (SARB)</strong>, the bank is subject to the Prudential Authority's full suite of regulatory requirements. The Data Intelligence Platform automates the generation, validation, and submission of all prudential regulatory returns, reducing the compliance team's data preparation burden by 78% and eliminating the manual errors that previously triggered SARB Directive Letters.</p>
+
+  <div class="metric-grid">
+    <div class="metric-card"><span class="mv">BA700</span><span class="ml">Automated Monthly</span></div>
+    <div class="metric-card"><span class="mv">IFRS 9</span><span class="ml">ECL Automated</span></div>
+    <div class="metric-card"><span class="mv">Basel III</span><span class="ml">LCR/NSFR Daily</span></div>
+    <div class="metric-card"><span class="mv">POPIA</span><span class="ml">PII Governance</span></div>
+    <div class="metric-card"><span class="mv">FICA</span><span class="ml">AML/STR Auto</span></div>
+    <div class="metric-card"><span class="mv">6hrs</span><span class="ml">Monthly Close</span></div>
+  </div>
+
+  <h3>SARB BA700 — Risk Data Aggregation</h3>
+  <p>The <strong>BA700 return</strong> is the SARB's primary prudential data collection, covering credit risk exposures, capital adequacy, liquidity, and large exposures. The platform generates the BA700 XML submission from a dedicated dbt mart (<code>gold.regulatory.rpt_sarb_ba700</code>), populated from the credit risk Gold tables. The submission is validated against the SARB's published XML schema definition (XSD) before upload to the SARB's BI reporting portal. The platform achieves <strong>T+2 submission</strong> (two business days after month-end) against the regulatory deadline of T+10.</p>
+
+  <h3>Basel III Capital Adequacy</h3>
+  <p>The platform computes <strong>Liquidity Coverage Ratio (LCR)</strong> and <strong>Net Stable Funding Ratio (NSFR)</strong> on a daily basis using the Gold layer's account balance and treasury position data. Risk-weighted asset (RWA) calculations for credit risk use the Standardised Approach weights stored in <code>dim_risk_category.regulatory_weight</code>, with Internal Ratings-Based (IRB) approach RWA calculated from the PD model outputs for the qualifying retail and corporate portfolios. The bank maintains a <strong>Common Equity Tier 1 (CET1) ratio of 13.2%</strong> against the SARB's minimum requirement of 7.5% plus a 2.5% capital conservation buffer.</p>
+
+  <h3>POPIA — Data Privacy</h3>
+  <p>The <strong>Protection of Personal Information Act (POPIA)</strong> compliance is implemented at the platform layer through Unity Catalog tags and column masking policies. All columns containing personal information (SA ID numbers, full names, contact details, biometric data) are tagged with the <code>pii_classification</code> Unity Catalog tag at three levels: <code>PII_HIGH</code> (ID numbers, biometrics), <code>PII_MEDIUM</code> (names, contact details), and <code>PII_LOW</code> (demographic aggregates). Column masking functions applied via Unity Catalog policies ensure that users without the <code>pii_reader</code> privilege see tokenised or masked values in query results — enforced at the Delta Lake level, not application level.</p>
+
+  <h3>FICA &amp; AML/CFT</h3>
+  <p>The <strong>Financial Intelligence Centre Act (FICA)</strong> compliance layer includes automated Know Your Customer (KYC) completeness checks, enhanced due diligence (EDD) flagging for high-risk customers, and automated Suspicious Transaction Report (STR) generation. The AML scoring model identifies suspicious transaction patterns — structuring, layering, round-trip transactions, and dormant account activation — and generates STR drafts pre-populated with the FIC's required fields, routed to the Compliance team for review and submission to the Financial Intelligence Centre within the 15-day statutory window.</p>
+
+  <div class="callout green">
+    <div class="callout-title">Compliance Automation Impact</div>
+    <p>Monthly close cycle reduced from <strong>5 business days to 6 hours</strong>. SARB return preparation reduced from 14 person-days to <strong>0.5 person-days</strong> (validation and sign-off only). STR preparation time reduced from 4 hours per report to <strong>12 minutes</strong>. Zero SARB Directive Letters received since platform go-live (vs. 3 in the prior 24-month period).</p>
+  </div>
+</section>
+
+<!-- ===== CHAPTER 9: PIPELINE ORCHESTRATION ===== -->
+<section class="chapter" id="ch9">
+  <div class="chapter-header">
+    <div class="chapter-label">Chapter 9</div>
+    <h2 class="chapter-title">Pipeline Orchestration</h2>
+    <p class="chapter-intro">Databricks Workflows, scheduling, SLA management, monitoring, and disaster recovery.</p>
+  </div>
+
+  <p>All data pipeline execution is orchestrated by <strong>Databricks Workflows</strong> — the native job orchestration engine integrated with the Databricks workspace. The platform runs <strong>47 production pipelines</strong> across four scheduling tiers: streaming (continuous), near-real-time (5-minute), hourly, and daily. Databricks Workflows provides dependency-aware DAG scheduling, retry logic, cluster auto-provisioning, and native integration with Azure Monitor for alerting.</p>
+
+  <h3>Pipeline Hierarchy</h3>
+  <table class="data-table">
+    <thead>
+      <tr><th>Pipeline</th><th>Schedule</th><th>SLA</th><th>Cluster Type</th><th>Dependencies</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Fraud Streaming</td><td>Continuous</td><td>&lt;50ms latency</td><td>Streaming (4 workers)</td><td>Event Hub</td></tr>
+      <tr><td>Bronze — Cards</td><td>Every 5 min</td><td>T+10min</td><td>Job (3 workers)</td><td>Event Hub checkpoint</td></tr>
+      <tr><td>Bronze — Core Banking</td><td>Hourly</td><td>T+45min</td><td>Job (4 workers)</td><td>ADF copy job</td></tr>
+      <tr><td>Silver — All domains</td><td>Hourly</td><td>T+90min</td><td>Job (6 workers)</td><td>Bronze pipelines</td></tr>
+      <tr><td>Gold — Dimensions</td><td>Daily 02:00</td><td>05:00</td><td>Job (8 workers)</td><td>Silver complete</td></tr>
+      <tr><td>Gold — Facts</td><td>Daily 05:00</td><td>08:00</td><td>Job (12 workers)</td><td>Gold dims complete</td></tr>
+      <tr><td>ML — Credit Scoring</td><td>Monthly T-2</td><td>18hrs</td><td>GPU (4× A100)</td><td>Gold loan data</td></tr>
+      <tr><td>Regulatory Reports</td><td>Monthly T+1</td><td>T+3 business</td><td>Job (8 workers)</td><td>Gold + ML complete</td></tr>
+    </tbody>
+  </table>
+
+  <h3>SLA Monitoring &amp; Alerting</h3>
+  <p>Pipeline SLA breaches trigger a <strong>three-tier alerting cascade</strong>: (1) Databricks Workflows email notification to the on-call data engineer; (2) Azure Monitor alert to the <strong>PagerDuty</strong> on-call rotation for Severity 2 (Gold layer delay) or Severity 1 (streaming fraud pipeline failure); (3) automated Slack message to the <code>#data-platform-ops</code> channel with a direct link to the failed task's log output. The platform maintains a <strong>99.8% pipeline SLA achievement rate</strong> over the trailing 12 months, with the 0.2% breaches attributable to upstream source system maintenance windows.</p>
+
+  <h3>Disaster Recovery</h3>
+  <p>The platform implements an <strong>RPO (Recovery Point Objective) of 1 hour</strong> and an <strong>RTO (Recovery Time Objective) of 4 hours</strong> for the Gold layer. ADLS Gen2 geo-redundant storage (GRS) replicates all data to the Azure South Africa West secondary region asynchronously. Databricks cluster configurations and workspace settings are stored in a <strong>Terraform</strong> repository enabling full workspace re-deployment within 45 minutes. Delta Lake transaction logs enable point-in-time recovery to any hour within the 30-day VACUUM retention window. Monthly DR drills validate the full recovery procedure against the documented RTO/RPO targets.</p>
+
+  <div class="callout">
+    <div class="callout-title">Infrastructure as Code</div>
+    <p>All Databricks cluster configurations, workflow definitions, Unity Catalog policies, and ADLS Gen2 lifecycle rules are managed as <strong>Terraform</strong> code in a GitLab repository. Changes require a pull request review by a senior engineer and automated <code>terraform plan</code> validation before merge. Production deployments are triggered by GitLab CI/CD pipelines with mandatory approval gates.</p>
+  </div>
+</section>
+
+<!-- ===== CHAPTER 10: BI DASHBOARDS ===== -->
+<section class="chapter" id="ch10">
+  <div class="chapter-header">
+    <div class="chapter-label">Chapter 10</div>
+    <h2 class="chapter-title">Business Intelligence</h2>
+    <p class="chapter-intro">Eight Power BI Premium dashboards serving every business unit from executive leadership to branch operations.</p>
+  </div>
+
+  <p>The consumption tier of the platform delivers insights through <strong>eight purpose-built Power BI Premium dashboards</strong>, collectively serving 500 active users across the bank. Dashboards are designed against the bank's master data model in the Gold layer, using a mix of <strong>DirectQuery</strong> (for real-time operational views) and <strong>Import mode</strong> (for complex analytical views requiring DAX measures). All dashboards are secured through Azure Active Directory row-level security (RLS), ensuring each user sees only the data appropriate to their role and geographic scope.</p>
+
+  <h3>Dashboard Inventory</h3>
+
+  <h4>1. Executive Dashboard</h4>
+  <p>Board and C-suite facing overview of the bank's key performance indicators: total assets, net interest income, cost-to-income ratio, customer growth, and capital adequacy. Single-page design with drill-through to business unit detail. Updated daily from Gold layer. Audience: CEO, CFO, CRO, board members.</p>
+
+  <h4>2. Credit Risk Dashboard</h4>
+  <p>Comprehensive view of the loan portfolio: exposure by product and geography, IFRS 9 stage migration waterfall, PD distribution heatmap, ECL movement analysis, and top-20 large exposures. Includes a Monte Carlo simulation-based ECL sensitivity analysis. Audience: Chief Risk Officer, Credit Committee, Provisioning team.</p>
+
+  <h4>3. Fraud Intelligence Dashboard</h4>
+  <p>Real-time fraud monitoring with a 5-minute data refresh: fraud score distribution, confirmed fraud by channel and merchant category, fraud rate trend, savings vs. prior year, and a geographic heat map of fraud incidents by postal code. Audience: Fraud Operations, Card Operations, Head of Financial Crime.</p>
+
+  <h4>4. AML &amp; Financial Crime Dashboard</h4>
+  <p>Anti-money laundering case management view: suspicious transaction volumes, STR pipeline, customer risk rating distribution, high-risk jurisdiction exposure, and PEP (Politically Exposed Person) screening status. Audience: MLRO, Compliance team, FICA officers.</p>
+
+  <h4>5. Branch Performance Dashboard</h4>
+  <p>Branch-level P&amp;L view for regional managers: deposit book growth, loan origination, fee income, customer satisfaction scores, and staff productivity metrics. Geography-filtered by the user's RLS profile. Audience: Regional Managers, Branch Managers, Retail Banking leadership.</p>
+
+  <h4>6. Treasury &amp; Liquidity Dashboard</h4>
+  <p>Intraday liquidity position, LCR and NSFR ratios vs. limits, FX exposure by currency, bond portfolio mark-to-market, and funding concentration risk metrics. Refreshed every 30 minutes from treasury source data. Audience: Head of Treasury, ALM Committee, SARB Prudential team.</p>
+
+  <h4>7. Customer 360 Dashboard</h4>
+  <p>Customer-level analytics accessible to relationship managers: product holding summary, transaction recency/frequency/monetary (RFM) scoring, churn propensity score, cross-sell propensity index, and lifetime value estimate. PII-masked for non-privileged users. Audience: Relationship Managers, Digital Banking, Marketing.</p>
+
+  <h4>8. Regulatory Reporting Dashboard</h4>
+  <p>Compliance-facing view of all regulatory return status: BA700 submission timeline, IFRS 9 provisioning summary, Basel III capital ratios vs. limits, POPIA compliance score, and FIC STR submission log. Provides a single pane of glass for the Chief Compliance Officer. Audience: CCO, Compliance team, Internal Audit.</p>
+
+  <div class="callout blue">
+    <div class="callout-title">Power BI Performance Standards</div>
+    <p>All dashboards must meet the platform's BI performance SLA: <strong>initial page load under 4 seconds</strong>, <strong>visual refresh under 2 seconds</strong> for DirectQuery visuals with applied filters, and <strong>paginated report export under 30 seconds</strong>. Dashboards failing the SLA threshold are automatically flagged in the Platform Operations dashboard for query optimisation review.</p>
+  </div>
+</section>
+
+<!-- ===== CHAPTER 11: DATA GOVERNANCE ===== -->
+<section class="chapter" id="ch11">
+  <div class="chapter-header">
+    <div class="chapter-label">Chapter 11</div>
+    <h2 class="chapter-title">Data Governance</h2>
+    <p class="chapter-intro">Unity Catalog, data lineage, access controls, PII masking, and data retention policies.</p>
+  </div>
+
+  <p>Data governance is not a layer on top of the platform — it is <strong>embedded within it</strong>. Unity Catalog provides the centralised governance control plane, while the Medallion architecture's clear layer boundaries enforce the governance model structurally. Every data asset on the platform — tables, views, ML models, dashboards — is catalogued, classified, owned, and access-controlled through a unified framework aligned with the bank's <strong>Enterprise Data Management Policy</strong>.</p>
+
+  <h3>Unity Catalog Structure</h3>
+  <div class="code-block">
+<span class="cm">-- Unity Catalog hierarchy</span>
+prime_capital_bank (metastore)
+├── bronze_catalog
+│   ├── core_banking    <span class="cm">-- Raw ingested tables from T24</span>
+│   ├── crm             <span class="cm">-- Salesforce raw data</span>
+│   ├── cards           <span class="cm">-- Card system tables</span>
+│   └── external        <span class="cm">-- Third-party feeds</span>
+├── silver_catalog
+│   ├── customers       <span class="cm">-- Cleansed, SCD2 customer entities</span>
+│   ├── accounts        <span class="cm">-- Account master, enriched</span>
+│   ├── transactions    <span class="cm">-- Standardised transaction history</span>
+│   └── reference       <span class="cm">-- Canonical reference data</span>
+└── gold_catalog
+    ├── dimensions      <span class="cm">-- Star schema dimension tables</span>
+    ├── facts           <span class="cm">-- High-grain fact tables</span>
+    ├── regulatory      <span class="cm">-- Compliance reporting marts</span>
+    └── ml_features     <span class="cm">-- Feature Store tables</span>
+  </div>
+
+  <h3>Access Control Model</h3>
+  <table class="data-table">
+    <thead>
+      <tr><th>Role</th><th>Bronze Access</th><th>Silver Access</th><th>Gold Access</th><th>PII Visible</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Data Engineer</td><td>Read/Write</td><td>Read/Write</td><td>Read/Write</td><td>No (masked)</td></tr>
+      <tr><td>Data Scientist</td><td>Read (selected)</td><td>Read</td><td>Read</td><td>No (masked)</td></tr>
+      <tr><td>BI Analyst</td><td>None</td><td>None</td><td>Read</td><td>No (masked)</td></tr>
+      <tr><td>Risk Analyst</td><td>None</td><td>Read (risk)</td><td>Read</td><td>No (masked)</td></tr>
+      <tr><td>Compliance Officer</td><td>None</td><td>Read (AML)</td><td>Read</td><td>Yes (with MFA)</td></tr>
+      <tr><td>PII Reader (privileged)</td><td>None</td><td>Read</td><td>Read</td><td>Yes</td></tr>
+      <tr><td>Auditor (read-only)</td><td>Read (audit)</td><td>Read</td><td>Read</td><td>No</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Data Lineage</h3>
+  <p>Unity Catalog automatically captures <strong>table-level and column-level lineage</strong> for all Spark SQL and dbt transformations executed within the Databricks workspace. Lineage is queryable via the Unity Catalog API and visualised in the Databricks UI — showing, for example, that the <code>gold.facts.fact_loan_portfolio.ecl_provision_zar</code> column derives from the PD model feature, which in turn derives from the credit bureau bronze table. This end-to-end lineage satisfies BCBS 239 (Risk Data Aggregation and Risk Reporting) principles and provides the audit trail required for SARB regulatory inspections.</p>
+
+  <h3>Data Retention &amp; Lifecycle</h3>
+  <p>ADLS Gen2 lifecycle management policies automate tier transitions: data older than 90 days in the Bronze and Silver layers moves from Hot to Cool tier (60% cost saving); data older than 2 years moves to Archive tier (90% cost saving). Gold layer data remains on Hot tier for 5 years, aligning with the bank's Records Retention Schedule and POPIA's storage limitation principle. Delta Lake table history is retained for 30 days for operational recovery, with regulatory snapshots committed to Archive storage for 7-year statutory retention (Companies Act 71 of 2008).</p>
+
+  <div class="callout">
+    <div class="callout-title">POPIA Compliance Implementation</div>
+    <p>The platform enforces POPIA's eight conditions for lawful processing through: <strong>purpose limitation</strong> (Unity Catalog tags define permitted processing purposes per table); <strong>storage limitation</strong> (automated ADLS lifecycle policies); <strong>data subject rights</strong> (automated DSAR response pipeline identifying all PII instances for a given customer); and <strong>breach notification</strong> (Azure Defender for Cloud alerts triggering the 72-hour POPIA breach notification workflow).</p>
+  </div>
+</section>
+
+<!-- ===== CHAPTER 12: APPENDIX ===== -->
+<section class="chapter" id="ch12">
+  <div class="chapter-header">
+    <div class="chapter-label">Chapter 12</div>
+    <h2 class="chapter-title">Appendix</h2>
+    <p class="chapter-intro">Glossary of banking and data terms, table catalog reference, and contact information.</p>
+  </div>
+
+  <h3>Glossary of Terms</h3>
+  <table class="data-table">
+    <thead>
+      <tr><th>Term</th><th>Definition</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>AML</strong></td><td>Anti-Money Laundering — regulatory framework for detecting and preventing money laundering activities.</td></tr>
+      <tr><td><strong>AUC-ROC</strong></td><td>Area Under the Receiver Operating Characteristic curve — primary performance metric for classification ML models.</td></tr>
+      <tr><td><strong>BA700</strong></td><td>SARB's standard bank return for monthly prudential data submission by registered banks.</td></tr>
+      <tr><td><strong>Basel III</strong></td><td>International regulatory framework for bank capital adequacy, stress testing, and liquidity risk, implemented by SARB.</td></tr>
+      <tr><td><strong>CET1</strong></td><td>Common Equity Tier 1 — the highest quality regulatory capital, consisting of ordinary shares and retained earnings.</td></tr>
+      <tr><td><strong>Delta Lake</strong></td><td>Open-source ACID-compliant storage layer on top of Parquet, providing time-travel, schema enforcement, and MERGE operations.</td></tr>
+      <tr><td><strong>dbt</strong></td><td>Data Build Tool — SQL-first transformation framework providing modular, tested, documented data models.</td></tr>
+      <tr><td><strong>EAD</strong></td><td>Exposure at Default — estimate of the outstanding loan balance at the time a borrower defaults.</td></tr>
+      <tr><td><strong>ECL</strong></td><td>Expected Credit Loss — IFRS 9 provision methodology replacing the IAS 39 incurred-loss model.</td></tr>
+      <tr><td><strong>EFT</strong></td><td>Electronic Funds Transfer — the primary interbank payment rail in South Africa, operated by BankservAfrica.</td></tr>
+      <tr><td><strong>FICA</strong></td><td>Financial Intelligence Centre Act — South African AML/KYC legislation governing customer due diligence and STR reporting.</td></tr>
+      <tr><td><strong>IFRS 9</strong></td><td>International Financial Reporting Standard 9 — the accounting standard governing classification, measurement, and impairment of financial instruments.</td></tr>
+      <tr><td><strong>LCR</strong></td><td>Liquidity Coverage Ratio — Basel III metric requiring banks to hold sufficient high-quality liquid assets to survive a 30-day stress scenario.</td></tr>
+      <tr><td><strong>LGD</strong></td><td>Loss Given Default — estimate of the percentage of EAD the bank will lose if a borrower defaults.</td></tr>
+      <tr><td><strong>Medallion Architecture</strong></td><td>A data design pattern organising data in Bronze (raw), Silver (clean), and Gold (analytical) quality tiers.</td></tr>
+      <tr><td><strong>MLflow</strong></td><td>Open-source ML lifecycle platform for experiment tracking, model packaging, and model registry.</td></tr>
+      <tr><td><strong>NSFR</strong></td><td>Net Stable Funding Ratio — Basel III metric requiring banks to maintain stable funding relative to assets over a 1-year horizon.</td></tr>
+      <tr><td><strong>PD</strong></td><td>Probability of Default — the likelihood that a borrower will fail to meet their debt obligations within a defined time horizon.</td></tr>
+      <tr><td><strong>POPIA</strong></td><td>Protection of Personal Information Act — South Africa's primary data privacy legislation, effective July 2021.</td></tr>
+      <tr><td><strong>RTC</strong></td><td>Real-Time Clearing — South Africa's domestic immediate payment scheme, settled via SARB SAMOS.</td></tr>
+      <tr><td><strong>RWA</strong></td><td>Risk-Weighted Assets — the denominator in capital adequacy calculations, weighting assets by their credit risk.</td></tr>
+      <tr><td><strong>SARB</strong></td><td>South African Reserve Bank — the central bank and prudential regulator of South African banks.</td></tr>
+      <tr><td><strong>SCD2</strong></td><td>Slowly Changing Dimension Type 2 — a dimension table design that preserves historical attribute values with effective and expiry dates.</td></tr>
+      <tr><td><strong>SIFI</strong></td><td>Systemically Important Financial Institution — a bank whose failure could pose systemic risk to the financial system.</td></tr>
+      <tr><td><strong>STR</strong></td><td>Suspicious Transaction Report — a mandatory report submitted to the Financial Intelligence Centre under FICA.</td></tr>
+      <tr><td><strong>Unity Catalog</strong></td><td>Databricks' centralised data governance solution providing unified metastore, access control, lineage, and auditing across workspaces.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Full Table Catalog</h3>
+  <p>A complete table-level reference is maintained in the separate <strong>Data Dictionary</strong> document (<code>docs/data_dictionary/data_dictionary.md</code>), which provides column-level documentation, business rules, and PII classification for all 247 catalogued tables across the Bronze, Silver, and Gold layers.</p>
+
+  <h3>Contact Information</h3>
+  <table class="data-table">
+    <thead>
+      <tr><th>Role</th><th>Team</th><th>Responsibility</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Chief Data Officer</td><td>Data Strategy</td><td>Platform vision and data governance policy</td></tr>
+      <tr><td>Head of Data Engineering</td><td>Data Engineering</td><td>Platform architecture and pipeline ownership</td></tr>
+      <tr><td>Lead Data Scientist</td><td>Analytics &amp; AI</td><td>ML model development and governance</td></tr>
+      <tr><td>Data Governance Manager</td><td>Data Governance</td><td>Unity Catalog, PII policy, POPIA compliance</td></tr>
+      <tr><td>Platform SRE Lead</td><td>Site Reliability</td><td>Pipeline SLA, incident response, DR</td></tr>
+      <tr><td>Regulatory Reporting Lead</td><td>Finance &amp; Compliance</td><td>SARB/IFRS reporting, BA700, Basel III</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="callout-title">Document Control</div>
+    <p>This document is classified <strong>CONFIDENTIAL — INTERNAL USE ONLY</strong>. Version 3.1, approved June 2025. Review cycle: quarterly. Owner: Head of Data Engineering, Prime Capital Bank Limited. Unauthorised distribution is prohibited under the bank's Information Security Policy and POPIA Section 19 obligations.</p>
+  </div>
+
+  <p style="margin-top: 48px; text-align: center; color: var(--text-dim); font-size: 13px;">
+    &mdash; End of Document &mdash;<br><br>
+    Prime Capital Bank Limited &nbsp;&middot;&nbsp; Registration No. 1968/000123/06 &nbsp;&middot;&nbsp; Authorised Financial Services Provider (FSP 12345) &nbsp;&middot;&nbsp; Registered Credit Provider (NCRCP 9876)<br>
+    Prudential Authority Licence No. PA12345 &nbsp;&middot;&nbsp; © 2025 Prime Capital Bank Limited. All rights reserved.
+  </p>
+</section>
+
+</main>
+
+<script>
+  // Active sidebar link on scroll
+  const chapters = document.querySelectorAll('#cover, .chapter');
+  const links = document.querySelectorAll('#sidebar nav a');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const id = e.target.id;
+        const active = document.querySelector('#sidebar nav a[href="#' + id + '"]');
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { threshold: 0.15 });
+  chapters.forEach(c => observer.observe(c));
+</script>
+</body>
+</html>

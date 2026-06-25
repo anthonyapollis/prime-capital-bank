@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prime Capital Bank — Complete Enterprise Data Model ERD</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0A1628 0%, #0D2145 50%, #0A1628 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1900px;
+            margin: 0 auto;
+            background: #0D1F3C;
+            border-radius: 16px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(201,168,76,0.2);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0A1628 0%, #142444 100%);
+            border-bottom: 3px solid #C9A84C;
+            padding: 50px 40px 40px;
+            text-align: center;
+            position: relative;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 4px;
+            background: linear-gradient(90deg, #C9A84C, #F0D080, #C9A84C);
+        }
+        .logo {
+            font-size: 1.1em;
+            color: #C9A84C;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            font-weight: 300;
+        }
+        .header h1 {
+            font-size: 2.8em;
+            color: #FFFFFF;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+        .header h1 span { color: #C9A84C; }
+        .header p {
+            font-size: 1.1em;
+            color: #A0B4CC;
+            margin-bottom: 8px;
+        }
+        .header small {
+            font-size: 0.9em;
+            color: #6A8AAA;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1px;
+            background: rgba(201,168,76,0.15);
+            margin: 0;
+            border-bottom: 1px solid rgba(201,168,76,0.2);
+        }
+        .stat-box {
+            background: #0D1F3C;
+            text-align: center;
+            padding: 24px 16px;
+        }
+        .stat-number {
+            font-size: 2.2em;
+            color: #C9A84C;
+            font-weight: 700;
+            line-height: 1;
+        }
+        .stat-label {
+            font-size: 0.8em;
+            color: #6A8AAA;
+            margin-top: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .content { padding: 40px; }
+
+        .section {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(201,168,76,0.2);
+        }
+        .section-title {
+            font-size: 1.5em;
+            color: #C9A84C;
+            margin-bottom: 24px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(201,168,76,0.4), transparent);
+            margin-left: 16px;
+        }
+
+        .erd-container {
+            background: #060E1C;
+            border: 1px solid rgba(201,168,76,0.2);
+            border-radius: 12px;
+            padding: 30px;
+            overflow-x: auto;
+            min-height: 600px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .card {
+            background: #0A1628;
+            border: 1px solid rgba(255,255,255,0.06);
+            border-left: 4px solid #C9A84C;
+            padding: 20px;
+            border-radius: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        .card.dim  { border-left-color: #4ECDC4; }
+        .card.fact { border-left-color: #FF6B6B; }
+        .card.ft   { border-left-color: #95E1D3; }
+        .card.risk { border-left-color: #F7B731; }
+        .card.reg  { border-left-color: #A29BFE; }
+
+        .card h3 {
+            color: #C9A84C;
+            margin-bottom: 14px;
+            font-size: 1em;
+            font-weight: 600;
+        }
+        .card.dim  h3 { color: #4ECDC4; }
+        .card.fact h3 { color: #FF6B6B; }
+        .card.ft   h3 { color: #95E1D3; }
+        .card.risk h3 { color: #F7B731; }
+        .card.reg  h3 { color: #A29BFE; }
+
+        .card ul { list-style: none; }
+        .card li {
+            padding: 5px 0 5px 18px;
+            position: relative;
+            color: #8A9BB0;
+            font-size: 0.875em;
+            line-height: 1.4;
+        }
+        .card li::before {
+            content: "›";
+            position: absolute;
+            left: 4px;
+            color: #C9A84C;
+            font-weight: bold;
+        }
+        .card.dim  li::before { color: #4ECDC4; }
+        .card.fact li::before { color: #FF6B6B; }
+        .card.ft   li::before { color: #95E1D3; }
+        .card.risk li::before { color: #F7B731; }
+        .card.reg  li::before { color: #A29BFE; }
+
+        .product-tree {
+            background: #060E1C;
+            border: 1px solid rgba(201,168,76,0.2);
+            border-radius: 12px;
+            padding: 30px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85em;
+            color: #A0B4CC;
+            overflow-x: auto;
+        }
+        .product-tree .cat  { color: #C9A84C; font-weight: bold; }
+        .product-tree .sub  { color: #4ECDC4; }
+        .product-tree .prod { color: #8A9BB0; }
+
+        .domain-badge {
+            display: inline-block;
+            background: rgba(201,168,76,0.1);
+            border: 1px solid rgba(201,168,76,0.3);
+            color: #C9A84C;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 0.75em;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+
+        .flow-diagram {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            margin: 20px 0;
+            overflow-x: auto;
+            padding: 20px 0;
+        }
+        .flow-box {
+            background: #0A1628;
+            border: 1px solid rgba(201,168,76,0.3);
+            border-radius: 8px;
+            padding: 14px 18px;
+            text-align: center;
+            min-width: 130px;
+            flex-shrink: 0;
+        }
+        .flow-box.bronze { border-color: #CD7F32; }
+        .flow-box.silver { border-color: #A8A9AD; }
+        .flow-box.gold   { border-color: #C9A84C; }
+        .flow-box.ml     { border-color: #4ECDC4; }
+        .flow-box.bi     { border-color: #A29BFE; }
+        .flow-box h4 { font-size: 0.75em; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+        .flow-box.bronze h4 { color: #CD7F32; }
+        .flow-box.silver h4 { color: #A8A9AD; }
+        .flow-box.gold   h4 { color: #C9A84C; }
+        .flow-box.ml     h4 { color: #4ECDC4; }
+        .flow-box.bi     h4 { color: #A29BFE; }
+        .flow-box p { font-size: 0.8em; color: #6A8AAA; }
+        .flow-arrow {
+            color: #C9A84C;
+            font-size: 1.4em;
+            padding: 0 6px;
+            flex-shrink: 0;
+        }
+
+        .mermaid svg { max-width: 100%; }
+
+        .legend-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 20px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85em;
+            color: #8A9BB0;
+        }
+        .legend-dot {
+            width: 12px; height: 12px;
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875em;
+            margin-top: 16px;
+        }
+        th {
+            background: rgba(201,168,76,0.15);
+            color: #C9A84C;
+            padding: 12px 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.8em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid rgba(201,168,76,0.3);
+        }
+        td {
+            padding: 10px 16px;
+            color: #8A9BB0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+        tr:hover td { background: rgba(201,168,76,0.04); }
+        td.name { color: #E0E8F0; font-weight: 500; font-family: 'Courier New', monospace; font-size: 0.9em; }
+        td.layer-bronze { color: #CD7F32; }
+        td.layer-silver { color: #A8A9AD; }
+        td.layer-gold   { color: #C9A84C; }
+        td.rows { color: #4ECDC4; font-weight: 600; text-align: right; }
+
+        .footer {
+            background: #060E1C;
+            border-top: 1px solid rgba(201,168,76,0.2);
+            padding: 30px 40px;
+            text-align: center;
+        }
+        .footer p { font-size: 0.85em; color: #4A6280; }
+        .footer strong { color: #C9A84C; }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; border-radius: 0; }
+            .header { background: #0A1628 !important; -webkit-print-color-adjust: exact; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="logo">Prime Capital Bank</div>
+        <h1>Complete Enterprise <span>Data Model</span></h1>
+        <p>Production-Ready ERD — Azure Databricks Unity Catalog | Delta Lake | Medallion Architecture</p>
+        <small>22 Dimensions &nbsp;·&nbsp; 16 Fact Tables &nbsp;·&nbsp; 60+ Products &nbsp;·&nbsp; Fintech Layer &nbsp;·&nbsp; Insurance &nbsp;·&nbsp; AML/IFRS9/Basel III &nbsp;·&nbsp; ML Scoring</small>
+    </div>
+
+    <!-- STATS BAR -->
+    <div class="stats">
+        <div class="stat-box"><div class="stat-number">22</div><div class="stat-label">Dimensions</div></div>
+        <div class="stat-box"><div class="stat-number">16</div><div class="stat-label">Fact Tables</div></div>
+        <div class="stat-box"><div class="stat-number">60+</div><div class="stat-label">Products</div></div>
+        <div class="stat-box"><div class="stat-number">500K</div><div class="stat-label">Customers</div></div>
+        <div class="stat-box"><div class="stat-number">10M+</div><div class="stat-label">Transactions</div></div>
+        <div class="stat-box"><div class="stat-number">8</div><div class="stat-label">ML Models</div></div>
+        <div class="stat-box"><div class="stat-number">15</div><div class="stat-label">Analytical Views</div></div>
+        <div class="stat-box"><div class="stat-number">3</div><div class="stat-label">Data Layers</div></div>
+    </div>
+
+    <div class="content">
+
+        <!-- MEDALLION FLOW -->
+        <div class="section">
+            <div class="section-title">Medallion Architecture — Data Flow</div>
+            <div class="flow-diagram">
+                <div class="flow-box">
+                    <h4>Source Systems</h4>
+                    <p>Core Banking · CRM · Cards · Treasury · HR · GL</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-box bronze">
+                    <h4>Bronze Layer</h4>
+                    <p>Raw Ingestion<br>Auto Loader<br>14 Tables</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-box silver">
+                    <h4>Silver Layer</h4>
+                    <p>Cleansed &amp; Enriched<br>PII Masked<br>11 Tables</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-box gold">
+                    <h4>Gold Layer</h4>
+                    <p>Star Schema<br>22 Dims · 16 Facts<br>15 Views</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-box ml">
+                    <h4>ML Layer</h4>
+                    <p>MLflow Registry<br>PD · LGD · Fraud<br>AML Scoring</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-box bi">
+                    <h4>Consumption</h4>
+                    <p>Power BI<br>Azure SQL<br>SARB Reports</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FULL ERD (MERMAID) -->
+        <div class="section">
+            <div class="section-title">Complete Entity Relationship Diagram</div>
+            <div class="erd-container">
+<div class="mermaid">
+%%{init: {'theme': 'dark', 'themeVariables': {'primaryColor': '#0A1628', 'primaryTextColor': '#C9A84C', 'primaryBorderColor': '#C9A84C', 'lineColor': '#4ECDC4', 'secondaryColor': '#142444', 'tertiaryColor': '#0D2145'}}}%%
+erDiagram
+    %% ===== CORE CUSTOMER DOMAIN =====
+    DIM_CUSTOMER ||--o{ DIM_KYC_STATUS : "subject_to"
+    DIM_CUSTOMER ||--o{ FACT_TRANSACTION : "initiates"
+    DIM_CUSTOMER ||--o{ FACT_LOAN_PORTFOLIO : "holds"
+    DIM_CUSTOMER ||--o{ FACT_CARD_TRANSACTION : "makes"
+    DIM_CUSTOMER ||--o{ FACT_DAILY_BALANCE : "owns"
+    DIM_CUSTOMER ||--o{ FACT_CUSTOMER_PRODUCTS : "adopts"
+    DIM_CUSTOMER ||--o{ FACT_AML_CASE : "investigated_in"
+    DIM_CUSTOMER ||--o{ FACT_FRAUD_EVENT : "victim_of"
+    DIM_CUSTOMER ||--o{ FACT_INSURANCE : "covered_by"
+    DIM_CUSTOMER ||--o{ FACT_INVESTMENT : "invests"
+
+    %% ===== PRODUCT HIERARCHY =====
+    DIM_PRODUCT_CATEGORY ||--o{ DIM_PRODUCT_SUBCATEGORY : "contains"
+    DIM_PRODUCT_SUBCATEGORY ||--o{ DIM_PRODUCT : "classifies"
+    DIM_PRODUCT ||--o{ FACT_CUSTOMER_PRODUCTS : "tracks"
+    DIM_PRODUCT ||--o{ FACT_PRODUCT_METRICS : "measures"
+    DIM_PRODUCT ||--o{ FACT_LOAN_PORTFOLIO : "defines"
+    DIM_PRODUCT ||--o{ FACT_INSURANCE : "defines"
+    DIM_PRODUCT ||--o{ FACT_INVESTMENT : "defines"
+
+    %% ===== ACCOUNT & TRANSACTION DOMAIN =====
+    DIM_ACCOUNT ||--o{ FACT_TRANSACTION : "records"
+    DIM_ACCOUNT ||--o{ FACT_DAILY_BALANCE : "snapshots"
+    DIM_ACCOUNT ||--o{ FACT_PAYMENT : "sends_receives"
+    DIM_CHANNEL ||--o{ FACT_TRANSACTION : "via"
+    DIM_DEVICE ||--o{ FACT_TRANSACTION : "on"
+    DIM_DATE ||--o{ FACT_TRANSACTION : "when"
+    DIM_DATE ||--o{ FACT_DAILY_BALANCE : "date"
+    DIM_DATE ||--o{ FACT_LOAN_PORTFOLIO : "snapshot"
+    DIM_DATE ||--o{ FACT_PRODUCT_METRICS : "metric_date"
+
+    %% ===== LENDING DOMAIN =====
+    DIM_COLLATERAL ||--o{ FACT_LOAN_PORTFOLIO : "secures"
+    DIM_CREDIT_BUREAU ||--o{ FACT_LOAN_PORTFOLIO : "reports_to"
+    DIM_RISK_CATEGORY ||--o{ FACT_LOAN_PORTFOLIO : "rated_as"
+    DIM_RISK_CATEGORY ||--o{ FACT_AML_CASE : "risk_tier"
+
+    %% ===== PAYMENT DOMAIN =====
+    DIM_COUNTERPARTY ||--o{ FACT_PAYMENT : "settles_with"
+    DIM_CURRENCY ||--o{ FACT_PAYMENT : "denominated_in"
+    DIM_CURRENCY ||--o{ FACT_TRANSACTION : "currency"
+
+    %% ===== CARD & FINTECH DOMAIN =====
+    DIM_MERCHANT ||--o{ FACT_CARD_TRANSACTION : "processed_at"
+    DIM_MERCHANT ||--o{ FACT_FINTECH_TRANSACTION : "settles_via"
+    DIM_MERCHANT ||--o{ FACT_MERCHANT_DAILY_SUMMARY : "daily_stats"
+    DIM_FINTECH ||--o{ DIM_MERCHANT : "processes_for"
+    DIM_FINTECH ||--o{ FACT_FINTECH_TRANSACTION : "routes"
+    DIM_LOYALTY_PROGRAM ||--o{ FACT_LOYALTY_POINTS : "issues"
+    DIM_MERCHANT ||--o{ DIM_LOYALTY_PROGRAM : "operates"
+    FACT_CARD_TRANSACTION ||--o{ FACT_FINTECH_TRANSACTION : "may_be"
+
+    %% ===== BRANCH & INFRASTRUCTURE =====
+    DIM_BRANCH ||--o{ DIM_ATM : "operates"
+    DIM_BRANCH ||--o{ DIM_EMPLOYEE : "employs"
+    DIM_BRANCH ||--o{ FACT_TRANSACTION : "hosted_at"
+    DIM_GEOGRAPHY ||--o{ DIM_BRANCH : "located_in"
+    DIM_EMPLOYEE ||--o{ FACT_LOAN_PORTFOLIO : "originates"
+
+    %% ===== INSURANCE DOMAIN =====
+    FACT_INSURANCE ||--o{ FACT_CLAIM : "covers"
+    FACT_CLAIM ||--o{ FACT_CLAIM_PAYMENT : "settled_by"
+
+    %% ===== GL & REGULATORY =====
+    DIM_GL_ACCOUNT ||--o{ FACT_GL_JOURNAL : "posts_to"
+    DIM_COST_CENTRE ||--o{ FACT_GL_JOURNAL : "allocated_to"
+    DIM_COMPLIANCE_RULE ||--o{ FACT_AML_CASE : "governs"
+
+    DIM_CUSTOMER {
+        bigint customer_sk PK
+        string customer_id UK
+        string customer_number
+        string first_name
+        string last_name
+        string id_number
+        date date_of_birth
+        int age
+        string gender
+        string race
+        string customer_segment
+        string credit_score_band
+        int credit_score
+        decimal annual_income
+        string income_band
+        string employment_status
+        string kyc_status
+        string fica_status
+        string province
+        string city
+        date onboarding_date
+        string onboarding_channel
+        string risk_segment
+        date effective_date
+        date expiry_date
+        boolean is_current
+    }
+
+    DIM_ACCOUNT {
+        bigint account_sk PK
+        string account_id UK
+        string account_number
+        string customer_id FK
+        string account_type
+        string product_code FK
+        string branch_code FK
+        string status
+        string balance_band
+        boolean is_dormant
+        date open_date
+        decimal credit_limit
+        date effective_date
+        date expiry_date
+        boolean is_current
+    }
+
+    DIM_PRODUCT {
+        int product_sk PK
+        string product_code UK
+        string product_name
+        int subcategory_id FK
+        string product_family
+        decimal base_interest_rate
+        string rate_type
+        decimal annual_fee
+        int min_term_months
+        int max_term_months
+        string risk_rating
+        int profitability_rank
+        boolean is_active
+        date launch_date
+    }
+
+    DIM_PRODUCT_CATEGORY {
+        int category_id PK
+        string category_name
+        string category_code
+        boolean is_revenue_driver
+    }
+
+    DIM_PRODUCT_SUBCATEGORY {
+        int subcategory_id PK
+        int category_id FK
+        string subcategory_name
+        string subcategory_code
+    }
+
+    DIM_BRANCH {
+        int branch_sk PK
+        string branch_code UK
+        string branch_name
+        string province
+        string region
+        string city
+        string suburb
+        string branch_type
+        int atm_count
+        boolean is_active
+        date opened_date
+    }
+
+    DIM_EMPLOYEE {
+        int employee_sk PK
+        string employee_id UK
+        string employee_name
+        string role
+        string grade
+        string department
+        string branch_code FK
+        date hire_date
+        date effective_date
+        boolean is_current
+    }
+
+    DIM_DATE {
+        int date_sk PK
+        date date_key
+        int day
+        int week
+        int month
+        string month_name
+        int quarter
+        int year
+        int financial_year
+        int financial_quarter
+        boolean is_weekend
+        boolean is_public_holiday
+        boolean is_month_end
+        boolean is_quarter_end
+        boolean is_year_end
+        string day_name
+    }
+
+    DIM_CHANNEL {
+        int channel_sk PK
+        string channel_code
+        string channel_name
+        string channel_type
+        boolean is_digital
+    }
+
+    DIM_DEVICE {
+        int device_sk PK
+        string device_id
+        string device_type
+        string device_model
+        string os_type
+        string os_version
+        string browser
+        boolean is_mobile
+    }
+
+    DIM_CURRENCY {
+        int currency_sk PK
+        string currency_code
+        string currency_name
+        string country
+        decimal to_zar_rate
+        date rate_date
+    }
+
+    DIM_GEOGRAPHY {
+        int geography_sk PK
+        string province
+        string city
+        string suburb
+        string postal_code
+        string country
+        string region
+    }
+
+    DIM_RISK_CATEGORY {
+        int risk_sk PK
+        string risk_code
+        string risk_label
+        string risk_tier
+        decimal pd_floor
+        decimal pd_ceiling
+        decimal lgd_estimate
+        decimal provision_rate
+    }
+
+    DIM_MERCHANT {
+        int merchant_sk PK
+        string merchant_id
+        string merchant_name
+        string mcc_code
+        string mcc_description
+        string merchant_category
+        int fintech_id FK
+        string city
+        string country
+        boolean loyalty_active
+        boolean ai_enabled
+        boolean is_active
+    }
+
+    DIM_FINTECH {
+        int fintech_sk PK
+        string fintech_id
+        string fintech_name
+        string fintech_type
+        string settlement_bank
+        decimal fee_rate
+        int settlement_sla_days
+        boolean is_active
+    }
+
+    DIM_LOYALTY_PROGRAM {
+        int loyalty_sk PK
+        string program_id
+        string program_name
+        int merchant_id FK
+        decimal points_per_zar
+        int redemption_threshold_points
+        decimal redemption_value_per_point
+        boolean is_active
+        date launch_date
+    }
+
+    DIM_ATM {
+        int atm_sk PK
+        string atm_id
+        string atm_serial
+        int branch_sk FK
+        decimal latitude
+        decimal longitude
+        string suburb
+        string atm_type
+        string status
+        decimal cash_capacity
+    }
+
+    DIM_COUNTERPARTY {
+        int counterparty_sk PK
+        string counterparty_name
+        string counterparty_type
+        string bank_name
+        string bank_code
+        string swift_code
+        string country
+    }
+
+    DIM_GL_ACCOUNT {
+        int gl_account_sk PK
+        string account_code
+        string account_name
+        string level_1_entity
+        string level_2_segment
+        string level_3_division
+        string level_4_department
+        string account_type
+        boolean is_balance_sheet
+        boolean is_income_statement
+    }
+
+    DIM_COST_CENTRE {
+        int cost_centre_sk PK
+        string cost_centre_code
+        string cost_centre_name
+        string department
+        string legal_entity
+        string region
+    }
+
+    DIM_KYC_STATUS {
+        int kyc_sk PK
+        int customer_sk FK
+        string status
+        string verification_method
+        date verification_date
+        date expiry_date
+        string verifier_id
+        boolean is_current
+    }
+
+    DIM_COLLATERAL {
+        int collateral_sk PK
+        string collateral_type
+        string collateral_description
+        decimal valuation_amount
+        date valuation_date
+        string valuer_name
+        string valuation_method
+    }
+
+    DIM_CREDIT_BUREAU {
+        int bureau_sk PK
+        string bureau_name
+        string bureau_code
+        string country
+        date report_date
+    }
+
+    DIM_COMPLIANCE_RULE {
+        int rule_sk PK
+        string rule_code
+        string rule_name
+        string regulation
+        string jurisdiction
+        string risk_category
+        boolean is_active
+        date effective_date
+    }
+
+    FACT_TRANSACTION {
+        bigint transaction_sk PK
+        string transaction_id UK
+        bigint customer_sk FK
+        bigint account_sk FK
+        int channel_sk FK
+        int device_sk FK
+        int date_sk FK
+        int currency_sk FK
+        int counterparty_sk FK
+        int branch_sk FK
+        string tx_type
+        decimal amount_original
+        decimal amount_zar
+        decimal running_balance
+        boolean is_debit
+        string status
+        string merchant_name
+        string mcc_code
+        decimal fraud_score
+        timestamp tx_timestamp
+    }
+
+    FACT_LOAN_PORTFOLIO {
+        bigint loan_sk PK
+        string loan_id UK
+        bigint customer_sk FK
+        bigint account_sk FK
+        int product_sk FK
+        int employee_sk FK
+        int collateral_sk FK
+        int risk_sk FK
+        int date_sk FK
+        string loan_type
+        decimal original_amount
+        decimal outstanding_balance
+        decimal interest_accrued
+        decimal principal_paid
+        decimal arrears_amount
+        int days_past_due
+        decimal ltv_ratio
+        decimal dti_ratio
+        decimal pd_score
+        decimal lgd_estimate
+        decimal ecl_amount
+        string ifrs9_stage
+        string loan_status
+        boolean is_npl
+        decimal provision_amount
+        date origination_date
+        date maturity_date
+    }
+
+    FACT_PAYMENT {
+        bigint payment_sk PK
+        string payment_id UK
+        bigint debtor_account_sk FK
+        int counterparty_sk FK
+        int date_sk FK
+        int currency_sk FK
+        string payment_type
+        string payment_rail
+        decimal amount
+        decimal fee_amount
+        string status
+        int settlement_lag_days
+        date settlement_date
+        string swift_reference
+        string eft_reference
+    }
+
+    FACT_CARD_TRANSACTION {
+        bigint card_tx_sk PK
+        string card_tx_id UK
+        bigint customer_sk FK
+        bigint account_sk FK
+        int merchant_sk FK
+        int date_sk FK
+        int currency_sk FK
+        int channel_sk FK
+        decimal amount_original
+        decimal amount_zar
+        decimal fx_rate
+        string auth_code
+        boolean is_card_present
+        boolean is_contactless
+        decimal fraud_score
+        boolean is_fraud_flagged
+        int reward_points_earned
+        string tx_status
+    }
+
+    FACT_DAILY_BALANCE {
+        bigint balance_sk PK
+        bigint account_sk FK
+        bigint customer_sk FK
+        int date_sk FK
+        decimal opening_balance
+        decimal closing_balance
+        decimal average_balance
+        decimal interest_accrued
+        decimal fees_charged
+        int tx_count
+        decimal tx_volume
+    }
+
+    FACT_CUSTOMER_PRODUCTS {
+        bigint cp_sk PK
+        bigint customer_sk FK
+        int product_sk FK
+        int date_sk FK
+        date adoption_date
+        int tenure_months
+        decimal product_balance
+        decimal monthly_fee_generated
+        decimal monthly_nii
+        boolean is_active
+        string cross_sell_source
+    }
+
+    FACT_FRAUD_EVENT {
+        bigint fraud_sk PK
+        string alert_id UK
+        bigint customer_sk FK
+        bigint account_sk FK
+        int channel_sk FK
+        int date_sk FK
+        string fraud_type
+        string alert_source
+        decimal risk_score
+        string alert_priority
+        decimal loss_amount
+        decimal recovery_amount
+        decimal net_loss
+        string status
+        int days_to_resolve
+        string disposition
+    }
+
+    FACT_AML_CASE {
+        bigint aml_sk PK
+        string case_id UK
+        bigint customer_sk FK
+        int risk_sk FK
+        int rule_sk FK
+        int date_sk FK
+        int alert_count
+        decimal total_amount_flagged
+        decimal sar_amount
+        string case_status
+        boolean sar_filed
+        string outcome
+        int days_open
+        string case_type
+    }
+
+    FACT_GL_JOURNAL {
+        bigint journal_sk PK
+        string journal_id UK
+        int gl_account_sk FK
+        int cost_centre_sk FK
+        int date_sk FK
+        decimal debit_amount
+        decimal credit_amount
+        string journal_type
+        string period
+        string legal_entity
+        string source_system
+        string posting_reference
+    }
+
+    FACT_TREASURY_POSITION {
+        bigint position_sk PK
+        string position_id UK
+        int product_sk FK
+        int counterparty_sk FK
+        int currency_sk FK
+        int date_sk FK
+        string instrument_type
+        decimal face_value
+        decimal market_value
+        decimal book_value
+        decimal mtm_pnl
+        decimal accrued_interest
+        decimal duration
+        decimal yield
+        decimal dv01
+    }
+
+    FACT_ACCOUNT_PROFITABILITY {
+        bigint ap_sk PK
+        bigint account_sk FK
+        bigint customer_sk FK
+        int product_sk FK
+        int date_sk FK
+        decimal net_interest_income
+        decimal fee_income
+        decimal cost_of_funds
+        decimal operating_cost
+        decimal provision_charge
+        decimal net_profit
+        decimal return_on_equity
+    }
+
+    FACT_PRODUCT_METRICS {
+        bigint metric_sk PK
+        int product_sk FK
+        int date_sk FK
+        int new_customers
+        int active_customers
+        int churned_customers
+        decimal total_aum
+        decimal total_fees_collected
+        decimal total_nii
+        int default_count
+        decimal default_rate
+    }
+
+    FACT_FINTECH_TRANSACTION {
+        bigint ft_sk PK
+        bigint card_tx_sk FK
+        int fintech_sk FK
+        int merchant_sk FK
+        int date_sk FK
+        decimal gross_amount
+        decimal merchant_fee
+        decimal interchange_fee
+        decimal net_settlement
+        string settlement_status
+        date settlement_date
+        string mcc_code
+    }
+
+    FACT_LOYALTY_POINTS {
+        bigint lp_sk PK
+        int loyalty_sk FK
+        bigint customer_sk FK
+        int date_sk FK
+        string customer_cell_number
+        int points_earned
+        int points_redeemed
+        int points_expired
+        int points_balance
+        decimal redemption_value_zar
+        string earn_trigger
+    }
+
+    FACT_MERCHANT_DAILY_SUMMARY {
+        bigint mds_sk PK
+        int merchant_sk FK
+        int date_sk FK
+        int total_transactions
+        decimal total_volume_zar
+        int loyalty_points_issued
+        int loyalty_points_redeemed
+        int repeat_customer_count
+        decimal net_settlement_zar
+        decimal avg_basket_size
+    }
+
+    FACT_INSURANCE {
+        bigint ins_sk PK
+        string policy_id UK
+        bigint customer_sk FK
+        int product_sk FK
+        int date_sk FK
+        string policy_status
+        decimal coverage_amount
+        decimal annual_premium
+        decimal monthly_premium
+        int tenure_months
+        date issue_date
+        date expiry_date
+    }
+
+    FACT_CLAIM {
+        bigint claim_sk PK
+        bigint ins_sk FK
+        bigint customer_sk FK
+        int date_sk FK
+        string claim_type
+        decimal claim_amount
+        decimal approved_amount
+        boolean is_settled
+        date claim_date
+        date settlement_date
+        int days_to_settle
+    }
+
+    FACT_CLAIM_PAYMENT {
+        bigint cp_sk PK
+        bigint claim_sk FK
+        int date_sk FK
+        decimal amount_paid
+        string payment_method
+        string payment_status
+        date payment_date
+    }
+
+    FACT_INVESTMENT {
+        bigint inv_sk PK
+        string investment_id UK
+        bigint customer_sk FK
+        int product_sk FK
+        int date_sk FK
+        decimal quantity_units
+        decimal nav_per_unit
+        decimal current_value
+        decimal cost_basis
+        decimal unrealised_pnl
+        decimal realised_pnl
+        date purchase_date
+        string investment_status
+    }
+</div>
+            </div>
+        </div>
+
+        <!-- DIMENSIONS -->
+        <div class="section">
+            <div class="section-title">Dimension Tables <span class="domain-badge">22 Total · SCD Type 2</span></div>
+            <div class="grid">
+                <div class="card dim">
+                    <h3>Customer &amp; Identity</h3>
+                    <ul>
+                        <li>DIM_CUSTOMER (SCD2) — 500K records</li>
+                        <li>DIM_KYC_STATUS — FICA compliance tracking</li>
+                        <li>DIM_RISK_CATEGORY — PD/LGD bands</li>
+                        <li>DIM_CREDIT_BUREAU — TransUnion/Experian/Compuscan</li>
+                    </ul>
+                </div>
+                <div class="card dim">
+                    <h3>Account &amp; Product</h3>
+                    <ul>
+                        <li>DIM_ACCOUNT (SCD2) — 1.2M accounts</li>
+                        <li>DIM_PRODUCT — 60+ SKUs, SCD1</li>
+                        <li>DIM_PRODUCT_SUBCATEGORY — 18 subcategories</li>
+                        <li>DIM_PRODUCT_CATEGORY — 6 categories</li>
+                    </ul>
+                </div>
+                <div class="card dim">
+                    <h3>Branch &amp; Infrastructure</h3>
+                    <ul>
+                        <li>DIM_BRANCH — 200 SA branches + provinces</li>
+                        <li>DIM_EMPLOYEE (SCD2) — 12K staff</li>
+                        <li>DIM_ATM — 800 ATMs with geo-coords</li>
+                        <li>DIM_GEOGRAPHY — SA provinces, cities, suburbs</li>
+                    </ul>
+                </div>
+                <div class="card dim">
+                    <h3>Time &amp; Channel</h3>
+                    <ul>
+                        <li>DIM_DATE — SA public holidays, fin. year</li>
+                        <li>DIM_CHANNEL — Branch/ATM/Online/Mobile/USSD</li>
+                        <li>DIM_DEVICE — iOS/Android/Desktop/POS</li>
+                        <li>DIM_CURRENCY — ZAR/USD/EUR/GBP/CNY/AED</li>
+                    </ul>
+                </div>
+                <div class="card ft">
+                    <h3>Fintech &amp; Merchant</h3>
+                    <ul>
+                        <li>DIM_FINTECH — Yoco, PayFast, SnapScan, etc.</li>
+                        <li>DIM_MERCHANT — SME partners with MCC codes</li>
+                        <li>DIM_LOYALTY_PROGRAM — eBucks-style programmes</li>
+                        <li>DIM_COUNTERPARTY — Correspondent banks</li>
+                    </ul>
+                </div>
+                <div class="card reg">
+                    <h3>Governance &amp; Finance</h3>
+                    <ul>
+                        <li>DIM_GL_ACCOUNT — 5-level COA hierarchy</li>
+                        <li>DIM_COST_CENTRE — Legal entity allocation</li>
+                        <li>DIM_COLLATERAL — Property/Vehicle/Cession</li>
+                        <li>DIM_COMPLIANCE_RULE — SARB/POPIA/FICA rules</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- FACT TABLES -->
+        <div class="section">
+            <div class="section-title">Fact Tables <span class="domain-badge">16 Total · Delta Lake Partitioned</span></div>
+            <div class="grid">
+                <div class="card fact">
+                    <h3>Transaction &amp; Payments</h3>
+                    <ul>
+                        <li>FACT_TRANSACTION — 10M+ rows, partitioned by date</li>
+                        <li>FACT_PAYMENT — EFT/RTGS/SWIFT/Internal</li>
+                        <li>FACT_CARD_TRANSACTION — 2M card POS/online</li>
+                        <li>FACT_DAILY_BALANCE — daily account snapshot</li>
+                    </ul>
+                </div>
+                <div class="card fact">
+                    <h3>Lending &amp; Risk</h3>
+                    <ul>
+                        <li>FACT_LOAN_PORTFOLIO — IFRS9 Stage 1/2/3, ECL</li>
+                        <li>FACT_FRAUD_EVENT — ML-scored fraud alerts</li>
+                        <li>FACT_AML_CASE — SAR pipeline, graph analytics</li>
+                        <li>FACT_TREASURY_POSITION — MTM, DV01, VaR</li>
+                    </ul>
+                </div>
+                <div class="card fact">
+                    <h3>Customer &amp; Product</h3>
+                    <ul>
+                        <li>FACT_CUSTOMER_PRODUCTS — cross-sell, tenure, NII</li>
+                        <li>FACT_ACCOUNT_PROFITABILITY — ROE per account</li>
+                        <li>FACT_PRODUCT_METRICS — daily product KPIs</li>
+                        <li>FACT_GL_JOURNAL — P&amp;L, Balance Sheet</li>
+                    </ul>
+                </div>
+                <div class="card ft">
+                    <h3>Fintech, Insurance &amp; Investment</h3>
+                    <ul>
+                        <li>FACT_FINTECH_TRANSACTION — merchant settlement</li>
+                        <li>FACT_LOYALTY_POINTS — earn/redeem/expire</li>
+                        <li>FACT_MERCHANT_DAILY_SUMMARY — basket analytics</li>
+                        <li>FACT_INSURANCE + FACT_CLAIM + FACT_CLAIM_PAYMENT</li>
+                        <li>FACT_INVESTMENT — NAV, unrealised P&amp;L</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- PRODUCT TAXONOMY -->
+        <div class="section">
+            <div class="section-title">Product Taxonomy <span class="domain-badge">60+ Products · 6 Categories</span></div>
+            <div class="product-tree">
+<pre><span class="cat">DEPOSITS</span>
+  <span class="sub">├── Transaction Accounts</span>
+  <span class="prod">│     ├── PCB Cheque Account        ├── PCB Gold Cheque       ├── PCB Platinum Cheque
+  │     └── PCB Business Cheque</span>
+  <span class="sub">├── Savings Accounts</span>
+  <span class="prod">│     ├── PCB MySave Account        ├── PCB Target Save       ├── PCB Notice Deposit
+  │     └── PCB Money Market</span>
+  <span class="sub">└── Fixed Deposits</span>
+  <span class="prod">      ├── PCB Fixed Deposit (32/60/90/182/365 day)        └── PCB Offshore Fixed Deposit</span>
+
+<span class="cat">LENDING</span>
+  <span class="sub">├── Home Loans</span>
+  <span class="prod">│     ├── PCB Home Loan (variable)  ├── PCB Home Loan (fixed)  └── PCB Building Loan</span>
+  <span class="sub">├── Personal Finance</span>
+  <span class="prod">│     ├── PCB Personal Loan         ├── PCB Salary Advance    └── PCB Revolving Credit</span>
+  <span class="sub">├── Vehicle Finance</span>
+  <span class="prod">│     ├── PCB Vehicle Loan (new)    ├── PCB Vehicle Loan (used) └── PCB Fleet Finance</span>
+  <span class="sub">└── Business Lending</span>
+  <span class="prod">      ├── PCB Business Term Loan    ├── PCB Invoice Finance   └── PCB Commercial Mortgage</span>
+
+<span class="cat">CARDS</span>
+  <span class="sub">├── Credit Cards</span>
+  <span class="prod">│     ├── PCB Classic Credit        ├── PCB Gold Credit       ├── PCB Platinum Credit
+  │     └── PCB Business Credit</span>
+  <span class="sub">└── Debit &amp; Prepaid</span>
+  <span class="prod">      ├── PCB Debit Card            ├── PCB Prepaid Visa      └── PCB Virtual Card</span>
+
+<span class="cat">INVESTMENTS</span>
+  <span class="sub">├── Unit Trusts</span>
+  <span class="prod">│     ├── PCB Equity Fund           ├── PCB Balanced Fund     └── PCB Money Market Fund</span>
+  <span class="sub">├── Bonds &amp; Securities</span>
+  <span class="prod">│     ├── SA Government Bonds       ├── PCB Corporate Bonds   └── Eurobonds</span>
+  <span class="sub">└── FX/Treasury</span>
+  <span class="prod">      ├── Spot FX                   ├── Forward Contracts     └── Currency Swaps</span>
+
+<span class="cat">INSURANCE</span>
+  <span class="sub">├── Life &amp; Disability</span>
+  <span class="prod">│     ├── PCB Life Cover            ├── PCB Disability Cover  └── PCB Critical Illness</span>
+  <span class="sub">├── Short-Term</span>
+  <span class="prod">│     ├── PCB Home Insurance        ├── PCB Vehicle Insurance └── PCB Business Insurance</span>
+  <span class="sub">└── Credit Life</span>
+  <span class="prod">      ├── PCB Loan Protection       └── PCB Credit Card Protection</span>
+
+<span class="cat">DIGITAL / FINTECH</span>
+  <span class="sub">├── Digital Banking</span>
+  <span class="prod">│     ├── PCB Online Banking        ├── PCB Mobile App        └── PCB USSD (*120*PCB#)</span>
+  <span class="sub">├── Payment Solutions</span>
+  <span class="prod">│     ├── PCB Instant Pay (RTC)     ├── PCB QR Pay            └── PCB PayToYou</span>
+  <span class="sub">└── API Banking</span>
+  <span class="prod">      ├── PCB Open Banking API      └── PCB Embedded Finance SDK</span></pre>
+            </div>
+        </div>
+
+        <!-- TABLE CATALOGUE -->
+        <div class="section">
+            <div class="section-title">Full Table Catalogue</div>
+            <table>
+                <thead>
+                    <tr><th>Table Name</th><th>Layer</th><th>Domain</th><th>Est. Rows</th><th>Partition</th><th>Refresh</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td class="name">bronze_customers</td><td class="layer-bronze">Bronze</td><td>Customer</td><td class="rows">500K</td><td>onboarding_date</td><td>Daily</td></tr>
+                    <tr><td class="name">bronze_accounts</td><td class="layer-bronze">Bronze</td><td>Accounts</td><td class="rows">1.2M</td><td>open_date</td><td>Daily</td></tr>
+                    <tr><td class="name">bronze_transactions</td><td class="layer-bronze">Bronze</td><td>Transactions</td><td class="rows">10M+</td><td>transaction_date</td><td>Hourly</td></tr>
+                    <tr><td class="name">bronze_loans</td><td class="layer-bronze">Bronze</td><td>Lending</td><td class="rows">300K</td><td>origination_date</td><td>Daily</td></tr>
+                    <tr><td class="name">bronze_payments</td><td class="layer-bronze">Bronze</td><td>Payments</td><td class="rows">500K</td><td>payment_date</td><td>Daily</td></tr>
+                    <tr><td class="name">bronze_credit_cards</td><td class="layer-bronze">Bronze</td><td>Cards</td><td class="rows">144K</td><td>issued_date</td><td>Daily</td></tr>
+                    <tr><td class="name">bronze_card_transactions</td><td class="layer-bronze">Bronze</td><td>Cards</td><td class="rows">2M</td><td>tx_date</td><td>Hourly</td></tr>
+                    <tr><td class="name">bronze_fraud_alerts</td><td class="layer-bronze">Bronze</td><td>Risk</td><td class="rows">50K</td><td>alert_date</td><td>Real-time</td></tr>
+                    <tr><td class="name">bronze_treasury_trades</td><td class="layer-bronze">Bronze</td><td>Treasury</td><td class="rows">250K</td><td>trade_date</td><td>Daily</td></tr>
+                    <tr><td class="name">bronze_gl_entries</td><td class="layer-bronze">Bronze</td><td>Finance</td><td class="rows">5M</td><td>posting_date</td><td>Daily</td></tr>
+                    <tr><td class="name">bronze_aml_alerts</td><td class="layer-bronze">Bronze</td><td>Compliance</td><td class="rows">30K</td><td>alert_date</td><td>Daily</td></tr>
+                    <tr><td class="name">bronze_branches</td><td class="layer-bronze">Bronze</td><td>Infrastructure</td><td class="rows">200</td><td>—</td><td>Monthly</td></tr>
+                    <tr><td class="name">bronze_employees</td><td class="layer-bronze">Bronze</td><td>HR</td><td class="rows">12K</td><td>—</td><td>Daily</td></tr>
+                    <tr><td class="name">bronze_insurance_policies</td><td class="layer-bronze">Bronze</td><td>Insurance</td><td class="rows">180K</td><td>issue_date</td><td>Daily</td></tr>
+                    <tr><td class="name">silver_customers</td><td class="layer-silver">Silver</td><td>Customer</td><td class="rows">500K</td><td>province</td><td>Daily</td></tr>
+                    <tr><td class="name">silver_accounts</td><td class="layer-silver">Silver</td><td>Accounts</td><td class="rows">1.2M</td><td>account_type</td><td>Daily</td></tr>
+                    <tr><td class="name">silver_transactions</td><td class="layer-silver">Silver</td><td>Transactions</td><td class="rows">10M+</td><td>transaction_date</td><td>Hourly</td></tr>
+                    <tr><td class="name">silver_loans</td><td class="layer-silver">Silver</td><td>Lending</td><td class="rows">300K</td><td>loan_type</td><td>Daily</td></tr>
+                    <tr><td class="name">silver_payments</td><td class="layer-silver">Silver</td><td>Payments</td><td class="rows">500K</td><td>payment_date</td><td>Daily</td></tr>
+                    <tr><td class="name">silver_card_transactions</td><td class="layer-silver">Silver</td><td>Cards</td><td class="rows">2M</td><td>tx_date</td><td>Hourly</td></tr>
+                    <tr><td class="name">silver_fraud_alerts</td><td class="layer-silver">Silver</td><td>Risk</td><td class="rows">50K</td><td>alert_date</td><td>Daily</td></tr>
+                    <tr><td class="name">silver_aml_cases</td><td class="layer-silver">Silver</td><td>Compliance</td><td class="rows">30K</td><td>case_status</td><td>Daily</td></tr>
+                    <tr><td class="name">dim_customer</td><td class="layer-gold">Gold</td><td>Customer</td><td class="rows">500K</td><td>province</td><td>Daily SCD2</td></tr>
+                    <tr><td class="name">dim_account</td><td class="layer-gold">Gold</td><td>Accounts</td><td class="rows">1.2M</td><td>account_type</td><td>Daily SCD2</td></tr>
+                    <tr><td class="name">dim_product</td><td class="layer-gold">Gold</td><td>Products</td><td class="rows">60+</td><td>—</td><td>Weekly SCD1</td></tr>
+                    <tr><td class="name">dim_date</td><td class="layer-gold">Gold</td><td>Time</td><td class="rows">7.3K</td><td>—</td><td>Static</td></tr>
+                    <tr><td class="name">dim_branch</td><td class="layer-gold">Gold</td><td>Infrastructure</td><td class="rows">200</td><td>province</td><td>Monthly</td></tr>
+                    <tr><td class="name">dim_merchant</td><td class="layer-gold">Gold</td><td>Fintech</td><td class="rows">50K</td><td>—</td><td>Daily</td></tr>
+                    <tr><td class="name">fact_transaction</td><td class="layer-gold">Gold</td><td>Transactions</td><td class="rows">10M+</td><td>tx_date, tx_type</td><td>Hourly</td></tr>
+                    <tr><td class="name">fact_loan_portfolio</td><td class="layer-gold">Gold</td><td>Lending</td><td class="rows">300K/day</td><td>snapshot_date</td><td>Daily</td></tr>
+                    <tr><td class="name">fact_fraud_event</td><td class="layer-gold">Gold</td><td>Risk</td><td class="rows">50K</td><td>alert_date</td><td>Real-time</td></tr>
+                    <tr><td class="name">fact_aml_case</td><td class="layer-gold">Gold</td><td>Compliance</td><td class="rows">30K</td><td>case_date</td><td>Daily</td></tr>
+                    <tr><td class="name">fact_treasury_position</td><td class="layer-gold">Gold</td><td>Treasury</td><td class="rows">250K</td><td>position_date</td><td>Daily</td></tr>
+                    <tr><td class="name">fact_gl_journal</td><td class="layer-gold">Gold</td><td>Finance</td><td class="rows">5M</td><td>period, entity</td><td>Daily</td></tr>
+                    <tr><td class="name">fact_insurance</td><td class="layer-gold">Gold</td><td>Insurance</td><td class="rows">180K</td><td>issue_date</td><td>Daily</td></tr>
+                    <tr><td class="name">fact_loyalty_points</td><td class="layer-gold">Gold</td><td>Fintech</td><td class="rows">2M</td><td>tx_date</td><td>Daily</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- LEGEND -->
+        <div class="section">
+            <div class="section-title">Legend</div>
+            <div class="legend-row">
+                <div class="legend-item"><div class="legend-dot" style="background:#CD7F32"></div> Bronze — Raw ingestion, schema-on-read, Auto Loader</div>
+                <div class="legend-item"><div class="legend-dot" style="background:#A8A9AD"></div> Silver — Cleansed, deduplicated, PII-masked, enriched</div>
+                <div class="legend-item"><div class="legend-dot" style="background:#C9A84C"></div> Gold — Star schema, SCD2, analytics-ready</div>
+                <div class="legend-item"><div class="legend-dot" style="background:#4ECDC4"></div> Dimension — Descriptive context, surrogate keys</div>
+                <div class="legend-item"><div class="legend-dot" style="background:#FF6B6B"></div> Fact — Measurable events, partitioned, Z-ordered</div>
+                <div class="legend-item"><div class="legend-dot" style="background:#95E1D3"></div> Fintech — Third-party integration layer</div>
+                <div class="legend-item"><div class="legend-dot" style="background:#A29BFE"></div> Regulatory — Compliance &amp; governance tables</div>
+                <div class="legend-item">PK = Primary Key · FK = Foreign Key · SCD2 = Slowly Changing Dimension Type 2</div>
+            </div>
+        </div>
+
+    </div><!-- /content -->
+
+    <div class="footer">
+        <p><strong>Prime Capital Bank</strong> — Enterprise Data Intelligence Platform</p>
+        <p style="margin-top:8px;">22 Dimensions &nbsp;·&nbsp; 16 Fact Tables &nbsp;·&nbsp; 60+ Banking Products &nbsp;·&nbsp; Azure Databricks Unity Catalog &nbsp;·&nbsp; Delta Lake &nbsp;·&nbsp; IFRS 9 / Basel III / SARB Compliant</p>
+        <p style="margin-top:8px; color:#3A5270;">Built with dbt · MLflow · Power BI · Auto Loader · Structured Streaming · GraphFrames</p>
+    </div>
+
+</div><!-- /container -->
+<script>
+    mermaid.initialize({
+        startOnLoad: true,
+        theme: 'dark',
+        er: { diagramPadding: 20, layoutDirection: 'TB', minEntityWidth: 100, minEntityHeight: 75 },
+        themeVariables: {
+            primaryColor: '#142444',
+            primaryTextColor: '#C9A84C',
+            primaryBorderColor: '#C9A84C',
+            lineColor: '#4ECDC4',
+            secondaryColor: '#0D1F3C',
+            tertiaryColor: '#060E1C',
+            background: '#060E1C',
+            mainBkg: '#142444',
+            nodeBorder: '#C9A84C',
+            clusterBkg: '#0A1628',
+            titleColor: '#C9A84C',
+            edgeLabelBackground: '#0A1628',
+            attributeBackgroundColorEven: '#0D1F3C',
+            attributeBackgroundColorOdd: '#0A1628'
+        }
+    });
+</script>
+</body>
+</html>

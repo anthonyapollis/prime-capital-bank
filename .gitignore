@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.env
+*.egg-info/
+
+# Sensitive / runtime
+*.key
+*.pem
+*.pfx
+pipeline/latest_run_id.txt
+pipeline/current_run.json
+
+# dbt artifacts
+dbt/target/
+dbt/logs/
+dbt/.user.yml
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

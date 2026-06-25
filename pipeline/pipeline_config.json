@@ -1,0 +1,179 @@
+{
+  "project": "Prime Capital Bank — Data Intelligence Platform",
+  "version": "2.0.0",
+  "environment": "production",
+
+  "azure": {
+    "subscription_id": "${AZURE_SUBSCRIPTION_ID}",
+    "resource_group": "rg-prime-capital-prod",
+    "location": "southafricanorth",
+    "tenant_id": "${AZURE_TENANT_ID}"
+  },
+
+  "databricks": {
+    "workspace_url": "${DATABRICKS_HOST}",
+    "token": "${DATABRICKS_TOKEN}",
+    "catalog": "prime_capital",
+    "schemas": {
+      "bronze": "bronze",
+      "silver": "silver",
+      "gold": "gold",
+      "ml": "ml_models",
+      "sandbox": "sandbox"
+    },
+    "cluster": {
+      "name": "prime-capital-compute",
+      "spark_version": "14.3.x-ml-scala2.12",
+      "node_type_id": "Standard_DS4_v2",
+      "autoscale": { "min_workers": 2, "max_workers": 16 },
+      "auto_termination_minutes": 30,
+      "init_scripts": ["dbfs:/init/install_packages.sh"]
+    },
+    "job_ids": {
+      "bronze_ingestion": "${JOB_ID_BRONZE}",
+      "silver_transform": "${JOB_ID_SILVER}",
+      "gold_build": "${JOB_ID_GOLD}",
+      "ml_credit_scoring": "${JOB_ID_ML_CREDIT}",
+      "fraud_detection": "${JOB_ID_FRAUD}",
+      "aml_scoring": "${JOB_ID_AML}",
+      "regulatory_reporting": "${JOB_ID_REG}",
+      "full_pipeline": "${JOB_ID_PIPELINE}"
+    }
+  },
+
+  "storage": {
+    "account_name": "primecapitaladls",
+    "account_key": "${ADLS_ACCOUNT_KEY}",
+    "containers": {
+      "raw": "raw",
+      "bronze": "bronze",
+      "silver": "silver",
+      "gold": "gold",
+      "ml_models": "ml-models",
+      "archive": "archive",
+      "regulatory": "regulatory-reports"
+    },
+    "raw_paths": {
+      "customers": "raw/customers/",
+      "accounts": "raw/accounts/",
+      "transactions": "raw/transactions/{year}/{month}/{day}/",
+      "loans": "raw/loans/",
+      "payments": "raw/payments/{year}/{month}/",
+      "card_transactions": "raw/card_transactions/{year}/{month}/{day}/",
+      "fraud_alerts": "raw/fraud_alerts/",
+      "gl_entries": "raw/gl_entries/{year}/{month}/"
+    }
+  },
+
+  "schedules": {
+    "bronze_daily":        { "cron": "0 2 * * *",   "description": "Full bronze load — 02:00 SAST daily" },
+    "silver_daily":        { "cron": "0 3 * * *",   "description": "Silver transformation — 03:00 SAST daily" },
+    "gold_daily":          { "cron": "0 4 * * *",   "description": "Gold star schema build — 04:00 SAST daily" },
+    "fraud_streaming":     { "cron": "*/15 * * * *","description": "Fraud detection micro-batch — every 15 min" },
+    "ml_credit_weekly":    { "cron": "0 22 * * 0",  "description": "ML credit model retrain — Sunday 22:00 SAST" },
+    "aml_daily":           { "cron": "0 5 * * *",   "description": "AML scoring — 05:00 SAST daily" },
+    "regulatory_monthly":  { "cron": "0 4 1 * *",   "description": "SARB regulatory reports — 1st of month 04:00" },
+    "full_pipeline":       { "cron": "0 2 * * *",   "description": "Master orchestrated pipeline — 02:00 SAST" }
+  },
+
+  "sla": {
+    "bronze_max_duration_minutes": 60,
+    "silver_max_duration_minutes": 45,
+    "gold_max_duration_minutes": 90,
+    "full_pipeline_max_duration_minutes": 240,
+    "fraud_streaming_lag_max_seconds": 30
+  },
+
+  "tables": {
+    "bronze": [
+      "bronze_customers", "bronze_accounts", "bronze_transactions",
+      "bronze_loans", "bronze_payments", "bronze_credit_cards",
+      "bronze_card_transactions", "bronze_fraud_alerts",
+      "bronze_treasury_trades", "bronze_gl_entries",
+      "bronze_aml_alerts", "bronze_branches",
+      "bronze_employees", "bronze_insurance_policies"
+    ],
+    "silver": [
+      "silver_customers", "silver_accounts", "silver_transactions",
+      "silver_loans", "silver_payments", "silver_credit_cards",
+      "silver_card_transactions", "silver_fraud_alerts",
+      "silver_treasury_trades", "silver_gl_entries", "silver_aml_cases"
+    ],
+    "dimensions": [
+      "dim_customer", "dim_account", "dim_product",
+      "dim_product_category", "dim_product_subcategory",
+      "dim_branch", "dim_employee", "dim_date", "dim_channel",
+      "dim_device", "dim_currency", "dim_geography",
+      "dim_risk_category", "dim_merchant", "dim_fintech",
+      "dim_loyalty_program", "dim_atm", "dim_counterparty",
+      "dim_gl_account", "dim_cost_centre", "dim_kyc_status",
+      "dim_collateral", "dim_credit_bureau", "dim_compliance_rule"
+    ],
+    "facts": [
+      "fact_transaction", "fact_loan_portfolio", "fact_payment",
+      "fact_card_transaction", "fact_daily_balance",
+      "fact_customer_products", "fact_fraud_event", "fact_aml_case",
+      "fact_gl_journal", "fact_treasury_position",
+      "fact_account_profitability", "fact_product_metrics",
+      "fact_fintech_transaction", "fact_loyalty_points",
+      "fact_merchant_daily_summary", "fact_insurance",
+      "fact_claim", "fact_claim_payment", "fact_investment"
+    ]
+  },
+
+  "ml_models": {
+    "credit_pd": {
+      "name": "prime_capital_credit_pd",
+      "algorithm": "LightGBM",
+      "target": "default_90dpd",
+      "retrain_frequency": "weekly",
+      "min_auc": 0.78,
+      "features": 52
+    },
+    "credit_lgd": {
+      "name": "prime_capital_credit_lgd",
+      "algorithm": "XGBoost",
+      "target": "loss_given_default",
+      "retrain_frequency": "monthly",
+      "min_r2": 0.65
+    },
+    "fraud_detection": {
+      "name": "prime_capital_fraud",
+      "algorithm": "IsolationForest+GBM ensemble",
+      "target": "is_fraud",
+      "scoring": "real-time streaming",
+      "max_false_positive_rate": 0.001
+    },
+    "aml_scoring": {
+      "name": "prime_capital_aml",
+      "algorithm": "GraphFrames + GBM",
+      "target": "sar_candidate",
+      "retrain_frequency": "monthly"
+    }
+  },
+
+  "alerting": {
+    "email_on_failure": ["anthony@the-spot.tech"],
+    "email_on_sla_breach": ["anthony@the-spot.tech"],
+    "sendgrid_api_key": "${SENDGRID_API_KEY}",
+    "slack_webhook": "${SLACK_WEBHOOK_URL}"
+  },
+
+  "data_retention": {
+    "bronze_days": 90,
+    "silver_days": 365,
+    "gold_days": 2555,
+    "regulatory_years": 7,
+    "ml_model_versions_to_keep": 10
+  },
+
+  "power_bi": {
+    "workspace_id": "${POWERBI_WORKSPACE_ID}",
+    "dataset_ids": {
+      "executive_dashboard": "${POWERBI_DATASET_EXEC}",
+      "credit_risk": "${POWERBI_DATASET_CREDIT}",
+      "fraud_aml": "${POWERBI_DATASET_FRAUD}",
+      "regulatory": "${POWERBI_DATASET_REG}"
+    }
+  }
+}

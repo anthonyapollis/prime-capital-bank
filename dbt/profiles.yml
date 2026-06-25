@@ -1,0 +1,66 @@
+##############################################################################
+# Prime Capital Bank — dbt Connection Profiles
+# Platform   : Azure Databricks (Unity Catalog)
+# Auth       : Personal Access Token (PAT)
+# Catalog    : prime_capital
+# Updated    : 2026-06-24
+#
+# Store this file at ~/.dbt/profiles.yml or reference via --profiles-dir.
+# NEVER commit PAT tokens — use environment variable DBT_DATABRICKS_TOKEN.
+##############################################################################
+
+prime_capital_bank:
+  target: prod
+
+  outputs:
+
+    # ── Production environment ────────────────────────────────────────────────
+    prod:
+      type: databricks
+      catalog: prime_capital          # Unity Catalog top-level namespace
+      schema: gold                    # default schema (marts write here)
+      host: "{{ env_var('DBT_DATABRICKS_HOST') }}"
+      # Example: adb-1234567890123456.7.azuredatabricks.net
+      http_path: "{{ env_var('DBT_DATABRICKS_HTTP_PATH') }}"
+      # Example: /sql/1.0/warehouses/abcdef1234567890
+      token: "{{ env_var('DBT_DATABRICKS_TOKEN') }}"
+      threads: 8                      # parallel model execution threads
+      connect_timeout: 60
+      connect_retries: 3
+
+      # Databricks-specific options
+      databricks_compute: "prime_capital_prod_wh"   # named SQL warehouse
+      client_id: "{{ env_var('DBT_DATABRICKS_CLIENT_ID', '') }}"
+
+    # ── Development environment ────────────────────────────────────────────────
+    dev:
+      type: databricks
+      catalog: prime_capital_dev      # isolated dev catalog
+      schema: "dev_{{ env_var('DBT_DEV_USER', 'analyst') }}"  # per-user schema
+      host: "{{ env_var('DBT_DATABRICKS_HOST') }}"
+      http_path: "{{ env_var('DBT_DATABRICKS_HTTP_PATH_DEV', env_var('DBT_DATABRICKS_HTTP_PATH')) }}"
+      token: "{{ env_var('DBT_DATABRICKS_TOKEN') }}"
+      threads: 4
+      connect_timeout: 60
+      connect_retries: 2
+
+    # ── CI / staging environment ───────────────────────────────────────────────
+    ci:
+      type: databricks
+      catalog: prime_capital_ci
+      schema: "ci_{{ env_var('CI_PIPELINE_ID', 'local') }}"
+      host: "{{ env_var('DBT_DATABRICKS_HOST') }}"
+      http_path: "{{ env_var('DBT_DATABRICKS_HTTP_PATH') }}"
+      token: "{{ env_var('DBT_DATABRICKS_TOKEN') }}"
+      threads: 6
+      connect_timeout: 120
+      connect_retries: 5
+
+##############################################################################
+# Environment variables required:
+#   DBT_DATABRICKS_HOST        — Databricks workspace hostname
+#   DBT_DATABRICKS_HTTP_PATH   — SQL warehouse HTTP path
+#   DBT_DATABRICKS_TOKEN       — Databricks personal access token
+#   DBT_DEV_USER               — Developer username (dev profile only)
+#   CI_PIPELINE_ID             — CI pipeline identifier (ci profile only)
+##############################################################################

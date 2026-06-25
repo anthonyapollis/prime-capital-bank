@@ -1,0 +1,166 @@
+##############################################################################
+# Prime Capital Bank — dbt Project Configuration
+# Platform   : Azure Databricks (Unity Catalog)
+# Catalog    : prime_capital
+# Author     : Anthony Apollis
+# Updated    : 2026-06-24
+##############################################################################
+
+name: 'prime_capital_bank'
+version: '1.0.0'
+config-version: 2
+
+# Profile reference (matches profiles.yml key)
+profile: 'prime_capital_bank'
+
+# Model / macro / test / seed source directories
+model-paths:     ["models"]
+macro-paths:     ["macros"]
+test-paths:      ["tests"]
+seed-paths:      ["seeds"]
+analysis-paths:  ["analyses"]
+snapshot-paths:  ["snapshots"]
+
+# Artefact output directories
+target-path:  "target"
+clean-targets: ["target", "dbt_packages"]
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Global model defaults
+# ──────────────────────────────────────────────────────────────────────────────
+models:
+  prime_capital_bank:
+
+    # ── Staging layer ─────────────────────────────────────────────────────────
+    staging:
+      +materialized: view          # cheap; rebuilt on every run
+      +schema: silver              # writes to prime_capital.silver
+      +tags:
+        - staging
+        - daily
+      +description: >
+        Staging models clean, cast, and lightly enrich raw bronze-layer sources.
+        No joins between domain tables occur at this layer.
+      +meta:
+        owner: "data-engineering@primecapital.co.za"
+        layer: silver
+        sla_hours: 2
+
+    # ── Intermediate layer ────────────────────────────────────────────────────
+    intermediate:
+      +materialized: table         # heavier enrichment — persist results
+      +schema: intermediate        # prime_capital.intermediate
+      +tags:
+        - intermediate
+        - daily
+      +description: >
+        Intermediate models join and enrich staging tables to produce domain
+        aggregates, risk scores, and analytical features.
+      +meta:
+        owner: "analytics-engineering@primecapital.co.za"
+        layer: intermediate
+        sla_hours: 3
+
+    # ── Marts layer ───────────────────────────────────────────────────────────
+    marts:
+      +materialized: table
+      +schema: gold                # prime_capital.gold — served to BI / APIs
+      +tags:
+        - mart
+        - daily
+      +description: >
+        Production-grade analytical marts powering dashboards, regulatory
+        reporting, and downstream ML feature stores.
+      +meta:
+        owner: "analytics-engineering@primecapital.co.za"
+        layer: gold
+        sla_hours: 4
+
+      # Partition large marts by reporting month for query efficiency
+      mart_credit_risk:
+        +partition_by:
+          field: reporting_month
+          data_type: date
+          granularity: month
+        +tags:
+          - credit_risk
+          - regulatory
+          - ifrs9
+
+      mart_regulatory_capital:
+        +tags:
+          - regulatory
+          - basel3
+          - capital
+
+      mart_fraud_intelligence:
+        +tags:
+          - fraud
+          - aml
+          - compliance
+
+      mart_customer_360:
+        +tags:
+          - customer
+          - crm
+
+      mart_treasury_analytics:
+        +tags:
+          - treasury
+          - fx
+          - var
+
+      mart_branch_performance:
+        +tags:
+          - branch
+          - operations
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Seed defaults
+# ──────────────────────────────────────────────────────────────────────────────
+seeds:
+  prime_capital_bank:
+    +schema: ref_data
+    +tags:
+      - seed
+      - reference
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Snapshot defaults
+# ──────────────────────────────────────────────────────────────────────────────
+snapshots:
+  prime_capital_bank:
+    +target_schema: snapshots
+    +strategy: timestamp
+    +updated_at: updated_at
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Variable definitions
+# ──────────────────────────────────────────────────────────────────────────────
+vars:
+  # Base currency for all monetary conversions
+  base_currency: 'ZAR'
+
+  # IAS 39 / IFRS 9 provisioning thresholds (days past due)
+  npl_threshold_days: 90
+  stage2_threshold_days: 30
+  stage3_threshold_days: 90
+
+  # Dormancy threshold
+  dormant_days: 90
+
+  # ECL model parameters (portfolio-level defaults; overridden per segment)
+  default_lgd: 0.45
+  default_ead_factor: 1.0
+
+  # Reporting reference date (override for historical reruns)
+  reporting_date: "current_date()"
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Source freshness checks (run with dbt source freshness)
+# ──────────────────────────────────────────────────────────────────────────────
+# See models/staging/_sources.yml for full source definitions.
+
+# ──────────────────────────────────────────────────────────────────────────────
+# dbt package dependencies  (populated via packages.yml)
+# ──────────────────────────────────────────────────────────────────────────────

@@ -1,0 +1,297 @@
+<svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+  <!-- Background -->
+  <rect width="1200" height="800" fill="#0A1628"/>
+
+  <!-- Title -->
+  <text x="600" y="38" text-anchor="middle" fill="#C9A84C" font-size="20" font-weight="bold">Prime Capital Bank — Azure Data Platform Architecture</text>
+
+  <!-- ===== SECTION LABELS ===== -->
+  <text x="120" y="75" text-anchor="middle" fill="#7EB8F7" font-size="13" font-weight="bold">SOURCE SYSTEMS</text>
+  <text x="570" y="75" text-anchor="middle" fill="#7EB8F7" font-size="13" font-weight="bold">AZURE DATA PLATFORM</text>
+  <text x="1070" y="75" text-anchor="middle" fill="#7EB8F7" font-size="13" font-weight="bold">CONSUMPTION</text>
+
+  <!-- Section dividers -->
+  <line x1="220" y1="55" x2="220" y2="790" stroke="#1E3A5F" stroke-width="1" stroke-dasharray="6,4"/>
+  <line x1="920" y1="55" x2="920" y2="790" stroke="#1E3A5F" stroke-width="1" stroke-dasharray="6,4"/>
+
+  <!-- ===== SOURCE SYSTEMS (left column) ===== -->
+  <!-- Core Banking -->
+  <rect x="20" y="90" width="180" height="52" rx="8" fill="#0D2240" stroke="#0078D4" stroke-width="1.5"/>
+  <rect x="20" y="90" width="180" height="16" rx="8" fill="#0078D4"/>
+  <rect x="20" y="98" width="180" height="8" fill="#0078D4"/>
+  <text x="110" y="102" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Core Banking System</text>
+  <text x="110" y="118" text-anchor="middle" fill="#A0C4E8" font-size="9">Temenos T24 / FinnOne</text>
+  <text x="110" y="132" text-anchor="middle" fill="#7EB8F7" font-size="8">Accounts · Loans · GL</text>
+
+  <!-- CRM -->
+  <rect x="20" y="158" width="180" height="52" rx="8" fill="#0D2240" stroke="#0078D4" stroke-width="1.5"/>
+  <rect x="20" y="158" width="180" height="16" rx="8" fill="#0078D4"/>
+  <rect x="20" y="166" width="180" height="8" fill="#0078D4"/>
+  <text x="110" y="170" text-anchor="middle" fill="white" font-size="10" font-weight="bold">CRM System</text>
+  <text x="110" y="186" text-anchor="middle" fill="#A0C4E8" font-size="9">Salesforce / Dynamics 365</text>
+  <text x="110" y="200" text-anchor="middle" fill="#7EB8F7" font-size="8">Customers · Interactions</text>
+
+  <!-- Card System -->
+  <rect x="20" y="226" width="180" height="52" rx="8" fill="#0D2240" stroke="#0078D4" stroke-width="1.5"/>
+  <rect x="20" y="226" width="180" height="16" rx="8" fill="#0078D4"/>
+  <rect x="20" y="234" width="180" height="8" fill="#0078D4"/>
+  <text x="110" y="238" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Card Management System</text>
+  <text x="110" y="254" text-anchor="middle" fill="#A0C4E8" font-size="9">Visa / Mastercard Processing</text>
+  <text x="110" y="268" text-anchor="middle" fill="#7EB8F7" font-size="8">Transactions · Limits · Fraud</text>
+
+  <!-- Payment Gateway -->
+  <rect x="20" y="294" width="180" height="52" rx="8" fill="#0D2240" stroke="#0078D4" stroke-width="1.5"/>
+  <rect x="20" y="294" width="180" height="16" rx="8" fill="#0078D4"/>
+  <rect x="20" y="302" width="180" height="8" fill="#0078D4"/>
+  <text x="110" y="306" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Payment Gateway</text>
+  <text x="110" y="322" text-anchor="middle" fill="#A0C4E8" font-size="9">RTC / EFT / SWIFT</text>
+  <text x="110" y="336" text-anchor="middle" fill="#7EB8F7" font-size="8">Payments · Settlements</text>
+
+  <!-- Treasury -->
+  <rect x="20" y="362" width="180" height="52" rx="8" fill="#0D2240" stroke="#0078D4" stroke-width="1.5"/>
+  <rect x="20" y="362" width="180" height="16" rx="8" fill="#0078D4"/>
+  <rect x="20" y="370" width="180" height="8" fill="#0078D4"/>
+  <text x="110" y="374" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Treasury System</text>
+  <text x="110" y="390" text-anchor="middle" fill="#A0C4E8" font-size="9">Kondor+ / Murex</text>
+  <text x="110" y="404" text-anchor="middle" fill="#7EB8F7" font-size="8">FX · Derivatives · Bonds</text>
+
+  <!-- HR System -->
+  <rect x="20" y="430" width="180" height="52" rx="8" fill="#0D2240" stroke="#0078D4" stroke-width="1.5"/>
+  <rect x="20" y="430" width="180" height="16" rx="8" fill="#0078D4"/>
+  <rect x="20" y="438" width="180" height="8" fill="#0078D4"/>
+  <text x="110" y="442" text-anchor="middle" fill="white" font-size="10" font-weight="bold">HR System</text>
+  <text x="110" y="458" text-anchor="middle" fill="#A0C4E8" font-size="9">SAP HCM / SuccessFactors</text>
+  <text x="110" y="472" text-anchor="middle" fill="#7EB8F7" font-size="8">Employees · Branches</text>
+
+  <!-- GL System -->
+  <rect x="20" y="498" width="180" height="52" rx="8" fill="#0D2240" stroke="#0078D4" stroke-width="1.5"/>
+  <rect x="20" y="498" width="180" height="16" rx="8" fill="#0078D4"/>
+  <rect x="20" y="506" width="180" height="8" fill="#0078D4"/>
+  <text x="110" y="510" text-anchor="middle" fill="white" font-size="10" font-weight="bold">General Ledger</text>
+  <text x="110" y="526" text-anchor="middle" fill="#A0C4E8" font-size="9">Oracle Financials</text>
+  <text x="110" y="540" text-anchor="middle" fill="#7EB8F7" font-size="8">Accounts · Journals · P&amp;L</text>
+
+  <!-- External Data -->
+  <rect x="20" y="566" width="180" height="52" rx="8" fill="#0D2240" stroke="#50A050" stroke-width="1.5"/>
+  <rect x="20" y="566" width="180" height="16" rx="8" fill="#3A7A3A"/>
+  <rect x="20" y="574" width="180" height="8" fill="#3A7A3A"/>
+  <text x="110" y="578" text-anchor="middle" fill="white" font-size="10" font-weight="bold">External Data Feeds</text>
+  <text x="110" y="594" text-anchor="middle" fill="#A0E8A0" font-size="9">Reuters · SARB · Credit Bureau</text>
+  <text x="110" y="608" text-anchor="middle" fill="#90D890" font-size="8">Market · Rates · Credit</text>
+
+  <!-- ===== AZURE DATA PLATFORM (middle) ===== -->
+  <!-- ADLS Gen2 Box -->
+  <rect x="235" y="88" width="220" height="300" rx="10" fill="#061525" stroke="#0078D4" stroke-width="2"/>
+  <text x="345" y="108" text-anchor="middle" fill="#7EB8F7" font-size="11" font-weight="bold">ADLS Gen2</text>
+  <text x="345" y="122" text-anchor="middle" fill="#5A8AAE" font-size="9">Azure Data Lake Storage</text>
+
+  <!-- RAW zone -->
+  <rect x="248" y="130" width="194" height="48" rx="6" fill="#0A2A4A" stroke="#FF8C00" stroke-width="1.5"/>
+  <text x="345" y="149" text-anchor="middle" fill="#FF8C00" font-size="10" font-weight="bold">RAW Zone</text>
+  <text x="345" y="163" text-anchor="middle" fill="#A0C4E8" font-size="8">Auto Loader · Event Hub · ADF</text>
+  <text x="345" y="174" text-anchor="middle" fill="#7EB8F7" font-size="8">~50TB · Parquet / JSON / CSV</text>
+
+  <!-- BRONZE zone -->
+  <rect x="248" y="188" width="194" height="48" rx="6" fill="#0A2A4A" stroke="#CD7F32" stroke-width="1.5"/>
+  <text x="345" y="207" text-anchor="middle" fill="#CD7F32" font-size="10" font-weight="bold">BRONZE Zone</text>
+  <text x="345" y="221" text-anchor="middle" fill="#A0C4E8" font-size="8">Ingested · Schema-on-Read</text>
+  <text x="345" y="232" text-anchor="middle" fill="#7EB8F7" font-size="8">~38TB · Delta Format</text>
+
+  <!-- SILVER zone -->
+  <rect x="248" y="246" width="194" height="48" rx="6" fill="#0A2A4A" stroke="#C0C0C0" stroke-width="1.5"/>
+  <text x="345" y="265" text-anchor="middle" fill="#C0C0C0" font-size="10" font-weight="bold">SILVER Zone</text>
+  <text x="345" y="279" text-anchor="middle" fill="#A0C4E8" font-size="8">Cleansed · Standardised · Joined</text>
+  <text x="345" y="290" text-anchor="middle" fill="#7EB8F7" font-size="8">~22TB · Delta Format</text>
+
+  <!-- GOLD zone -->
+  <rect x="248" y="304" width="194" height="72" rx="6" fill="#0A2A4A" stroke="#C9A84C" stroke-width="2"/>
+  <text x="345" y="323" text-anchor="middle" fill="#C9A84C" font-size="10" font-weight="bold">GOLD Zone</text>
+  <text x="345" y="337" text-anchor="middle" fill="#A0C4E8" font-size="8">Star Schema · Analytics-Ready</text>
+  <text x="345" y="349" text-anchor="middle" fill="#7EB8F7" font-size="8">~8TB · Delta · Optimised</text>
+  <text x="345" y="361" text-anchor="middle" fill="#90D890" font-size="8">Partitioned · Z-Ordered</text>
+  <text x="345" y="372" text-anchor="middle" fill="#C9A84C" font-size="8">99.9% Uptime SLA</text>
+
+  <!-- Databricks -->
+  <rect x="475" y="88" width="220" height="430" rx="10" fill="#061525" stroke="#FF3621" stroke-width="2"/>
+  <text x="585" y="108" text-anchor="middle" fill="#FF6B4A" font-size="11" font-weight="bold">Azure Databricks</text>
+  <text x="585" y="122" text-anchor="middle" fill="#FF9A80" font-size="9">Unified Analytics Platform</text>
+
+  <!-- Databricks Bronze notebooks -->
+  <rect x="488" y="132" width="194" height="56" rx="6" fill="#1A1A2E" stroke="#CD7F32" stroke-width="1.5"/>
+  <text x="585" y="150" text-anchor="middle" fill="#CD7F32" font-size="10" font-weight="bold">Bronze Notebooks</text>
+  <text x="585" y="164" text-anchor="middle" fill="#A0C4E8" font-size="8">Auto Loader · Schema Inference</text>
+  <text x="585" y="176" text-anchor="middle" fill="#7EB8F7" font-size="8">CDC · Batch + Streaming Ingest</text>
+  <text x="585" y="188" text-anchor="middle" fill="#C9A84C" font-size="8">3 clusters · 14 notebooks</text>
+
+  <!-- Databricks Silver notebooks -->
+  <rect x="488" y="200" width="194" height="56" rx="6" fill="#1A1A2E" stroke="#C0C0C0" stroke-width="1.5"/>
+  <text x="585" y="218" text-anchor="middle" fill="#C0C0C0" font-size="10" font-weight="bold">Silver Notebooks</text>
+  <text x="585" y="232" text-anchor="middle" fill="#A0C4E8" font-size="8">dbt Core · Great Expectations</text>
+  <text x="585" y="244" text-anchor="middle" fill="#7EB8F7" font-size="8">PII Masking · SCD2 Dims</text>
+  <text x="585" y="256" text-anchor="middle" fill="#C9A84C" font-size="8">4 clusters · 28 notebooks</text>
+
+  <!-- Databricks Gold notebooks -->
+  <rect x="488" y="268" width="194" height="56" rx="6" fill="#1A1A2E" stroke="#C9A84C" stroke-width="1.5"/>
+  <text x="585" y="286" text-anchor="middle" fill="#C9A84C" font-size="10" font-weight="bold">Gold Notebooks</text>
+  <text x="585" y="300" text-anchor="middle" fill="#A0C4E8" font-size="8">Star Schema Build · Aggregations</text>
+  <text x="585" y="312" text-anchor="middle" fill="#7EB8F7" font-size="8">Materialised Views · Caching</text>
+  <text x="585" y="324" text-anchor="middle" fill="#C9A84C" font-size="8">2 clusters · 18 notebooks</text>
+
+  <!-- Databricks ML -->
+  <rect x="488" y="336" width="194" height="72" rx="6" fill="#1A1A2E" stroke="#9B59B6" stroke-width="1.5"/>
+  <text x="585" y="354" text-anchor="middle" fill="#BB79E6" font-size="10" font-weight="bold">ML &amp; AI Workspace</text>
+  <text x="585" y="368" text-anchor="middle" fill="#A0C4E8" font-size="8">MLflow · Feature Store</text>
+  <text x="585" y="380" text-anchor="middle" fill="#7EB8F7" font-size="8">Credit Scoring (XGBoost)</text>
+  <text x="585" y="392" text-anchor="middle" fill="#7EB8F7" font-size="8">Fraud Detection (GBM)</text>
+  <text x="585" y="404" text-anchor="middle" fill="#C9A84C" font-size="8">12 models · AUC &gt; 0.91</text>
+
+  <!-- Databricks Workflows -->
+  <rect x="488" y="420" width="194" height="56" rx="6" fill="#1A1A2E" stroke="#00B4D8" stroke-width="1.5"/>
+  <text x="585" y="438" text-anchor="middle" fill="#00D4FF" font-size="10" font-weight="bold">Databricks Workflows</text>
+  <text x="585" y="452" text-anchor="middle" fill="#A0C4E8" font-size="8">Orchestration · Scheduling</text>
+  <text x="585" y="464" text-anchor="middle" fill="#7EB8F7" font-size="8">SLA Monitoring · Alerting</text>
+  <text x="585" y="476" text-anchor="middle" fill="#C9A84C" font-size="8">47 pipelines · 99.8% SLA</text>
+
+  <!-- Unity Catalog -->
+  <rect x="235" y="410" width="220" height="78" rx="8" fill="#061525" stroke="#00B050" stroke-width="2"/>
+  <text x="345" y="432" text-anchor="middle" fill="#40C070" font-size="11" font-weight="bold">Unity Catalog</text>
+  <text x="345" y="448" text-anchor="middle" fill="#A0E8A0" font-size="8">Data Governance · Lineage</text>
+  <text x="345" y="460" text-anchor="middle" fill="#7EB8F7" font-size="8">Access Control · PII Tagging</text>
+  <text x="345" y="472" text-anchor="middle" fill="#7EB8F7" font-size="8">Column-Level Security</text>
+  <text x="345" y="484" text-anchor="middle" fill="#C9A84C" font-size="8">247 tables catalogued</text>
+
+  <!-- Key Vault -->
+  <rect x="235" y="502" width="100" height="70" rx="8" fill="#061525" stroke="#FFD700" stroke-width="1.5"/>
+  <text x="285" y="524" text-anchor="middle" fill="#FFD700" font-size="9" font-weight="bold">Key Vault</text>
+  <text x="285" y="538" text-anchor="middle" fill="#A0C4E8" font-size="7">Secrets</text>
+  <text x="285" y="550" text-anchor="middle" fill="#A0C4E8" font-size="7">Certificates</text>
+  <text x="285" y="562" text-anchor="middle" fill="#A0C4E8" font-size="7">Managed ID</text>
+
+  <!-- Azure Monitor -->
+  <rect x="350" y="502" width="105" height="70" rx="8" fill="#061525" stroke="#E87D20" stroke-width="1.5"/>
+  <text x="402" y="524" text-anchor="middle" fill="#E87D20" font-size="9" font-weight="bold">Azure Monitor</text>
+  <text x="402" y="538" text-anchor="middle" fill="#A0C4E8" font-size="7">Log Analytics</text>
+  <text x="402" y="550" text-anchor="middle" fill="#A0C4E8" font-size="7">Alerts</text>
+  <text x="402" y="562" text-anchor="middle" fill="#A0C4E8" font-size="7">Dashboards</text>
+
+  <!-- Event Hub -->
+  <rect x="475" y="540" width="220" height="58" rx="8" fill="#061525" stroke="#0078D4" stroke-width="1.5"/>
+  <text x="585" y="560" text-anchor="middle" fill="#7EB8F7" font-size="10" font-weight="bold">Azure Event Hub</text>
+  <text x="585" y="574" text-anchor="middle" fill="#A0C4E8" font-size="8">Real-time Streaming · Kafka API</text>
+  <text x="585" y="586" text-anchor="middle" fill="#C9A84C" font-size="8">1M+ events/sec · Fraud &amp; AML</text>
+
+  <!-- ===== CONSUMPTION (right column) ===== -->
+  <!-- Power BI -->
+  <rect x="935" y="90" width="180" height="65" rx="8" fill="#0D2240" stroke="#F2C811" stroke-width="2"/>
+  <rect x="935" y="90" width="180" height="18" rx="8" fill="#F2C811"/>
+  <rect x="935" y="100" width="180" height="8" fill="#F2C811"/>
+  <text x="1025" y="104" text-anchor="middle" fill="#1A1A1A" font-size="10" font-weight="bold">Power BI Premium</text>
+  <text x="1025" y="124" text-anchor="middle" fill="#F2C811" font-size="9">8 Executive Dashboards</text>
+  <text x="1025" y="138" text-anchor="middle" fill="#A0C4E8" font-size="8">DirectQuery · Import · Composite</text>
+  <text x="1025" y="149" text-anchor="middle" fill="#7EB8F7" font-size="8">500 active users</text>
+
+  <!-- Azure SQL -->
+  <rect x="935" y="172" width="180" height="65" rx="8" fill="#0D2240" stroke="#0078D4" stroke-width="1.5"/>
+  <rect x="935" y="172" width="180" height="18" rx="8" fill="#0078D4"/>
+  <rect x="935" y="182" width="180" height="8" fill="#0078D4"/>
+  <text x="1025" y="186" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Azure SQL Database</text>
+  <text x="1025" y="206" text-anchor="middle" fill="#A0C4E8" font-size="9">Operational Reporting</text>
+  <text x="1025" y="220" text-anchor="middle" fill="#7EB8F7" font-size="8">Branch · Customer Queries</text>
+  <text x="1025" y="231" text-anchor="middle" fill="#C9A84C" font-size="8">&lt;2s avg query time</text>
+
+  <!-- API Gateway -->
+  <rect x="935" y="254" width="180" height="65" rx="8" fill="#0D2240" stroke="#00B050" stroke-width="1.5"/>
+  <rect x="935" y="254" width="180" height="18" rx="8" fill="#1A5C2A"/>
+  <rect x="935" y="264" width="180" height="8" fill="#1A5C2A"/>
+  <text x="1025" y="268" text-anchor="middle" fill="white" font-size="10" font-weight="bold">API Management</text>
+  <text x="1025" y="288" text-anchor="middle" fill="#A0C4E8" font-size="9">REST APIs · ML Scoring</text>
+  <text x="1025" y="302" text-anchor="middle" fill="#7EB8F7" font-size="8">Credit Score · Fraud Score</text>
+  <text x="1025" y="313" text-anchor="middle" fill="#C9A84C" font-size="8">Real-time inference</text>
+
+  <!-- Regulatory Reports -->
+  <rect x="935" y="336" width="180" height="65" rx="8" fill="#0D2240" stroke="#E84040" stroke-width="1.5"/>
+  <rect x="935" y="336" width="180" height="18" rx="8" fill="#6A1A1A"/>
+  <rect x="935" y="346" width="180" height="8" fill="#6A1A1A"/>
+  <text x="1025" y="350" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Regulatory Reports</text>
+  <text x="1025" y="370" text-anchor="middle" fill="#A0C4E8" font-size="9">SARB BA700 · IFRS 9</text>
+  <text x="1025" y="384" text-anchor="middle" fill="#7EB8F7" font-size="8">Basel III · FICA · POPIA</text>
+  <text x="1025" y="395" text-anchor="middle" fill="#C9A84C" font-size="8">Automated submission</text>
+
+  <!-- Data Science / Jupyter -->
+  <rect x="935" y="418" width="180" height="65" rx="8" fill="#0D2240" stroke="#9B59B6" stroke-width="1.5"/>
+  <rect x="935" y="418" width="180" height="18" rx="8" fill="#4A1A6A"/>
+  <rect x="935" y="428" width="180" height="8" fill="#4A1A6A"/>
+  <text x="1025" y="432" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Data Science Workspace</text>
+  <text x="1025" y="452" text-anchor="middle" fill="#A0C4E8" font-size="9">Model Development</text>
+  <text x="1025" y="466" text-anchor="middle" fill="#7EB8F7" font-size="8">Jupyter · VS Code · Git</text>
+  <text x="1025" y="477" text-anchor="middle" fill="#C9A84C" font-size="8">MLflow Registry</text>
+
+  <!-- ===== DATA FLOW ARROWS (source → ADLS) ===== -->
+  <!-- 7 sources to ADLS Raw -->
+  <line x1="200" y1="116" x2="234" y2="155" stroke="#0078D4" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="200" y1="184" x2="234" y2="165" stroke="#0078D4" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="200" y1="252" x2="234" y2="175" stroke="#0078D4" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="200" y1="320" x2="234" y2="175" stroke="#0078D4" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="200" y1="388" x2="234" y2="175" stroke="#0078D4" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="200" y1="456" x2="234" y2="174" stroke="#0078D4" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="200" y1="524" x2="234" y2="174" stroke="#0078D4" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="200" y1="592" x2="234" y2="175" stroke="#50A050" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- ADLS zones → Databricks notebooks (horizontal arrows) -->
+  <line x1="458" y1="154" x2="486" y2="160" stroke="#CD7F32" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <line x1="458" y1="222" x2="486" y2="228" stroke="#C0C0C0" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <line x1="458" y1="330" x2="486" y2="296" stroke="#C9A84C" stroke-width="1.8" marker-end="url(#arrow)"/>
+
+  <!-- ADLS ↔ Databricks bidirectional (write back) -->
+  <line x1="486" y1="175" x2="458" y2="210" stroke="#CD7F32" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arrowback)"/>
+  <line x1="486" y1="243" x2="458" y2="265" stroke="#C0C0C0" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arrowback)"/>
+  <line x1="486" y1="305" x2="458" y2="338" stroke="#C9A84C" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arrowback)"/>
+
+  <!-- Databricks → Consumption -->
+  <line x1="698" y1="155" x2="933" y2="192" stroke="#C9A84C" stroke-width="2" marker-end="url(#arrowgold)"/>
+  <line x1="698" y1="297" x2="933" y2="285" stroke="#C9A84C" stroke-width="2" marker-end="url(#arrowgold)"/>
+  <line x1="698" y1="378" x2="933" y2="370" stroke="#9B59B6" stroke-width="1.5" marker-end="url(#arrowgold)"/>
+  <line x1="698" y1="450" x2="933" y2="330" stroke="#0078D4" stroke-width="1.5" marker-end="url(#arrowgold)"/>
+  <line x1="698" y1="460" x2="933" y2="450" stroke="#9B59B6" stroke-width="1.5" marker-end="url(#arrowgold)"/>
+
+  <!-- Event Hub → Databricks streaming -->
+  <line x1="695" y1="570" x2="920" y2="570" stroke="#0078D4" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arrow)"/>
+  <line x1="585" y1="540" x2="585" y2="498" stroke="#0078D4" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Unity Catalog <-> Databricks -->
+  <line x1="458" y1="450" x2="486" y2="428" stroke="#00B050" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrowgreen)"/>
+
+  <!-- Arrow markers -->
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#0078D4"/>
+    </marker>
+    <marker id="arrowback" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#5A5A5A"/>
+    </marker>
+    <marker id="arrowgold" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#C9A84C"/>
+    </marker>
+    <marker id="arrowgreen" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#00B050"/>
+    </marker>
+  </defs>
+
+  <!-- ===== LEGEND ===== -->
+  <rect x="235" y="620" width="680" height="72" rx="8" fill="#061525" stroke="#1E3A5F" stroke-width="1"/>
+  <text x="575" y="640" text-anchor="middle" fill="#C9A84C" font-size="11" font-weight="bold">Legend</text>
+  <line x1="260" y1="660" x2="295" y2="660" stroke="#0078D4" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="302" y="664" fill="#A0C4E8" font-size="9">Batch / CDC Ingest</text>
+  <line x1="390" y1="660" x2="425" y2="660" stroke="#C9A84C" stroke-width="2" marker-end="url(#arrowgold)"/>
+  <text x="432" y="664" fill="#A0C4E8" font-size="9">Gold Output</text>
+  <line x1="510" y1="660" x2="545" y2="660" stroke="#0078D4" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <text x="552" y="664" fill="#A0C4E8" font-size="9">Streaming</text>
+  <line x1="620" y1="660" x2="655" y2="660" stroke="#5A5A5A" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="662" y="664" fill="#A0C4E8" font-size="9">Write-back</text>
+  <line x1="740" y1="660" x2="775" y2="660" stroke="#00B050" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="782" y="664" fill="#A0C4E8" font-size="9">Governance</text>
+  <text x="575" y="682" text-anchor="middle" fill="#5A8AAE" font-size="8">All data encrypted at rest (AES-256) and in transit (TLS 1.3) · Azure Private Endpoints · VNET Integration</text>
+
+  <!-- Footer -->
+  <text x="600" y="770" text-anchor="middle" fill="#2A4A6A" font-size="10">Prime Capital Bank — Azure Data Platform · Confidential · © 2025 Prime Capital Bank Limited</text>
+</svg>
