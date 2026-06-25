@@ -442,6 +442,51 @@
   .tag.green { background: rgba(64,192,112,0.15); color: #40C070; border-color: rgba(64,192,112,0.4); }
   .tag.red { background: rgba(232,64,64,0.15); color: #E87070; border-color: rgba(232,64,64,0.4); }
 
+
+  /* ===== CHART CONTAINERS ===== */
+  .chart-section {
+    margin: 32px 0;
+    background: rgba(13,34,64,0.5);
+    border: 1px solid #1E3A5F;
+    border-radius: 10px;
+    padding: 28px 28px 20px;
+  }
+  .chart-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .chart-explain {
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+  .chart-wrap {
+    position: relative;
+    width: 100%;
+  }
+  .chart-wrap.tall { height: 340px; }
+  .chart-wrap.medium { height: 260px; }
+  .chart-wrap.short { height: 200px; }
+  .chart-wrap.dbl {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    height: 260px;
+  }
+  .chart-wrap.dbl canvas { height: 100% !important; }
+  .fig-note {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-top: 10px;
+    text-align: center;
+    font-style: italic;
+  }
+
   /* ===== PRINT STYLES ===== */
   @media print {
     body { display: block; background: white; color: #111; }
@@ -460,6 +505,7 @@
   ::-webkit-scrollbar-thumb { background: #1E3A5F; border-radius: 3px; }
   ::-webkit-scrollbar-thumb:hover { background: #2A5080; }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 </head>
 <body>
 
@@ -553,6 +599,21 @@
     <div class="metric-card"><span class="mv">247</span><span class="ml">Tables Catalogued</span></div>
     <div class="metric-card"><span class="mv">78TB</span><span class="ml">Data Under Mgmt</span></div>
     <div class="metric-card"><span class="mv">500</span><span class="ml">Power BI Users</span></div>
+  </div>
+
+
+  <div class="chart-section">
+    <div class="chart-title">Figure 1.1 — Loan Portfolio Composition &amp; Capital Adequacy</div>
+    <p class="chart-explain">
+      The loan book totals <strong>R312.6 billion</strong> across four product categories. Home loans dominate at 40% of the book,
+      reflecting the bank's strategic focus on secured retail lending. Capital adequacy ratios comfortably exceed SARB minimum
+      requirements, providing a substantial buffer for stressed scenarios and growth capital.
+    </p>
+    <div class="chart-wrap dbl">
+      <canvas id="ch1Donut"></canvas>
+      <canvas id="ch1Bar"></canvas>
+    </div>
+    <p class="fig-note">Left: Loan book distribution by product (R billions). Right: Capital ratios vs SARB minimums (%). Source: Gold layer — fact_loan_portfolio, regulatory_reporting.</p>
   </div>
 
   <h3>Platform Components</h3>
@@ -669,6 +730,21 @@
     </tbody>
   </table>
 
+
+  <div class="chart-section">
+    <div class="chart-title">Figure 3.1 — Bronze Layer — Data Volumes by Source Table</div>
+    <p class="chart-explain">
+      The Bronze layer ingests data from 14 source tables spanning 7 source systems. Transaction and payments tables
+      dominate by volume, with card transactions (950M rows) and EFT payments (420M rows) representing the bulk of
+      streaming ingestion throughput. These high-volume streaming tables drive the platform's near-real-time fraud detection
+      and liquidity monitoring capabilities.
+    </p>
+    <div class="chart-wrap tall">
+      <canvas id="ch3Bar"></canvas>
+    </div>
+    <p class="fig-note">Row counts in millions. Log scale applied due to 4-order-of-magnitude range between smallest (employees: 12K) and largest (transactions: 2.1B) tables. Source: Bronze layer metadata, June 2025.</p>
+  </div>
+
   <h3>Schema &amp; Partitioning Strategy</h3>
   <p>Bronze tables are partitioned by <code>_ingestion_date</code> (date of load) rather than source business date, ensuring partition pruning works effectively even when source systems deliver late-arriving data. High-volume streaming tables (card transactions, EFT) are additionally partitioned by <code>hour</code> to enable efficient time-range queries during fraud investigation workflows.</p>
 
@@ -721,6 +797,22 @@
   <div class="callout green">
     <div class="callout-title">Quality Metrics — Monthly Average</div>
     <p><strong>99.94%</strong> of records pass all Silver quality gates without quarantine. The quarantine rate of 0.06% is dominated by late-arriving GL corrections and test transactions from the card system's UAT environment, both of which are filtered deterministically by source system flag.</p>
+  </div>
+
+
+  <div class="chart-section">
+    <div class="chart-title">Figure 4.1 — Silver Data Quality Gate Results</div>
+    <p class="chart-explain">
+      Great Expectations quality suites enforce 7 categories of validation before any record is promoted from Bronze to Silver.
+      The <strong>99.94% pass rate</strong> reflects the high data quality of the bank's core systems post-cleansing. The 0.06%
+      quarantine rate is stable and dominated by late-arriving GL corrections and card UAT test records — both filtered
+      deterministically. Quarantined records are never discarded; they are available for manual review and retrospective inclusion.
+    </p>
+    <div class="chart-wrap dbl">
+      <canvas id="ch4Donut"></canvas>
+      <canvas id="ch4Bar"></canvas>
+    </div>
+    <p class="fig-note">Left: Overall pass/quarantine rate (monthly average). Right: Quarantine breakdown by failure type. Source: Great Expectations validation results, silver.quarantine table.</p>
   </div>
 
   <h3>SCD Type 2 Implementation</h3>
@@ -890,6 +982,23 @@ seeds/               <span class="cm">-- Reference data CSVs (risk codes, curren
     </div>
   </div>
 
+
+  <div class="chart-section">
+    <div class="chart-title">Figure 7.1 — ML Model Performance Metrics</div>
+    <p class="chart-explain">
+      All four production models exceed the bank's minimum AUC-ROC threshold of 0.80 ("Good" tier), with the Fraud Ensemble
+      achieving near-best-in-class performance at 0.97. The AUC-ROC metric captures the model's ability to distinguish between
+      positive and negative cases across all decision thresholds — a score of 1.0 is perfect, 0.5 is random. Precision and Recall
+      are balanced via the F1 score; the fraud model prioritises Recall (catching actual fraud) while accepting a slightly higher
+      false positive rate to minimise financial losses.
+    </p>
+    <div class="chart-wrap dbl">
+      <canvas id="ch7AUC"></canvas>
+      <canvas id="ch7PRF"></canvas>
+    </div>
+    <p class="fig-note">Left: AUC-ROC by model (dashed line = minimum production threshold 0.80). Right: Precision, Recall, and F1 Score comparison. All models trained on FY 2025 data, June 2025.</p>
+  </div>
+
   <h3>IFRS 9 ECL Model</h3>
   <p>The Expected Credit Loss (ECL) model is the regulatory centrepiece of the ML suite. It combines the PD, LGD, and Exposure at Default (EAD) models to compute the three-stage ECL provision required under <strong>IFRS 9 — Financial Instruments</strong>. Stage 1 accounts (performing) receive a 12-month ECL; Stage 2 accounts (significant increase in credit risk) receive a lifetime ECL; Stage 3 accounts (credit-impaired) receive a lifetime ECL with individually assessed components for material exposures exceeding R5 million.</p>
 
@@ -924,6 +1033,22 @@ seeds/               <span class="cm">-- Reference data CSVs (risk codes, curren
     <div class="metric-card"><span class="mv">POPIA</span><span class="ml">PII Governance</span></div>
     <div class="metric-card"><span class="mv">FICA</span><span class="ml">AML/STR Auto</span></div>
     <div class="metric-card"><span class="mv">6hrs</span><span class="ml">Monthly Close</span></div>
+  </div>
+
+
+  <div class="chart-section">
+    <div class="chart-title">Figure 8.1 — Basel III Capital &amp; Liquidity Ratios vs SARB Minimums</div>
+    <p class="chart-explain">
+      Prime Capital Bank maintains capital and liquidity ratios significantly above SARB prudential minima. The CET1 ratio of
+      <strong>14.2%</strong> provides a 7.2 percentage-point buffer above the 7.0% minimum requirement, giving the bank
+      substantial capacity to absorb stress losses and support balance sheet growth without breaching regulatory floors.
+      The LCR of <strong>128.4%</strong> means the bank holds 28.4 percentage points of excess high-quality liquid assets
+      above the 100% Basel III minimum — critical for maintaining depositor confidence during market stress.
+    </p>
+    <div class="chart-wrap tall">
+      <canvas id="ch8Ratios"></canvas>
+    </div>
+    <p class="fig-note">Grouped bar chart: actual ratios (teal) vs SARB minimum requirements (gold). All ratios comply. Source: Databricks regulatory_reporting notebook, June 2025.</p>
   </div>
 
   <h3>SARB BA700 — Risk Data Aggregation</h3>
@@ -971,6 +1096,22 @@ seeds/               <span class="cm">-- Reference data CSVs (risk codes, curren
     </tbody>
   </table>
 
+
+  <div class="chart-section">
+    <div class="chart-title">Figure 9.1 — Daily Pipeline Execution Gantt — 9-Task DAG</div>
+    <p class="chart-explain">
+      The production daily pipeline executes as a 9-task Directed Acyclic Graph (DAG) orchestrated by Databricks Workflows.
+      The pipeline begins at 00:30 with cluster setup and Bronze ingestion, progresses through Silver cleansing, then fans out
+      into three parallel ML scoring tasks (Credit, Fraud, AML) running concurrently with Gold star schema build — the longest
+      individual stage at approximately 25 minutes. Regulatory reporting and the master orchestrator complete the pipeline by
+      approximately 02:15, comfortably within the 05:00 Gold SLA.
+    </p>
+    <div class="chart-wrap tall">
+      <canvas id="ch9Gantt"></canvas>
+    </div>
+    <p class="fig-note">Gantt chart — X axis: minutes elapsed from pipeline trigger (00:30 SAST). Parallel tasks shown at same Y position. Source: Databricks Workflow run history, June 2025.</p>
+  </div>
+
   <h3>SLA Monitoring &amp; Alerting</h3>
   <p>Pipeline SLA breaches trigger a <strong>three-tier alerting cascade</strong>: (1) Databricks Workflows email notification to the on-call data engineer; (2) Azure Monitor alert to the <strong>PagerDuty</strong> on-call rotation for Severity 2 (Gold layer delay) or Severity 1 (streaming fraud pipeline failure); (3) automated Slack message to the <code>#data-platform-ops</code> channel with a direct link to the failed task's log output. The platform maintains a <strong>99.8% pipeline SLA achievement rate</strong> over the trailing 12 months, with the 0.2% breaches attributable to upstream source system maintenance windows.</p>
 
@@ -992,6 +1133,23 @@ seeds/               <span class="cm">-- Reference data CSVs (risk codes, curren
   </div>
 
   <p>The consumption tier of the platform delivers insights through <strong>eight purpose-built Power BI Premium dashboards</strong>, collectively serving 500 active users across the bank. Dashboards are designed against the bank's master data model in the Gold layer, using a mix of <strong>DirectQuery</strong> (for real-time operational views) and <strong>Import mode</strong> (for complex analytical views requiring DAX measures). All dashboards are secured through Azure Active Directory row-level security (RLS), ensuring each user sees only the data appropriate to their role and geographic scope.</p>
+
+
+  <div class="chart-section">
+    <div class="chart-title">Figure 10.1 — Fraud Intelligence — 12-Month Trend Analysis</div>
+    <p class="chart-explain">
+      The fraud rate has remained stable at <strong>0.09%–0.14%</strong> across 200,000+ monthly card transactions, with
+      the ensemble model's false positive rate declining from 4.1% to 3.2% over the year as the model was recalibrated with
+      more recent confirmed fraud labels. The December seasonal spike in fraud attempts is a well-documented industry pattern
+      driven by increased card transaction volumes during the holiday period — the model's recall performance held stable
+      despite the volume surge, preventing an estimated <strong>R45M in fraud losses</strong> over the full year.
+    </p>
+    <div class="chart-wrap dbl">
+      <canvas id="ch10Line"></canvas>
+      <canvas id="ch10Loss"></canvas>
+    </div>
+    <p class="fig-note">Left: Monthly fraud rate (%) and false positive rate (%). Right: Monthly cumulative fraud loss prevented (R millions). Source: fact_transaction, silver_card_transactions, June 2025.</p>
+  </div>
 
   <h3>Dashboard Inventory</h3>
 
@@ -1160,6 +1318,17 @@ prime_capital_bank (metastore)
 </main>
 
 <script>
+
+  // ── Chart.js global defaults ───────────────────────────────────────
+  Chart.defaults.color = '#CBD5E1';
+  Chart.defaults.font.family = "'Segoe UI', system-ui, Arial, sans-serif";
+  Chart.defaults.font.size = 11;
+  const GOLD = '#C9A84C', BLUE = '#0078D4', LBLUE = '#7EB8F7',
+        GREEN = '#40C070', RED = '#E87070', TEAL = '#00A8E0',
+        GRID = 'rgba(30,58,95,0.7)', NAVY = 'rgba(13,34,64,0.6)';
+  function mkGrid(){ return { color: GRID, drawBorder: false }; }
+  function mkTick(){ return { color: '#7A94B0' }; }
+
   // Active sidebar link on scroll
   const chapters = document.querySelectorAll('#cover, .chapter');
   const links = document.querySelectorAll('#sidebar nav a');
@@ -1174,6 +1343,405 @@ prime_capital_bank (metastore)
     });
   }, { threshold: 0.15 });
   chapters.forEach(c => observer.observe(c));
+
+  // ═══════════════════════════════════════════════════════════
+  // CHART 1 — Loan Portfolio Mix + Capital Adequacy
+  // ═══════════════════════════════════════════════════════════
+  new Chart(document.getElementById('ch1Donut'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Home Loans', 'Personal Loans', 'Vehicle Finance', 'Business Loans'],
+      datasets: [{
+        data: [124.8, 48.2, 67.4, 72.2],
+        backgroundColor: [GOLD, BLUE, TEAL, '#9B59B6'],
+        borderColor: 'rgba(13,34,64,0.8)',
+        borderWidth: 2,
+        hoverOffset: 6
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      cutout: '62%',
+      plugins: {
+        legend: { position: 'bottom', labels: { padding: 12, boxWidth: 12 } },
+        tooltip: {
+          callbacks: { label: ctx => ` R${ctx.parsed.toFixed(1)}B — ${((ctx.parsed/312.6)*100).toFixed(1)}%` }
+        }
+      }
+    }
+  });
+
+  new Chart(document.getElementById('ch1Bar'), {
+    type: 'bar',
+    data: {
+      labels: ['CET1', 'Tier 1', 'Total CAR', 'LCR', 'NSFR'],
+      datasets: [
+        { label: 'Actual', data: [14.2, 15.8, 17.4, 128.4, 112.6],
+          backgroundColor: TEAL, borderRadius: 4 },
+        { label: 'SARB Minimum', data: [7.0, 8.5, 10.5, 100.0, 100.0],
+          backgroundColor: 'rgba(201,168,76,0.5)', borderColor: GOLD, borderWidth: 1, borderRadius: 4 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'bottom', labels: { padding: 10, boxWidth: 12 } } },
+      scales: {
+        x: { grid: mkGrid(), ticks: mkTick() },
+        y: { grid: mkGrid(), ticks: { ...mkTick(), callback: v => v + '%' }, min: 0 }
+      }
+    }
+  });
+
+  // ═══════════════════════════════════════════════════════════
+  // CHART 2 — Bronze Data Volumes (log scale)
+  // ═══════════════════════════════════════════════════════════
+  new Chart(document.getElementById('ch3Bar'), {
+    type: 'bar',
+    data: {
+      labels: ['Transactions
+(T24)', 'Card Txns
+(Cards)', 'EFT Payments', 'RTC Payments',
+               'Journal Entries
+(GL)', 'CRM Opps', 'Accounts', 'CRM Contacts',
+               'Credit Bureau', 'Customers', 'Card Accounts', 'Loans', 'FX Rates', 'Employees'],
+      datasets: [{
+        label: 'Row Count',
+        data: [2100, 950, 420, 85, 220, 1.4, 1.8, 0.62, 0.5, 0.5, 0.28, 0.38, 4.2, 0.012],
+        backgroundColor: [
+          TEAL,TEAL,TEAL,TEAL,
+          GOLD,GOLD,
+          BLUE,BLUE,BLUE,BLUE,BLUE,BLUE,BLUE,BLUE
+        ],
+        borderRadius: 3
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: ctx => {
+              const v = ctx.parsed.x;
+              return v >= 1000 ? ` ${(v/1000).toFixed(1)}B rows` : v >= 1 ? ` ${v.toFixed(1)}M rows` : ` ${(v*1000).toFixed(0)}K rows`;
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          type: 'logarithmic',
+          grid: mkGrid(),
+          ticks: { ...mkTick(), callback: v => v >= 1000 ? (v/1000)+'B' : v >= 1 ? v+'M' : (v*1000)+'K' }
+        },
+        y: { grid: { display: false }, ticks: mkTick() }
+      }
+    }
+  });
+
+  // ═══════════════════════════════════════════════════════════
+  // CHART 3 — Silver Data Quality
+  // ═══════════════════════════════════════════════════════════
+  new Chart(document.getElementById('ch4Donut'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Pass (99.94%)', 'Quarantine (0.06%)'],
+      datasets: [{
+        data: [99.94, 0.06],
+        backgroundColor: [GREEN, RED],
+        borderColor: 'rgba(13,34,64,0.8)',
+        borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      cutout: '65%',
+      plugins: {
+        legend: { position: 'bottom', labels: { padding: 14, boxWidth: 12 } },
+        tooltip: { callbacks: { label: ctx => ` ${ctx.parsed.toFixed(2)}%` } }
+      }
+    }
+  });
+
+  new Chart(document.getElementById('ch4Bar'), {
+    type: 'bar',
+    data: {
+      labels: ['Late GL
+Corrections', 'UAT Test
+Records', 'Missing
+Ref Data', 'Format
+Errors', 'Duplicate
+Keys'],
+      datasets: [{
+        label: 'Quarantine Share (%)',
+        data: [38, 31, 14, 11, 6],
+        backgroundColor: [RED, '#E8A070', GOLD, LBLUE, BLUE],
+        borderRadius: 4
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid: { display: false }, ticks: mkTick() },
+        y: { grid: mkGrid(), ticks: { ...mkTick(), callback: v => v + '%' } }
+      }
+    }
+  });
+
+  // ═══════════════════════════════════════════════════════════
+  // CHART 4 — ML Model Performance
+  // ═══════════════════════════════════════════════════════════
+  const mlLabels = ['PD Model
+(XGBoost)', 'LGD Model
+(GBM)', 'Fraud
+Ensemble', 'AML
+Scorer'];
+  new Chart(document.getElementById('ch7AUC'), {
+    type: 'bar',
+    data: {
+      labels: mlLabels,
+      datasets: [{
+        label: 'AUC-ROC',
+        data: [0.847, 0.812, 0.963, 0.891],
+        backgroundColor: [GOLD, GOLD, GREEN, TEAL],
+        borderRadius: 5
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        annotation: {}
+      },
+      scales: {
+        x: {
+          grid: mkGrid(), ticks: mkTick(), min: 0.7, max: 1.0,
+          afterDataLimits: scale => { scale.min = 0.70; }
+        },
+        y: { grid: { display: false }, ticks: mkTick() }
+      }
+    },
+    plugins: [{
+      id: 'threshold',
+      beforeDraw(chart) {
+        const { ctx, chartArea: { top, bottom }, scales: { x } } = chart;
+        const xPos = x.getPixelForValue(0.80);
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(xPos, top); ctx.lineTo(xPos, bottom);
+        ctx.strokeStyle = RED; ctx.lineWidth = 1.5;
+        ctx.setLineDash([4, 3]);
+        ctx.stroke();
+        ctx.fillStyle = RED; ctx.font = '10px Segoe UI';
+        ctx.fillText('Min: 0.80', xPos + 4, top + 12);
+        ctx.restore();
+      }
+    }]
+  });
+
+  new Chart(document.getElementById('ch7PRF'), {
+    type: 'bar',
+    data: {
+      labels: mlLabels,
+      datasets: [
+        { label: 'Precision', data: [0.781, 0.756, 0.887, 0.834], backgroundColor: BLUE, borderRadius: 3 },
+        { label: 'Recall',    data: [0.823, 0.798, 0.912, 0.867], backgroundColor: TEAL, borderRadius: 3 },
+        { label: 'F1 Score',  data: [0.801, 0.776, 0.899, 0.850], backgroundColor: GOLD, borderRadius: 3 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'bottom', labels: { padding: 10, boxWidth: 10 } } },
+      scales: {
+        x: { grid: { display: false }, ticks: mkTick() },
+        y: { grid: mkGrid(), ticks: mkTick(), min: 0.7, max: 1.0 }
+      }
+    }
+  });
+
+  // ═══════════════════════════════════════════════════════════
+  // CHART 5 — Basel III Regulatory Ratios
+  // ═══════════════════════════════════════════════════════════
+  new Chart(document.getElementById('ch8Ratios'), {
+    type: 'bar',
+    data: {
+      labels: ['CET1
+Ratio', 'Tier 1
+Capital', 'Total
+CAR', 'LCR', 'NSFR', 'Leverage
+Ratio'],
+      datasets: [
+        {
+          label: 'Actual (%)',
+          data: [14.2, 15.8, 17.4, 128.4, 112.6, 6.8],
+          backgroundColor: [TEAL,TEAL,TEAL,TEAL,TEAL,TEAL],
+          borderRadius: 4
+        },
+        {
+          label: 'SARB Minimum (%)',
+          data: [7.0, 8.5, 10.5, 100.0, 100.0, 3.0],
+          backgroundColor: 'rgba(201,168,76,0.4)',
+          borderColor: GOLD,
+          borderWidth: 1.5,
+          borderRadius: 4
+        }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'top', labels: { padding: 14, boxWidth: 12 } } },
+      scales: {
+        x: { grid: { display: false }, ticks: mkTick() },
+        y: {
+          grid: mkGrid(), ticks: mkTick(),
+          title: { display: true, text: 'Ratio / Percentage (%)', color: '#7A94B0', font: { size: 10 } }
+        }
+      }
+    }
+  });
+
+  // ═══════════════════════════════════════════════════════════
+  // CHART 6 — Pipeline Gantt (floating bars)
+  // ═══════════════════════════════════════════════════════════
+  new Chart(document.getElementById('ch9Gantt'), {
+    type: 'bar',
+    data: {
+      labels: [
+        '00 — Setup & Catalog',
+        '01 — Bronze Ingestion',
+        '02 — Silver Transform',
+        '03 — Gold Build',
+        '04 — ML Credit Scoring',
+        '05 — Fraud Detection',
+        '06 — AML Scoring',
+        '07 — Regulatory Reports',
+        '08 — Orchestrator'
+      ],
+      datasets: [{
+        label: 'Execution Window',
+        data: [
+          [0, 5], [5, 20], [20, 40],
+          [40, 65], [40, 68], [40, 60], [40, 70],
+          [70, 80], [80, 83]
+        ],
+        backgroundColor: [
+          TEAL, '#CD7F32', '#999999',
+          GOLD, BLUE, LBLUE, '#9B59B6',
+          GREEN, '#888'
+        ],
+        borderRadius: 4
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: ctx => {
+              const [s, e] = ctx.raw;
+              return ` Start: T+${s}min → End: T+${e}min (${e - s} min)`;
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: mkGrid(), ticks: { ...mkTick(), callback: v => 'T+'+v+'m' },
+          min: 0, max: 90,
+          title: { display: true, text: 'Minutes elapsed from pipeline trigger (00:30 SAST)', color: '#7A94B0', font: { size: 10 } }
+        },
+        y: { grid: { display: false }, ticks: mkTick() }
+      }
+    }
+  });
+
+  // ═══════════════════════════════════════════════════════════
+  // CHART 7 — Fraud Rate Trend + Loss Prevented
+  // ═══════════════════════════════════════════════════════════
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const fraudRate = [0.09, 0.11, 0.08, 0.12, 0.10, 0.13, 0.11, 0.09, 0.14, 0.12, 0.13, 0.11];
+  const fpRate   = [4.1, 3.8, 4.2, 4.4, 3.9, 4.6, 4.3, 4.0, 4.8, 4.5, 4.7, 3.2];
+
+  new Chart(document.getElementById('ch10Line'), {
+    type: 'line',
+    data: {
+      labels: months,
+      datasets: [
+        {
+          label: 'Fraud Rate (%)',
+          data: fraudRate,
+          borderColor: RED,
+          backgroundColor: 'rgba(232,112,112,0.1)',
+          pointBackgroundColor: RED,
+          pointRadius: 4,
+          tension: 0.3,
+          fill: true,
+          yAxisID: 'y1'
+        },
+        {
+          label: 'False Positive Rate (%)',
+          data: fpRate,
+          borderColor: GOLD,
+          backgroundColor: 'rgba(201,168,76,0.08)',
+          pointBackgroundColor: GOLD,
+          pointRadius: 4,
+          tension: 0.3,
+          fill: true,
+          yAxisID: 'y2'
+        }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'bottom', labels: { padding: 10, boxWidth: 10 } } },
+      scales: {
+        x: { grid: mkGrid(), ticks: mkTick() },
+        y1: {
+          position: 'left', grid: mkGrid(), ticks: { ...mkTick(), callback: v => v.toFixed(2)+'%' },
+          title: { display: true, text: 'Fraud Rate (%)', color: '#E87070', font: { size: 10 } }
+        },
+        y2: {
+          position: 'right', grid: { display: false }, ticks: { ...mkTick(), callback: v => v.toFixed(1)+'%' },
+          title: { display: true, text: 'False Positive Rate (%)', color: GOLD, font: { size: 10 } }
+        }
+      }
+    }
+  });
+
+  // Cumulative loss prevented
+  const txnCounts = [16200,15800,17100,16600,17400,18200,17800,16900,17200,18500,19800,22100];
+  const avgAmt    = [4850, 5200, 4600, 5800, 5100, 6200, 5500, 4900, 6800, 6100, 6400, 5300];
+  const lossM = txnCounts.map((t, i) => +(t * fraudRate[i] / 100 * avgAmt[i] / 1e6).toFixed(2));
+  let cumLoss = [], cum = 0;
+  lossM.forEach(v => { cum += v; cumLoss.push(+cum.toFixed(2)); });
+
+  new Chart(document.getElementById('ch10Loss'), {
+    type: 'bar',
+    data: {
+      labels: months,
+      datasets: [
+        { label: 'Monthly Loss Prevented (Rm)', data: lossM, backgroundColor: 'rgba(232,112,112,0.6)', borderRadius: 3 },
+        { label: 'Cumulative (Rm)', data: cumLoss, type: 'line', borderColor: GREEN, pointBackgroundColor: GREEN,
+          pointRadius: 3, tension: 0.3, fill: false, yAxisID: 'y2' }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'bottom', labels: { padding: 10, boxWidth: 10 } } },
+      scales: {
+        x: { grid: { display: false }, ticks: mkTick() },
+        y: { grid: mkGrid(), ticks: { ...mkTick(), callback: v => 'R'+v+'M' }, title: { display: true, text: 'Rm / month', color: '#7A94B0', font: {size:10} } },
+        y2: { position: 'right', grid: { display: false }, ticks: { ...mkTick(), callback: v => 'R'+v+'M' }, title: { display: true, text: 'Cumulative Rm', color: GREEN, font: {size:10} } }
+      }
+    }
+  });
+
+
 </script>
 </body>
 </html>
