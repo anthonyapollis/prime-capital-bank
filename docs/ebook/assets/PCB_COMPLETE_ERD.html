@@ -473,10 +473,10 @@ erDiagram
         int     date_sk FK
         string  loan_type
         decimal outstanding_balance_zar
-        decimal pd_score "ML output"
-        decimal lgd_score "ML output"
-        decimal ecl_amount_zar "PD x LGD x EAD"
-        int     ifrs9_stage "1 / 2 / 3"
+        decimal pd_score "ML"
+        decimal lgd_score "ML"
+        decimal ecl_amount_zar "ECL"
+        int     ifrs9_stage "Stage"
         int     days_past_due
         boolean is_npl
     }
@@ -654,7 +654,6 @@ erDiagram
     DIM_FINTECH ||--o{ FACT_FINTECH_TRANSACTION : "routes"
     DIM_LOYALTY_PROGRAM ||--o{ FACT_LOYALTY_POINTS : "issues"
     DIM_MERCHANT ||--o{ DIM_LOYALTY_PROGRAM : "operates"
-    FACT_CARD_TRANSACTION ||--o{ FACT_FINTECH_TRANSACTION : "may_settle_as"
     DIM_COUNTERPARTY ||--o{ FACT_PAYMENT : "settles_with"
     DIM_CURRENCY ||--o{ FACT_PAYMENT : "denominated_in"
     DIM_DATE ||--o{ FACT_CARD_TRANSACTION : "tx_date"
@@ -845,8 +844,16 @@ erDiagram
         decimal net_profit
         decimal return_on_equity
     }
-    DIM_PRODUCT { int product_sk PK; string product_code; string product_name }
-    DIM_COUNTERPARTY { int counterparty_sk PK; string swift_code; string bank_name }
+    DIM_PRODUCT {
+        int    product_sk PK
+        string product_code
+        string product_name
+    }
+    DIM_COUNTERPARTY {
+        int    counterparty_sk PK
+        string swift_code
+        string bank_name
+    }
 </div>
                 </div>
             </div>
@@ -917,9 +924,22 @@ erDiagram
         decimal realised_pnl
         string  investment_status
     }
-    DIM_CUSTOMER { bigint customer_sk PK; string customer_id; string full_name }
-    DIM_PRODUCT  { int product_sk PK; string product_code; string product_name }
-    DIM_DATE     { int date_sk PK; date date_key; int year; int month }
+    DIM_CUSTOMER {
+        bigint customer_sk PK
+        string customer_id
+        string full_name
+    }
+    DIM_PRODUCT {
+        int    product_sk PK
+        string product_code
+        string product_name
+    }
+    DIM_DATE {
+        int  date_sk PK
+        date date_key
+        int  year
+        int  month
+    }
 </div>
                 </div>
             </div>
