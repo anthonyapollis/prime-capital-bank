@@ -646,7 +646,6 @@ erDiagram
                 <div class="domain-note">Card acquiring, fintech partner settlement (Yoco / SnapScan / PayFast), loyalty points earn &amp; redemption, SWIFT/EFT payment flows.</div>
                 <div class="erd-wrap">
 <div class="mermaid">
-%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#F0FDFD', 'primaryTextColor': '#1A2D4A', 'primaryBorderColor': '#0097A7', 'lineColor': '#00708A', 'secondaryColor': '#FFFBF0', 'tertiaryColor': '#F7FAFD', 'background': '#F7FAFD', 'mainBkg': '#F0FDFD', 'nodeBorder': '#0097A7', 'clusterBkg': '#F7FAFD', 'titleColor': '#1A2D4A', 'edgeLabelBackground': '#FFFFFF', 'attributeBackgroundColorEven': '#F0FDFD', 'attributeBackgroundColorOdd': '#FFFFFF'}}}%%
 erDiagram
     DIM_MERCHANT ||--o{ FACT_CARD_TRANSACTION : "processed_at"
     DIM_MERCHANT ||--o{ FACT_FINTECH_TRANSACTION : "settles_via"
