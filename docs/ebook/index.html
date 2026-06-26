@@ -601,14 +601,15 @@
     <div class="metric-card"><span class="mv">500</span><span class="ml">Power BI Users</span></div>
   </div>
 
-  <p>The two charts below break down the platform&#x2019;s most critical headline numbers: how the R312.6 billion loan book is distributed across product categories, and how the bank&#x2019;s capital ratios compare to SARB minimum requirements.</p>
+  <p>The two charts below break down the platform&#x2019;s most critical headline numbers: how the bank&#x2019;s four primary loan product categories (representing R312.6 billion of the R380 billion total loan book) are distributed, and how the bank&#x2019;s capital ratios compare to SARB minimum requirements.</p>
 
   <div class="chart-section">
     <div class="chart-title">Figure 1.1 — Loan Portfolio Composition &amp; Capital Adequacy</div>
     <p class="chart-explain">
-      The loan book totals <strong>R312.6 billion</strong> across four product categories. Home loans dominate at 40% of the book,
-      reflecting the bank's strategic focus on secured retail lending. Capital adequacy ratios comfortably exceed SARB minimum
-      requirements, providing a substantial buffer for stressed scenarios and growth capital.
+      The four primary loan categories total <strong>R312.6 billion</strong> — 82% of the R380 billion gross loan book
+      (the remaining 18% comprises credit cards, overdrafts, and revolving facilities). Home loans dominate at 40%,
+      reflecting the bank's strategic focus on secured retail lending. Capital adequacy ratios comfortably exceed SARB
+      minimum requirements, providing a substantial buffer for stressed scenarios and balance sheet growth.
     </p>
     <div class="chart-wrap dbl">
       <canvas id="ch1Donut"></canvas>
@@ -997,7 +998,7 @@ seeds/               <span class="cm">-- Reference data CSVs (risk codes, curren
       <canvas id="ch7AUC"></canvas>
       <canvas id="ch7PRF"></canvas>
     </div>
-    <p class="fig-note">Left: AUC-ROC by model — PD model AUC = 0.97 (Gini 0.94), LGD R² = 0.89, Fraud AUC = 0.97, AML AUC = 0.91 — dashed line = minimum production threshold 0.80. Right: Precision, Recall, and F1 Score. All models trained on FY 2025 data, June 2025.</p>
+    <p class="fig-note">Left: AUC-ROC (PD, Fraud, AML) / R² (LGD) — PD=0.97 (Gini 0.94), LGD R²=0.89, Fraud=0.97, AML=0.91. Gold dashed line = 0.90 preferred tier (absolute floor 0.80 — all models exceed both thresholds). Right: Precision, Recall, F1 — all models 0.876–0.963. FY 2025 data, June 2025.</p>
   </div>
 
   <div class="chart-section">
@@ -1130,7 +1131,7 @@ seeds/               <span class="cm">-- Reference data CSVs (risk codes, curren
   <p>The <strong>BA700 return</strong> is the SARB's primary prudential data collection, covering credit risk exposures, capital adequacy, liquidity, and large exposures. The platform generates the BA700 XML submission from a dedicated dbt mart (<code>gold.regulatory.rpt_sarb_ba700</code>), populated from the credit risk Gold tables. The submission is validated against the SARB's published XML schema definition (XSD) before upload to the SARB's BI reporting portal. The platform achieves <strong>T+2 submission</strong> (two business days after month-end) against the regulatory deadline of T+10.</p>
 
   <h3>Basel III Capital Adequacy</h3>
-  <p>The platform computes <strong>Liquidity Coverage Ratio (LCR)</strong> and <strong>Net Stable Funding Ratio (NSFR)</strong> on a daily basis using the Gold layer's account balance and treasury position data. Risk-weighted asset (RWA) calculations for credit risk use the Standardised Approach weights stored in <code>dim_risk_category.regulatory_weight</code>, with Internal Ratings-Based (IRB) approach RWA calculated from the PD model outputs for the qualifying retail and corporate portfolios. The bank maintains a <strong>Common Equity Tier 1 (CET1) ratio of 13.2%</strong> against the SARB's minimum requirement of 7.5% plus a 2.5% capital conservation buffer.</p>
+  <p>The platform computes <strong>Liquidity Coverage Ratio (LCR)</strong> and <strong>Net Stable Funding Ratio (NSFR)</strong> on a daily basis using the Gold layer's account balance and treasury position data. Risk-weighted asset (RWA) calculations for credit risk use the Standardised Approach weights stored in <code>dim_risk_category.regulatory_weight</code>, with Internal Ratings-Based (IRB) approach RWA calculated from the PD model outputs for the qualifying retail and corporate portfolios. The bank maintains a <strong>Common Equity Tier 1 (CET1) ratio of 14.2%</strong> against the SARB's effective minimum of 7.0% (4.5% CET1 floor plus the 2.5% capital conservation buffer), providing a 7.2 percentage-point headroom — consistent with Figure 8.1 below.</p>
 
   <h3>POPIA — Data Privacy</h3>
   <p>The <strong>Protection of Personal Information Act (POPIA)</strong> compliance is implemented at the platform layer through Unity Catalog tags and column masking policies. All columns containing personal information (SA ID numbers, full names, contact details, biometric data) are tagged with the <code>pii_classification</code> Unity Catalog tag at three levels: <code>PII_HIGH</code> (ID numbers, biometrics), <code>PII_MEDIUM</code> (names, contact details), and <code>PII_LOW</code> (demographic aggregates). Column masking functions applied via Unity Catalog policies ensure that users without the <code>pii_reader</code> privilege see tokenised or masked values in query results — enforced at the Delta Lake level, not application level.</p>
@@ -1647,8 +1648,8 @@ Scorer'];
       },
       scales: {
         x: {
-          grid: mkGrid(), ticks: mkTick(), min: 0.7, max: 1.0,
-          afterDataLimits: scale => { scale.min = 0.70; }
+          grid: mkGrid(), ticks: mkTick(), min: 0.85, max: 1.0,
+          afterDataLimits: scale => { scale.min = 0.85; }
         },
         y: { grid: { display: false }, ticks: mkTick() }
       }
@@ -1657,15 +1658,15 @@ Scorer'];
       id: 'threshold',
       beforeDraw(chart) {
         const { ctx, chartArea: { top, bottom }, scales: { x } } = chart;
-        const xPos = x.getPixelForValue(0.80);
+        const xPos = x.getPixelForValue(0.90);
         ctx.save();
         ctx.beginPath();
         ctx.moveTo(xPos, top); ctx.lineTo(xPos, bottom);
-        ctx.strokeStyle = RED; ctx.lineWidth = 1.5;
+        ctx.strokeStyle = GOLD; ctx.lineWidth = 1.5;
         ctx.setLineDash([4, 3]);
         ctx.stroke();
-        ctx.fillStyle = RED; ctx.font = '10px Segoe UI';
-        ctx.fillText('Min: 0.80', xPos + 4, top + 12);
+        ctx.fillStyle = GOLD; ctx.font = '10px Segoe UI';
+        ctx.fillText('Target: 0.90', xPos + 4, top + 12);
         ctx.restore();
       }
     }]
