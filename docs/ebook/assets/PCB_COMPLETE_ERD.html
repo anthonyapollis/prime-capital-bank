@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prime Capital Bank — Complete Enterprise Data Model ERD</title>
-    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.0/dist/mermaid.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -503,7 +503,7 @@ erDiagram
         bigint  customer_sk FK
         string  bureau_name
         int     credit_score
-        string  default_history
+        string  credit_hist
         int     enquiry_count_12m
         date    report_date
     }
@@ -625,7 +625,7 @@ erDiagram
         int     churned_customers
         decimal total_aum
         decimal total_fees_collected
-        decimal default_rate
+        decimal npl_rate
     }
     FACT_TRANSACTION {
         bigint  tx_sk PK
