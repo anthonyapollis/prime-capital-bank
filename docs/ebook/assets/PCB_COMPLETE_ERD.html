@@ -136,6 +136,53 @@
         .tab-panel { display: none; }
         .tab-panel.active { display: block; }
 
+        .zoom-bar {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 10px;
+            background: #F0F5FB;
+            border: 1px solid #DDE5EF;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            width: fit-content;
+            user-select: none;
+        }
+        .zoom-bar button {
+            width: 28px; height: 28px;
+            border: 1px solid #C4D0DE;
+            border-radius: 6px;
+            background: #fff;
+            color: #1A2D4A;
+            font-size: 1.1em;
+            font-weight: 700;
+            cursor: pointer;
+            line-height: 1;
+            transition: background 0.12s;
+        }
+        .zoom-bar button:hover { background: #1A5FA8; color: #fff; border-color: #1A5FA8; }
+        .zoom-bar .zoom-label {
+            font-size: 0.82em;
+            font-weight: 600;
+            color: #1A2D4A;
+            min-width: 40px;
+            text-align: center;
+        }
+        .zoom-bar .zoom-hint {
+            font-size: 0.72em;
+            color: #8A9EBA;
+            margin-left: 4px;
+        }
+        .erd-wrap {
+            overflow: auto;
+            cursor: grab;
+        }
+        .erd-wrap.dragging { cursor: grabbing; }
+        .erd-wrap .mermaid {
+            transform-origin: top left;
+            display: inline-block;
+        }
+
         .domain-note {
             font-size: 0.82em;
             color: #5E7A94;
@@ -349,6 +396,15 @@
                 <button class="tab-btn" onclick="showTab(event,'d4')">④ Cards &amp; Fintech</button>
                 <button class="tab-btn" onclick="showTab(event,'d5')">⑤ Finance &amp; Compliance</button>
                 <button class="tab-btn" onclick="showTab(event,'d6')">⑥ Insurance &amp; Investments</button>
+            </div>
+
+            <!-- ZOOM CONTROLS -->
+            <div class="zoom-bar">
+                <button onclick="zoomOut()" title="Zoom out">−</button>
+                <span class="zoom-label" id="zoomLabel">100%</span>
+                <button onclick="zoomIn()" title="Zoom in">+</button>
+                <button onclick="zoomReset()" title="Reset zoom" style="font-size:0.85em;width:36px;">↺ Fit</button>
+                <span class="zoom-hint">· scroll wheel to zoom · drag to pan</span>
             </div>
 
             <!-- DOMAIN 1: Customer & Accounts -->
@@ -1150,39 +1206,27 @@ erDiagram
 </div><!-- /container -->
 
 <script>
-    const MERMAID_CFG = {
+    // ── Mermaid init ────────────────────────────────────────────────────────────
+    mermaid.initialize({
         startOnLoad: false,
         theme: 'base',
         er: { diagramPadding: 24, layoutDirection: 'TB', minEntityWidth: 110, minEntityHeight: 75, useMaxWidth: true },
         themeVariables: {
-            primaryColor: '#EBF4FF',
-            primaryTextColor: '#1A2D4A',
-            primaryBorderColor: '#1A5FA8',
-            lineColor: '#0097A7',
-            secondaryColor: '#FFF8E1',
-            tertiaryColor: '#F0F5FB',
-            background: '#F7FAFD',
-            mainBkg: '#EBF4FF',
-            nodeBorder: '#1A5FA8',
-            clusterBkg: '#F0F5FB',
-            titleColor: '#1A2D4A',
-            edgeLabelBackground: '#FFFFFF',
-            attributeBackgroundColorEven: '#F0F7FF',
-            attributeBackgroundColorOdd: '#FFFFFF'
+            primaryColor: '#EBF4FF', primaryTextColor: '#1A2D4A',
+            primaryBorderColor: '#1A5FA8', lineColor: '#0097A7',
+            secondaryColor: '#FFF8E1', tertiaryColor: '#F0F5FB',
+            background: '#F7FAFD', mainBkg: '#EBF4FF',
+            nodeBorder: '#1A5FA8', clusterBkg: '#F0F5FB',
+            titleColor: '#1A2D4A', edgeLabelBackground: '#FFFFFF',
+            attributeBackgroundColorEven: '#F0F7FF', attributeBackgroundColorOdd: '#FFFFFF'
         }
-    };
-
-    mermaid.initialize(MERMAID_CFG);
+    });
 
     function renderTab(id) {
         const nodes = Array.from(document.querySelectorAll('#' + id + ' .mermaid'));
-        nodes.forEach(function(el) {
-            el.removeAttribute('data-processed');
-        });
-        mermaid.run({ nodes: nodes });
+        nodes.forEach(el => el.removeAttribute('data-processed'));
+        mermaid.run({ nodes });
     }
-
-    // Render first tab immediately (script is at end of body so DOM is ready)
     renderTab('d1');
 
     function showTab(evt, id) {
@@ -1191,7 +1235,66 @@ erDiagram
         document.getElementById(id).classList.add('active');
         evt.currentTarget.classList.add('active');
         renderTab(id);
+        zoomReset();
     }
+
+    // ── Zoom & Pan ──────────────────────────────────────────────────────────────
+    let scale = 1, panX = 0, panY = 0;
+    const STEP = 0.15, MIN = 0.25, MAX = 4;
+
+    function activeMermaid() {
+        return document.querySelector('.tab-panel.active .mermaid');
+    }
+    function applyTransform() {
+        const el = activeMermaid();
+        if (!el) return;
+        el.style.transform = `translate(${panX}px, ${panY}px) scale(${scale})`;
+        el.style.transformOrigin = 'top left';
+        document.getElementById('zoomLabel').textContent = Math.round(scale * 100) + '%';
+    }
+    function zoomIn()    { scale = Math.min(MAX, +(scale + STEP).toFixed(2)); applyTransform(); }
+    function zoomOut()   { scale = Math.max(MIN, +(scale - STEP).toFixed(2)); applyTransform(); }
+    function zoomReset() { scale = 1; panX = 0; panY = 0; applyTransform(); }
+
+    // Mouse-wheel zoom (centred on cursor position inside the wrap)
+    document.addEventListener('wheel', function(e) {
+        const wrap = e.target.closest('.erd-wrap');
+        if (!wrap) return;
+        e.preventDefault();
+        const rect = wrap.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left - wrap.scrollLeft;
+        const mouseY = e.clientY - rect.top  - wrap.scrollTop;
+        const prev = scale;
+        if (e.deltaY < 0) scale = Math.min(MAX, +(scale + STEP).toFixed(2));
+        else               scale = Math.max(MIN, +(scale - STEP).toFixed(2));
+        // Adjust pan so zoom stays centred on the cursor
+        panX -= mouseX * (scale - prev);
+        panY -= mouseY * (scale - prev);
+        applyTransform();
+    }, { passive: false });
+
+    // Click-drag pan
+    (function() {
+        let dragging = false, startX, startY, originX, originY;
+        document.addEventListener('mousedown', function(e) {
+            const wrap = e.target.closest('.erd-wrap');
+            if (!wrap) return;
+            dragging = true;
+            startX = e.clientX; startY = e.clientY;
+            originX = panX; originY = panY;
+            wrap.classList.add('dragging');
+        });
+        document.addEventListener('mousemove', function(e) {
+            if (!dragging) return;
+            panX = originX + (e.clientX - startX);
+            panY = originY + (e.clientY - startY);
+            applyTransform();
+        });
+        document.addEventListener('mouseup', function() {
+            dragging = false;
+            document.querySelectorAll('.erd-wrap').forEach(w => w.classList.remove('dragging'));
+        });
+    })();
 </script>
 </body>
 </html>
