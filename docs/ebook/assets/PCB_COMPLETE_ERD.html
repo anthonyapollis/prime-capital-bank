@@ -202,7 +202,7 @@
             overflow-x: auto;
             min-height: 300px;
         }
-        .erd-wrap .mermaid svg { max-width: 100%; height: auto; }
+        .erd-wrap .mermaid svg { max-width: none; height: auto; }
 
         /* ── CARDS ── */
         .grid {
@@ -1210,7 +1210,7 @@ erDiagram
     mermaid.initialize({
         startOnLoad: false,
         theme: 'base',
-        er: { diagramPadding: 24, layoutDirection: 'TB', minEntityWidth: 110, minEntityHeight: 75, useMaxWidth: true },
+        er: { diagramPadding: 24, layoutDirection: 'TB', minEntityWidth: 140, minEntityHeight: 90, useMaxWidth: false },
         themeVariables: {
             primaryColor: '#EBF4FF', primaryTextColor: '#1A2D4A',
             primaryBorderColor: '#1A5FA8', lineColor: '#0097A7',
