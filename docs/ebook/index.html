@@ -528,7 +528,8 @@
     <a href="#ch9"><span class="ch-num">9</span>Pipeline Orchestration</a>
     <a href="#ch10"><span class="ch-num">10</span>Business Intelligence</a>
     <a href="#ch11"><span class="ch-num">11</span>Data Governance</a>
-    <a href="#ch12"><span class="ch-num">12</span>Appendix</a>
+    <a href="#ch12"><span class="ch-num">12</span>SA Fintech Ecosystem</a>
+    <a href="#ch13"><span class="ch-num">13</span>Appendix</a>
   </nav>
   <div id="sidebar-footer">
     Confidential — Internal Use Only<br>
@@ -1372,10 +1373,141 @@ prime_capital_bank (metastore)
   </div>
 </section>
 
-<!-- ===== CHAPTER 12: APPENDIX ===== -->
+<!-- ===== CHAPTER 12: SA FINTECH ECOSYSTEM ===== -->
 <section class="chapter" id="ch12">
   <div class="chapter-header">
     <div class="chapter-label">Chapter 12</div>
+    <h2 class="chapter-title">SA Fintech Ecosystem &amp; Cards</h2>
+    <p class="chapter-intro">Prime Capital Bank's integration with South Africa's leading fintech payment partners — Yoco, SnapScan, PayFast, Peach Payments, and PayGate — and the data model powering settlement analytics.</p>
+  </div>
+
+  <p>South Africa's payment technology landscape has undergone a structural transformation since 2012. The emergence of app-based QR payments, SME-focused card acquiring, and developer-first online gateways has created a fragmented but dynamic ecosystem sitting alongside the traditional card rails (Visa, Mastercard) and bank-owned channels (EFT, RTC). Prime Capital Bank has positioned itself as the settlement backbone for this ecosystem — providing acquiring bank infrastructure, settlement accounts, and risk oversight for five key fintech partners whose combined annual processing volume exceeds <strong>R27.8 billion</strong>.</p>
+
+  <div class="callout">
+    <div class="callout-title">Strategic Position</div>
+    <p>PCB acts as the <strong>acquiring bank</strong> for Yoco and SnapScan card transactions, and as the <strong>settlement bank</strong> for PayFast, Peach Payments, and PayGate online gateway flows. This gives the bank first-mover visibility into SME cash flow data — a powerful input to credit scoring models for the underbanked merchant segment.</p>
+  </div>
+
+  <h3>Partner Comparison</h3>
+  <table class="data-table">
+    <thead>
+      <tr><th>Partner</th><th>Platform Type</th><th>MDR</th><th>Min Fee</th><th>Avg Basket</th><th>Settlement</th><th>Merchant Base</th><th>Annual Volume</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Yoco</strong></td><td>POS / Card Acquiring</td><td>2.95%</td><td>—</td><td>R856</td><td>T+1</td><td>250,000+</td><td>R12.4B</td></tr>
+      <tr><td><strong>SnapScan</strong></td><td>QR Code Payment</td><td>2.75%</td><td>—</td><td>R340</td><td>T+1</td><td>80,000+</td><td>R3.2B</td></tr>
+      <tr><td><strong>PayFast</strong></td><td>Online Gateway</td><td>3.50%</td><td>R2.00</td><td>R1,251</td><td>T+2</td><td>45,000+</td><td>R8.1B</td></tr>
+      <tr><td><strong>Peach Payments</strong></td><td>Online Gateway</td><td>2.90%</td><td>R1.50</td><td>R980</td><td>T+1</td><td>12,000+</td><td>R2.3B</td></tr>
+      <tr><td><strong>PayGate</strong></td><td>Online Gateway</td><td>2.80%</td><td>R1.00</td><td>R1,891</td><td>T+2</td><td>8,000+</td><td>R1.8B</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Partner Profiles</h3>
+
+  <h4 style="color:var(--gold);margin:18px 0 8px">Yoco — South Africa's SME Payment Champion</h4>
+  <p>Founded in Cape Town in 2013, Yoco has grown to become South Africa's largest independent payment provider with over <strong>250,000 active SME merchants</strong>. The product line spans four card machine tiers — Yoco Go (R599), Yoco Khumo (R699), Yoco Neo (R1,499), and Yoco Counter + Neo Touch (R2,999) — serving the full spectrum from market traders to restaurant chains. Following its <strong>USD 83 million Series C raise in 2021</strong> (led by Dragoneer, with existing investors Partech and Quona), Yoco has expanded into business banking services including working capital loans, business insurance, and a business management app. The 2.95% MDR is among the most competitive in the POS category and has been the primary driver of merchant adoption versus traditional bank card machines at 3.5–5.0%.</p>
+
+  <h4 style="color:var(--gold);margin:18px 0 8px">SnapScan — Standard Bank's QR Payment Arm</h4>
+  <p>SnapScan pioneered QR-code-based payments in South Africa after its founding in 2012, and was acquired by Standard Bank in 2014. The platform requires <strong>no card machine</strong> — merchants display a static QR code and customers pay via the SnapScan app. This zero-hardware model dramatically lowered the barrier to entry for informal and pop-up merchants: food trucks, market vendors, street food traders, and event operators. The 2.75% MDR and R340 average basket reflect the hospitality and food-and-beverage concentration of its merchant base. As a Standard Bank subsidiary, SnapScan is a direct competitor of PCB in the SME merchant acquiring space, making PCB's settlement bank relationship strategically important for margin defence.</p>
+
+  <h4 style="color:var(--gold);margin:18px 0 8px">PayFast — South Africa's E-Commerce Gateway</h4>
+  <p>Founded in Cape Town in 2007, PayFast is the dominant online payment gateway for South African e-commerce with integrations across <strong>Shopify, WooCommerce, Magento, Wix, and PrestaShop</strong>. Its 20+ supported payment methods — including credit/debit cards, instant EFT, Mobicred, Zapper, and SiD Secure EFT — made it the default choice for SA merchants going online. Acquired by DPO Group in 2021 (which was itself subsequently acquired by Network International in 2022), PayFast now forms part of Africa's largest payment processing group. The 3.50% + R2.00 fee structure is the highest in the comparison set, justified by the complexity of multi-method checkout, fraud screening, and the broad integration ecosystem. The R1,251 average basket reflects the higher-value e-commerce purchase context.</p>
+
+  <h4 style="color:var(--gold);margin:18px 0 8px">Peach Payments — The Developer-First Gateway</h4>
+  <p>Peach Payments was founded in Cape Town in 2012 with a deliberate focus on API-first architecture and developer experience. Its REST API, hosted payment page, and tokenisation library are widely regarded as the most technically sophisticated in the SA market. Merchants include <strong>Superbalist, OneDayOnly, and major hospitality chains</strong>. The 2.90% + R1.50 fee structure is the most competitive among online gateways, reflecting a deliberate strategy to win mid-to-large merchants on economics. Peach Payments supports 3D Secure 2.0, recurring billing, and subscription management — capabilities driving rapid growth in the B2B SaaS and subscription commerce verticals. Settlement on T+1 versus competitors' T+2 provides a working capital advantage to merchants.</p>
+
+  <h4 style="color:var(--gold);margin:18px 0 8px">PayGate — The Enterprise Incumbent</h4>
+  <p>Established in Johannesburg in 2000, PayGate is one of the oldest SA online payment gateways and serves enterprise-tier merchants including large national retailers, travel agencies, and government e-services platforms. Also a DPO Group subsidiary (Network International), PayGate occupies the high-basket end of the market with a R1,891 average transaction value — reflecting the enterprise procurement, B2B invoice, and travel booking use cases. While its technology stack predates the API-first era, PayGate's strength lies in its deep enterprise integrations, recurring billing infrastructure, and 25+ years of institutional trust. PCB's settlement relationship with PayGate covers the largest average transaction values in the fintech portfolio.</p>
+
+  <h3>Annual Settlement Volume by Partner</h3>
+  <div style="position:relative;height:220px;margin:16px 0 8px">
+    <canvas id="ch12FintechBar"></canvas>
+  </div>
+  <p style="font-size:11px;color:var(--text-dim);margin-bottom:20px">2024 estimated annual gross settlement volumes (R billions). Source: PCB Acquiring System — FACT_FINTECH_SETTLEMENT aggregated.</p>
+
+  <h3>Monthly Settlement Trend — 2024</h3>
+  <div style="position:relative;height:220px;margin:16px 0 8px">
+    <canvas id="ch12FintechTrend"></canvas>
+  </div>
+  <p style="font-size:11px;color:var(--text-dim);margin-bottom:20px">Combined monthly gross volume across all five partners (R millions). Black Friday (November) and Festive Season (December) peaks clearly visible.</p>
+
+  <h3>SA Payment Ecosystem — Market Context</h3>
+  <p>The total South African card and digital payment market processes approximately <strong>R1.8 trillion per year</strong> across all channels. The five fintech partners integrated with PCB represent roughly 1.5% of this market by value but a disproportionately high share of <strong>SME merchant transaction count</strong> — the fastest-growing segment by number of merchants. Key macro drivers:</p>
+  <ul style="margin:10px 0 10px 24px;line-height:2">
+    <li>Card-not-present (CNP) fraud driving migration from EFT to card-on-file and 3DS2</li>
+    <li>SARB's Rapid Payments Programme (RPP) / PayShap launch (2023) increasing real-time competition</li>
+    <li>Tax incentives for POS adoption under the SARS VAT compliance drive</li>
+    <li>Informal economy formalisation — ±6 million previously cash-only merchants addressable</li>
+    <li>Smartphone penetration at 84% (GSMA 2024) enabling QR and tap-to-pay growth</li>
+  </ul>
+
+  <h3>Data Model: Cards &amp; Fintech Domain</h3>
+  <p>Two new Gold layer tables underpin the fintech analytics capability:</p>
+
+  <div class="code-block">
+<span class="cm">-- DIM_FINTECH: Reference dimension (5 rows — one per partner)</span>
+prime_capital.gold.dim_fintech
+├── fintech_sk          BIGINT    <span class="cm">surrogate key</span>
+├── fintech_id          STRING    <span class="cm">FT001 – FT005</span>
+├── fintech_name        STRING    <span class="cm">Yoco / SnapScan / PayFast / Peach / PayGate</span>
+├── platform_type       STRING    <span class="cm">POS Card Acquiring / QR / Online Gateway</span>
+├── fee_rate_pct        DECIMAL   <span class="cm">MDR as a percentage (2.75 – 3.50)</span>
+├── min_fee_zar         DECIMAL   <span class="cm">Per-transaction minimum (0.00 – 2.00)</span>
+├── target_segment      STRING    <span class="cm">SME / E-Commerce / Enterprise</span>
+├── active_merchants_est INT      <span class="cm">Live merchant count</span>
+├── annual_volume_zar_bn DECIMAL  <span class="cm">Estimated annual volume (R billions)</span>
+└── settlement_days     INT       <span class="cm">T+N settlement cycle</span>
+
+<span class="cm">-- FACT_FINTECH_SETTLEMENT: Monthly grain (60 rows — 12 months × 5 partners)</span>
+prime_capital.gold.fact_fintech_settlement
+├── settlement_sk           BIGINT    <span class="cm">surrogate key</span>
+├── fintech_sk              BIGINT    <span class="cm">FK → dim_fintech</span>
+├── settlement_month        DATE      <span class="cm">Month-end date (partition key)</span>
+├── total_transactions      BIGINT    <span class="cm">Transaction count</span>
+├── gross_volume_zar        DECIMAL   <span class="cm">Gross merchant volume settled</span>
+├── merchant_fees_zar       DECIMAL   <span class="cm">Fee revenue (gross_volume × MDR)</span>
+├── interchange_fees_zar    DECIMAL   <span class="cm">Fees paid to card networks</span>
+├── net_settlement_zar      DECIMAL   <span class="cm">Amount settled to merchants</span>
+├── avg_transaction_zar     DECIMAL   <span class="cm">Average basket value</span>
+├── chargebacks_count       INT       <span class="cm">Chargeback volume</span>
+├── chargeback_ratio_pct    DECIMAL   <span class="cm">Chargeback rate (%)</span>
+├── failed_transactions     INT       <span class="cm">Declines and failures</span>
+├── failure_rate_pct        DECIMAL   <span class="cm">Failure rate (%)</span>
+└── new_merchants_onboarded INT       <span class="cm">Net new merchant additions</span>
+  </div>
+
+  <h3>Chargeback Ratio by Partner</h3>
+  <div style="position:relative;height:200px;margin:16px 0 8px">
+    <canvas id="ch12ChargebackBar"></canvas>
+  </div>
+  <p style="font-size:11px;color:var(--text-dim);margin-bottom:20px">Average annual chargeback ratio (%) by partner. POS/QR channels show lower rates than online gateways due to card-present authentication and biometric verification. Industry benchmark: &lt;0.20%.</p>
+
+  <h3>Integration Architecture</h3>
+  <p>The fintech settlement data flows into PCB's data platform through a dedicated acquiring integration pipeline:</p>
+  <div class="code-block">
+Fintech Partner Acquiring System
+  └─ Daily Settlement Report (CSV / SFTP / API)
+       └─ Azure Data Factory — Bronze ingestion
+            └─ bronze.cards.fintech_settlement_raw
+                 └─ Silver cleanse &amp; validate
+                      └─ silver.cards.fintech_settlement
+                           └─ Gold aggregation (monthly grain)
+                                └─ gold.fact_fintech_settlement
+                                     ├─ Power BI: Cards &amp; Fintech Dashboard
+                                     ├─ ML Feature Store: merchant_risk_features
+                                     └─ Regulatory: Card Scheme Settlement Report
+  </div>
+
+  <div class="callout">
+    <div class="callout-title">Business Value: SME Credit Scoring</div>
+    <p>The monthly <code>gross_volume_zar</code> and <code>new_merchants_onboarded</code> signals from <code>FACT_FINTECH_SETTLEMENT</code> feed directly into PCB's <strong>SME Credit Risk ML model</strong>. Merchants with 6+ months of consistent settlement history and sub-0.15% chargeback ratios qualify for pre-approved business credit lines — reducing manual underwriting time from 5 days to under 4 hours and expanding credit access to the underbanked SME segment.</p>
+  </div>
+</section>
+
+<!-- ===== CHAPTER 13: APPENDIX ===== -->
+<section class="chapter" id="ch13">
+  <div class="chapter-header">
+    <div class="chapter-label">Chapter 13</div>
     <h2 class="chapter-title">Appendix</h2>
     <p class="chapter-intro">Glossary of banking and data terms, table catalog reference, and contact information.</p>
   </div>
@@ -1387,6 +1519,7 @@ prime_capital_bank (metastore)
     </thead>
     <tbody>
       <tr><td><strong>AML</strong></td><td>Anti-Money Laundering — regulatory framework for detecting and preventing money laundering activities.</td></tr>
+      <tr><td><strong>Acquiring Bank</strong></td><td>The bank that processes card payments on behalf of merchants. PCB acts as acquiring bank for Yoco and SnapScan transactions, giving it first-party data on SME cash flows.</td></tr>
       <tr><td><strong>AUC-ROC</strong></td><td>Area Under the Receiver Operating Characteristic curve — primary performance metric for classification ML models.</td></tr>
       <tr><td><strong>BA700</strong></td><td>SARB's standard bank return for monthly prudential data submission by registered banks.</td></tr>
       <tr><td><strong>Basel III</strong></td><td>International regulatory framework for bank capital adequacy, stress testing, and liquidity risk, implemented by SARB.</td></tr>
@@ -1400,6 +1533,7 @@ prime_capital_bank (metastore)
       <tr><td><strong>IFRS 9</strong></td><td>International Financial Reporting Standard 9 — the accounting standard governing classification, measurement, and impairment of financial instruments.</td></tr>
       <tr><td><strong>LCR</strong></td><td>Liquidity Coverage Ratio — Basel III metric requiring banks to hold sufficient high-quality liquid assets to survive a 30-day stress scenario.</td></tr>
       <tr><td><strong>LGD</strong></td><td>Loss Given Default — estimate of the percentage of EAD the bank will lose if a borrower defaults.</td></tr>
+      <tr><td><strong>MDR</strong></td><td>Merchant Discount Rate — the percentage fee charged to a merchant on each payment transaction. PCB's fintech partners charge between 2.75% (SnapScan) and 3.50% (PayFast).</td></tr>
       <tr><td><strong>Medallion Architecture</strong></td><td>A data design pattern organising data in Bronze (raw), Silver (clean), and Gold (analytical) quality tiers.</td></tr>
       <tr><td><strong>MLflow</strong></td><td>Open-source ML lifecycle platform for experiment tracking, model packaging, and model registry.</td></tr>
       <tr><td><strong>NSFR</strong></td><td>Net Stable Funding Ratio — Basel III metric requiring banks to maintain stable funding relative to assets over a 1-year horizon.</td></tr>
@@ -1411,7 +1545,9 @@ prime_capital_bank (metastore)
       <tr><td><strong>SCD2</strong></td><td>Slowly Changing Dimension Type 2 — a dimension table design that preserves historical attribute values with effective and expiry dates.</td></tr>
       <tr><td><strong>SIFI</strong></td><td>Systemically Important Financial Institution — a bank whose failure could pose systemic risk to the financial system.</td></tr>
       <tr><td><strong>STR</strong></td><td>Suspicious Transaction Report — a mandatory report submitted to the Financial Intelligence Centre under FICA.</td></tr>
+      <tr><td><strong>PayShap</strong></td><td>South Africa's real-time low-value payment scheme launched in 2023 under SARB's Rapid Payments Programme (RPP). Competes with fintech QR payment channels for instant consumer payments.</td></tr>
       <tr><td><strong>Unity Catalog</strong></td><td>Databricks' centralised data governance solution providing unified metastore, access control, lineage, and auditing across workspaces.</td></tr>
+      <tr><td><strong>Yoco</strong></td><td>South Africa's largest independent POS card acquiring platform, serving 250,000+ SME merchants. PCB is the acquiring bank for Yoco transactions, settling at T+1 at 2.95% MDR.</td></tr>
     </tbody>
   </table>
 
@@ -2052,6 +2188,116 @@ Ratio'],
         x: { grid: { display: false }, ticks: mkTick() },
         y: { grid: mkGrid(), ticks: { ...mkTick(), callback: v => 'R'+v+'M' }, title: { display: true, text: 'Rm / month', color: '#7A94B0', font: {size:10} } },
         y2: { position: 'right', grid: { display: false }, ticks: { ...mkTick(), callback: v => 'R'+v+'M' }, title: { display: true, text: 'Cumulative Rm', color: GREEN, font: {size:10} } }
+      }
+    }
+  });
+
+  // ═══════════════════════════════════════════════════════════
+  // CHAPTER 12 — SA Fintech Annual Volume Bar
+  // ═══════════════════════════════════════════════════════════
+  new Chart(document.getElementById('ch12FintechBar'), {
+    type: 'bar',
+    data: {
+      labels: ['Yoco', 'SnapScan', 'PayFast', 'Peach Payments', 'PayGate'],
+      datasets: [{
+        label: 'Annual Settlement Volume (R billions)',
+        data: [12.4, 3.2, 8.1, 2.3, 1.8],
+        backgroundColor: [GOLD, BLUE, TEAL, GREEN, LBLUE],
+        borderRadius: 4
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: ctx => ` R${ctx.parsed.x.toFixed(1)}B` } }
+      },
+      scales: {
+        x: { grid: mkGrid(), ticks: { ...mkTick(), callback: v => 'R'+v+'B' } },
+        y: { grid: { display: false }, ticks: mkTick() }
+      }
+    }
+  });
+
+  // ═══════════════════════════════════════════════════════════
+  // CHAPTER 12 — Monthly Combined Settlement Trend
+  // ═══════════════════════════════════════════════════════════
+  const fintechMonths = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  // Combined gross_volume_zar per month (sum of all 5 partners, in R millions)
+  const fintechVol = [
+    (764.8+106.5+178.4+57.2+72.7),
+    (702.9+97.8+170.3+53.2+67.5),
+    (801.9+115.8+198.7+62.1+78.6),
+    (838.6+121.4+203.1+65.8+81.9),
+    (719.9+101.6+181.7+57.7+71.2),
+    (696.1+95.1+173.5+54.5+66.4),
+    (824.1+113.8+207.3+64.7+82.9),
+    (878.1+128.8+220.4+70.9+89.6),
+    (787.5+111.8+201.8+63.2+79.4),
+    (907.4+135.6+230.8+73.3+99.3),
+    (1187.0+178.5+310.9+96.5+134.2),
+    (1382.2+208.3+373.3+115.8+163.1)
+  ].map(v => +v.toFixed(1));
+
+  new Chart(document.getElementById('ch12FintechTrend'), {
+    type: 'line',
+    data: {
+      labels: fintechMonths,
+      datasets: [{
+        label: 'Combined Monthly Volume (Rm)',
+        data: fintechVol,
+        borderColor: GOLD,
+        backgroundColor: 'rgba(201,168,76,0.12)',
+        pointBackgroundColor: GOLD,
+        pointRadius: 4,
+        tension: 0.3,
+        fill: true
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false },
+        tooltip: { callbacks: { label: ctx => ` R${ctx.parsed.y.toFixed(0)}M` } } },
+      scales: {
+        x: { grid: { display: false }, ticks: mkTick() },
+        y: { grid: mkGrid(), ticks: { ...mkTick(), callback: v => 'R'+v+'M' } }
+      }
+    }
+  });
+
+  // ═══════════════════════════════════════════════════════════
+  // CHAPTER 12 — Chargeback Ratio by Partner
+  // ═══════════════════════════════════════════════════════════
+  new Chart(document.getElementById('ch12ChargebackBar'), {
+    type: 'bar',
+    data: {
+      labels: ['Yoco', 'SnapScan', 'PayFast', 'Peach Payments', 'PayGate'],
+      datasets: [{
+        label: 'Avg Chargeback Ratio (%)',
+        data: [0.13, 0.15, 0.20, 0.20, 0.20],
+        backgroundColor: [GREEN, GREEN, '#E8A070', '#E8A070', '#E8A070'],
+        borderRadius: 4
+      }, {
+        label: 'Industry Benchmark (0.20%)',
+        data: [0.20, 0.20, 0.20, 0.20, 0.20],
+        type: 'line',
+        borderColor: RED,
+        borderDash: [5, 3],
+        pointRadius: 0,
+        fill: false
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'bottom', labels: { padding: 10, boxWidth: 10 } },
+        tooltip: { callbacks: { label: ctx => ` ${ctx.parsed.y.toFixed(2)}%` } }
+      },
+      scales: {
+        x: { grid: { display: false }, ticks: mkTick() },
+        y: { grid: mkGrid(), min: 0, max: 0.25,
+             ticks: { ...mkTick(), callback: v => v.toFixed(2)+'%' } }
       }
     }
   });

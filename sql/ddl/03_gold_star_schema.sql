@@ -1002,5 +1002,114 @@ TBLPROPERTIES (
 );
 
 -- =============================================================================
+-- SA FINTECH PARTNER LAYER
+-- Cards & Fintech domain — Yoco / SnapScan / PayFast / Peach Payments / PayGate
+-- =============================================================================
+
+-- ---------------------------------------------------------------------------
+-- DIM_FINTECH
+--    South African fintech payment partners integrated with PCB's acquiring layer.
+--    SCD1 (fees / merchant counts update in-place; historical via fact table).
+-- ---------------------------------------------------------------------------
+DROP TABLE IF EXISTS prime_capital.gold.dim_fintech;
+
+CREATE TABLE prime_capital.gold.dim_fintech (
+  fintech_sk            BIGINT   GENERATED ALWAYS AS IDENTITY COMMENT 'Surrogate key',
+  fintech_id            STRING   NOT NULL COMMENT 'Business key e.g. FT001',
+  fintech_name          STRING   NOT NULL COMMENT 'Partner name e.g. Yoco',
+  platform_type         STRING   COMMENT 'POS Card Acquiring / QR Code Payment / Online Payment Gateway',
+  settlement_currency   STRING   NOT NULL DEFAULT 'ZAR' COMMENT 'Settlement currency (ZAR)',
+  fee_rate_pct          DECIMAL(6,4) COMMENT 'Standard merchant discount rate (%)',
+  min_fee_zar           DECIMAL(8,2) COMMENT 'Minimum per-transaction fee (ZAR)',
+  target_segment        STRING   COMMENT 'SME / E-Commerce / Enterprise',
+  founded_year          INT      COMMENT 'Year company founded',
+  hq_city               STRING   COMMENT 'Head office city',
+  hq_province           STRING   COMMENT 'Head office province',
+  parent_company        STRING   COMMENT 'Parent / holding company',
+  is_active             BOOLEAN  NOT NULL DEFAULT true COMMENT 'Active integration flag',
+  integration_type      STRING   COMMENT 'REST API / SDK / Plugin / Legacy API',
+  avg_basket_zar        DECIMAL(10,2) COMMENT 'Average transaction basket size (ZAR)',
+  active_merchants_est  INT      COMMENT 'Estimated active merchant base',
+  annual_volume_zar_bn  DECIMAL(8,2)  COMMENT 'Estimated annual settlement volume (R billions)',
+  settlement_days       INT      COMMENT 'T+N settlement cycle',
+  notes                 STRING   COMMENT 'Business context and market notes',
+  _gold_loaded_at       TIMESTAMP COMMENT 'Gold load timestamp'
+)
+COMMENT 'Gold fintech partner dimension. Reference data for SA payment ecosystem partners integrated into PCBs card acquiring and settlement infrastructure.'
+TBLPROPERTIES ('quality.layer' = 'gold', 'delta.autoOptimize.optimizeWrite' = 'true');
+
+INSERT INTO prime_capital.gold.dim_fintech
+  (fintech_id, fintech_name, platform_type, settlement_currency, fee_rate_pct, min_fee_zar,
+   target_segment, founded_year, hq_city, hq_province, parent_company, is_active,
+   integration_type, avg_basket_zar, active_merchants_est, annual_volume_zar_bn, settlement_days, notes)
+VALUES
+  ('FT001', 'Yoco',           'POS Card Acquiring',       'ZAR', 2.9500, 0.00,
+   'SME',            2013, 'Cape Town',    'Western Cape', 'Yoco Technologies',                 true,
+   'REST API / Mobile SDK', 856.40, 250000, 12.40, 1,
+   'SAs largest independent payment provider. Card machines: Go (R599), Khumo (R699), Neo (R1499), Counter+Neo Touch (R2999). 250K+ merchants in retail, hospitality, and services. Raised USD83M Series C (2021).'),
+
+  ('FT002', 'SnapScan',       'QR Code Payment',          'ZAR', 2.7500, 0.00,
+   'SME and Consumer', 2012, 'Cape Town', 'Western Cape', 'Standard Bank Group',                true,
+   'QR Integration / App SDK', 340.20, 80000, 3.20, 1,
+   'Acquired by Standard Bank (2014). QR-code payments — no card machine required. Popular in restaurants, markets, pop-up stores, and events. Direct SME competitor to Yoco in hospitality segment.'),
+
+  ('FT003', 'PayFast',        'Online Payment Gateway',   'ZAR', 3.5000, 2.00,
+   'E-Commerce',     2007, 'Cape Town',    'Western Cape', 'DPO Group (Network International)', true,
+   'Plugin (Shopify / WooCommerce / Magento) + API', 1250.60, 45000, 8.10, 2,
+   'SAs most widely used online gateway. Supports 20+ payment methods: instant EFT, credit/debit cards, Mobicred, and Zapper. Critical for e-commerce with Takealot Marketplace integration. Acquired by DPO Group (2021).'),
+
+  ('FT004', 'Peach Payments', 'Online Payment Gateway',   'ZAR', 2.9000, 1.50,
+   'Mid-Market E-Commerce', 2012, 'Cape Town', 'Western Cape', 'Peach Payments (Pty) Ltd',      true,
+   'REST API / SDK / Hosted Page', 980.30, 12000, 2.30, 1,
+   'API-first developer-friendly gateway. Serves mid-to-large merchants including Superbalist and OneDayOnly. Supports 3D Secure 2.0, tokenisation, and recurring billing. Growing in B2B SaaS vertical.'),
+
+  ('FT005', 'PayGate',        'Online Payment Gateway',   'ZAR', 2.8000, 1.00,
+   'Enterprise E-Commerce', 2000, 'Johannesburg', 'Gauteng', 'DPO Group (Network International)', true,
+   'Legacy API / Hosted Checkout', 1890.70, 8000, 1.80, 2,
+   'One of SAs oldest gateways (est. 2000). Enterprise merchants including large retailers, travel agencies, and government e-services. Strong in recurring billing. Complementary to PayFast in the DPO portfolio.');
+
+
+-- ---------------------------------------------------------------------------
+-- FACT_FINTECH_SETTLEMENT
+--    Monthly settlement summary per fintech partner.
+--    Grain = one row per partner per month.
+--    Source = PCB acquiring system settlement reports (S3 daily → monthly agg).
+-- ---------------------------------------------------------------------------
+DROP TABLE IF EXISTS prime_capital.gold.fact_fintech_settlement;
+
+CREATE TABLE prime_capital.gold.fact_fintech_settlement (
+  settlement_sk         BIGINT   GENERATED ALWAYS AS IDENTITY COMMENT 'Surrogate key',
+  settlement_id         STRING   NOT NULL COMMENT 'Natural key e.g. FS-2024-01-FT001',
+  fintech_sk            BIGINT   NOT NULL COMMENT 'FK to dim_fintech',
+  fintech_id            STRING   NOT NULL COMMENT 'Business key',
+  fintech_name          STRING   COMMENT 'Denormalised partner name',
+  settlement_month      DATE     NOT NULL COMMENT 'Month-end date (partition key)',
+  -- Volume metrics
+  total_transactions    BIGINT   COMMENT 'Total transaction count for month',
+  gross_volume_zar      DECIMAL(18,2) COMMENT 'Gross merchant volume settled (ZAR)',
+  merchant_fees_zar     DECIMAL(18,2) COMMENT 'Fees collected from merchants (ZAR)',
+  interchange_fees_zar  DECIMAL(18,2) COMMENT 'Interchange fees paid to card networks (ZAR)',
+  net_settlement_zar    DECIMAL(18,2) COMMENT 'Net amount settled to merchants after fees (ZAR)',
+  avg_transaction_zar   DECIMAL(10,2) COMMENT 'Average transaction value (ZAR)',
+  -- Risk metrics
+  chargebacks_count     INT      COMMENT 'Number of chargebacks raised',
+  chargeback_ratio_pct  DECIMAL(6,4) COMMENT 'Chargeback ratio (chargebacks / total txns %)',
+  failed_transactions   INT      COMMENT 'Number of failed / declined transactions',
+  failure_rate_pct      DECIMAL(6,4) COMMENT 'Failure rate (failed / total txns %)',
+  -- Growth metrics
+  new_merchants_onboarded INT    COMMENT 'New merchants onboarded in the month',
+  active_merchants      INT      COMMENT 'Active merchant count at month-end',
+  -- Audit
+  _gold_loaded_at       TIMESTAMP COMMENT 'Gold load timestamp'
+)
+COMMENT 'Gold fintech settlement fact table. Grain = one row per fintech partner per calendar month. Captures gross volume, net settlement, fee revenue, chargeback risk, and merchant growth for the SA Cards and Fintech domain.'
+PARTITIONED BY (settlement_month)
+TBLPROPERTIES (
+  'delta.autoOptimize.optimizeWrite' = 'true',
+  'delta.dataSkippingNumIndexedCols' = '4',
+  'quality.layer'                    = 'gold'
+);
+
+-- =============================================================================
 -- END OF GOLD STAR SCHEMA DDL
 -- =============================================================================

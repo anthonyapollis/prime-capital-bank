@@ -643,58 +643,48 @@ erDiagram
 
             <!-- DOMAIN 4: Cards & Fintech -->
             <div class="tab-panel" id="d4">
-                <div class="domain-note">Card acquiring, fintech partner settlement (Yoco / SnapScan / PayFast), loyalty points earn &amp; redemption, SWIFT/EFT payment flows.</div>
+                <div class="domain-note">Card acquiring, SA fintech partner settlement (Yoco / SnapScan / PayFast / Peach Payments / PayGate), SWIFT/EFT payment flows. Monthly grain: 60 settlement rows across 5 partners × 12 months.</div>
                 <div class="erd-wrap">
 <div class="mermaid">
 erDiagram
-    DIM_MERCHANT ||--o{ FACT_CARD_TRANSACTION : "processed_at"
-    DIM_MERCHANT ||--o{ FACT_FINTECH_TRANSACTION : "settles_via"
-    DIM_MERCHANT ||--o{ FACT_MERCHANT_DAILY_SUMMARY : "daily_stats"
-    DIM_FINTECH ||--o{ FACT_FINTECH_TRANSACTION : "routes"
-    DIM_LOYALTY_PROGRAM ||--o{ FACT_LOYALTY_POINTS : "issues"
-    DIM_MERCHANT ||--o{ DIM_LOYALTY_PROGRAM : "operates"
-    DIM_COUNTERPARTY ||--o{ FACT_PAYMENT : "settles_with"
+    DIM_MERCHANT ||--o{ FACT_CARD_TRANSACTION : "processes"
+    DIM_FINTECH ||--o{ FACT_FINTECH_SETTLEMENT : "settles_via"
+    DIM_COUNTERPARTY ||--o{ FACT_PAYMENT : "receives"
     DIM_CURRENCY ||--o{ FACT_PAYMENT : "denominated_in"
     DIM_DATE ||--o{ FACT_CARD_TRANSACTION : "tx_date"
+    DIM_DATE ||--o{ FACT_FINTECH_SETTLEMENT : "settle_month"
 
     DIM_MERCHANT {
-        int    merchant_sk PK
-        string merchant_id
-        string merchant_name
-        string mcc_code
-        string merchant_category
-        string city
-        string province
+        int     merchant_sk PK
+        string  merchant_id
+        string  merchant_name
+        string  mcc_code
+        string  merchant_category
+        string  city
+        string  province
         boolean is_online
     }
     DIM_FINTECH {
-        int    fintech_sk PK
-        string fintech_name
-        string platform_type
-        string settlement_currency
+        int     fintech_sk PK
+        string  fintech_id
+        string  fintech_name
+        string  platform_type
         decimal fee_rate_pct
+        int     settlement_days
         boolean is_active
     }
-    DIM_LOYALTY_PROGRAM {
-        int    loyalty_sk PK
-        string program_name
-        string program_type
-        decimal earn_rate
-        decimal redemption_rate
-        int    expiry_months
-    }
     DIM_COUNTERPARTY {
-        int    counterparty_sk PK
-        string swift_code
-        string bank_name
-        string country
-        string settlement_method
+        int     counterparty_sk PK
+        string  swift_code
+        string  bank_name
+        string  country
+        string  settle_method
     }
     DIM_CURRENCY {
         int     currency_sk PK
         string  currency_code
         string  currency_name
-        decimal to_zar_rate
+        decimal zar_rate
         date    rate_date
     }
     FACT_CARD_TRANSACTION {
@@ -703,21 +693,20 @@ erDiagram
         int     merchant_sk FK
         int     date_sk FK
         decimal amount_zar
-        string  mcc_code
+        string  card_brand
         decimal fraud_score
-        boolean is_online
         boolean is_contactless
     }
-    FACT_FINTECH_TRANSACTION {
+    FACT_FINTECH_SETTLEMENT {
         bigint  ft_sk PK
-        bigint  card_tx_sk FK
         int     fintech_sk FK
-        int     merchant_sk FK
-        decimal gross_amount
-        decimal merchant_fee
-        decimal interchange_fee
-        decimal net_settlement
-        string  settlement_status
+        int     date_sk FK
+        bigint  total_transactions
+        decimal gross_volume_zar
+        decimal merchant_fees_zar
+        decimal net_settlement_zar
+        decimal avg_transaction_zar
+        int     chargebacks_count
     }
     FACT_PAYMENT {
         bigint  pay_sk PK
@@ -728,25 +717,6 @@ erDiagram
         string  payment_type
         string  swift_ref
         string  status
-        int     processing_hours
-    }
-    FACT_LOYALTY_POINTS {
-        bigint  lp_sk PK
-        int     loyalty_sk FK
-        bigint  customer_sk FK
-        int     points_earned
-        int     points_redeemed
-        int     points_balance
-        decimal redemption_value_zar
-    }
-    FACT_MERCHANT_DAILY_SUMMARY {
-        bigint  mds_sk PK
-        int     merchant_sk FK
-        int     date_sk FK
-        int     total_transactions
-        decimal total_volume_zar
-        decimal avg_basket_size
-        decimal net_settlement_zar
     }
 </div>
                 </div>

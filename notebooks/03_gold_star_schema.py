@@ -503,6 +503,7 @@ for table_name, zorder_cols in OPTIMIZE_TARGETS:
 ALL_GOLD_TABLES = [
     "dim_customer","dim_account","dim_date","dim_product",
     "fact_transaction","fact_loan_portfolio","fact_fraud_event","fact_aml_case",
+    "dim_fintech","fact_fintech_settlement",
     "etl_watermarks",
 ]
 
@@ -512,5 +513,105 @@ for table_name in ALL_GOLD_TABLES:
         log.info(f"VACUUM {table_name} — done")
     except Exception as e:
         log.warning(f"VACUUM failed for {table_name}: {e}")
+
+# COMMAND ----------
+
+# -- ## 11 — SA Fintech Partner Layer (DIM_FINTECH + FACT_FINTECH_SETTLEMENT)
+
+# COMMAND ----------
+
+log.info("FINTECH: loading DIM_FINTECH + FACT_FINTECH_SETTLEMENT")
+
+# ── DIM_FINTECH: upsert from seed CSV ──────────────────────────────────────────
+
+ADLS_FINTECH_PARTNERS = "abfss://raw@pcbadls.dfs.core.windows.net/seeds/fintech_partners.csv"
+
+df_fintech = (
+    spark.read.csv(ADLS_FINTECH_PARTNERS, header=True, inferSchema=True)
+    .select(
+        F.col("fintech_id"),
+        F.col("fintech_name"),
+        F.col("platform_type"),
+        F.col("settlement_currency"),
+        F.col("fee_rate_pct").cast("decimal(6,4)"),
+        F.col("min_fee_zar").cast("decimal(8,2)"),
+        F.col("target_segment"),
+        F.col("founded_year").cast("int"),
+        F.col("hq_city"),
+        F.col("hq_province"),
+        F.col("parent_company"),
+        F.col("is_active").cast("boolean"),
+        F.col("integration_type"),
+        F.col("avg_basket_zar").cast("decimal(10,2)"),
+        F.col("active_merchants_est").cast("int"),
+        F.col("annual_volume_zar_bn").cast("decimal(8,2)"),
+        F.col("settlement_days").cast("int"),
+        F.col("notes"),
+        F.current_timestamp().alias("_gold_loaded_at"),
+    )
+)
+
+if spark.catalog.tableExists(f"`{GOLD}`.`dim_fintech`"):
+    DeltaTable.forName(spark, f"`{GOLD}`.`dim_fintech`").alias("tgt").merge(
+        df_fintech.alias("src"),
+        "tgt.fintech_id = src.fintech_id"
+    ).whenMatchedUpdateAll().whenNotMatchedInsertAll().execute()
+else:
+    df_fintech.write.format("delta").saveAsTable(f"`{GOLD}`.`dim_fintech`")
+
+log.info("DIM_FINTECH — upsert complete (%d rows)", df_fintech.count())
+
+# ── FACT_FINTECH_SETTLEMENT: incremental load from monthly settlement CSV ──────
+
+ADLS_FINTECH_SETTLEMENTS = "abfss://raw@pcbadls.dfs.core.windows.net/seeds/fintech_settlements.csv"
+FINTECH_WATERMARK = get_watermark("fact_fintech_settlement")
+
+df_settlements_raw = (
+    spark.read.csv(ADLS_FINTECH_SETTLEMENTS, header=True, inferSchema=True)
+)
+
+# Join to DIM_FINTECH to resolve fintech_sk
+df_dim = spark.table(f"`{GOLD}`.`dim_fintech`").select("fintech_sk", "fintech_id")
+
+df_settlements = (
+    df_settlements_raw
+    .join(df_dim, "fintech_id", "left")
+    .select(
+        F.col("settlement_id"),
+        F.col("fintech_sk"),
+        F.col("fintech_id"),
+        F.col("fintech_name"),
+        F.to_date(F.col("settlement_month")).alias("settlement_month"),
+        F.col("total_transactions").cast("bigint"),
+        F.col("gross_volume_zar").cast("decimal(18,2)"),
+        F.col("merchant_fees_zar").cast("decimal(18,2)"),
+        F.col("interchange_fees_zar").cast("decimal(18,2)"),
+        F.col("net_settlement_zar").cast("decimal(18,2)"),
+        F.col("avg_transaction_zar").cast("decimal(10,2)"),
+        F.col("chargebacks_count").cast("int"),
+        F.col("chargeback_ratio_pct").cast("decimal(6,4)"),
+        F.col("failed_transactions").cast("int"),
+        F.col("failure_rate_pct").cast("decimal(6,4)"),
+        F.col("new_merchants_onboarded").cast("int"),
+        F.col("active_merchants").cast("int"),
+        F.current_timestamp().alias("_gold_loaded_at"),
+    )
+)
+
+if spark.catalog.tableExists(f"`{GOLD}`.`fact_fintech_settlement`"):
+    DeltaTable.forName(spark, f"`{GOLD}`.`fact_fintech_settlement`").alias("tgt").merge(
+        df_settlements.alias("src"),
+        "tgt.settlement_id = src.settlement_id"
+    ).whenMatchedUpdateAll().whenNotMatchedInsertAll().execute()
+    log.info("FACT_FINTECH_SETTLEMENT — incremental MERGE complete")
+else:
+    (df_settlements.write
+        .format("delta")
+        .partitionBy("settlement_month")
+        .saveAsTable(f"`{GOLD}`.`fact_fintech_settlement`"))
+    log.info("FACT_FINTECH_SETTLEMENT — initial load complete")
+
+update_watermark("fact_fintech_settlement", RUN_ID)
+log.info("FINTECH layer — ALL DONE")
 
 print(f"\n03_gold_star_schema — COMPLETE  (run_id={RUN_ID})")
