@@ -1172,11 +1172,20 @@ erDiagram
         }
     });
 
+    const _rendered = new Set(['d1']); // d1 rendered by startOnLoad (it is visible on load)
+
     function showTab(evt, id) {
         document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         document.getElementById(id).classList.add('active');
         evt.currentTarget.classList.add('active');
+
+        // Mermaid only renders elements visible at page load.
+        // For every other tab, trigger a render on first open.
+        if (!_rendered.has(id)) {
+            _rendered.add(id);
+            mermaid.run({ nodes: document.querySelectorAll('#' + id + ' .mermaid') });
+        }
     }
 </script>
 </body>
