@@ -5,13 +5,15 @@ Generates realistic South African banking data for ADLS Gen2 raw zone loading.
 
 Datasets produced
 -----------------
-  customers.csv       500,000 rows
-  accounts.csv      1,200,000 rows
-  transactions.csv 10,000,000 rows  (written in 500K chunks)
-  loans.csv           300,000 rows
-  card_transactions.csv 2,000,000 rows
-  payments.csv        500,000 rows
-  fraud_alerts.csv     50,000 rows
+  customers.csv            500,000 rows
+  accounts.csv           1,200,000 rows
+  transactions.csv      10,000,000 rows  (written in 500K chunks)
+  loans.csv                300,000 rows
+  card_transactions.csv  2,000,000 rows
+  payments.csv             500,000 rows
+  fraud_alerts.csv          50,000 rows
+  fintech_partners.csv           5 rows  (DIM_FINTECH — SA payment partners)
+  fintech_settlements.csv       60 rows  (FACT_FINTECH_SETTLEMENT — 12 months × 5 partners)
 
 Output directory: C:\\Users\\Anthony.DESKTOP-ES5HL78\\Documents\\Prime Capital Bank\\data\\
 
@@ -249,6 +251,96 @@ CARD_TX_WEIGHTS = [0.45, 0.05, 0.10, 0.02, 0.20, 0.12, 0.06]
 
 CARD_TX_STATUSES = ["Approved", "Declined", "Reversed", "Pending"]
 CARD_TX_STATUS_WEIGHTS = [0.88, 0.06, 0.04, 0.02]
+
+# SA Fintech partner reference data
+SA_FINTECH_PARTNERS = [
+    {
+        "fintech_id": "FT001", "fintech_name": "Yoco",
+        "platform_type": "POS Card Acquiring", "settlement_currency": "ZAR",
+        "fee_rate_pct": 2.95, "min_fee_zar": 0.00,
+        "target_segment": "SME", "founded_year": 2013,
+        "hq_city": "Cape Town", "hq_province": "Western Cape",
+        "parent_company": "Yoco Technologies", "is_active": True,
+        "integration_type": "REST API / Mobile SDK",
+        "avg_basket_zar": 856.40, "active_merchants_est": 250_000,
+        "annual_volume_zar_bn": 12.4, "settlement_days": 1,
+        "notes": (
+            "SAs largest independent payment provider. Card machines: "
+            "Yoco Go (R599), Yoco Khumo (R699), Yoco Neo (R1499), "
+            "Yoco Counter+Neo Touch (R2999). Raised USD83M Series C (2021). "
+            "250K+ merchants in retail, hospitality, and services."
+        ),
+    },
+    {
+        "fintech_id": "FT002", "fintech_name": "SnapScan",
+        "platform_type": "QR Code Payment", "settlement_currency": "ZAR",
+        "fee_rate_pct": 2.75, "min_fee_zar": 0.00,
+        "target_segment": "SME and Consumer", "founded_year": 2012,
+        "hq_city": "Cape Town", "hq_province": "Western Cape",
+        "parent_company": "Standard Bank Group", "is_active": True,
+        "integration_type": "QR Integration / App SDK",
+        "avg_basket_zar": 340.20, "active_merchants_est": 80_000,
+        "annual_volume_zar_bn": 3.2, "settlement_days": 1,
+        "notes": (
+            "Acquired by Standard Bank (2014). QR-code payments — no card machine "
+            "required. Popular in restaurants, markets, pop-up stores, and events. "
+            "Competes directly with Yoco for the SME hospitality segment."
+        ),
+    },
+    {
+        "fintech_id": "FT003", "fintech_name": "PayFast",
+        "platform_type": "Online Payment Gateway", "settlement_currency": "ZAR",
+        "fee_rate_pct": 3.50, "min_fee_zar": 2.00,
+        "target_segment": "E-Commerce", "founded_year": 2007,
+        "hq_city": "Cape Town", "hq_province": "Western Cape",
+        "parent_company": "DPO Group (Network International)", "is_active": True,
+        "integration_type": "Plugin (Shopify / WooCommerce / Magento) + API",
+        "avg_basket_zar": 1250.60, "active_merchants_est": 45_000,
+        "annual_volume_zar_bn": 8.1, "settlement_days": 2,
+        "notes": (
+            "SAs most widely used online gateway. Supports 20+ payment methods "
+            "including instant EFT, credit/debit cards, Mobicred, and Zapper. "
+            "Critical for e-commerce with Takealot Marketplace integration. "
+            "Acquired by DPO Group (2021)."
+        ),
+    },
+    {
+        "fintech_id": "FT004", "fintech_name": "Peach Payments",
+        "platform_type": "Online Payment Gateway", "settlement_currency": "ZAR",
+        "fee_rate_pct": 2.90, "min_fee_zar": 1.50,
+        "target_segment": "Mid-Market E-Commerce", "founded_year": 2012,
+        "hq_city": "Cape Town", "hq_province": "Western Cape",
+        "parent_company": "Peach Payments (Pty) Ltd", "is_active": True,
+        "integration_type": "REST API / SDK / Hosted Page",
+        "avg_basket_zar": 980.30, "active_merchants_est": 12_000,
+        "annual_volume_zar_bn": 2.3, "settlement_days": 1,
+        "notes": (
+            "API-first developer-friendly gateway. Serves mid-to-large merchants "
+            "including Superbalist and OneDayOnly. Supports 3D Secure 2.0, "
+            "tokenisation, and recurring billing. Growing in B2B SaaS vertical."
+        ),
+    },
+    {
+        "fintech_id": "FT005", "fintech_name": "PayGate",
+        "platform_type": "Online Payment Gateway", "settlement_currency": "ZAR",
+        "fee_rate_pct": 2.80, "min_fee_zar": 1.00,
+        "target_segment": "Enterprise E-Commerce", "founded_year": 2000,
+        "hq_city": "Johannesburg", "hq_province": "Gauteng",
+        "parent_company": "DPO Group (Network International)", "is_active": True,
+        "integration_type": "Legacy API / Hosted Checkout",
+        "avg_basket_zar": 1890.70, "active_merchants_est": 8_000,
+        "annual_volume_zar_bn": 1.8, "settlement_days": 2,
+        "notes": (
+            "One of SAs oldest gateways (est. 2000). Enterprise merchants including "
+            "large retailers, travel agencies, and government e-services. Strong in "
+            "recurring billing. Complementary to PayFast in the DPO portfolio."
+        ),
+    },
+]
+
+# Monthly seasonality multipliers for fintech settlement volume (Jan–Dec)
+# Reflects Black Friday (Nov +35%), Festive Season (Dec +45%), Jan dip (-12%)
+FINTECH_SEASONAL = [0.88, 0.81, 0.93, 0.97, 0.84, 0.81, 0.96, 1.02, 0.91, 1.05, 1.37, 1.60]
 
 
 # ---------------------------------------------------------------------------
@@ -1125,6 +1217,109 @@ def generate_fraud_alerts(customers: pd.DataFrame, accounts: pd.DataFrame) -> pd
 
 
 # ---------------------------------------------------------------------------
+# Fintech partner & settlement generation
+# ---------------------------------------------------------------------------
+
+def generate_fintech_partners() -> pd.DataFrame:
+    """Write DIM_FINTECH seed data — 5 SA payment partners."""
+    print("\n[6/8] Generating fintech_partners.csv ...")
+    df = pd.DataFrame(SA_FINTECH_PARTNERS)
+    out = OUTPUT_DIR / "fintech_partners.csv"
+    df.to_csv(out, index=False)
+    print(f"  Saved: {out}  ({len(df):,} rows)")
+    return df
+
+
+def generate_fintech_settlements() -> pd.DataFrame:
+    """Generate FACT_FINTECH_SETTLEMENT — monthly grain, 12 months × 5 partners (2024)."""
+    print("\n[7/8] Generating fintech_settlements.csv ...")
+
+    rows = []
+    year = 2024
+    rng = np.random.default_rng(RANDOM_SEED + 99)
+
+    # Base monthly transaction counts per partner (before seasonality)
+    BASE_TX = {
+        "FT001": 920_000,   # Yoco — highest volume
+        "FT002": 330_000,   # SnapScan
+        "FT003": 152_000,   # PayFast
+        "FT004":  62_000,   # Peach Payments
+        "FT005":  41_000,   # PayGate
+    }
+    # Chargeback rate per partner (annualised %)
+    CB_RATE = {"FT001": 0.0013, "FT002": 0.0015, "FT003": 0.0020, "FT004": 0.0020, "FT005": 0.0020}
+    # Base active merchant count at Jan 2024 and monthly growth
+    MERCH_BASE   = {"FT001": 247_300, "FT002": 79_240, "FT003": 44_120, "FT004": 11_680, "FT005": 7_840}
+    MERCH_GROWTH = {"FT001": 1_850,   "FT002": 550,    "FT003": 390,    "FT004": 175,    "FT005": 100}
+
+    for partner in SA_FINTECH_PARTNERS:
+        pid   = partner["fintech_id"]
+        name  = partner["fintech_name"]
+        fee   = partner["fee_rate_pct"] / 100
+        min_f = partner["min_fee_zar"]
+        avg_b = partner["avg_basket_zar"]
+        sdays = partner["settlement_days"]
+
+        for month_idx in range(12):
+            month_num   = month_idx + 1
+            season      = FINTECH_SEASONAL[month_idx]
+            month_end   = datetime.date(year, month_num,
+                            [31,29,31,30,31,30,31,31,30,31,30,31][month_idx])
+            settle_id   = f"FS-{year}-{month_num:02d}-{pid}"
+
+            # Transaction count with seasonality + small noise
+            tx_base  = int(BASE_TX[pid] * season)
+            noise    = rng.integers(-int(tx_base * 0.03), int(tx_base * 0.03))
+            total_tx = max(1, tx_base + noise)
+
+            # Volume
+            gross    = round(total_tx * avg_b, 2)
+            merch_f  = round(max(total_tx * min_f, gross * fee), 2)
+            # Interchange: ~2% of gross for POS/QR, ~1.5% for online
+            ix_rate  = 0.020 if sdays == 1 else 0.015
+            interch  = round(gross * ix_rate, 2)
+            net_set  = round(gross - merch_f - interch, 2)
+
+            # Chargebacks
+            cb_count = int(total_tx * CB_RATE[pid])
+            cb_ratio = round(CB_RATE[pid] * 100, 4)
+
+            # Failed transactions (1% baseline)
+            fail_ct  = int(total_tx * 0.01)
+            fail_r   = 1.00
+
+            # Merchant growth
+            new_m    = int(MERCH_GROWTH[pid] * season * (1 + rng.uniform(-0.1, 0.1)))
+            active_m = MERCH_BASE[pid] + month_idx * MERCH_GROWTH[pid]
+
+            rows.append({
+                "settlement_id":          settle_id,
+                "settlement_month":       month_end.isoformat(),
+                "fintech_id":             pid,
+                "fintech_name":           name,
+                "platform_type":          partner["platform_type"],
+                "total_transactions":     total_tx,
+                "gross_volume_zar":       gross,
+                "merchant_fees_zar":      merch_f,
+                "interchange_fees_zar":   interch,
+                "net_settlement_zar":     net_set,
+                "avg_transaction_zar":    round(avg_b + rng.uniform(-2, 2), 2),
+                "chargebacks_count":      cb_count,
+                "chargeback_ratio_pct":   cb_ratio,
+                "new_merchants_onboarded": new_m,
+                "active_merchants":       int(active_m),
+                "failed_transactions":    fail_ct,
+                "failure_rate_pct":       fail_r,
+            })
+
+    df = pd.DataFrame(rows)
+    out = OUTPUT_DIR / "fintech_settlements.csv"
+    df.to_csv(out, index=False)
+    print(f"  Saved: {out}  ({len(df):,} rows)")
+    return df
+
+
+# ---------------------------------------------------------------------------
 # Summary
 # ---------------------------------------------------------------------------
 
@@ -1138,6 +1333,7 @@ def print_summary():
     files = [
         "customers.csv", "accounts.csv", "transactions.csv",
         "loans.csv", "card_transactions.csv", "payments.csv", "fraud_alerts.csv",
+        "fintech_partners.csv", "fintech_settlements.csv",
     ]
     total_size = 0.0
     for fname in files:
@@ -1178,6 +1374,8 @@ if __name__ == "__main__":
     generate_card_transactions(accounts_df)
     generate_payments(accounts_df)
     generate_fraud_alerts(customers_df, accounts_df)
+    generate_fintech_partners()
+    generate_fintech_settlements()
 
     elapsed = time.time() - t0
     print(f"\n  Total generation time: {elapsed:.1f}s ({elapsed/60:.1f} min)")
