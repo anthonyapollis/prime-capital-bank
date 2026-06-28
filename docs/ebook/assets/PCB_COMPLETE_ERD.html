@@ -1150,8 +1150,8 @@ erDiagram
 </div><!-- /container -->
 
 <script>
-    mermaid.initialize({
-        startOnLoad: true,
+    const MERMAID_CFG = {
+        startOnLoad: false,
         theme: 'base',
         er: { diagramPadding: 24, layoutDirection: 'TB', minEntityWidth: 110, minEntityHeight: 75, useMaxWidth: true },
         themeVariables: {
@@ -1170,22 +1170,27 @@ erDiagram
             attributeBackgroundColorEven: '#F0F7FF',
             attributeBackgroundColorOdd: '#FFFFFF'
         }
-    });
+    };
 
-    const _rendered = new Set(['d1']); // d1 rendered by startOnLoad (it is visible on load)
+    mermaid.initialize(MERMAID_CFG);
+
+    function renderTab(id) {
+        const nodes = Array.from(document.querySelectorAll('#' + id + ' .mermaid'));
+        nodes.forEach(function(el) {
+            el.removeAttribute('data-processed');
+        });
+        mermaid.run({ nodes: nodes });
+    }
+
+    // Render first tab immediately (script is at end of body so DOM is ready)
+    renderTab('d1');
 
     function showTab(evt, id) {
         document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         document.getElementById(id).classList.add('active');
         evt.currentTarget.classList.add('active');
-
-        // Mermaid only renders elements visible at page load.
-        // For every other tab, trigger a render on first open.
-        if (!_rendered.has(id)) {
-            _rendered.add(id);
-            mermaid.run({ nodes: document.querySelectorAll('#' + id + ' .mermaid') });
-        }
+        renderTab(id);
     }
 </script>
 </body>
