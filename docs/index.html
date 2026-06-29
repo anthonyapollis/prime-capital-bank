@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prime Capital Bank — Data Intelligence Platform</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --navy:#0A1628;--navy2:#0F2040;--gold:#C9A84C;--cyan:#00B4CC;
+  --bg:#F0F4FA;--card:#FFFFFF;--text:#1C2B3A;--dim:#6B7E92;
+  --border:#DDE5F0;
+}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+/* ── HERO ── */
+.hero{
+  background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 60%,#0A2545 100%);
+  padding:60px 40px 50px;text-align:center;position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 50% 120%,rgba(0,180,204,0.12),transparent);
+}
+.logo-ring{
+  width:72px;height:72px;border-radius:50%;
+  background:linear-gradient(135deg,var(--gold),#E8C56A);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 20px;font-size:28px;font-weight:900;color:var(--navy);
+  box-shadow:0 0 0 8px rgba(201,168,76,0.18);
+  position:relative;z-index:1;
+}
+.hero h1{font-size:32px;font-weight:800;color:#fff;letter-spacing:-0.5px;position:relative;z-index:1;}
+.hero h1 span{color:var(--gold);}
+.hero p{font-size:14px;color:rgba(255,255,255,0.55);margin-top:10px;letter-spacing:0.5px;position:relative;z-index:1;}
+.badges{display:flex;gap:8px;justify-content:center;margin-top:18px;flex-wrap:wrap;position:relative;z-index:1;}
+.badge{
+  padding:4px 12px;border-radius:20px;font-size:11px;font-weight:600;letter-spacing:0.5px;
+}
+.badge-azure{background:rgba(0,120,212,0.25);color:#60AEFF;border:1px solid rgba(0,120,212,0.4);}
+.badge-databricks{background:rgba(255,102,0,0.2);color:#FF9D5C;border:1px solid rgba(255,102,0,0.35);}
+.badge-gold{background:rgba(201,168,76,0.2);color:var(--gold);border:1px solid rgba(201,168,76,0.4);}
+.badge-ml{background:rgba(0,180,204,0.2);color:var(--cyan);border:1px solid rgba(0,180,204,0.35);}
+
+/* ── STATS BAR ── */
+.stats-bar{
+  background:var(--navy2);border-bottom:1px solid rgba(201,168,76,0.2);
+  display:flex;justify-content:center;gap:0;
+}
+.stat{
+  padding:16px 32px;text-align:center;border-right:1px solid rgba(255,255,255,0.06);
+}
+.stat:last-child{border-right:none;}
+.stat-value{font-size:20px;font-weight:800;color:var(--gold);}
+.stat-label{font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:1px;text-transform:uppercase;margin-top:2px;}
+
+/* ── MAIN GRID ── */
+.main{max-width:1100px;margin:0 auto;padding:40px 24px;}
+.section-title{
+  font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--dim);margin-bottom:16px;padding-bottom:8px;
+  border-bottom:1px solid var(--border);
+}
+
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:40px;}
+
+.card{
+  background:var(--card);border:1px solid var(--border);border-radius:14px;
+  overflow:hidden;transition:all 0.2s;text-decoration:none;color:inherit;
+  display:flex;flex-direction:column;box-shadow:0 1px 4px rgba(0,0,0,0.05);
+}
+.card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.10);border-color:var(--cyan);}
+.card-accent{height:4px;}
+.card-body{padding:20px;flex:1;}
+.card-icon{font-size:28px;margin-bottom:12px;}
+.card-title{font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px;}
+.card-desc{font-size:12px;color:var(--dim);line-height:1.6;}
+.card-footer{
+  padding:10px 20px;background:var(--bg);border-top:1px solid var(--border);
+  font-size:11px;color:var(--dim);display:flex;align-items:center;gap:6px;
+}
+.card-footer .arrow{margin-left:auto;color:var(--cyan);font-size:14px;}
+
+.tag{
+  display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;
+  font-weight:600;background:var(--bg);color:var(--dim);margin-top:8px;margin-right:4px;
+}
+
+/* ── PIPELINE TIMELINE ── */
+.pipeline{
+  background:var(--card);border:1px solid var(--border);border-radius:14px;
+  padding:24px;margin-bottom:40px;
+}
+.pipeline-stages{display:flex;align-items:center;gap:0;overflow-x:auto;}
+.stage{
+  flex:1;min-width:120px;text-align:center;padding:16px 8px;position:relative;
+}
+.stage-dot{
+  width:40px;height:40px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;margin:0 auto 8px;
+  border:2px solid transparent;
+}
+.stage-name{font-size:12px;font-weight:700;}
+.stage-sub{font-size:10px;color:var(--dim);margin-top:2px;}
+.stage-arrow{color:var(--border);font-size:20px;flex-shrink:0;align-self:flex-start;padding-top:20px;}
+.s-bronze .stage-dot{background:rgba(205,127,50,0.15);border-color:#CD7F32;color:#CD7F32;}
+.s-bronze .stage-name{color:#CD7F32;}
+.s-silver .stage-dot{background:rgba(192,192,192,0.15);border-color:#909090;color:#909090;}
+.s-silver .stage-name{color:#808080;}
+.s-gold   .stage-dot{background:rgba(201,168,76,0.15);border-color:var(--gold);color:var(--gold);}
+.s-gold   .stage-name{color:var(--gold);}
+.s-ml     .stage-dot{background:rgba(0,180,204,0.15);border-color:var(--cyan);color:var(--cyan);}
+.s-ml     .stage-name{color:var(--cyan);}
+.s-bi     .stage-dot{background:rgba(103,58,183,0.15);border-color:#9575CD;color:#9575CD;}
+.s-bi     .stage-name{color:#9575CD;}
+
+/* ── ML MODELS ── */
+.ml-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-bottom:40px;}
+.ml-card{
+  background:var(--card);border:1px solid var(--border);border-radius:10px;
+  padding:16px;
+}
+.ml-name{font-size:12px;font-weight:700;margin-bottom:4px;}
+.ml-metric{font-size:20px;font-weight:800;color:var(--cyan);}
+.ml-metric-label{font-size:10px;color:var(--dim);}
+.ml-algo{font-size:10px;color:var(--dim);margin-top:6px;}
+progress{width:100%;height:6px;border-radius:3px;margin-top:8px;appearance:none;}
+progress::-webkit-progress-bar{background:var(--bg);border-radius:3px;}
+progress::-webkit-progress-value{background:var(--cyan);border-radius:3px;}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--navy);color:rgba(255,255,255,0.35);
+  text-align:center;padding:20px;font-size:11px;margin-top:20px;
+  border-top:1px solid rgba(201,168,76,0.2);
+}
+footer a{color:var(--gold);text-decoration:none;}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="logo-ring">PCB</div>
+  <h1>Prime Capital Bank<br><span>Data Intelligence Platform</span></h1>
+  <p>Azure Databricks · Medallion Architecture · 12 ML Models · SARB Regulated · ZAR 500B Portfolio</p>
+  <div class="badges">
+    <span class="badge badge-azure">Azure Databricks</span>
+    <span class="badge badge-databricks">Delta Lake</span>
+    <span class="badge badge-gold">Power BI</span>
+    <span class="badge badge-ml">12 ML Models</span>
+    <span class="badge badge-azure">Azure SQL</span>
+    <span class="badge badge-gold">dbt Core</span>
+  </div>
+</div>
+
+<div class="stats-bar">
+  <div class="stat"><div class="stat-value">500K</div><div class="stat-label">Customers</div></div>
+  <div class="stat"><div class="stat-value">12M+</div><div class="stat-label">Transactions</div></div>
+  <div class="stat"><div class="stat-value">R500B</div><div class="stat-label">Portfolio</div></div>
+  <div class="stat"><div class="stat-value">200</div><div class="stat-label">Branches</div></div>
+  <div class="stat"><div class="stat-value">12</div><div class="stat-label">ML Models</div></div>
+  <div class="stat"><div class="stat-value">9</div><div class="stat-label">Provinces</div></div>
+</div>
+
+<div class="main">
+
+  <!-- PRIMARY DELIVERABLES -->
+  <div class="section-title">Primary Deliverables</div>
+  <div class="card-grid">
+
+    <a class="card" href="ebook/index.html">
+      <div class="card-accent" style="background:linear-gradient(90deg,#C9A84C,#E8C56A)"></div>
+      <div class="card-body">
+        <div class="card-icon">📖</div>
+        <div class="card-title">Technical Ebook</div>
+        <div class="card-desc">12-chapter deep-dive covering the full data platform: architecture, Medallion pipeline, ML models, fintech integration, SARB regulatory reporting, and AML compliance.</div>
+        <span class="tag">12 Chapters</span><span class="tag">Chart.js</span><span class="tag">Self-contained</span>
+      </div>
+      <div class="card-footer">docs/ebook/index.html <span class="arrow">→</span></div>
+    </a>
+
+    <a class="card" href="ebook/assets/PCB_COMPLETE_ERD.html">
+      <div class="card-accent" style="background:linear-gradient(90deg,#00B4CC,#0077A8)"></div>
+      <div class="card-body">
+        <div class="card-icon">🗂</div>
+        <div class="card-title">Interactive ERD</div>
+        <div class="card-desc">6-tab Mermaid entity-relationship diagram covering all Gold schema domains: Core Banking, Lending, AML, Cards & Fintech, Treasury, and Regulatory. Includes zoom/pan controls.</div>
+        <span class="tag">6 Domains</span><span class="tag">Mermaid.js</span><span class="tag">Zoom/Pan</span>
+      </div>
+      <div class="card-footer">docs/ebook/assets/PCB_COMPLETE_ERD.html <span class="arrow">→</span></div>
+    </a>
+
+    <a class="card" href="ebook/assets/PCB_MERCHANT_MAP.html">
+      <div class="card-accent" style="background:linear-gradient(90deg,#2ECC71,#27AE60)"></div>
+      <div class="card-body">
+        <div class="card-icon">🗺</div>
+        <div class="card-title">Merchant Intelligence Map</div>
+        <div class="card-desc">Interactive Leaflet.js map of SA merchant transaction volumes and fraud hotspots. Toggle between Sales Volume, Fraud Heatmap, and AML Case views across 9 provinces.</div>
+        <span class="tag">Leaflet.js</span><span class="tag">SA Provinces</span><span class="tag">Live Filters</span>
+      </div>
+      <div class="card-footer">docs/ebook/assets/PCB_MERCHANT_MAP.html <span class="arrow">→</span></div>
+    </a>
+
+    <a class="card" href="../presentation/prime_capital_bank_overview.html">
+      <div class="card-accent" style="background:linear-gradient(90deg,#8E44AD,#9B59B6)"></div>
+      <div class="card-body">
+        <div class="card-icon">📊</div>
+        <div class="card-title">Executive Presentation</div>
+        <div class="card-desc">15-slide investor-grade deck: platform overview, KPIs, ML model performance, financial highlights, regulatory posture, and fintech ecosystem integration.</div>
+        <span class="tag">15 Slides</span><span class="tag">Chart.js</span><span class="tag">Exec-ready</span>
+      </div>
+      <div class="card-footer">presentation/prime_capital_bank_overview.html <span class="arrow">→</span></div>
+    </a>
+
+    <a class="card" href="data_dictionary/index.html">
+      <div class="card-accent" style="background:linear-gradient(90deg,#E67E22,#D35400)"></div>
+      <div class="card-body">
+        <div class="card-icon">📚</div>
+        <div class="card-title">Data Dictionary</div>
+        <div class="card-desc">Searchable column-level documentation for all 15 Gold schema tables: data types, primary/foreign keys, nullable constraints, and business descriptions with SA regulatory context.</div>
+        <span class="tag">15 Tables</span><span class="tag">Searchable</span><span class="tag">All Layers</span>
+      </div>
+      <div class="card-footer">docs/data_dictionary/index.html <span class="arrow">→</span></div>
+    </a>
+
+    <a class="card" href="Prime_Capital_Bank_Analytics.xlsx">
+      <div class="card-accent" style="background:linear-gradient(90deg,#27AE60,#1E8449)"></div>
+      <div class="card-body">
+        <div class="card-icon">📈</div>
+        <div class="card-title">Analytics Workbook</div>
+        <div class="card-desc">Excel financial model with KPI dashboards, loan portfolio analysis, fraud trend charts, fintech revenue breakdown, and branch performance summary. Dynamic formulas throughout.</div>
+        <span class="tag">Excel</span><span class="tag">Dynamic</span><span class="tag">KPI Dashboards</span>
+      </div>
+      <div class="card-footer">docs/Prime_Capital_Bank_Analytics.xlsx <span class="arrow">→</span></div>
+    </a>
+
+  </div>
+
+  <!-- PIPELINE ARCHITECTURE -->
+  <div class="section-title">Medallion Pipeline Architecture</div>
+  <div class="pipeline">
+    <div class="pipeline-stages">
+      <div class="stage s-bronze">
+        <div class="stage-dot">🥉</div>
+        <div class="stage-name">BRONZE</div>
+        <div class="stage-sub">Raw Ingestion<br>ADLS Gen2</div>
+      </div>
+      <div class="stage-arrow">›</div>
+      <div class="stage s-silver">
+        <div class="stage-dot">🪙</div>
+        <div class="stage-name">SILVER</div>
+        <div class="stage-sub">Cleansed &amp; Typed<br>Delta Tables</div>
+      </div>
+      <div class="stage-arrow">›</div>
+      <div class="stage s-gold">
+        <div class="stage-dot">🥇</div>
+        <div class="stage-name">GOLD</div>
+        <div class="stage-sub">Star Schema<br>15 Dim + Fact Tables</div>
+      </div>
+      <div class="stage-arrow">›</div>
+      <div class="stage s-ml">
+        <div class="stage-dot">🤖</div>
+        <div class="stage-name">ML LAYER</div>
+        <div class="stage-sub">12 Models<br>MLflow Tracking</div>
+      </div>
+      <div class="stage-arrow">›</div>
+      <div class="stage s-bi">
+        <div class="stage-dot">📊</div>
+        <div class="stage-name">CONSUMPTION</div>
+        <div class="stage-sub">Power BI + dbt<br>Regulatory Reports</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ML MODELS -->
+  <div class="section-title">Machine Learning Models</div>
+  <div class="ml-grid">
+    <div class="ml-card">
+      <div class="ml-name">Credit Scoring</div>
+      <div class="ml-metric">0.847</div>
+      <div class="ml-metric-label">AUC-ROC</div>
+      <div class="ml-algo">XGBoost · 500K customers</div>
+      <progress value="84.7" max="100"></progress>
+    </div>
+    <div class="ml-card">
+      <div class="ml-name">Fraud Detection</div>
+      <div class="ml-metric">0.921</div>
+      <div class="ml-metric-label">AUC-ROC</div>
+      <div class="ml-algo">Random Forest · Real-time</div>
+      <progress value="92.1" max="100"></progress>
+    </div>
+    <div class="ml-card">
+      <div class="ml-name">AML Risk Scoring</div>
+      <div class="ml-metric">0.889</div>
+      <div class="ml-metric-label">AUC-ROC</div>
+      <div class="ml-algo">Gradient Boost · FIC Act</div>
+      <progress value="88.9" max="100"></progress>
+    </div>
+    <div class="ml-card">
+      <div class="ml-name">Churn Prediction</div>
+      <div class="ml-metric">78.3%</div>
+      <div class="ml-metric-label">Accuracy</div>
+      <div class="ml-algo">Logistic Regression</div>
+      <progress value="78.3" max="100"></progress>
+    </div>
+    <div class="ml-card">
+      <div class="ml-name">Loan Default (PD)</div>
+      <div class="ml-metric">0.832</div>
+      <div class="ml-metric-label">AUC-ROC</div>
+      <div class="ml-algo">XGBoost · IFRS 9 ECL</div>
+      <progress value="83.2" max="100"></progress>
+    </div>
+    <div class="ml-card">
+      <div class="ml-name">CLV Segmentation</div>
+      <div class="ml-metric">0.74</div>
+      <div class="ml-metric-label">Silhouette Score</div>
+      <div class="ml-algo">K-Means · 5 Clusters</div>
+      <progress value="74" max="100"></progress>
+    </div>
+    <div class="ml-card">
+      <div class="ml-name">NLP Sentiment</div>
+      <div class="ml-metric">83.1%</div>
+      <div class="ml-metric-label">F1 Score</div>
+      <div class="ml-algo">BERT · Complaints</div>
+      <progress value="83.1" max="100"></progress>
+    </div>
+    <div class="ml-card">
+      <div class="ml-name">Tx Anomaly Detection</div>
+      <div class="ml-metric">0.876</div>
+      <div class="ml-metric-label">Precision@K</div>
+      <div class="ml-algo">Isolation Forest</div>
+      <progress value="87.6" max="100"></progress>
+    </div>
+  </div>
+
+  <!-- CODE ASSETS -->
+  <div class="section-title">Code &amp; SQL Assets</div>
+  <div class="card-grid">
+    <a class="card" href="../notebooks/04_ml_credit_scoring.py">
+      <div class="card-accent" style="background:var(--cyan)"></div>
+      <div class="card-body">
+        <div class="card-icon">🐍</div>
+        <div class="card-title">Databricks Notebooks (8)</div>
+        <div class="card-desc">Bronze ingestion → Silver transformation → Gold star schema → ML credit scoring → Fraud detection → AML risk → Regulatory reporting → Pipeline orchestration.</div>
+        <span class="tag">PySpark</span><span class="tag">Delta Live Tables</span><span class="tag">MLflow</span>
+      </div>
+      <div class="card-footer">notebooks/ — 8 notebooks <span class="arrow">→</span></div>
+    </a>
+    <a class="card" href="../sql/ddl/03_gold_star_schema.sql">
+      <div class="card-accent" style="background:var(--gold)"></div>
+      <div class="card-body">
+        <div class="card-icon">🗄</div>
+        <div class="card-title">SQL DDL Scripts</div>
+        <div class="card-desc">Bronze, Silver, and Gold schema DDL. Full Gold star schema with DIM/FACT tables, fintech settlement model, and seed data for all reference dimensions.</div>
+        <span class="tag">DDL</span><span class="tag">DML</span><span class="tag">Views</span>
+      </div>
+      <div class="card-footer">sql/ — DDL + DML + Views <span class="arrow">→</span></div>
+    </a>
+    <a class="card" href="../dbt/models/marts/mart_customer_360.sql">
+      <div class="card-accent" style="background:#FF6B35"></div>
+      <div class="card-body">
+        <div class="card-icon">🔁</div>
+        <div class="card-title">dbt Models (14)</div>
+        <div class="card-desc">Staging, intermediate, and mart layers. Includes customer 360, credit risk, fraud intelligence, regulatory capital adequacy, and treasury analytics marts.</div>
+        <span class="tag">dbt Core</span><span class="tag">Jinja</span><span class="tag">Tests</span>
+      </div>
+      <div class="card-footer">dbt/models/ — 14 models <span class="arrow">→</span></div>
+    </a>
+    <a class="card" href="../scripts/data_gen/generate_bank_data.py">
+      <div class="card-accent" style="background:#9C27B0"></div>
+      <div class="card-body">
+        <div class="card-icon">⚙</div>
+        <div class="card-title">Data Generator</div>
+        <div class="card-desc">Python script generating 500K customers, 12M+ transactions, 280K loans, fraud alerts, card transactions, SA fintech settlements, and AML cases — all SA-realistic.</div>
+        <span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Faker</span>
+      </div>
+      <div class="card-footer">scripts/data_gen/generate_bank_data.py <span class="arrow">→</span></div>
+    </a>
+  </div>
+
+  <!-- SA FINTECH PARTNERS -->
+  <div class="section-title">SA Fintech Ecosystem Partners</div>
+  <div class="card-grid">
+    <div class="card" style="cursor:default;">
+      <div class="card-accent" style="background:#E74C3C"></div>
+      <div class="card-body">
+        <div class="card-icon">🟥</div>
+        <div class="card-title">Yoco · FT001</div>
+        <div class="card-desc">POS Card Acquiring. MDR 2.95%. ~250K active merchants. R12.4B annual volume. T+1 settlement. Raised $83M Series C.</div>
+        <span class="tag">Low Risk</span><span class="tag">SME Focus</span>
+      </div>
+    </div>
+    <div class="card" style="cursor:default;">
+      <div class="card-accent" style="background:#3498DB"></div>
+      <div class="card-body">
+        <div class="card-icon">📱</div>
+        <div class="card-title">SnapScan · FT002</div>
+        <div class="card-desc">QR Code Payments. MDR 2.75% (lowest). ~180K merchants. R8.7B volume. T+1 settlement. Standard Bank subsidiary since 2014.</div>
+        <span class="tag">Low Risk</span><span class="tag">QR Payments</span>
+      </div>
+    </div>
+    <div class="card" style="cursor:default;">
+      <div class="card-accent" style="background:#27AE60"></div>
+      <div class="card-body">
+        <div class="card-icon">🛒</div>
+        <div class="card-title">PayFast · FT003</div>
+        <div class="card-desc">E-commerce Gateway. MDR 3.50% + R2.00 min. ~95K merchants. R15.2B volume. T+2 settlement. DPO Group member.</div>
+        <span class="tag">Medium Risk</span><span class="tag">E-commerce</span>
+      </div>
+    </div>
+    <div class="card" style="cursor:default;">
+      <div class="card-accent" style="background:#8E44AD"></div>
+      <div class="card-body">
+        <div class="card-icon">🔗</div>
+        <div class="card-title">Peach Payments · FT004</div>
+        <div class="card-desc">API Payment Platform. MDR 2.90% + R1.50 min. ~32K merchants. R6.8B volume. T+1 settlement. API-first mid-market.</div>
+        <span class="tag">Low Risk</span><span class="tag">API-first</span>
+      </div>
+    </div>
+    <div class="card" style="cursor:default;">
+      <div class="card-accent" style="background:#F39C12"></div>
+      <div class="card-body">
+        <div class="card-icon">🏦</div>
+        <div class="card-title">PayGate · FT005</div>
+        <div class="card-desc">Enterprise Payment Gateway. MDR 2.80% + R1.00 min. ~18K enterprise merchants. R22.1B volume. T+2 settlement. DPO Group.</div>
+        <span class="tag">Medium Risk</span><span class="tag">Enterprise</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <strong style="color:rgba(255,255,255,0.7)">Prime Capital Bank — Data Intelligence Platform</strong> &nbsp;|&nbsp;
+  Portfolio Project by Anthony Apollis &nbsp;|&nbsp;
+  <a href="mailto:anthony.apollis@gmail.com">anthony.apollis@gmail.com</a> &nbsp;|&nbsp;
+  Azure Databricks · Medallion Architecture · 12 ML Models · SARB Regulated
+</footer>
+
+</body>
+</html>

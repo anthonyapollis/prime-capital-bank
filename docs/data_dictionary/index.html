@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prime Capital Bank — Data Dictionary</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --navy:#0A1628;--gold:#C9A84C;--cyan:#00B4CC;
+  --bg:#F4F6FA;--card:#FFFFFF;--text:#1C2B3A;--dim:#6B7E92;
+  --border:#E0E8F0;--tag-bg:#EBF4FF;--tag-text:#1A5276;
+}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:14px;}
+
+header{
+  background:var(--navy);color:#fff;
+  padding:0; border-bottom:3px solid var(--gold);
+  position:sticky;top:0;z-index:100;
+}
+.header-inner{display:flex;align-items:center;gap:0;}
+.brand{padding:12px 24px;border-right:1px solid rgba(201,168,76,0.3);}
+.brand h1{font-size:14px;font-weight:700;letter-spacing:2px;color:var(--gold);text-transform:uppercase;}
+.brand p{font-size:9px;letter-spacing:2px;color:rgba(255,255,255,0.5);text-transform:uppercase;margin-top:1px;}
+nav{display:flex;gap:0;}
+nav a{
+  display:flex;align-items:center;gap:6px;padding:0 14px;height:52px;
+  font-size:11px;color:rgba(255,255,255,0.55);text-decoration:none;
+  border-right:1px solid rgba(255,255,255,0.06);transition:all 0.15s;
+}
+nav a:hover{background:rgba(201,168,76,0.1);color:var(--gold);}
+nav a.active{color:var(--gold);}
+
+.layout{display:flex;height:calc(100vh - 52px);}
+
+/* Sidebar */
+aside{
+  width:260px;flex-shrink:0;
+  background:#fff;border-right:1px solid var(--border);
+  overflow-y:auto;
+}
+.sidebar-section{padding:12px 16px 4px;font-size:10px;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;color:var(--dim);}
+.sidebar-item{
+  display:flex;align-items:center;gap:8px;
+  padding:8px 16px;cursor:pointer;font-size:12px;color:var(--text);
+  border-left:3px solid transparent;transition:all 0.12s;
+}
+.sidebar-item:hover{background:var(--bg);border-left-color:var(--cyan);}
+.sidebar-item.active{background:var(--tag-bg);border-left-color:var(--cyan);color:var(--cyan);font-weight:600;}
+.sidebar-item .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.sidebar-item .cnt{margin-left:auto;font-size:10px;color:var(--dim);}
+
+/* Main */
+main{flex:1;overflow-y:auto;padding:24px;}
+.search-bar{
+  display:flex;gap:10px;margin-bottom:20px;
+}
+.search-bar input{
+  flex:1;padding:9px 14px;border:1px solid var(--border);border-radius:8px;
+  font-size:13px;color:var(--text);outline:none;background:#fff;
+}
+.search-bar input:focus{border-color:var(--cyan);}
+.search-bar select{
+  padding:9px 12px;border:1px solid var(--border);border-radius:8px;
+  font-size:12px;color:var(--text);background:#fff;outline:none;
+}
+
+.table-section{display:none;}
+.table-section.visible{display:block;}
+.table-card{
+  background:var(--card);border:1px solid var(--border);border-radius:12px;
+  margin-bottom:20px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.05);
+}
+.table-header{
+  display:flex;align-items:center;gap:12px;
+  padding:14px 20px;background:var(--navy);
+}
+.table-header h2{font-size:14px;font-weight:700;color:#fff;letter-spacing:0.5px;}
+.table-header .schema-badge{
+  font-size:10px;padding:2px 8px;border-radius:4px;font-weight:600;letter-spacing:1px;
+}
+.badge-bronze{background:rgba(205,127,50,0.25);color:#CD7F32;}
+.badge-silver{background:rgba(192,192,192,0.25);color:#A0A0A0;}
+.badge-gold  {background:rgba(201,168,76,0.25);color:var(--gold);}
+.table-header .desc{font-size:11px;color:rgba(255,255,255,0.5);margin-left:4px;}
+.table-header .row-count{margin-left:auto;font-size:11px;color:rgba(255,255,255,0.4);}
+
+table{width:100%;border-collapse:collapse;}
+thead tr{background:var(--tag-bg);}
+thead th{
+  padding:9px 16px;text-align:left;font-size:11px;font-weight:700;
+  letter-spacing:0.5px;color:var(--dim);text-transform:uppercase;
+  border-bottom:1px solid var(--border);
+}
+tbody tr:hover{background:#F8FAFD;}
+tbody td{
+  padding:9px 16px;font-size:12px;border-bottom:1px solid var(--border);vertical-align:top;
+}
+tbody tr:last-child td{border-bottom:none;}
+.col-name{font-family:'Consolas','Courier New',monospace;color:#1A5276;font-weight:600;}
+.col-type{font-family:'Consolas','Courier New',monospace;color:#7D6608;font-size:11px;}
+.pk-badge{
+  display:inline-block;padding:1px 6px;border-radius:3px;font-size:9px;
+  font-weight:700;letter-spacing:1px;background:#FEF9E7;color:#7D6608;border:1px solid #F9E79F;
+}
+.fk-badge{
+  display:inline-block;padding:1px 6px;border-radius:3px;font-size:9px;
+  font-weight:700;letter-spacing:1px;background:#EBF5FB;color:#1A5276;border:1px solid #AED6F1;
+}
+.nullable{color:#7FB3D3;font-size:11px;}
+.not-null{color:#E74C3C;font-size:11px;font-weight:600;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <h1>Prime Capital Bank</h1>
+      <p>Data Dictionary · Gold Schema</p>
+    </div>
+    <nav>
+      <a href="../index.html">📖 Ebook</a>
+      <a href="../assets/PCB_COMPLETE_ERD.html">🗂 ERD</a>
+      <a href="../assets/PCB_MERCHANT_MAP.html">🗺 Map</a>
+      <a href="../../../presentation/prime_capital_bank_overview.html">📊 Presentation</a>
+      <a href="index.html" class="active">📚 Data Dictionary</a>
+    </nav>
+  </div>
+</header>
+
+<div class="layout">
+<aside>
+  <div class="sidebar-section">Dimensions</div>
+  <div class="sidebar-item active" onclick="show('dim_customer')" id="nav-dim_customer"><div class="dot" style="background:#C9A84C"></div>DIM_CUSTOMER<span class="cnt">500K</span></div>
+  <div class="sidebar-item" onclick="show('dim_account')" id="nav-dim_account"><div class="dot" style="background:#C9A84C"></div>DIM_ACCOUNT<span class="cnt">820K</span></div>
+  <div class="sidebar-item" onclick="show('dim_branch')" id="nav-dim_branch"><div class="dot" style="background:#C9A84C"></div>DIM_BRANCH<span class="cnt">200</span></div>
+  <div class="sidebar-item" onclick="show('dim_merchant')" id="nav-dim_merchant"><div class="dot" style="background:#C9A84C"></div>DIM_MERCHANT<span class="cnt">45K</span></div>
+  <div class="sidebar-item" onclick="show('dim_fintech')" id="nav-dim_fintech"><div class="dot" style="background:#C9A84C"></div>DIM_FINTECH<span class="cnt">5</span></div>
+  <div class="sidebar-item" onclick="show('dim_date')" id="nav-dim_date"><div class="dot" style="background:#C9A84C"></div>DIM_DATE<span class="cnt">1,826</span></div>
+  <div class="sidebar-item" onclick="show('dim_counterparty')" id="nav-dim_counterparty"><div class="dot" style="background:#C9A84C"></div>DIM_COUNTERPARTY<span class="cnt">12K</span></div>
+  <div class="sidebar-item" onclick="show('dim_currency')" id="nav-dim_currency"><div class="dot" style="background:#C9A84C"></div>DIM_CURRENCY<span class="cnt">8</span></div>
+
+  <div class="sidebar-section">Facts</div>
+  <div class="sidebar-item" onclick="show('fact_transaction')" id="nav-fact_transaction"><div class="dot" style="background:#00B4CC"></div>FACT_TRANSACTION<span class="cnt">12M+</span></div>
+  <div class="sidebar-item" onclick="show('fact_loan')" id="nav-fact_loan"><div class="dot" style="background:#00B4CC"></div>FACT_LOAN<span class="cnt">280K</span></div>
+  <div class="sidebar-item" onclick="show('fact_fraud_alert')" id="nav-fact_fraud_alert"><div class="dot" style="background:#00B4CC"></div>FACT_FRAUD_ALERT<span class="cnt">48K</span></div>
+  <div class="sidebar-item" onclick="show('fact_card_transaction')" id="nav-fact_card_transaction"><div class="dot" style="background:#00B4CC"></div>FACT_CARD_TX<span class="cnt">3.2M</span></div>
+  <div class="sidebar-item" onclick="show('fact_fintech_settlement')" id="nav-fact_fintech_settlement"><div class="dot" style="background:#00B4CC"></div>FACT_FINTECH_SETTLEMENT<span class="cnt">60</span></div>
+  <div class="sidebar-item" onclick="show('fact_payment')" id="nav-fact_payment"><div class="dot" style="background:#00B4CC"></div>FACT_PAYMENT<span class="cnt">1.8M</span></div>
+  <div class="sidebar-item" onclick="show('fact_aml_case')" id="nav-fact_aml_case"><div class="dot" style="background:#00B4CC"></div>FACT_AML_CASE<span class="cnt">8.2K</span></div>
+</aside>
+
+<main>
+<div class="search-bar">
+  <input type="text" placeholder="Search columns, descriptions, or data types..." id="searchInput" oninput="filterColumns()">
+  <select id="layerFilter" onchange="filterColumns()">
+    <option value="">All Layers</option>
+    <option value="GOLD">Gold</option>
+    <option value="SILVER">Silver</option>
+    <option value="BRONZE">Bronze</option>
+  </select>
+</div>
+
+<!-- DIM_CUSTOMER -->
+<div class="table-section visible" id="dim_customer">
+<div class="table-card">
+<div class="table-header">
+  <h2>DIM_CUSTOMER</h2>
+  <span class="schema-badge badge-gold">GOLD</span>
+  <span class="desc">SCD Type 2 · Customer master dimension</span>
+  <span class="row-count">~500,000 rows</span>
+</div>
+<table>
+<thead><tr><th>Column</th><th>Type</th><th>Key</th><th>Nullable</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td class="col-name">customer_id</td><td class="col-type">STRING</td><td><span class="pk-badge">PK</span></td><td class="not-null">NOT NULL</td><td>Surrogate key: CUST-XXXXXXXX</td></tr>
+<tr><td class="col-name">id_number</td><td class="col-type">STRING(13)</td><td></td><td class="not-null">NOT NULL</td><td>SA 13-digit identity document number (masked in Silver, visible in Gold with access)</td></tr>
+<tr><td class="col-name">first_name</td><td class="col-type">STRING</td><td></td><td class="not-null">NOT NULL</td><td>Customer first name</td></tr>
+<tr><td class="col-name">last_name</td><td class="col-type">STRING</td><td></td><td class="not-null">NOT NULL</td><td>Customer surname</td></tr>
+<tr><td class="col-name">date_of_birth</td><td class="col-type">DATE</td><td></td><td class="not-null">NOT NULL</td><td>Date of birth (derived from id_number digits 1–6)</td></tr>
+<tr><td class="col-name">gender</td><td class="col-type">STRING</td><td></td><td class="not-null">NOT NULL</td><td>Male / Female / Non-Binary (derived from id_number digits 7–10)</td></tr>
+<tr><td class="col-name">province</td><td class="col-type">STRING</td><td></td><td class="not-null">NOT NULL</td><td>One of 9 SA provinces</td></tr>
+<tr><td class="col-name">city</td><td class="col-type">STRING</td><td></td><td class="nullable">NULLABLE</td><td>City of primary residence</td></tr>
+<tr><td class="col-name">postal_code</td><td class="col-type">STRING(4)</td><td></td><td class="nullable">NULLABLE</td><td>SA 4-digit postal code</td></tr>
+<tr><td class="col-name">customer_segment</td><td class="col-type">STRING</td><td></td><td class="not-null">NOT NULL</td><td>Retail / Business / Private Banking / Youth / Student</td></tr>
+<tr><td class="col-name">employment_status</td><td class="col-type">STRING</td><td></td><td class="nullable">NULLABLE</td><td>Employed / Self-Employed / Unemployed / Retired / Student</td></tr>
+<tr><td class="col-name">annual_income_zar</td><td class="col-type">DECIMAL(15,2)</td><td></td><td class="nullable">NULLABLE</td><td>Self-declared gross annual income in ZAR</td></tr>
+<tr><td class="col-name">credit_score</td><td class="col-type">INTEGER</td><td></td><td class="nullable">NULLABLE</td><td>PCB proprietary credit score 300–850 (updated monthly by ML model)</td></tr>
+<tr><td class="col-name">kyc_status</td><td class="col-type">STRING</td><td></td><td class="not-null">NOT NULL</td><td>Verified / Pending / Expired / Failed (FICA compliance)</td></tr>
+<tr><td class="col-name">onboarding_date</td><td class="col-type">DATE</td><td></td><td class="not-null">NOT NULL</td><td>Date customer account was activated</td></tr>
+<tr><td class="col-name">is_active</td><td class="col-type">BOOLEAN</td><td></td><td class="not-null">NOT NULL</td><td>TRUE if customer has at least one active product</td></tr>
+<tr><td class="col-name">scd_start_date</td><td class="col-type">DATE</td><td></td><td class="not-null">NOT NULL</td><td>SCD2 validity start</td></tr>
+<tr><td class="col-name">scd_end_date</td><td class="col-type">DATE</td><td></td><td class="nullable">NULLABLE</td><td>SCD2 validity end (NULL = current record)</td></tr>
+<tr><td class="col-name">is_current</td><td class="col-type">BOOLEAN</td><td></td><td class="not-null">NOT NULL</td><td>TRUE = current active SCD2 record</td></tr>
+</tbody></table></div></div>
+
+<!-- DIM_FINTECH -->
+<div class="table-section" id="dim_fintech">
+<div class="table-card">
+<div class="table-header">
+  <h2>DIM_FINTECH</h2>
+  <span class="schema-badge badge-gold">GOLD</span>
+  <span class="desc">SCD Type 1 · SA fintech acquiring partners</span>
+  <span class="row-count">5 rows</span>
+</div>
+<table>
+<thead><tr><th>Column</th><th>Type</th><th>Key</th><th>Nullable</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td class="col-name">fintech_id</td><td class="col-type">STRING</td><td><span class="pk-badge">PK</span></td><td class="not-null">NOT NULL</td><td>Surrogate key: FT001–FT005</td></tr>
+<tr><td class="col-name">fintech_name</td><td class="col-type">STRING</td><td></td><td class="not-null">NOT NULL</td><td>Partner name: Yoco / SnapScan / PayFast / Peach Payments / PayGate</td></tr>
+<tr><td class="col-name">platform_type</td><td class="col-type">STRING</td><td></td><td class="not-null">NOT NULL</td><td>POS Card Acquiring / QR Code Payments / E-commerce Gateway / API Payment Platform / Enterprise Payment Gateway</td></tr>
+<tr><td class="col-name">fee_rate_pct</td><td class="col-type">DECIMAL(5,4)</td><td></td><td class="not-null">NOT NULL</td><td>Merchant Discount Rate percentage (e.g. 2.95 = 2.95%)</td></tr>
+<tr><td class="col-name">min_fee_zar</td><td class="col-type">DECIMAL(8,2)</td><td></td><td class="not-null">NOT NULL</td><td>Minimum fee per transaction in ZAR (0.00 if no minimum)</td></tr>
+<tr><td class="col-name">avg_basket_zar</td><td class="col-type">DECIMAL(10,2)</td><td></td><td class="nullable">NULLABLE</td><td>Average transaction basket size in ZAR (from partner reporting)</td></tr>
+<tr><td class="col-name">active_merchants_est</td><td class="col-type">INTEGER</td><td></td><td class="nullable">NULLABLE</td><td>Estimated active merchant count on the platform nationally</td></tr>
+<tr><td class="col-name">annual_volume_zar_bn</td><td class="col-type">DECIMAL(8,2)</td><td></td><td class="nullable">NULLABLE</td><td>Reported annual transaction volume in billions ZAR</td></tr>
+<tr><td class="col-name">settlement_days</td><td class="col-type">INTEGER</td><td></td><td class="not-null">NOT NULL</td><td>Business days to settlement (1 = next-day, 2 = T+2)</td></tr>
+<tr><td class="col-name">risk_rating</td><td class="col-type">STRING</td><td></td><td class="not-null">NOT NULL</td><td>PCB internal risk rating: Low / Medium / High</td></tr>
+<tr><td class="col-name">headquarters</td><td class="col-type">STRING</td><td></td><td class="nullable">NULLABLE</td><td>Headquarters city</td></tr>
+<tr><td class="col-name">founded_year</td><td class="col-type">INTEGER</td><td></td><td class="nullable">NULLABLE</td><td>Year company was founded</td></tr>
+<tr><td class="col-name">is_active</td><td class="col-type">BOOLEAN</td><td></td><td class="not-null">NOT NULL</td><td>TRUE = partnership currently active</td></tr>
+</tbody></table></div></div>
+
+<!-- FACT_FINTECH_SETTLEMENT -->
+<div class="table-section" id="fact_fintech_settlement">
+<div class="table-card">
+<div class="table-header">
+  <h2>FACT_FINTECH_SETTLEMENT</h2>
+  <span class="schema-badge badge-gold">GOLD</span>
+  <span class="desc">Monthly grain · Partner settlement totals</span>
+  <span class="row-count">60 rows (5 partners × 12 months)</span>
+</div>
+<table>
+<thead><tr><th>Column</th><th>Type</th><th>Key</th><th>Nullable</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td class="col-name">settlement_id</td><td class="col-type">STRING</td><td><span class="pk-badge">PK</span></td><td class="not-null">NOT NULL</td><td>Surrogate key: SET-XXXXXXXX</td></tr>
+<tr><td class="col-name">fintech_id</td><td class="col-type">STRING</td><td><span class="fk-badge">FK</span></td><td class="not-null">NOT NULL</td><td>References DIM_FINTECH.fintech_id</td></tr>
+<tr><td class="col-name">settlement_month</td><td class="col-type">DATE</td><td></td><td class="not-null">NOT NULL</td><td>First day of settlement month (partition key)</td></tr>
+<tr><td class="col-name">gross_volume_zar</td><td class="col-type">DECIMAL(18,2)</td><td></td><td class="not-null">NOT NULL</td><td>Total merchant transaction volume processed through the partner</td></tr>
+<tr><td class="col-name">transaction_count</td><td class="col-type">BIGINT</td><td></td><td class="not-null">NOT NULL</td><td>Number of individual transactions in the settlement period</td></tr>
+<tr><td class="col-name">mdr_fees_zar</td><td class="col-type">DECIMAL(15,2)</td><td></td><td class="not-null">NOT NULL</td><td>Merchant Discount Rate fees earned by PCB (gross_volume × fee_rate)</td></tr>
+<tr><td class="col-name">net_settlement_zar</td><td class="col-type">DECIMAL(18,2)</td><td></td><td class="not-null">NOT NULL</td><td>Amount settled to merchants after deducting MDR fees</td></tr>
+<tr><td class="col-name">chargeback_count</td><td class="col-type">INTEGER</td><td></td><td class="not-null">NOT NULL</td><td>Number of chargeback disputes received</td></tr>
+<tr><td class="col-name">chargeback_value_zar</td><td class="col-type">DECIMAL(12,2)</td><td></td><td class="not-null">NOT NULL</td><td>Total ZAR value of chargeback disputes</td></tr>
+<tr><td class="col-name">dispute_count</td><td class="col-type">INTEGER</td><td></td><td class="not-null">NOT NULL</td><td>Total disputes (chargebacks + merchant queries)</td></tr>
+<tr><td class="col-name">settlement_status</td><td class="col-type">STRING</td><td></td><td class="not-null">NOT NULL</td><td>Completed / Pending / Disputed</td></tr>
+<tr><td class="col-name">load_timestamp</td><td class="col-type">TIMESTAMP</td><td></td><td class="not-null">NOT NULL</td><td>Databricks pipeline ingestion timestamp</td></tr>
+</tbody></table></div></div>
+
+<!-- FACT_FRAUD_ALERT -->
+<div class="table-section" id="fact_fraud_alert">
+<div class="table-card">
+<div class="table-header">
+  <h2>FACT_FRAUD_ALERT</h2>
+  <span class="schema-badge badge-gold">GOLD</span>
+  <span class="desc">Transaction-level · ML-generated fraud signals</span>
+  <span class="row-count">~48,000 rows</span>
+</div>
+<table>
+<thead><tr><th>Column</th><th>Type</th><th>Key</th><th>Nullable</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td class="col-name">alert_id</td><td class="col-type">STRING</td><td><span class="pk-badge">PK</span></td><td class="not-null">NOT NULL</td><td>Surrogate key: ALT-XXXXXXXX</td></tr>
+<tr><td class="col-name">transaction_id</td><td class="col-type">STRING</td><td><span class="fk-badge">FK</span></td><td class="nullable">NULLABLE</td><td>References FACT_TRANSACTION (null for proactive/non-tx alerts)</td></tr>
+<tr><td class="col-name">customer_id</td><td class="col-type">STRING</td><td><span class="fk-badge">FK</span></td><td class="not-null">NOT NULL</td><td>References DIM_CUSTOMER.customer_id</td></tr>
+<tr><td class="col-name">account_id</td><td class="col-type">STRING</td><td><span class="fk-badge">FK</span></td><td class="nullable">NULLABLE</td><td>References DIM_ACCOUNT</td></tr>
+<tr><td class="col-name">alert_date</td><td class="col-type">DATE</td><td></td><td class="not-null">NOT NULL</td><td>Date alert was triggered (partition key)</td></tr>
+<tr><td class="col-name">alert_type</td><td class="col-type">STRING</td><td></td><td class="not-null">NOT NULL</td><td>Real-time / Batch / Manual Review</td></tr>
+<tr><td class="col-name">fraud_category</td><td class="col-type">STRING</td><td></td><td class="not-null">NOT NULL</td><td>Card Not Present / Account Takeover / Identity Fraud / ATM Skimming / Phishing / Merchant Fraud / Debit Order Abuse</td></tr>
+<tr><td class="col-name">risk_score</td><td class="col-type">DECIMAL(4,3)</td><td></td><td class="not-null">NOT NULL</td><td>ML model output: 0.000–1.000 (≥0.80 = Critical)</td></tr>
+<tr><td class="col-name">amount_zar</td><td class="col-type">DECIMAL(15,2)</td><td></td><td class="nullable">NULLABLE</td><td>Transaction amount at risk in ZAR</td></tr>
+<tr><td class="col-name">status</td><td class="col-type">STRING</td><td></td><td class="not-null">NOT NULL</td><td>Open / Under Investigation / Resolved / False Positive</td></tr>
+<tr><td class="col-name">investigation_status</td><td class="col-type">STRING</td><td></td><td class="nullable">NULLABLE</td><td>Assigned / In Progress / Escalated / Closed</td></tr>
+<tr><td class="col-name">resolution_date</td><td class="col-type">DATE</td><td></td><td class="nullable">NULLABLE</td><td>Date alert was resolved (null if still open)</td></tr>
+<tr><td class="col-name">ml_model_version</td><td class="col-type">STRING</td><td></td><td class="not-null">NOT NULL</td><td>Model version that generated the alert (e.g. fraud_v3.2.1)</td></tr>
+<tr><td class="col-name">ml_confidence_score</td><td class="col-type">DECIMAL(4,3)</td><td></td><td class="nullable">NULLABLE</td><td>Model confidence in the prediction (separate from risk score)</td></tr>
+<tr><td class="col-name">feature_flags</td><td class="col-type">STRING</td><td></td><td class="nullable">NULLABLE</td><td>JSON: top contributing features (velocity, geo_mismatch, device_new)</td></tr>
+</tbody></table></div></div>
+
+<!-- Placeholder sections for remaining tables -->
+<div class="table-section" id="dim_account"><div class="table-card"><div class="table-header"><h2>DIM_ACCOUNT</h2><span class="schema-badge badge-gold">GOLD</span><span class="desc">SCD Type 1 · Account master</span><span class="row-count">~820,000 rows</span></div><table><thead><tr><th>Column</th><th>Type</th><th>Key</th><th>Nullable</th><th>Description</th></tr></thead><tbody>
+<tr><td class="col-name">account_id</td><td class="col-type">STRING</td><td><span class="pk-badge">PK</span></td><td class="not-null">NOT NULL</td><td>Surrogate key: ACC-XXXXXXXX</td></tr>
+<tr><td class="col-name">customer_id</td><td class="col-type">STRING</td><td><span class="fk-badge">FK</span></td><td class="not-null">NOT NULL</td><td>References DIM_CUSTOMER</td></tr>
+<tr><td class="col-name">branch_id</td><td class="col-type">STRING</td><td><span class="fk-badge">FK</span></td><td class="not-null">NOT NULL</td><td>References DIM_BRANCH</td></tr>
+<tr><td class="col-name">account_number</td><td class="col-type">STRING(12)</td><td></td><td class="not-null">NOT NULL</td><td>PCB account number (masked: ****XXXX)</td></tr>
+<tr><td class="col-name">account_type</td><td class="col-type">STRING</td><td></td><td class="not-null">NOT NULL</td><td>Savings / Cheque / Investment / Fixed Deposit / Money Market</td></tr>
+<tr><td class="col-name">current_balance_zar</td><td class="col-type">DECIMAL(18,2)</td><td></td><td class="not-null">NOT NULL</td><td>Current balance as of last statement date</td></tr>
+<tr><td class="col-name">available_balance_zar</td><td class="col-type">DECIMAL(18,2)</td><td></td><td class="not-null">NOT NULL</td><td>Available balance (current minus holds)</td></tr>
+<tr><td class="col-name">interest_rate_pct</td><td class="col-type">DECIMAL(5,4)</td><td></td><td class="nullable">NULLABLE</td><td>Annual interest rate applied to the account</td></tr>
+<tr><td class="col-name">account_status</td><td class="col-type">STRING</td><td></td><td class="not-null">NOT NULL</td><td>Active / Dormant / Closed / Suspended / Frozen</td></tr>
+<tr><td class="col-name">open_date</td><td class="col-type">DATE</td><td></td><td class="not-null">NOT NULL</td><td>Date account was opened</td></tr>
+<tr><td class="col-name">close_date</td><td class="col-type">DATE</td><td></td><td class="nullable">NULLABLE</td><td>Date account was closed (null if open)</td></tr>
+</tbody></table></div></div>
+
+<div class="table-section" id="dim_branch"><div class="table-card"><div class="table-header"><h2>DIM_BRANCH</h2><span class="schema-badge badge-gold">GOLD</span><span class="desc">SCD Type 1 · Branch / ATM network</span><span class="row-count">200 rows</span></div><table><thead><tr><th>Column</th><th>Type</th><th>Key</th><th>Nullable</th><th>Description</th></tr></thead><tbody>
+<tr><td class="col-name">branch_id</td><td class="col-type">STRING</td><td><span class="pk-badge">PK</span></td><td class="not-null">NOT NULL</td><td>Surrogate key: BR001–BR200</td></tr>
+<tr><td class="col-name">branch_name</td><td class="col-type">STRING</td><td></td><td class="not-null">NOT NULL</td><td>Branch display name</td></tr>
+<tr><td class="col-name">branch_type</td><td class="col-type">STRING</td><td></td><td class="not-null">NOT NULL</td><td>Flagship / Full Service / Standard / Micro Branch / ATM Only</td></tr>
+<tr><td class="col-name">province</td><td class="col-type">STRING</td><td></td><td class="not-null">NOT NULL</td><td>One of 9 SA provinces</td></tr>
+<tr><td class="col-name">city</td><td class="col-type">STRING</td><td></td><td class="not-null">NOT NULL</td><td>Municipality city</td></tr>
+<tr><td class="col-name">region</td><td class="col-type">STRING</td><td></td><td class="nullable">NULLABLE</td><td>PCB internal sales region (matches SARB reporting regions)</td></tr>
+<tr><td class="col-name">latitude</td><td class="col-type">DECIMAL(9,6)</td><td></td><td class="nullable">NULLABLE</td><td>GPS latitude for mapping</td></tr>
+<tr><td class="col-name">longitude</td><td class="col-type">DECIMAL(9,6)</td><td></td><td class="nullable">NULLABLE</td><td>GPS longitude for mapping</td></tr>
+<tr><td class="col-name">opening_date</td><td class="col-type">DATE</td><td></td><td class="not-null">NOT NULL</td><td>Branch opening date</td></tr>
+<tr><td class="col-name">is_active</td><td class="col-type">BOOLEAN</td><td></td><td class="not-null">NOT NULL</td><td>TRUE = currently operational</td></tr>
+</tbody></table></div></div>
+
+<div class="table-section" id="dim_merchant"><div class="table-card"><div class="table-header"><h2>DIM_MERCHANT</h2><span class="schema-badge badge-gold">GOLD</span><span class="desc">SCD Type 1 · Card acquiring merchant registry</span><span class="row-count">~45,000 rows</span></div><table><thead><tr><th>Column</th><th>Type</th><th>Key</th><th>Nullable</th><th>Description</th></tr></thead><tbody>
+<tr><td class="col-name">merchant_id</td><td class="col-type">STRING</td><td><span class="pk-badge">PK</span></td><td class="not-null">NOT NULL</td><td>Surrogate key: MERCH-XXXXXXXX</td></tr>
+<tr><td class="col-name">merchant_name</td><td class="col-type">STRING</td><td></td><td class="not-null">NOT NULL</td><td>Registered merchant trading name</td></tr>
+<tr><td class="col-name">merchant_category_code</td><td class="col-type">STRING(4)</td><td></td><td class="not-null">NOT NULL</td><td>ISO 18245 MCC (e.g. 5411 = Grocery, 5541 = Service Stations)</td></tr>
+<tr><td class="col-name">merchant_category</td><td class="col-type">STRING</td><td></td><td class="not-null">NOT NULL</td><td>Human-readable MCC group</td></tr>
+<tr><td class="col-name">province</td><td class="col-type">STRING</td><td></td><td class="not-null">NOT NULL</td><td>Province of primary business address</td></tr>
+<tr><td class="col-name">city</td><td class="col-type">STRING</td><td></td><td class="nullable">NULLABLE</td><td>City</td></tr>
+<tr><td class="col-name">acquiring_bank</td><td class="col-type">STRING</td><td></td><td class="not-null">NOT NULL</td><td>Acquiring institution (Prime Capital Bank)</td></tr>
+<tr><td class="col-name">risk_level</td><td class="col-type">STRING</td><td></td><td class="not-null">NOT NULL</td><td>Low / Medium / High / Blocked</td></tr>
+<tr><td class="col-name">is_active</td><td class="col-type">BOOLEAN</td><td></td><td class="not-null">NOT NULL</td><td>Active merchant relationship</td></tr>
+</tbody></table></div></div>
+
+<div class="table-section" id="dim_date"><div class="table-card"><div class="table-header"><h2>DIM_DATE</h2><span class="schema-badge badge-gold">GOLD</span><span class="desc">Static · Calendar dimension 2020–2025</span><span class="row-count">1,826 rows</span></div><table><thead><tr><th>Column</th><th>Type</th><th>Key</th><th>Nullable</th><th>Description</th></tr></thead><tbody>
+<tr><td class="col-name">date_id</td><td class="col-type">INTEGER</td><td><span class="pk-badge">PK</span></td><td class="not-null">NOT NULL</td><td>YYYYMMDD integer key (e.g. 20240315)</td></tr>
+<tr><td class="col-name">calendar_date</td><td class="col-type">DATE</td><td></td><td class="not-null">NOT NULL</td><td>Full date</td></tr>
+<tr><td class="col-name">year</td><td class="col-type">INTEGER</td><td></td><td class="not-null">NOT NULL</td><td>Calendar year</td></tr>
+<tr><td class="col-name">quarter</td><td class="col-type">INTEGER</td><td></td><td class="not-null">NOT NULL</td><td>1–4</td></tr>
+<tr><td class="col-name">month</td><td class="col-type">INTEGER</td><td></td><td class="not-null">NOT NULL</td><td>1–12</td></tr>
+<tr><td class="col-name">month_name</td><td class="col-type">STRING</td><td></td><td class="not-null">NOT NULL</td><td>January … December</td></tr>
+<tr><td class="col-name">day_of_week</td><td class="col-type">INTEGER</td><td></td><td class="not-null">NOT NULL</td><td>1=Monday … 7=Sunday (ISO 8601)</td></tr>
+<tr><td class="col-name">day_name</td><td class="col-type">STRING</td><td></td><td class="not-null">NOT NULL</td><td>Monday … Sunday</td></tr>
+<tr><td class="col-name">is_weekend</td><td class="col-type">BOOLEAN</td><td></td><td class="not-null">NOT NULL</td><td>Saturday or Sunday</td></tr>
+<tr><td class="col-name">is_public_holiday</td><td class="col-type">BOOLEAN</td><td></td><td class="not-null">NOT NULL</td><td>SA public holiday flag</td></tr>
+<tr><td class="col-name">is_business_day</td><td class="col-type">BOOLEAN</td><td></td><td class="not-null">NOT NULL</td><td>Not weekend and not public holiday</td></tr>
+</tbody></table></div></div>
+
+<div class="table-section" id="dim_counterparty"><div class="table-card"><div class="table-header"><h2>DIM_COUNTERPARTY</h2><span class="schema-badge badge-gold">GOLD</span><span class="desc">SCD Type 1 · Payment counterparties (other banks, individuals)</span><span class="row-count">~12,000 rows</span></div><table><thead><tr><th>Column</th><th>Type</th><th>Key</th><th>Nullable</th><th>Description</th></tr></thead><tbody>
+<tr><td class="col-name">counterparty_id</td><td class="col-type">STRING</td><td><span class="pk-badge">PK</span></td><td class="not-null">NOT NULL</td><td>Surrogate key: CP-XXXXXXXX</td></tr>
+<tr><td class="col-name">counterparty_name</td><td class="col-type">STRING</td><td></td><td class="not-null">NOT NULL</td><td>Institution or individual name</td></tr>
+<tr><td class="col-name">counterparty_type</td><td class="col-type">STRING</td><td></td><td class="not-null">NOT NULL</td><td>Retail Bank / Corporate / Individual / Government / NBFI</td></tr>
+<tr><td class="col-name">bank_code</td><td class="col-type">STRING(6)</td><td></td><td class="nullable">NULLABLE</td><td>SARB universal branch code</td></tr>
+<tr><td class="col-name">country</td><td class="col-type">STRING</td><td></td><td class="not-null">NOT NULL</td><td>Country of institution (ZA for domestic)</td></tr>
+<tr><td class="col-name">aml_risk_rating</td><td class="col-type">STRING</td><td></td><td class="not-null">NOT NULL</td><td>PCB AML risk: Low / Medium / High / Blocked</td></tr>
+</tbody></table></div></div>
+
+<div class="table-section" id="dim_currency"><div class="table-card"><div class="table-header"><h2>DIM_CURRENCY</h2><span class="schema-badge badge-gold">GOLD</span><span class="desc">Static · ISO 4217 currencies</span><span class="row-count">8 rows</span></div><table><thead><tr><th>Column</th><th>Type</th><th>Key</th><th>Nullable</th><th>Description</th></tr></thead><tbody>
+<tr><td class="col-name">currency_id</td><td class="col-type">STRING</td><td><span class="pk-badge">PK</span></td><td class="not-null">NOT NULL</td><td>CUR001–CUR008</td></tr>
+<tr><td class="col-name">currency_code</td><td class="col-type">STRING(3)</td><td></td><td class="not-null">NOT NULL</td><td>ISO 4217 code (ZAR, USD, EUR, GBP, CNY, BWP, ZMW, MZN)</td></tr>
+<tr><td class="col-name">currency_name</td><td class="col-type">STRING</td><td></td><td class="not-null">NOT NULL</td><td>Full currency name</td></tr>
+<tr><td class="col-name">symbol</td><td class="col-type">STRING</td><td></td><td class="not-null">NOT NULL</td><td>Currency symbol (R, $, €, £, ¥, P, ZK, MT)</td></tr>
+<tr><td class="col-name">is_base_currency</td><td class="col-type">BOOLEAN</td><td></td><td class="not-null">NOT NULL</td><td>TRUE = ZAR (base reporting currency)</td></tr>
+<tr><td class="col-name">country</td><td class="col-type">STRING</td><td></td><td class="not-null">NOT NULL</td><td>Issuing country</td></tr>
+</tbody></table></div></div>
+
+<div class="table-section" id="fact_transaction"><div class="table-card"><div class="table-header"><h2>FACT_TRANSACTION</h2><span class="schema-badge badge-gold">GOLD</span><span class="desc">Transaction-level · Core banking ledger</span><span class="row-count">12M+ rows</span></div><table><thead><tr><th>Column</th><th>Type</th><th>Key</th><th>Nullable</th><th>Description</th></tr></thead><tbody>
+<tr><td class="col-name">transaction_id</td><td class="col-type">STRING</td><td><span class="pk-badge">PK</span></td><td class="not-null">NOT NULL</td><td>Surrogate key: TXN-XXXXXXXX</td></tr>
+<tr><td class="col-name">account_id</td><td class="col-type">STRING</td><td><span class="fk-badge">FK</span></td><td class="not-null">NOT NULL</td><td>References DIM_ACCOUNT</td></tr>
+<tr><td class="col-name">customer_id</td><td class="col-type">STRING</td><td><span class="fk-badge">FK</span></td><td class="not-null">NOT NULL</td><td>References DIM_CUSTOMER (denormalised for query performance)</td></tr>
+<tr><td class="col-name">transaction_date</td><td class="col-type">DATE</td><td></td><td class="not-null">NOT NULL</td><td>Transaction date (partition key)</td></tr>
+<tr><td class="col-name">transaction_datetime</td><td class="col-type">TIMESTAMP</td><td></td><td class="not-null">NOT NULL</td><td>Full timestamp with time zone</td></tr>
+<tr><td class="col-name">transaction_type</td><td class="col-type">STRING</td><td></td><td class="not-null">NOT NULL</td><td>Credit / Debit / Transfer / Fee / Interest / Reversal</td></tr>
+<tr><td class="col-name">channel</td><td class="col-type">STRING</td><td></td><td class="not-null">NOT NULL</td><td>Branch / ATM / Online / Mobile / USSD / POS</td></tr>
+<tr><td class="col-name">amount_zar</td><td class="col-type">DECIMAL(15,2)</td><td></td><td class="not-null">NOT NULL</td><td>Transaction amount in ZAR (always positive; sign determined by debit_credit_flag)</td></tr>
+<tr><td class="col-name">debit_credit_flag</td><td class="col-type">STRING(1)</td><td></td><td class="not-null">NOT NULL</td><td>D = Debit, C = Credit</td></tr>
+<tr><td class="col-name">merchant_id</td><td class="col-type">STRING</td><td><span class="fk-badge">FK</span></td><td class="nullable">NULLABLE</td><td>References DIM_MERCHANT (null for non-merchant transactions)</td></tr>
+<tr><td class="col-name">merchant_name</td><td class="col-type">STRING</td><td></td><td class="nullable">NULLABLE</td><td>Merchant name (denormalised from POS terminal data)</td></tr>
+<tr><td class="col-name">merchant_category</td><td class="col-type">STRING</td><td></td><td class="nullable">NULLABLE</td><td>MCC category description</td></tr>
+<tr><td class="col-name">balance_after_zar</td><td class="col-type">DECIMAL(18,2)</td><td></td><td class="not-null">NOT NULL</td><td>Account balance immediately after transaction</td></tr>
+<tr><td class="col-name">reference</td><td class="col-type">STRING</td><td></td><td class="nullable">NULLABLE</td><td>Customer reference or payment narrative</td></tr>
+<tr><td class="col-name">is_flagged</td><td class="col-type">BOOLEAN</td><td></td><td class="not-null">NOT NULL</td><td>TRUE if transaction generated a fraud alert</td></tr>
+</tbody></table></div></div>
+
+<div class="table-section" id="fact_loan"><div class="table-card"><div class="table-header"><h2>FACT_LOAN</h2><span class="schema-badge badge-gold">GOLD</span><span class="desc">Loan-level · Credit portfolio snapshot</span><span class="row-count">~280,000 rows</span></div><table><thead><tr><th>Column</th><th>Type</th><th>Key</th><th>Nullable</th><th>Description</th></tr></thead><tbody>
+<tr><td class="col-name">loan_id</td><td class="col-type">STRING</td><td><span class="pk-badge">PK</span></td><td class="not-null">NOT NULL</td><td>Surrogate key: LN-XXXXXXXX</td></tr>
+<tr><td class="col-name">customer_id</td><td class="col-type">STRING</td><td><span class="fk-badge">FK</span></td><td class="not-null">NOT NULL</td><td>References DIM_CUSTOMER</td></tr>
+<tr><td class="col-name">account_id</td><td class="col-type">STRING</td><td><span class="fk-badge">FK</span></td><td class="not-null">NOT NULL</td><td>References DIM_ACCOUNT (linked lending account)</td></tr>
+<tr><td class="col-name">loan_type</td><td class="col-type">STRING</td><td></td><td class="not-null">NOT NULL</td><td>Home Loan / Personal Loan / Vehicle Finance / Revolving Credit / Business Loan</td></tr>
+<tr><td class="col-name">approved_amount_zar</td><td class="col-type">DECIMAL(15,2)</td><td></td><td class="not-null">NOT NULL</td><td>Original approved loan amount</td></tr>
+<tr><td class="col-name">outstanding_balance_zar</td><td class="col-type">DECIMAL(15,2)</td><td></td><td class="not-null">NOT NULL</td><td>Current outstanding balance</td></tr>
+<tr><td class="col-name">interest_rate_pct</td><td class="col-type">DECIMAL(5,4)</td><td></td><td class="not-null">NOT NULL</td><td>Annual interest rate (Prime ± spread)</td></tr>
+<tr><td class="col-name">loan_term_months</td><td class="col-type">INTEGER</td><td></td><td class="not-null">NOT NULL</td><td>Loan term in months</td></tr>
+<tr><td class="col-name">months_in_arrears</td><td class="col-type">INTEGER</td><td></td><td class="not-null">NOT NULL</td><td>Number of months payment is overdue (0 = current)</td></tr>
+<tr><td class="col-name">loan_status</td><td class="col-type">STRING</td><td></td><td class="not-null">NOT NULL</td><td>Current / Non-Performing / Default / Restructured / Closed / Written Off</td></tr>
+<tr><td class="col-name">provision_zar</td><td class="col-type">DECIMAL(15,2)</td><td></td><td class="not-null">NOT NULL</td><td>IFRS 9 expected credit loss provision</td></tr>
+<tr><td class="col-name">risk_weight_pct</td><td class="col-type">DECIMAL(5,2)</td><td></td><td class="not-null">NOT NULL</td><td>Basel III risk weight applied (35% home loan, 75% retail, 100% corporate)</td></tr>
+<tr><td class="col-name">origination_date</td><td class="col-type">DATE</td><td></td><td class="not-null">NOT NULL</td><td>Date loan was disbursed</td></tr>
+<tr><td class="col-name">maturity_date</td><td class="col-type">DATE</td><td></td><td class="not-null">NOT NULL</td><td>Scheduled loan end date</td></tr>
+<tr><td class="col-name">pd_score</td><td class="col-type">DECIMAL(5,4)</td><td></td><td class="nullable">NULLABLE</td><td>Probability of Default from credit scoring ML model (0–1)</td></tr>
+<tr><td class="col-name">lgd_pct</td><td class="col-type">DECIMAL(5,4)</td><td></td><td class="nullable">NULLABLE</td><td>Loss Given Default estimate</td></tr>
+</tbody></table></div></div>
+
+<div class="table-section" id="fact_card_transaction"><div class="table-card"><div class="table-header"><h2>FACT_CARD_TRANSACTION</h2><span class="schema-badge badge-gold">GOLD</span><span class="desc">Card-level · POS and online card transactions</span><span class="row-count">~3.2M rows</span></div><table><thead><tr><th>Column</th><th>Type</th><th>Key</th><th>Nullable</th><th>Description</th></tr></thead><tbody>
+<tr><td class="col-name">card_tx_id</td><td class="col-type">STRING</td><td><span class="pk-badge">PK</span></td><td class="not-null">NOT NULL</td><td>Surrogate key: CTX-XXXXXXXX</td></tr>
+<tr><td class="col-name">merchant_id</td><td class="col-type">STRING</td><td><span class="fk-badge">FK</span></td><td class="not-null">NOT NULL</td><td>References DIM_MERCHANT</td></tr>
+<tr><td class="col-name">customer_id</td><td class="col-type">STRING</td><td><span class="fk-badge">FK</span></td><td class="not-null">NOT NULL</td><td>References DIM_CUSTOMER</td></tr>
+<tr><td class="col-name">tx_date</td><td class="col-type">DATE</td><td><span class="fk-badge">FK</span></td><td class="not-null">NOT NULL</td><td>References DIM_DATE (partition key)</td></tr>
+<tr><td class="col-name">card_type</td><td class="col-type">STRING</td><td></td><td class="not-null">NOT NULL</td><td>Visa Debit / Visa Credit / Mastercard Debit / Mastercard Credit</td></tr>
+<tr><td class="col-name">entry_mode</td><td class="col-type">STRING</td><td></td><td class="not-null">NOT NULL</td><td>Chip / Tap / Swipe / Online / Manual Key Entry</td></tr>
+<tr><td class="col-name">amount_zar</td><td class="col-type">DECIMAL(12,2)</td><td></td><td class="not-null">NOT NULL</td><td>Transaction amount in ZAR</td></tr>
+<tr><td class="col-name">authorization_code</td><td class="col-type">STRING(6)</td><td></td><td class="nullable">NULLABLE</td><td>Issuer authorization code</td></tr>
+<tr><td class="col-name">response_code</td><td class="col-type">STRING(2)</td><td></td><td class="not-null">NOT NULL</td><td>00=Approved, 05=Declined, 51=Insufficient Funds, 57=Not Permitted</td></tr>
+<tr><td class="col-name">is_international</td><td class="col-type">BOOLEAN</td><td></td><td class="not-null">NOT NULL</td><td>TRUE if merchant country ≠ ZA</td></tr>
+<tr><td class="col-name">is_contactless</td><td class="col-type">BOOLEAN</td><td></td><td class="not-null">NOT NULL</td><td>TRUE if NFC/tap payment</td></tr>
+<tr><td class="col-name">fraud_flag</td><td class="col-type">BOOLEAN</td><td></td><td class="not-null">NOT NULL</td><td>TRUE if transaction linked to confirmed fraud</td></tr>
+</tbody></table></div></div>
+
+<div class="table-section" id="fact_payment"><div class="table-card"><div class="table-header"><h2>FACT_PAYMENT</h2><span class="schema-badge badge-gold">GOLD</span><span class="desc">Payment-level · EFT, SWIFT, PayShap transfers</span><span class="row-count">~1.8M rows</span></div><table><thead><tr><th>Column</th><th>Type</th><th>Key</th><th>Nullable</th><th>Description</th></tr></thead><tbody>
+<tr><td class="col-name">payment_id</td><td class="col-type">STRING</td><td><span class="pk-badge">PK</span></td><td class="not-null">NOT NULL</td><td>Surrogate key: PAY-XXXXXXXX</td></tr>
+<tr><td class="col-name">account_id</td><td class="col-type">STRING</td><td><span class="fk-badge">FK</span></td><td class="not-null">NOT NULL</td><td>References DIM_ACCOUNT (originating account)</td></tr>
+<tr><td class="col-name">counterparty_id</td><td class="col-type">STRING</td><td><span class="fk-badge">FK</span></td><td class="not-null">NOT NULL</td><td>References DIM_COUNTERPARTY</td></tr>
+<tr><td class="col-name">currency_id</td><td class="col-type">STRING</td><td><span class="fk-badge">FK</span></td><td class="not-null">NOT NULL</td><td>References DIM_CURRENCY</td></tr>
+<tr><td class="col-name">payment_type</td><td class="col-type">STRING</td><td></td><td class="not-null">NOT NULL</td><td>EFT / SWIFT / PayShap / RTC / Debit Order / SARB RTGS</td></tr>
+<tr><td class="col-name">amount_original</td><td class="col-type">DECIMAL(18,2)</td><td></td><td class="not-null">NOT NULL</td><td>Amount in originating currency</td></tr>
+<tr><td class="col-name">amount_zar</td><td class="col-type">DECIMAL(18,2)</td><td></td><td class="not-null">NOT NULL</td><td>ZAR equivalent (using exchange rate at payment datetime)</td></tr>
+<tr><td class="col-name">zar_rate</td><td class="col-type">DECIMAL(12,6)</td><td></td><td class="not-null">NOT NULL</td><td>Exchange rate applied (ZAR per foreign currency unit)</td></tr>
+<tr><td class="col-name">payment_status</td><td class="col-type">STRING</td><td></td><td class="not-null">NOT NULL</td><td>Processed / Pending / Returned / Recalled / Rejected</td></tr>
+<tr><td class="col-name">value_date</td><td class="col-type">DATE</td><td></td><td class="not-null">NOT NULL</td><td>Date funds become available to beneficiary</td></tr>
+<tr><td class="col-name">aml_screened</td><td class="col-type">BOOLEAN</td><td></td><td class="not-null">NOT NULL</td><td>TRUE = payment passed AML screening</td></tr>
+<tr><td class="col-name">aml_risk_score</td><td class="col-type">DECIMAL(4,3)</td><td></td><td class="nullable">NULLABLE</td><td>AML model risk score 0–1</td></tr>
+</tbody></table></div></div>
+
+<div class="table-section" id="fact_aml_case"><div class="table-card"><div class="table-header"><h2>FACT_AML_CASE</h2><span class="schema-badge badge-gold">GOLD</span><span class="desc">Case-level · FIC Act suspicious activity reports</span><span class="row-count">~8,200 rows</span></div><table><thead><tr><th>Column</th><th>Type</th><th>Key</th><th>Nullable</th><th>Description</th></tr></thead><tbody>
+<tr><td class="col-name">case_id</td><td class="col-type">STRING</td><td><span class="pk-badge">PK</span></td><td class="not-null">NOT NULL</td><td>Surrogate key: AML-XXXXXXXX</td></tr>
+<tr><td class="col-name">customer_id</td><td class="col-type">STRING</td><td><span class="fk-badge">FK</span></td><td class="not-null">NOT NULL</td><td>References DIM_CUSTOMER</td></tr>
+<tr><td class="col-name">case_type</td><td class="col-type">STRING</td><td></td><td class="not-null">NOT NULL</td><td>STR / CTR / SAR / Enhanced Due Diligence / PEP Screening</td></tr>
+<tr><td class="col-name">trigger_rule</td><td class="col-type">STRING</td><td></td><td class="not-null">NOT NULL</td><td>Rule or ML model that triggered the case</td></tr>
+<tr><td class="col-name">risk_score</td><td class="col-type">DECIMAL(4,3)</td><td></td><td class="not-null">NOT NULL</td><td>AML model risk score 0–1</td></tr>
+<tr><td class="col-name">total_exposure_zar</td><td class="col-type">DECIMAL(18,2)</td><td></td><td class="nullable">NULLABLE</td><td>Cumulative suspicious transaction value</td></tr>
+<tr><td class="col-name">fic_report_filed</td><td class="col-type">BOOLEAN</td><td></td><td class="not-null">NOT NULL</td><td>TRUE = SAR/STR filed with Financial Intelligence Centre</td></tr>
+<tr><td class="col-name">case_status</td><td class="col-type">STRING</td><td></td><td class="not-null">NOT NULL</td><td>Open / Investigating / Escalated / Closed — Suspicious / Closed — Cleared</td></tr>
+<tr><td class="col-name">opened_date</td><td class="col-type">DATE</td><td></td><td class="not-null">NOT NULL</td><td>Date case was opened (partition key)</td></tr>
+<tr><td class="col-name">closed_date</td><td class="col-type">DATE</td><td></td><td class="nullable">NULLABLE</td><td>Date case was resolved</td></tr>
+</tbody></table></div></div>
+
+</main>
+</div>
+
+<script>
+function show(id) {
+  document.querySelectorAll('.table-section').forEach(s => s.classList.remove('visible'));
+  document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
+  const el = document.getElementById(id);
+  if (el) el.classList.add('visible');
+  const nav = document.getElementById('nav-' + id);
+  if (nav) nav.classList.add('active');
+}
+function filterColumns() {
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  document.querySelectorAll('.table-section').forEach(s => {
+    if (!q) { s.style.display = ''; return; }
+    const hit = s.innerText.toLowerCase().includes(q);
+    s.style.display = hit ? '' : 'none';
+    if (hit) s.classList.add('visible');
+  });
+}
+</script>
+</body>
+</html>
