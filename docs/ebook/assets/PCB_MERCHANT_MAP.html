@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prime Capital Bank — Merchant & Fraud Intelligence Map</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --navy:#0A1628; --gold:#C9A84C; --cyan:#00E5FF;
+  --red:#FF1744; --orange:#FF6D00; --yellow:#FFEA00; --green:#00E676;
+  --panel-bg:rgba(6,15,30,0.90); --panel-border:rgba(0,229,255,0.20);
+}
+html,body { height:100%; font-family:'Segoe UI',system-ui,sans-serif; background:var(--navy); color:#E0F0FF; }
+
+/* ── HEADER ─────────────────────────────────────────────────────────── */
+#topbar {
+  position:fixed; top:0; left:0; right:0; z-index:1100;
+  background:rgba(6,10,24,0.96); border-bottom:2px solid var(--gold);
+  display:flex; align-items:center; gap:0; padding:0;
+}
+#topbar .brand {
+  padding:10px 20px; background:var(--navy);
+  border-right:1px solid rgba(201,168,76,0.3);
+  font-size:11px; font-weight:700; letter-spacing:2px;
+  color:var(--gold); text-transform:uppercase; white-space:nowrap;
+}
+#topbar .brand span { color:#fff; display:block; font-size:9px; letter-spacing:3px; font-weight:400; opacity:0.7; }
+.kpi-bar { display:flex; flex:1; }
+.kpi {
+  flex:1; padding:8px 16px; border-right:1px solid rgba(0,229,255,0.10);
+  text-align:center;
+}
+.kpi .val { font-size:18px; font-weight:800; color:var(--cyan); line-height:1; }
+.kpi .lbl { font-size:9px; color:#7A94B0; letter-spacing:1px; text-transform:uppercase; margin-top:2px; }
+.kpi.fraud .val { color:var(--red); }
+.kpi.warn  .val { color:var(--orange); }
+.kpi.gold  .val { color:var(--gold); }
+
+/* ── MAP ─────────────────────────────────────────────────────────────── */
+#map { position:fixed; top:58px; left:0; right:0; bottom:0; z-index:1; }
+
+/* ── PANELS ──────────────────────────────────────────────────────────── */
+.panel {
+  position:fixed; z-index:1000;
+  background:var(--panel-bg); border:1px solid var(--panel-border);
+  border-radius:10px; padding:14px; backdrop-filter:blur(8px);
+  font-size:12px;
+}
+.panel-title {
+  font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+  color:var(--cyan); margin-bottom:10px; padding-bottom:6px;
+  border-bottom:1px solid var(--panel-border);
+}
+
+/* ML Insights — bottom-left */
+#panel-insights {
+  left:12px; bottom:20px; width:240px;
+}
+.cluster-row { display:flex; align-items:center; gap:8px; margin-bottom:7px; }
+.cluster-dot { width:11px; height:11px; border-radius:50%; flex-shrink:0; }
+.cluster-info { flex:1; }
+.cluster-label { font-size:11px; font-weight:600; color:#E0F0FF; }
+.cluster-sub   { font-size:10px; color:#7A94B0; }
+.cluster-count { font-size:11px; font-weight:700; color:var(--gold); }
+.divider { border:none; border-top:1px solid rgba(0,229,255,0.12); margin:8px 0; }
+
+/* Map Controls — top-right */
+#panel-controls {
+  right:12px; top:70px; width:200px;
+}
+.ctrl-group { margin-bottom:10px; }
+.ctrl-group-label { font-size:10px; color:#7A94B0; letter-spacing:1px; text-transform:uppercase; margin-bottom:5px; }
+.radio-row { display:flex; align-items:center; gap:6px; margin-bottom:4px; cursor:pointer; }
+.radio-row input { accent-color:var(--cyan); cursor:pointer; }
+.radio-row label { font-size:11px; color:#C0D4E8; cursor:pointer; }
+
+/* Legend — bottom-right */
+#panel-legend {
+  right:12px; bottom:20px; width:160px;
+}
+.legend-row { display:flex; align-items:center; gap:8px; margin-bottom:5px; }
+.legend-dot { width:12px; height:12px; border-radius:50%; border:2px solid rgba(255,255,255,0.3); flex-shrink:0; }
+
+/* Fraud callout — bottom-center */
+#panel-fraud {
+  left:50%; transform:translateX(-50%); bottom:20px; width:280px;
+}
+.fraud-stat { display:flex; justify-content:space-between; margin-bottom:4px; }
+.fraud-stat .name { color:#A0B8CC; font-size:11px; }
+.fraud-stat .count { font-size:11px; font-weight:700; }
+.fraud-bar-wrap { background:rgba(255,255,255,0.07); border-radius:4px; height:4px; margin-bottom:8px; }
+.fraud-bar { height:4px; border-radius:4px; }
+
+/* Pulsing fraud marker */
+@keyframes pulse {
+  0%   { box-shadow:0 0 0 0 rgba(255,23,68,0.8); }
+  70%  { box-shadow:0 0 0 14px rgba(255,23,68,0); }
+  100% { box-shadow:0 0 0 0 rgba(255,23,68,0); }
+}
+.fraud-pulse {
+  width:14px; height:14px; border-radius:50%;
+  background:var(--red); border:2px solid #fff;
+  animation:pulse 1.5s infinite;
+}
+
+/* Leaflet overrides */
+.leaflet-popup-content-wrapper {
+  background:rgba(8,14,28,0.97); color:#E0F0FF;
+  border:1px solid rgba(0,229,255,0.3); border-radius:8px;
+  box-shadow:0 4px 24px rgba(0,0,0,0.6);
+}
+.leaflet-popup-tip { background:rgba(8,14,28,0.97); }
+.leaflet-popup-content { margin:12px; font-size:12px; line-height:1.6; }
+.popup-title { font-size:13px; font-weight:700; color:var(--cyan); margin-bottom:6px; }
+.popup-row { display:flex; justify-content:space-between; gap:16px; }
+.popup-row .k { color:#7A94B0; }
+.popup-row .v { font-weight:600; }
+.popup-badge {
+  display:inline-block; padding:2px 8px; border-radius:4px;
+  font-size:10px; font-weight:700; letter-spacing:1px; margin-top:4px;
+}
+</style>
+</head>
+<body>
+
+<!-- ── TOP BAR ─────────────────────────────────────────────────────────── -->
+<div id="topbar">
+  <div class="brand">PRIME CAPITAL<span>BANK · INTELLIGENCE MAP</span></div>
+  <div class="kpi-bar">
+    <div class="kpi gold"><div class="val" id="kpi-merchants">38</div><div class="lbl">Merchant Clusters</div></div>
+    <div class="kpi"><div class="val" id="kpi-volume">R6.2B</div><div class="lbl">Monthly Volume</div></div>
+    <div class="kpi warn"><div class="val" id="kpi-watch">11</div><div class="lbl">Watch Zones</div></div>
+    <div class="kpi fraud"><div class="val" id="kpi-fraud">8</div><div class="lbl">Critical Fraud Zones</div></div>
+    <div class="kpi"><div class="val" id="kpi-rate">0.24%</div><div class="lbl">Avg Fraud Rate</div></div>
+  </div>
+</div>
+
+<!-- ── MAP ─────────────────────────────────────────────────────────────── -->
+<div id="map"></div>
+
+<!-- ── ML INSIGHTS PANEL ──────────────────────────────────────────────── -->
+<div class="panel" id="panel-insights">
+  <div class="panel-title">Merchant Risk Clusters</div>
+  <div class="cluster-row">
+    <div class="cluster-dot" style="background:#00E676"></div>
+    <div class="cluster-info"><div class="cluster-label">Safe Zone</div><div class="cluster-sub">Fraud &lt; 0.15% · Strong controls</div></div>
+    <div class="cluster-count">16</div>
+  </div>
+  <div class="cluster-row">
+    <div class="cluster-dot" style="background:#FFEA00"></div>
+    <div class="cluster-info"><div class="cluster-label">Watch Zone</div><div class="cluster-sub">Fraud 0.15–0.30% · Monitoring</div></div>
+    <div class="cluster-count">11</div>
+  </div>
+  <div class="cluster-row">
+    <div class="cluster-dot" style="background:#FF6D00"></div>
+    <div class="cluster-info"><div class="cluster-label">High Risk</div><div class="cluster-sub">Fraud 0.30–0.55% · Elevated</div></div>
+    <div class="cluster-count">8</div>
+  </div>
+  <div class="cluster-row">
+    <div class="cluster-dot" style="background:#FF1744"></div>
+    <div class="cluster-info"><div class="cluster-label">Critical / Active Fraud</div><div class="cluster-sub">Fraud &gt; 0.55% · Investigation</div></div>
+    <div class="cluster-count">3</div>
+  </div>
+  <hr class="divider">
+  <div class="panel-title" style="margin-top:4px">Top Fraud Types</div>
+  <div class="fraud-stat"><span class="name">Card Not Present</span><span class="count" style="color:#FF6D00">35%</span></div>
+  <div class="fraud-bar-wrap"><div class="fraud-bar" style="width:35%;background:#FF6D00"></div></div>
+  <div class="fraud-stat"><span class="name">Account Takeover</span><span class="count" style="color:#FF1744">22%</span></div>
+  <div class="fraud-bar-wrap"><div class="fraud-bar" style="width:22%;background:#FF1744"></div></div>
+  <div class="fraud-stat"><span class="name">Identity Fraud</span><span class="count" style="color:#FFEA00">18%</span></div>
+  <div class="fraud-bar-wrap"><div class="fraud-bar" style="width:18%;background:#FFEA00"></div></div>
+  <div class="fraud-stat"><span class="name">ATM Skimming</span><span class="count" style="color:#AA00FF">12%</span></div>
+  <div class="fraud-bar-wrap"><div class="fraud-bar" style="width:12%;background:#AA00FF"></div></div>
+  <div class="fraud-stat"><span class="name">Phishing / SIM Swap</span><span class="count" style="color:#00E5FF">13%</span></div>
+  <div class="fraud-bar-wrap"><div class="fraud-bar" style="width:13%;background:#00E5FF"></div></div>
+</div>
+
+<!-- ── MAP CONTROLS PANEL ─────────────────────────────────────────────── -->
+<div class="panel" id="panel-controls">
+  <div class="panel-title">Map Controls</div>
+  <div class="ctrl-group">
+    <div class="ctrl-group-label">Circle Size Mode</div>
+    <div class="radio-row"><input type="radio" name="size" id="sz-vol" checked onchange="redraw()"><label for="sz-vol">Monthly Volume (ZAR)</label></div>
+    <div class="radio-row"><input type="radio" name="size" id="sz-tx" onchange="redraw()"><label for="sz-tx">Transaction Count</label></div>
+    <div class="radio-row"><input type="radio" name="size" id="sz-fraud" onchange="redraw()"><label for="sz-fraud">Fraud Alerts</label></div>
+  </div>
+  <div class="ctrl-group">
+    <div class="ctrl-group-label">Colour Mode</div>
+    <div class="radio-row"><input type="radio" name="colour" id="cl-risk" checked onchange="redraw()"><label for="cl-risk">Risk Tier</label></div>
+    <div class="radio-row"><input type="radio" name="colour" id="cl-cat" onchange="redraw()"><label for="cl-cat">Merchant Category</label></div>
+    <div class="radio-row"><input type="radio" name="colour" id="cl-prov" onchange="redraw()"><label for="cl-prov">Province</label></div>
+  </div>
+  <div class="ctrl-group">
+    <div class="ctrl-group-label">Overlays</div>
+    <div class="radio-row"><input type="checkbox" id="ov-fraud" checked onchange="toggleFraud()"><label for="ov-fraud">Fraud Hotspots</label></div>
+    <div class="radio-row"><input type="checkbox" id="ov-labels" onchange="toggleLabels()"><label for="ov-labels">City Labels</label></div>
+  </div>
+  <div style="font-size:10px;color:#4A6A8A;margin-top:4px">Circle area = relative volume</div>
+</div>
+
+<!-- ── RISK LEGEND ────────────────────────────────────────────────────── -->
+<div class="panel" id="panel-legend">
+  <div class="panel-title">Risk Tier</div>
+  <div class="legend-row"><div class="legend-dot" style="background:#00E676"></div><span>Safe (&lt;0.15%)</span></div>
+  <div class="legend-row"><div class="legend-dot" style="background:#FFEA00"></div><span>Watch (0.15–0.30%)</span></div>
+  <div class="legend-row"><div class="legend-dot" style="background:#FF6D00"></div><span>High Risk (0.30–0.55%)</span></div>
+  <div class="legend-row"><div class="legend-dot" style="background:#FF1744"></div><span>Critical (&gt;0.55%)</span></div>
+  <hr class="divider">
+  <div class="panel-title">Volume Scale</div>
+  <div style="display:flex;align-items:center;gap:6px;margin-top:2px">
+    <div style="width:8px;height:8px;border-radius:50%;background:#00E5FF;border:1px solid rgba(255,255,255,0.3)"></div>
+    <span style="font-size:10px;color:#7A94B0">&lt;R50M</span>
+    <div style="width:16px;height:16px;border-radius:50%;background:#00E5FF;border:1px solid rgba(255,255,255,0.3)"></div>
+    <span style="font-size:10px;color:#7A94B0">R200M</span>
+    <div style="width:26px;height:26px;border-radius:50%;background:#00E5FF;border:1px solid rgba(255,255,255,0.3)"></div>
+    <span style="font-size:10px;color:#7A94B0">R500M+</span>
+  </div>
+</div>
+
+<script>
+// ── DATA ────────────────────────────────────────────────────────────────────
+const MERCHANTS = [
+  // GAUTENG
+  { name:"Sandton / Rosebank Luxury Retail", city:"Sandton", prov:"Gauteng", lat:-26.107, lng:28.057, vol:485, tx:52400, fraud_alerts:142, fraud_pct:0.06, cat:"Luxury Retail" },
+  { name:"Johannesburg CBD Mixed Merchants", city:"Johannesburg", prov:"Gauteng", lat:-26.204, lng:28.047, vol:218, tx:28600, fraud_alerts:486, fraud_pct:0.34, cat:"Mixed" },
+  { name:"Soweto & Diepsloot Township", city:"Soweto", prov:"Gauteng", lat:-26.267, lng:27.858, vol:148, tx:19200, fraud_alerts:812, fraud_pct:0.61, cat:"Township Retail" },
+  { name:"Midrand Technology Hub", city:"Midrand", prov:"Gauteng", lat:-25.998, lng:28.128, vol:312, tx:34100, fraud_alerts:198, fraud_pct:0.09, cat:"Business & Tech" },
+  { name:"Pretoria East Retail Corridor", city:"Pretoria", prov:"Gauteng", lat:-25.748, lng:28.330, vol:275, tx:30800, fraud_alerts:165, fraud_pct:0.08, cat:"Retail" },
+  { name:"Pretoria CBD & Hatfield", city:"Pretoria", prov:"Gauteng", lat:-25.748, lng:28.188, vol:162, tx:21500, fraud_alerts:388, fraud_pct:0.29, cat:"Mixed" },
+  { name:"Centurion Mall District", city:"Centurion", prov:"Gauteng", lat:-25.852, lng:28.189, vol:195, tx:24600, fraud_alerts:124, fraud_pct:0.07, cat:"Retail" },
+  { name:"East Rand (Ekurhuleni) Industrial", city:"Ekurhuleni", prov:"Gauteng", lat:-26.318, lng:28.417, vol:185, tx:22100, fraud_alerts:295, fraud_pct:0.21, cat:"Industrial & Retail" },
+  { name:"Tembisa / Mamelodi Township", city:"Tembisa", prov:"Gauteng", lat:-25.998, lng:28.228, vol:88, tx:12400, fraud_alerts:714, fraud_pct:0.68, cat:"Township Retail" },
+
+  // WESTERN CAPE
+  { name:"V&A Waterfront / CBD Cape Town", city:"Cape Town", prov:"Western Cape", lat:-33.902, lng:18.421, vol:382, tx:42000, fraud_alerts:62, fraud_pct:0.04, cat:"Tourism & Luxury" },
+  { name:"Cape Flats / Mitchells Plain", city:"Cape Flats", prov:"Western Cape", lat:-33.985, lng:18.567, vol:97, tx:14200, fraud_alerts:948, fraud_pct:0.82, cat:"Township Retail" },
+  { name:"Stellenbosch Wine Route & Retail", city:"Stellenbosch", prov:"Western Cape", lat:-33.935, lng:18.860, vol:142, tx:16800, fraud_alerts:38, fraud_pct:0.03, cat:"Hospitality" },
+  { name:"Tyger Valley / Bellville Corridor", city:"Bellville", prov:"Western Cape", lat:-33.902, lng:18.628, vol:222, tx:26400, fraud_alerts:148, fraud_pct:0.10, cat:"Retail" },
+  { name:"George / Garden Route", city:"George", prov:"Western Cape", lat:-33.963, lng:22.460, vol:112, tx:14100, fraud_alerts:82, fraud_pct:0.08, cat:"Tourism & Retail" },
+
+  // KWAZULU-NATAL
+  { name:"Umhlanga / La Lucia Premium Zone", city:"Umhlanga", prov:"KwaZulu-Natal", lat:-29.723, lng:31.082, vol:268, tx:30200, fraud_alerts:112, fraud_pct:0.07, cat:"Luxury Retail" },
+  { name:"Durban CBD & Warwick Junction", city:"Durban", prov:"KwaZulu-Natal", lat:-29.858, lng:31.021, vol:178, tx:24100, fraud_alerts:658, fraud_pct:0.46, cat:"Mixed" },
+  { name:"Pietermaritzburg City", city:"Pietermaritzburg", prov:"KwaZulu-Natal", lat:-29.600, lng:30.379, vol:122, tx:15600, fraud_alerts:258, fraud_pct:0.22, cat:"Retail" },
+  { name:"Richards Bay Industrial & Retail", city:"Richards Bay", prov:"KwaZulu-Natal", lat:-28.783, lng:32.047, vol:96, tx:11800, fraud_alerts:95, fraud_pct:0.11, cat:"Industrial" },
+  { name:"Umlazi Township Merchants", city:"Umlazi", prov:"KwaZulu-Natal", lat:-29.958, lng:30.897, vol:72, tx:10400, fraud_alerts:568, fraud_pct:0.58, cat:"Township Retail" },
+  { name:"Newcastle Steel Belt", city:"Newcastle", prov:"KwaZulu-Natal", lat:-27.754, lng:29.933, vol:68, tx:8900, fraud_alerts:174, fraud_pct:0.28, cat:"Industrial" },
+
+  // EASTERN CAPE
+  { name:"Gqeberha (Port Elizabeth) Retail", city:"Gqeberha", prov:"Eastern Cape", lat:-33.960, lng:25.602, vol:145, tx:17800, fraud_alerts:195, fraud_pct:0.15, cat:"Retail" },
+  { name:"East London CBD & Beacon Bay", city:"East London", prov:"Eastern Cape", lat:-33.015, lng:27.912, vol:118, tx:14600, fraud_alerts:312, fraud_pct:0.28, cat:"Mixed" },
+  { name:"Mthatha (Transkei) Regional Hub", city:"Mthatha", prov:"Eastern Cape", lat:-31.588, lng:28.784, vol:52, tx:7200, fraud_alerts:498, fraud_pct:0.62, cat:"Township Retail" },
+
+  // LIMPOPO
+  { name:"Polokwane City Centre", city:"Polokwane", prov:"Limpopo", lat:-23.904, lng:29.469, vol:142, tx:17200, fraud_alerts:145, fraud_pct:0.12, cat:"Retail" },
+  { name:"Thohoyandou / Venda Region", city:"Thohoyandou", prov:"Limpopo", lat:-22.945, lng:30.484, vol:48, tx:6800, fraud_alerts:372, fraud_pct:0.42, cat:"Township Retail" },
+  { name:"Tzaneen Agricultural Hub", city:"Tzaneen", prov:"Limpopo", lat:-23.835, lng:30.161, vol:62, tx:8100, fraud_alerts:98, fraud_pct:0.16, cat:"Agricultural" },
+
+  // MPUMALANGA
+  { name:"Nelspruit / Mbombela Retail", city:"Mbombela", prov:"Mpumalanga", lat:-25.475, lng:30.969, vol:138, tx:16400, fraud_alerts:165, fraud_pct:0.14, cat:"Retail" },
+  { name:"Witbank / Emalahleni Mining Zone", city:"Emalahleni", prov:"Mpumalanga", lat:-25.872, lng:29.225, vol:98, tx:12200, fraud_alerts:312, fraud_pct:0.31, cat:"Industrial" },
+  { name:"Secunda Petrochemical Merchants", city:"Secunda", prov:"Mpumalanga", lat:-26.562, lng:29.188, vol:74, tx:9400, fraud_alerts:142, fraud_pct:0.22, cat:"Industrial" },
+
+  // NORTH WEST
+  { name:"Rustenburg Mining & Retail", city:"Rustenburg", prov:"North West", lat:-25.667, lng:27.242, vol:122, tx:14800, fraud_alerts:368, fraud_pct:0.34, cat:"Industrial & Retail" },
+  { name:"Potchefstroom University Zone", city:"Potchefstroom", prov:"North West", lat:-26.716, lng:27.097, vol:88, tx:11200, fraud_alerts:88, fraud_pct:0.09, cat:"Retail" },
+  { name:"Mafikeng Border Merchants", city:"Mafikeng", prov:"North West", lat:-25.867, lng:25.643, vol:55, tx:7600, fraud_alerts:248, fraud_pct:0.38, cat:"Mixed" },
+
+  // FREE STATE
+  { name:"Bloemfontein City Merchants", city:"Bloemfontein", prov:"Free State", lat:-29.085, lng:26.159, vol:168, tx:20200, fraud_alerts:188, fraud_pct:0.13, cat:"Retail" },
+  { name:"Welkom Gold Fields Merchants", city:"Welkom", prov:"Free State", lat:-27.976, lng:26.735, vol:68, tx:9100, fraud_alerts:562, fraud_pct:0.58, cat:"Mining & Retail" },
+  { name:"Sasolburg Chemical Belt", city:"Sasolburg", prov:"Free State", lat:-26.811, lng:27.828, vol:72, tx:8800, fraud_alerts:142, fraud_pct:0.20, cat:"Industrial" },
+
+  // NORTHERN CAPE
+  { name:"Kimberley Diamond City", city:"Kimberley", prov:"Northern Cape", lat:-28.728, lng:24.750, vol:75, tx:9600, fraud_alerts:168, fraud_pct:0.19, cat:"Retail" },
+  { name:"Upington Arid Region Hub", city:"Upington", prov:"Northern Cape", lat:-28.448, lng:21.256, vol:38, tx:5200, fraud_alerts:78, fraud_pct:0.12, cat:"Agricultural" },
+  { name:"Springbok / West Coast", city:"Springbok", prov:"Northern Cape", lat:-29.665, lng:17.886, vol:28, tx:3800, fraud_alerts:48, fraud_pct:0.14, cat:"Agricultural" },
+];
+
+// Critical fraud hotspots (pulsing markers)
+const HOTSPOTS = [
+  { name:"Cape Flats Card-Not-Present Ring", lat:-33.990, lng:18.570, type:"Card Not Present Fraud Ring", cases:612, suspect_merchants:18, amount:"R4.8M", risk:"Critical" },
+  { name:"Johannesburg CBD Phishing Hub", lat:-26.208, lng:28.042, type:"SIM Swap / Phishing Network", cases:486, suspect_merchants:12, amount:"R3.2M", risk:"Critical" },
+  { name:"Soweto Account Takeover Cluster", lat:-26.270, lng:27.855, type:"Account Takeover Syndicate", cases:414, suspect_merchants:9, amount:"R2.9M", risk:"Critical" },
+  { name:"Mthatha Identity Fraud Network", lat:-31.592, lng:28.788, type:"Identity Document Fraud", cases:298, suspect_merchants:7, amount:"R1.8M", risk:"High" },
+  { name:"Durban Warwick ATM Skimming", lat:-29.861, lng:31.025, type:"ATM Skimming Operation", cases:342, suspect_merchants:5, amount:"R2.1M", risk:"High" },
+  { name:"Welkom Mining Town Scam Hub", lat:-27.980, lng:26.740, type:"Advance-Fee / Loan Scams", cases:268, suspect_merchants:8, amount:"R1.4M", risk:"High" },
+  { name:"Tembisa Merchant Fraud Ring", lat:-26.002, lng:28.232, type:"Merchant Collusion Fraud", cases:224, suspect_merchants:6, amount:"R1.2M", risk:"High" },
+  { name:"Umlazi Debit Order Abuse", lat:-29.962, lng:30.900, type:"Unauthorised Debit Orders", cases:188, suspect_merchants:4, amount:"R0.9M", risk:"Medium" },
+];
+
+// Colour palettes
+const RISK_COLOUR = { safe:"#00E676", watch:"#FFEA00", high:"#FF6D00", critical:"#FF1744" };
+const CAT_COLOUR  = {
+  "Luxury Retail":"#AA00FF", "Mixed":"#00E5FF", "Township Retail":"#FF6D00",
+  "Business & Tech":"#2196F3", "Retail":"#00BCD4", "Hospitality":"#E91E63",
+  "Tourism & Luxury":"#AA00FF", "Tourism & Retail":"#7C4DFF", "Industrial":"#607D8B",
+  "Industrial & Retail":"#78909C", "Agricultural":"#8BC34A", "Mining & Retail":"#FFC107",
+};
+const PROV_COLOUR = {
+  "Gauteng":"#FF6D00", "Western Cape":"#00E5FF", "KwaZulu-Natal":"#AA00FF",
+  "Eastern Cape":"#FFEA00", "Limpopo":"#00E676", "Mpumalanga":"#FF1744",
+  "North West":"#FF9800", "Free State":"#E91E63", "Northern Cape":"#00BCD4",
+};
+
+function riskTier(pct) {
+  if (pct < 0.15) return "safe";
+  if (pct < 0.30) return "watch";
+  if (pct < 0.55) return "high";
+  return "critical";
+}
+function tierLabel(t) { return {safe:"Safe Zone",watch:"Watch Zone",high:"High Risk",critical:"Critical"}[t]; }
+function tierBadgeCss(t) {
+  const bg = {safe:"#00E676",watch:"#FFEA00",high:"#FF6D00",critical:"#FF1744"}[t];
+  const fg = t==="watch" ? "#000" : "#fff";
+  return `background:${bg};color:${fg}`;
+}
+
+function getSizeField() {
+  if (document.getElementById("sz-tx") && document.getElementById("sz-tx").checked)    return "tx";
+  if (document.getElementById("sz-fraud") && document.getElementById("sz-fraud").checked) return "fraud";
+  return "vol";
+}
+function getColourMode() {
+  if (document.getElementById("cl-cat") && document.getElementById("cl-cat").checked)   return "cat";
+  if (document.getElementById("cl-prov") && document.getElementById("cl-prov").checked) return "prov";
+  return "risk";
+}
+
+// ── MAP INIT ────────────────────────────────────────────────────────────────
+const map = L.map("map", { center:[-28.5, 25.5], zoom:6, zoomControl:false });
+L.control.zoom({ position:"topleft" }).addTo(map);
+
+L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+  attribution:'© CartoDB',
+  subdomains:"abcd", maxZoom:19
+}).addTo(map);
+
+let merchantLayer = L.layerGroup().addTo(map);
+let fraudLayer    = L.layerGroup().addTo(map);
+let labelLayer    = L.layerGroup();
+
+// Compute max values for scaling
+const MAX_VOL   = Math.max(...MERCHANTS.map(m=>m.vol));
+const MAX_TX    = Math.max(...MERCHANTS.map(m=>m.tx));
+const MAX_FRAUD = Math.max(...MERCHANTS.map(m=>m.fraud_alerts));
+
+function scaleRadius(val, max) {
+  return 7 + Math.sqrt(val/max) * 28;
+}
+
+function drawMerchants() {
+  merchantLayer.clearLayers();
+  const szField    = getSizeField();
+  const colourMode = getColourMode();
+
+  MERCHANTS.forEach(m => {
+    const rawVal = szField==="tx" ? m.tx : szField==="fraud" ? m.fraud_alerts : m.vol;
+    const maxVal = szField==="tx" ? MAX_TX : szField==="fraud" ? MAX_FRAUD : MAX_VOL;
+    const radius = scaleRadius(rawVal, maxVal);
+    const tier   = riskTier(m.fraud_pct);
+    let   colour = RISK_COLOUR[tier];
+    if (colourMode==="cat")  colour = CAT_COLOUR[m.cat]  || "#00E5FF";
+    if (colourMode==="prov") colour = PROV_COLOUR[m.prov] || "#00E5FF";
+
+    const circle = L.circleMarker([m.lat, m.lng], {
+      radius, fillColor:colour, color:"rgba(0,0,0,0.4)",
+      weight:1.5, fillOpacity:0.82,
+    });
+
+    const badge = `<span class="popup-badge" style="${tierBadgeCss(tier)}">${tierLabel(tier)}</span>`;
+    circle.bindPopup(`
+      <div class="popup-title">${m.name}</div>
+      <div class="popup-row"><span class="k">Province</span><span class="v">${m.prov}</span></div>
+      <div class="popup-row"><span class="k">Category</span><span class="v">${m.cat}</span></div>
+      <div class="popup-row"><span class="k">Monthly Volume</span><span class="v" style="color:#00E5FF">R${m.vol}M</span></div>
+      <div class="popup-row"><span class="k">Transactions / mo</span><span class="v">${m.tx.toLocaleString()}</span></div>
+      <div class="popup-row"><span class="k">Fraud Alerts</span><span class="v" style="color:#FF6D00">${m.fraud_alerts.toLocaleString()}</span></div>
+      <div class="popup-row"><span class="k">Fraud Rate</span><span class="v" style="color:${RISK_COLOUR[tier]}">${(m.fraud_pct).toFixed(2)}%</span></div>
+      <div style="margin-top:6px">${badge}</div>
+    `, { maxWidth:260 });
+
+    circle.bindTooltip(`<strong>${m.city}</strong><br>R${m.vol}M · ${(m.fraud_pct).toFixed(2)}% fraud`, {
+      direction:"top", className:"leaflet-tooltip"
+    });
+    merchantLayer.addLayer(circle);
+  });
+}
+
+function drawFraudHotspots() {
+  fraudLayer.clearLayers();
+  HOTSPOTS.forEach(h => {
+    const icon = L.divIcon({
+      className:"", html:`<div class="fraud-pulse"></div>`,
+      iconSize:[14,14], iconAnchor:[7,7],
+    });
+    const marker = L.marker([h.lat, h.lng], { icon });
+    const riskColour = {Critical:"#FF1744", High:"#FF6D00", Medium:"#FFEA00"}[h.risk] || "#FF6D00";
+    marker.bindPopup(`
+      <div class="popup-title" style="color:#FF1744">⚠ FRAUD HOTSPOT</div>
+      <div style="font-weight:700;color:#E0F0FF;margin-bottom:6px">${h.name}</div>
+      <div class="popup-row"><span class="k">Fraud Type</span><span class="v" style="color:#FF6D00">${h.type}</span></div>
+      <div class="popup-row"><span class="k">Active Cases</span><span class="v" style="color:#FF1744">${h.cases}</span></div>
+      <div class="popup-row"><span class="k">Suspect Merchants</span><span class="v">${h.suspect_merchants}</span></div>
+      <div class="popup-row"><span class="k">Amount at Risk</span><span class="v" style="color:#FF1744">${h.amount}</span></div>
+      <div style="margin-top:6px"><span class="popup-badge" style="background:#FF1744;color:#fff">${h.risk} Risk</span></div>
+    `, { maxWidth:260 });
+    marker.bindTooltip(`<strong>FRAUD HOTSPOT</strong><br>${h.type}`, { direction:"top" });
+    fraudLayer.addLayer(marker);
+  });
+}
+
+function drawLabels() {
+  labelLayer.clearLayers();
+  const cities = [...new Set(MERCHANTS.map(m=>({city:m.city,lat:m.lat,lng:m.lng})).map(JSON.stringify))].map(JSON.parse);
+  cities.forEach(c => {
+    L.marker([c.lat+0.08, c.lng], {
+      icon: L.divIcon({
+        className:"", iconSize:[0,0],
+        html:`<div style="color:#C9A84C;font-size:10px;font-weight:700;white-space:nowrap;text-shadow:0 1px 3px #000">${c.city}</div>`
+      })
+    }).addTo(labelLayer);
+  });
+}
+
+function redraw() {
+  drawMerchants();
+}
+
+function toggleFraud() {
+  if (document.getElementById("ov-fraud").checked) fraudLayer.addTo(map);
+  else map.removeLayer(fraudLayer);
+}
+
+function toggleLabels() {
+  if (document.getElementById("ov-labels").checked) labelLayer.addTo(map);
+  else map.removeLayer(labelLayer);
+}
+
+// Initial render
+drawMerchants();
+drawFraudHotspots();
+drawLabels();
+</script>
+</body>
+</html>
