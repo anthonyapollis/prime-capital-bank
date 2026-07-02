@@ -1665,11 +1665,8 @@ Fintech Partner Acquiring System
   new Chart(document.getElementById('ch3Bar'), {
     type: 'bar',
     data: {
-      labels: ['Transactions
-(T24)', 'Card Txns
-(Cards)', 'EFT Payments', 'RTC Payments',
-               'Journal Entries
-(GL)', 'CRM Opps', 'Accounts', 'CRM Contacts',
+      labels: [['Transactions','(T24)'], ['Card Txns','(Cards)'], 'EFT Payments', 'RTC Payments',
+               ['Journal Entries','(GL)'], 'CRM Opps', 'Accounts', 'CRM Contacts',
                'Credit Bureau', 'Customers', 'Card Accounts', 'Loans', 'FX Rates', 'Employees'],
       datasets: [{
         label: 'Row Count',
@@ -1734,12 +1731,7 @@ Fintech Partner Acquiring System
   new Chart(document.getElementById('ch4Bar'), {
     type: 'bar',
     data: {
-      labels: ['Late GL
-Corrections', 'UAT Test
-Records', 'Missing
-Ref Data', 'Format
-Errors', 'Duplicate
-Keys'],
+      labels: [['Late GL','Corrections'], ['UAT Test','Records'], ['Missing','Ref Data'], ['Format','Errors'], ['Duplicate','Keys']],
       datasets: [{
         label: 'Quarantine Share (%)',
         data: [38, 31, 14, 11, 6],
@@ -1760,11 +1752,7 @@ Keys'],
   // ═══════════════════════════════════════════════════════════
   // CHART 4 — ML Model Performance
   // ═══════════════════════════════════════════════════════════
-  const mlLabels = ['PD Model
-(XGBoost)', 'LGD Model
-(GBM)', 'Fraud
-Ensemble', 'AML
-Scorer'];
+  const mlLabels = [['PD Model','(XGBoost)'], ['LGD Model','(GBM)'], ['Fraud','Ensemble'], ['AML','Scorer']];
   new Chart(document.getElementById('ch7AUC'), {
     type: 'bar',
     data: {
@@ -1835,11 +1823,7 @@ Scorer'];
   new Chart(document.getElementById('ch8Ratios'), {
     type: 'bar',
     data: {
-      labels: ['CET1
-Ratio', 'Tier 1
-Capital', 'Total
-CAR', 'LCR', 'NSFR', 'Leverage
-Ratio'],
+      labels: [['CET1','Ratio'], ['Tier 1','Capital'], ['Total','CAR'], 'LCR', 'NSFR', ['Leverage','Ratio']],
       datasets: [
         {
           label: 'Actual (%)',
