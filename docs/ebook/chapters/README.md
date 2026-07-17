@@ -3,7 +3,7 @@
 The primary ebook deliverable is the single-page HTML app at `../index.html`.
 
 This folder holds standalone chapter exports — useful for sharing individual chapters
-with recruiters, emailing specific sections, or generating per-chapter PDFs.
+with stakeholders, emailing specific sections, or generating per-chapter PDFs.
 
 ## Chapter List
 
