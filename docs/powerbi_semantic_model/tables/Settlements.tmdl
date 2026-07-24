@@ -1,0 +1,202 @@
+table Settlements
+	lineageTag: f5aae29a-8742-48bd-b7eb-fab976c55f57
+
+	/// Total gross settled volume (ZAR) across selected partners and months.
+	measure 'Gross Volume' = SUM ( Settlements[gross_volume_zar] )
+		formatString: \R#,##0
+		displayFolder: 1 Volume
+		lineageTag: 4a448a85-e26d-47b7-8a8a-ec0653b435ff
+
+	/// Net amount settled to the bank after merchant and interchange fees.
+	measure 'Net Settlement' = SUM ( Settlements[net_settlement_zar] )
+		formatString: \R#,##0
+		displayFolder: 1 Volume
+		lineageTag: 76b1e0cf-ed17-4a4a-9ed6-1d7b65a51aec
+
+	measure 'Total Transactions' = SUM ( Settlements[total_transactions] )
+		formatString: #,##0
+		displayFolder: 1 Volume
+		lineageTag: 709a00a9-e19c-4856-a61b-d23098a411ff
+
+	measure 'Avg Transaction Value' = DIVIDE ( [Gross Volume], [Total Transactions] )
+		formatString: \R#,##0.00
+		displayFolder: 1 Volume
+		lineageTag: e91e594a-911f-4a84-b5ff-8167303f7611
+
+	measure 'Merchant Fees' = SUM ( Settlements[merchant_fees_zar] )
+		formatString: \R#,##0
+		displayFolder: 2 Economics
+		lineageTag: ab42eedb-25ce-48ad-8c4e-b3482d543535
+
+	measure 'Interchange Fees' = SUM ( Settlements[interchange_fees_zar] )
+		formatString: \R#,##0
+		displayFolder: 2 Economics
+		lineageTag: 8a0d03c6-06a6-49ac-96b5-31eebf9f5d0c
+
+	/// Merchant discount rate = merchant fees / gross volume.
+	measure 'Effective MDR %' = DIVIDE ( [Merchant Fees], [Gross Volume] )
+		formatString: 0.00%
+		displayFolder: 2 Economics
+		lineageTag: 1213a1a5-c646-4beb-b37b-d927f680bec7
+
+	measure 'Fee Take Rate %' = DIVIDE ( [Merchant Fees] + [Interchange Fees], [Gross Volume] )
+		formatString: 0.00%
+		displayFolder: 2 Economics
+		lineageTag: 0a9a19b2-bdc0-497b-91f1-042572295372
+
+	measure Chargebacks = SUM ( Settlements[chargebacks_count] )
+		formatString: #,##0
+		displayFolder: 3 Risk
+		lineageTag: e67aa30a-93d3-4677-9ed0-e1ae324820f8
+
+	measure 'Chargeback Ratio %' = DIVIDE ( [Chargebacks], [Total Transactions] )
+		formatString: 0.00%
+		displayFolder: 3 Risk
+		lineageTag: dcc14e26-eca9-4b7f-a379-ec219b6ee0d6
+
+	measure 'Active Merchants (Peak)' = MAX ( Settlements[active_merchants] )
+		formatString: #,##0
+		displayFolder: 3 Risk
+		lineageTag: 1a2a13fe-5d04-4a92-9fdc-5c2b1b8708e1
+
+	/// Month-over-month growth in gross volume using month_key ordering.
+	measure 'Gross Volume MoM %' = VAR cm = MAX ( Settlements[month_key] ) VAR prev = CALCULATE ( [Gross Volume], FILTER ( ALL ( Settlements[month_key] ), Settlements[month_key] = cm - 1 ) ) RETURN DIVIDE ( [Gross Volume] - prev, prev )
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 4 Time Intelligence
+		lineageTag: d1e07e1f-b9dc-4738-8d08-5a1735b6e79f
+
+	measure 'Net Settlement YTD' = CALCULATE ( [Net Settlement], FILTER ( ALL ( Settlements[month_key] ), Settlements[month_key] <= MAX ( Settlements[month_key] ) ) )
+		formatString: \R#,##0
+		displayFolder: 4 Time Intelligence
+		lineageTag: 36526aee-aa3c-4c65-9b10-6c6e9b08706e
+
+	column settlement_id
+		isNameInferred
+		sourceColumn: [settlement_id]
+
+	column month_key
+		isNameInferred
+		sourceColumn: [month_key]
+
+	column month_name
+		isNameInferred
+		sourceColumn: [month_name]
+		sortByColumn: month_key
+
+	column fintech_id
+		isNameInferred
+		sourceColumn: [fintech_id]
+
+	column fintech_name
+		isNameInferred
+		sourceColumn: [fintech_name]
+
+	column platform_type
+		isNameInferred
+		sourceColumn: [platform_type]
+
+	column total_transactions
+		isNameInferred
+		sourceColumn: [total_transactions]
+
+	column gross_volume_zar
+		isNameInferred
+		sourceColumn: [gross_volume_zar]
+
+	column merchant_fees_zar
+		isNameInferred
+		sourceColumn: [merchant_fees_zar]
+
+	column interchange_fees_zar
+		isNameInferred
+		sourceColumn: [interchange_fees_zar]
+
+	column net_settlement_zar
+		isNameInferred
+		sourceColumn: [net_settlement_zar]
+
+	column chargebacks_count
+		isNameInferred
+		sourceColumn: [chargebacks_count]
+
+	column chargeback_ratio_pct
+		isNameInferred
+		sourceColumn: [chargeback_ratio_pct]
+
+	column active_merchants
+		isNameInferred
+		sourceColumn: [active_merchants]
+
+	column failure_rate_pct
+		isNameInferred
+		sourceColumn: [failure_rate_pct]
+
+	partition Settlements = calculated
+		mode: import
+		source =
+				DATATABLE(
+				 "settlement_id",STRING, "month_key",INTEGER, "month_name",STRING, "fintech_id",STRING, "fintech_name",STRING, "platform_type",STRING, "total_transactions",INTEGER, "gross_volume_zar",DOUBLE, "merchant_fees_zar",DOUBLE, "interchange_fees_zar",DOUBLE, "net_settlement_zar",DOUBLE, "chargebacks_count",INTEGER, "chargeback_ratio_pct",DOUBLE, "active_merchants",INTEGER, "failure_rate_pct",DOUBLE,
+				 {
+				  {"FS-2024-01-FT001",1,"Jan","FT001","Yoco","POS Card Acquiring",892410,764832150.00,22562548.43,15296643.00,726972958.57,1205,0.14,247300,1.00},
+				  {"FS-2024-02-FT001",2,"Feb","FT001","Yoco","POS Card Acquiring",820150,702928350.00,20736386.33,14058567.00,668133396.67,1107,0.13,249440,1.00},
+				  {"FS-2024-03-FT001",3,"Mar","FT001","Yoco","POS Card Acquiring",935280,801875880.00,23655367.46,16037517.60,762182995.94,1262,0.13,251400,1.00},
+				  {"FS-2024-04-FT001",4,"Apr","FT001","Yoco","POS Card Acquiring",978340,838637460.00,24739804.97,16772749.20,797124905.83,1320,0.13,253140,1.00},
+				  {"FS-2024-05-FT001",5,"May","FT001","Yoco","POS Card Acquiring",840120,719942880.00,21238215.36,14398857.60,684305807.04,1134,0.13,254650,1.00},
+				  {"FS-2024-06-FT001",6,"Jun","FT001","Yoco","POS Card Acquiring",812400,696136320.00,20535920.94,13922726.40,661677672.66,1097,0.13,256030,1.00},
+				  {"FS-2024-07-FT001",7,"Jul","FT001","Yoco","POS Card Acquiring",961560,824054040.00,24309544.18,16481080.80,783263415.02,1298,0.14,258080,1.00},
+				  {"FS-2024-08-FT001",8,"Aug","FT001","Yoco","POS Card Acquiring",1024680,878146632.00,25905346.14,17562932.64,834678353.22,1382,0.13,259970,1.00},
+				  {"FS-2024-09-FT001",9,"Sep","FT001","Yoco","POS Card Acquiring",918760,787493720.00,23231063.24,15749874.40,748512782.36,1240,0.13,261730,1.00},
+				  {"FS-2024-10-FT001",10,"Oct","FT001","Yoco","POS Card Acquiring",1058420,907402220.00,26768365.49,18148044.40,862485810.11,1428,0.13,263710,1.00},
+				  {"FS-2024-11-FT001",11,"Nov","FT001","Yoco","POS Card Acquiring",1384560,1187028240.00,35017332.48,23740564.80,1128270342.72,1868,0.13,266350,1.00},
+				  {"FS-2024-12-FT001",12,"Dec","FT001","Yoco","POS Card Acquiring",1612440,1382183640.00,40774417.08,27643672.80,1313765550.12,2177,0.13,269470,1.00},
+				  {"FS-2024-01-FT002",1,"Jan","FT002","SnapScan","QR Code Payment",312840,106507008.00,2928942.72,2130140.16,101447925.12,469,0.15,79240,1.00},
+				  {"FS-2024-02-FT002",2,"Feb","FT002","SnapScan","QR Code Payment",287650,97847940.00,2690718.35,1956958.80,93200262.85,431,0.15,79720,1.00},
+				  {"FS-2024-03-FT002",3,"Mar","FT002","SnapScan","QR Code Payment",340120,115784868.00,3184009.37,2315697.36,110285161.27,510,0.15,80310,1.00},
+				  {"FS-2024-04-FT002",4,"Apr","FT002","SnapScan","QR Code Payment",356890,121447594.00,3339808.34,2428951.88,115678833.78,535,0.15,80850,1.00},
+				  {"FS-2024-05-FT002",5,"May","FT002","SnapScan","QR Code Payment",298740,101624244.00,2794668.21,2032484.88,96797090.91,448,0.15,81320,1.00},
+				  {"FS-2024-06-FT002",6,"Jun","FT002","SnapScan","QR Code Payment",279640,95107368.00,2615452.62,1902147.36,90589768.02,419,0.15,81730,1.00},
+				  {"FS-2024-07-FT002",7,"Jul","FT002","SnapScan","QR Code Payment",334280,113783508.00,3129046.47,2275670.16,108378791.37,501,0.15,82290,1.00},
+				  {"FS-2024-08-FT002",8,"Aug","FT002","SnapScan","QR Code Payment",378560,128816468.00,3542452.87,2576329.36,122697685.77,568,0.15,82820,1.00},
+				  {"FS-2024-09-FT002",9,"Sep","FT002","SnapScan","QR Code Payment",328440,111757344.00,3073326.96,2235146.88,106448870.16,493,0.15,83310,1.00},
+				  {"FS-2024-10-FT002",10,"Oct","FT002","SnapScan","QR Code Payment",398720,135618176.00,3729499.84,2712363.52,129176312.64,598,0.15,83920,1.00},
+				  {"FS-2024-11-FT002",11,"Nov","FT002","SnapScan","QR Code Payment",524680,178498972.00,4908721.73,3569979.44,170020270.83,787,0.15,84810,1.00},
+				  {"FS-2024-12-FT002",12,"Dec","FT002","SnapScan","QR Code Payment",612340,208347012.00,5729542.83,4166940.24,198450528.93,918,0.15,85850,1.00},
+				  {"FS-2024-01-FT003",1,"Jan","FT003","PayFast","Online Payment Gateway",142680,178354248.00,6242398.68,3567084.96,168544764.36,285,0.20,44120,2.00},
+				  {"FS-2024-02-FT003",2,"Feb","FT003","PayFast","Online Payment Gateway",136240,170280560.00,5959819.60,3405611.20,160915129.20,272,0.20,44460,2.00},
+				  {"FS-2024-03-FT003",3,"Mar","FT003","PayFast","Online Payment Gateway",158920,198666080.00,6953312.80,3973321.60,187739445.60,318,0.20,44880,2.00},
+				  {"FS-2024-04-FT003",4,"Apr","FT003","PayFast","Online Payment Gateway",162480,203095200.00,7108332.00,4061904.00,191924964.00,325,0.20,45270,2.00},
+				  {"FS-2024-05-FT003",5,"May","FT003","PayFast","Online Payment Gateway",145360,181700720.00,6359525.20,3634014.40,171707180.40,291,0.20,45620,2.00},
+				  {"FS-2024-06-FT003",6,"Jun","FT003","PayFast","Online Payment Gateway",138820,173517700.00,6073119.50,3470354.00,163974226.50,278,0.20,45940,2.00},
+				  {"FS-2024-07-FT003",7,"Jul","FT003","PayFast","Online Payment Gateway",165840,207265200.00,7254282.00,4145304.00,195865614.00,332,0.20,46380,2.00},
+				  {"FS-2024-08-FT003",8,"Aug","FT003","PayFast","Online Payment Gateway",176320,220399360.00,7713977.60,4407987.20,208277395.20,353,0.20,46790,2.00},
+				  {"FS-2024-09-FT003",9,"Sep","FT003","PayFast","Online Payment Gateway",161480,201827560.00,7063964.60,4036551.20,190727044.20,323,0.20,47170,2.00},
+				  {"FS-2024-10-FT003",10,"Oct","FT003","PayFast","Online Payment Gateway",184640,230791360.00,8077697.60,4615827.20,218097835.20,369,0.20,47620,2.00},
+				  {"FS-2024-11-FT003",11,"Nov","FT003","PayFast","Online Payment Gateway",248760,310940880.00,10882930.80,6218817.60,293839131.60,498,0.20,48300,2.00},
+				  {"FS-2024-12-FT003",12,"Dec","FT003","PayFast","Online Payment Gateway",298640,373282240.00,13064878.40,7465644.80,352751716.80,597,0.20,49120,2.00},
+				  {"FS-2024-01-FT004",1,"Jan","FT004","Peach Payments","Online Payment Gateway",58420,57188636.00,1658697.44,1143772.72,54386165.84,117,0.20,11680,2.00},
+				  {"FS-2024-02-FT004",2,"Feb","FT004","Peach Payments","Online Payment Gateway",54360,53193096.00,1542600.38,1063861.92,50586633.70,109,0.20,11840,2.00},
+				  {"FS-2024-03-FT004",3,"Mar","FT004","Peach Payments","Online Payment Gateway",63480,62126040.00,1801655.16,1242520.80,59081864.04,127,0.20,12050,2.00},
+				  {"FS-2024-04-FT004",4,"Apr","FT004","Peach Payments","Online Payment Gateway",67240,65824196.00,1908801.88,1316483.92,62598910.20,134,0.20,12245,2.00},
+				  {"FS-2024-05-FT004",5,"May","FT004","Peach Payments","Online Payment Gateway",58960,57714048.00,1673707.39,1154280.96,54886059.65,118,0.20,12420,2.00},
+				  {"FS-2024-06-FT004",6,"Jun","FT004","Peach Payments","Online Payment Gateway",55640,54455888.00,1579220.75,1089117.76,51787549.49,111,0.20,12570,2.00},
+				  {"FS-2024-07-FT004",7,"Jul","FT004","Peach Payments","Online Payment Gateway",66120,64720668.00,1876899.37,1294413.36,61549355.27,132,0.20,12790,2.00},
+				  {"FS-2024-08-FT004",8,"Aug","FT004","Peach Payments","Online Payment Gateway",72480,70925760.00,2056847.04,1418515.20,67450397.76,145,0.20,12995,2.00},
+				  {"FS-2024-09-FT004",9,"Sep","FT004","Peach Payments","Online Payment Gateway",64580,63222764.00,1833445.16,1264455.28,60124863.56,129,0.20,13180,2.00},
+				  {"FS-2024-10-FT004",10,"Oct","FT004","Peach Payments","Online Payment Gateway",74920,73328968.00,2126540.07,1466579.36,69735848.57,150,0.20,13410,2.00},
+				  {"FS-2024-11-FT004",11,"Nov","FT004","Peach Payments","Online Payment Gateway",98640,96533304.00,2799563.62,1930666.08,91803074.30,197,0.20,13790,2.00},
+				  {"FS-2024-12-FT004",12,"Dec","FT004","Peach Payments","Online Payment Gateway",118320,115838736.00,3359323.34,2316774.72,110162637.94,237,0.20,14250,2.00},
+				  {"FS-2024-01-FT005",1,"Jan","FT005","PayGate","Online Payment Gateway",38420,72676694.00,2034947.43,1453533.88,69188212.69,77,0.20,7840,2.00},
+				  {"FS-2024-02-FT005",2,"Feb","FT005","PayGate","Online Payment Gateway",35680,67490216.00,1889726.05,1349804.32,64250685.63,71,0.20,7918,2.00},
+				  {"FS-2024-03-FT005",3,"Mar","FT005","PayGate","Online Payment Gateway",41560,78604016.00,2200912.45,1572080.32,74831023.23,83,0.20,8014,2.00},
+				  {"FS-2024-04-FT005",4,"Apr","FT005","PayGate","Online Payment Gateway",43280,81883688.00,2292743.26,1637673.76,77953271.00,87,0.20,8102,2.00},
+				  {"FS-2024-05-FT005",5,"May","FT005","PayGate","Online Payment Gateway",37640,71218804.00,1994126.51,1424376.08,67800301.41,75,0.20,8182,2.00},
+				  {"FS-2024-06-FT005",6,"Jun","FT005","PayGate","Online Payment Gateway",35120,66429928.00,1860037.98,1328598.56,63241291.46,70,0.20,8250,2.00},
+				  {"FS-2024-07-FT005",7,"Jul","FT005","PayGate","Online Payment Gateway",43840,82941392.00,2322358.98,1658827.84,78960205.18,88,0.20,8352,2.00},
+				  {"FS-2024-08-FT005",8,"Aug","FT005","PayGate","Online Payment Gateway",47360,89607832.00,2509019.30,1792156.64,85306656.06,95,0.20,8446,2.00},
+				  {"FS-2024-09-FT005",9,"Sep","FT005","PayGate","Online Payment Gateway",41980,79428878.00,2223808.78,1588577.56,75616491.66,84,0.20,8534,2.00},
+				  {"FS-2024-10-FT005",10,"Oct","FT005","PayGate","Online Payment Gateway",52480,99274456.00,2779484.77,1985489.12,94509482.11,105,0.20,8649,2.00},
+				  {"FS-2024-11-FT005",11,"Nov","FT005","PayGate","Online Payment Gateway",70960,134233496.00,3758537.89,2684669.92,127790288.19,142,0.20,8847,2.00},
+				  {"FS-2024-12-FT005",12,"Dec","FT005","PayGate","Online Payment Gateway",86240,163117040.00,4567277.12,3262340.80,155287422.08,172,0.20,9087,2.00}
+				 }
+				)
+

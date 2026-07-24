@@ -1,0 +1,9 @@
+model Model
+	culture: en-GB
+
+annotation PBI_ProTooling = ["MCP-PBIModeling"]
+
+ref table Settlements
+
+ref cultureInfo en-GB
+
