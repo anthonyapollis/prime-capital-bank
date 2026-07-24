@@ -1,0 +1,204 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prime Capital Bank — Finance Self-Serve Report</title>
+<style>
+  :root{--bg:#f3f4f6;--canvas:#fafbfc;--card:#fff;--line:#e3e6ea;--ink:#1b1f26;--muted:#6a7482;
+    --acc:#3b6fe0;--acc-d:#2554c4;--fabric:#0f6cbd;--gold:#f2c811;--green:#16a34a;--red:#e0483f;--amber:#d98a00;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Segoe UI',Tahoma,sans-serif;background:var(--bg);color:var(--ink);}
+  .app{display:flex;flex-direction:column;height:100vh;overflow:hidden;}
+  .ribbon{display:flex;align-items:center;gap:14px;background:var(--card);border-bottom:1px solid var(--line);padding:10px 18px;}
+  .pbi{display:flex;align-items:center;gap:9px;} .pbi .sq{width:30px;height:30px;border-radius:7px;background:linear-gradient(135deg,var(--gold),#e0a800);display:flex;align-items:center;justify-content:center;font-weight:900;color:#3a2f00;font-size:13px;box-shadow:0 2px 8px rgba(242,200,17,.4);}
+  .pbi h1{font-size:15px;font-weight:800;} .pbi p{font-size:11px;color:var(--muted);}
+  .selfserve{margin-left:6px;background:rgba(22,163,74,.12);color:var(--green);font-size:11px;font-weight:800;padding:4px 11px;border-radius:20px;border:1px solid rgba(22,163,74,.3);}
+  .ribbon .who{margin-left:auto;text-align:right;font-size:11px;color:var(--muted);line-height:1.4;} .ribbon .who b{color:var(--ink);}
+  .btn{font-size:12px;font-weight:700;padding:7px 13px;border-radius:7px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;}
+  .btn.primary{background:var(--acc);color:#fff;border-color:var(--acc);} .btn:hover{border-color:var(--acc);}
+  .main{display:flex;flex:1;overflow:hidden;}
+  .slicers{width:240px;background:var(--card);border-right:1px solid var(--line);padding:16px;overflow-y:auto;flex-shrink:0;}
+  .slicers h3{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin:16px 0 9px;} .slicers h3:first-child{margin-top:0;}
+  .param{background:var(--canvas);border:1px solid var(--line);border-radius:8px;padding:11px 12px;margin-bottom:6px;}
+  .slic-item{display:flex;align-items:center;gap:8px;font-size:13px;padding:5px 0;cursor:pointer;}
+  .slic-item input{accent-color:var(--acc);width:15px;height:15px;}
+  select,.rng{width:100%;padding:7px 9px;border:1px solid var(--line);border-radius:7px;background:var(--card);color:var(--ink);font-size:13px;}
+  .rngrow{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);}
+  .canvas{flex:1;overflow-y:auto;padding:18px;background:var(--canvas);}
+  .kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:14px;}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:13px 15px;box-shadow:0 1px 3px rgba(20,30,50,.05);}
+  .kpi .l{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;display:flex;align-items:center;gap:5px;}
+  .kpi .n{font-size:20px;font-weight:900;margin-top:5px;letter-spacing:-.5px;} .kpi .d{font-size:11px;margin-top:3px;} .kpi .d.up{color:var(--green);} .kpi .d.down{color:var(--red);}
+  .visrow{display:grid;grid-template-columns:1.4fr 1fr;gap:14px;margin-bottom:14px;}
+  .vis{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:14px 16px;box-shadow:0 1px 3px rgba(20,30,50,.05);}
+  .vis h4{font-size:13px;font-weight:800;margin-bottom:2px;} .vis .sub{font-size:11px;color:var(--muted);margin-bottom:10px;}
+  .narr{background:linear-gradient(90deg,rgba(59,111,224,.07),transparent);border:1px solid var(--line);border-left:3px solid var(--acc);border-radius:9px;padding:12px 15px;font-size:13px;line-height:1.6;margin-bottom:14px;}
+  .narr b{color:var(--acc-d);}
+  table{width:100%;border-collapse:collapse;font-size:12px;} th{text-align:left;color:var(--muted);font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.4px;padding:8px 10px;border-bottom:1px solid var(--line);}
+  td{padding:7px 10px;border-bottom:1px solid var(--line);} .amt{text-align:right;font-family:'Consolas',monospace;} .mono{font-family:'Consolas',monospace;color:#33415a;}
+  .legend{display:flex;flex-wrap:wrap;gap:12px;font-size:11px;color:var(--muted);margin-top:8px;} .legend span{display:flex;align-items:center;gap:5px;} .legend i{width:11px;height:11px;border-radius:3px;display:inline-block;}
+  .daxpanel{background:#0d1117;border:1px solid #30363d;border-radius:11px;padding:0;overflow:hidden;margin-bottom:8px;display:none;}
+  .daxpanel.show{display:block;}
+  .daxpanel .h{display:flex;justify-content:space-between;align-items:center;padding:11px 15px;border-bottom:1px solid #30363d;color:#e6edf3;font-size:12px;font-weight:800;}
+  .daxpanel pre{padding:14px 16px;color:#adbac7;font-family:'Consolas',monospace;font-size:12px;line-height:1.65;overflow-x:auto;}
+  .dax-k{color:#ff7b72;} .dax-f{color:#d2a8ff;} .dax-c{color:#8b949e;} .dax-n{color:#79c0ff;}
+  .foot{font-size:11px;color:var(--muted);padding:4px 2px 12px;}
+  @media(max-width:1050px){.kpis{grid-template-columns:repeat(2,1fr);}.visrow{grid-template-columns:1fr;}}
+</style></head><body>
+<div class="app">
+  <div class="ribbon">
+    <div class="pbi"><div class="sq">PBI</div><div><h1>Finance Self-Serve Report — Fintech Settlements</h1><p>Prime Capital Bank · governed Gold semantic model</p></div></div>
+    <span class="selfserve">&#9889; Self-serve · no ticket needed</span>
+    <div class="who"><b>Anthony Apollis</b> · Senior BI Developer<br>Power BI / Microsoft Fabric</div>
+  </div>
+  <div class="main">
+    <aside class="slicers">
+      <h3>Measure</h3>
+      <div class="param"><select id="measure">
+        <option value="gross">Gross Volume (R)</option>
+        <option value="net">Net Settlement (R)</option>
+        <option value="mfees">Merchant Fees (R)</option>
+        <option value="txns">Transactions (#)</option>
+        <option value="mdr">Effective MDR (%)</option>
+        <option value="cb">Chargeback Ratio (%)</option>
+        <option value="fail">Failure Rate (%)</option>
+      </select></div>
+      <h3>Partner</h3>
+      <div class="param" id="partners"></div>
+      <h3>Month range (2024)</h3>
+      <div class="param"><div class="rngrow"><span>From</span><select id="mfrom" class="rng"></select></div>
+        <div class="rngrow" style="margin-top:8px;"><span>To</span><select id="mto" class="rng"></select></div></div>
+      <h3>Actions</h3>
+      <button class="btn" style="width:100%;margin-bottom:7px;" id="exportBtn">&#8681; Export to CSV</button>
+      <button class="btn" style="width:100%;" id="daxBtn">&#60;/&#62; Show DAX measures</button>
+    </aside>
+    <section class="canvas">
+      <div class="narr" id="narr"></div>
+      <div class="kpis" id="kpis"></div>
+      <div class="daxpanel" id="daxpanel"><div class="h"><span>DAX — governed measures behind this report</span><span style="color:#6a7482;font-weight:400;">tabular model</span></div><pre id="daxcode"></pre></div>
+      <div class="visrow">
+        <div class="vis"><h4 id="lineTitle"></h4><div class="sub">Monthly trend by partner — responds to every slicer</div><div id="lineChart"></div><div class="legend" id="lineLegend"></div></div>
+        <div class="vis"><h4 id="barTitle"></h4><div class="sub">Total by partner over selected months</div><div id="barChart"></div></div>
+      </div>
+      <div class="vis"><h4>Detail — monthly settlement lines</h4><div class="sub" id="detailSub"></div>
+        <div style="max-height:280px;overflow:auto;"><table><thead><tr><th>Partner</th><th>Month</th><th class="amt">Gross R</th><th class="amt">Fees R</th><th class="amt">Net Settle R</th><th class="amt">MDR %</th><th class="amt">Chargeback %</th></tr></thead><tbody id="detail"></tbody></table></div>
+      </div>
+      <div class="foot">Live from <b>fintech_settlements</b> (real Gold mart) · every card, chart and row recomputes client-side from your slicer selections — the same self-serve pattern shipped as a Power BI report on the tenant, so finance pulls its own answers without raising a ticket.</div>
+    </section>
+  </div>
+</div>
+<script>
+const DATA = [{"ft":"FT001","name":"Yoco","m":1,"txns":892410,"gross":764832150.0,"mfees":22562548.43,"net":726972958.57,"cb":0.14,"fail":1.0},{"ft":"FT001","name":"Yoco","m":2,"txns":820150,"gross":702928350.0,"mfees":20736386.33,"net":668133396.67,"cb":0.13,"fail":1.0},{"ft":"FT001","name":"Yoco","m":3,"txns":935280,"gross":801875880.0,"mfees":23655367.46,"net":762182995.94,"cb":0.13,"fail":1.0},{"ft":"FT001","name":"Yoco","m":4,"txns":978340,"gross":838637460.0,"mfees":24739804.97,"net":797124905.83,"cb":0.13,"fail":1.0},{"ft":"FT001","name":"Yoco","m":5,"txns":840120,"gross":719942880.0,"mfees":21238215.36,"net":684305807.04,"cb":0.13,"fail":1.0},{"ft":"FT001","name":"Yoco","m":6,"txns":812400,"gross":696136320.0,"mfees":20535920.94,"net":661677672.66,"cb":0.13,"fail":1.0},{"ft":"FT001","name":"Yoco","m":7,"txns":961560,"gross":824054040.0,"mfees":24309544.18,"net":783263415.02,"cb":0.14,"fail":1.0},{"ft":"FT001","name":"Yoco","m":8,"txns":1024680,"gross":878146632.0,"mfees":25905346.14,"net":834678353.22,"cb":0.13,"fail":1.0},{"ft":"FT001","name":"Yoco","m":9,"txns":918760,"gross":787493720.0,"mfees":23231063.24,"net":748512782.36,"cb":0.13,"fail":1.0},{"ft":"FT001","name":"Yoco","m":10,"txns":1058420,"gross":907402220.0,"mfees":26768365.49,"net":862485810.11,"cb":0.13,"fail":1.0},{"ft":"FT001","name":"Yoco","m":11,"txns":1384560,"gross":1187028240.0,"mfees":35017332.48,"net":1128270342.72,"cb":0.13,"fail":1.0},{"ft":"FT001","name":"Yoco","m":12,"txns":1612440,"gross":1382183640.0,"mfees":40774417.08,"net":1313765550.12,"cb":0.13,"fail":1.0},{"ft":"FT002","name":"SnapScan","m":1,"txns":312840,"gross":106507008.0,"mfees":2928942.72,"net":101447925.12,"cb":0.15,"fail":1.0},{"ft":"FT002","name":"SnapScan","m":2,"txns":287650,"gross":97847940.0,"mfees":2690718.35,"net":93200262.85,"cb":0.15,"fail":1.0},{"ft":"FT002","name":"SnapScan","m":3,"txns":340120,"gross":115784868.0,"mfees":3184009.37,"net":110285161.27,"cb":0.15,"fail":1.0},{"ft":"FT002","name":"SnapScan","m":4,"txns":356890,"gross":121447594.0,"mfees":3339808.34,"net":115678833.78,"cb":0.15,"fail":1.0},{"ft":"FT002","name":"SnapScan","m":5,"txns":298740,"gross":101624244.0,"mfees":2794668.21,"net":96797090.91,"cb":0.15,"fail":1.0},{"ft":"FT002","name":"SnapScan","m":6,"txns":279640,"gross":95107368.0,"mfees":2615452.62,"net":90589768.02,"cb":0.15,"fail":1.0},{"ft":"FT002","name":"SnapScan","m":7,"txns":334280,"gross":113783508.0,"mfees":3129046.47,"net":108378791.37,"cb":0.15,"fail":1.0},{"ft":"FT002","name":"SnapScan","m":8,"txns":378560,"gross":128816468.0,"mfees":3542452.87,"net":122697685.77,"cb":0.15,"fail":1.0},{"ft":"FT002","name":"SnapScan","m":9,"txns":328440,"gross":111757344.0,"mfees":3073326.96,"net":106448870.16,"cb":0.15,"fail":1.0},{"ft":"FT002","name":"SnapScan","m":10,"txns":398720,"gross":135618176.0,"mfees":3729499.84,"net":129176312.64,"cb":0.15,"fail":1.0},{"ft":"FT002","name":"SnapScan","m":11,"txns":524680,"gross":178498972.0,"mfees":4908721.73,"net":170020270.83,"cb":0.15,"fail":1.0},{"ft":"FT002","name":"SnapScan","m":12,"txns":612340,"gross":208347012.0,"mfees":5729542.83,"net":198450528.93,"cb":0.15,"fail":1.0},{"ft":"FT003","name":"PayFast","m":1,"txns":142680,"gross":178354248.0,"mfees":6242398.68,"net":168544764.36,"cb":0.2,"fail":2.0},{"ft":"FT003","name":"PayFast","m":2,"txns":136240,"gross":170280560.0,"mfees":5959819.6,"net":160915129.2,"cb":0.2,"fail":2.0},{"ft":"FT003","name":"PayFast","m":3,"txns":158920,"gross":198666080.0,"mfees":6953312.8,"net":187739445.6,"cb":0.2,"fail":2.0},{"ft":"FT003","name":"PayFast","m":4,"txns":162480,"gross":203095200.0,"mfees":7108332.0,"net":191924964.0,"cb":0.2,"fail":2.0},{"ft":"FT003","name":"PayFast","m":5,"txns":145360,"gross":181700720.0,"mfees":6359525.2,"net":171707180.4,"cb":0.2,"fail":2.0},{"ft":"FT003","name":"PayFast","m":6,"txns":138820,"gross":173517700.0,"mfees":6073119.5,"net":163974226.5,"cb":0.2,"fail":2.0},{"ft":"FT003","name":"PayFast","m":7,"txns":165840,"gross":207265200.0,"mfees":7254282.0,"net":195865614.0,"cb":0.2,"fail":2.0},{"ft":"FT003","name":"PayFast","m":8,"txns":176320,"gross":220399360.0,"mfees":7713977.6,"net":208277395.2,"cb":0.2,"fail":2.0},{"ft":"FT003","name":"PayFast","m":9,"txns":161480,"gross":201827560.0,"mfees":7063964.6,"net":190727044.2,"cb":0.2,"fail":2.0},{"ft":"FT003","name":"PayFast","m":10,"txns":184640,"gross":230791360.0,"mfees":8077697.6,"net":218097835.2,"cb":0.2,"fail":2.0},{"ft":"FT003","name":"PayFast","m":11,"txns":248760,"gross":310940880.0,"mfees":10882930.8,"net":293839131.6,"cb":0.2,"fail":2.0},{"ft":"FT003","name":"PayFast","m":12,"txns":298640,"gross":373282240.0,"mfees":13064878.4,"net":352751716.8,"cb":0.2,"fail":2.0},{"ft":"FT004","name":"Peach Payments","m":1,"txns":58420,"gross":57188636.0,"mfees":1658697.44,"net":54386165.84,"cb":0.2,"fail":2.0},{"ft":"FT004","name":"Peach Payments","m":2,"txns":54360,"gross":53193096.0,"mfees":1542600.38,"net":50586633.7,"cb":0.2,"fail":2.0},{"ft":"FT004","name":"Peach Payments","m":3,"txns":63480,"gross":62126040.0,"mfees":1801655.16,"net":59081864.04,"cb":0.2,"fail":2.0},{"ft":"FT004","name":"Peach Payments","m":4,"txns":67240,"gross":65824196.0,"mfees":1908801.88,"net":62598910.2,"cb":0.2,"fail":2.0},{"ft":"FT004","name":"Peach Payments","m":5,"txns":58960,"gross":57714048.0,"mfees":1673707.39,"net":54886059.65,"cb":0.2,"fail":2.0},{"ft":"FT004","name":"Peach Payments","m":6,"txns":55640,"gross":54455888.0,"mfees":1579220.75,"net":51787549.49,"cb":0.2,"fail":2.0},{"ft":"FT004","name":"Peach Payments","m":7,"txns":66120,"gross":64720668.0,"mfees":1876899.37,"net":61549355.27,"cb":0.2,"fail":2.0},{"ft":"FT004","name":"Peach Payments","m":8,"txns":72480,"gross":70925760.0,"mfees":2056847.04,"net":67450397.76,"cb":0.2,"fail":2.0},{"ft":"FT004","name":"Peach Payments","m":9,"txns":64580,"gross":63222764.0,"mfees":1833445.16,"net":60124863.56,"cb":0.2,"fail":2.0},{"ft":"FT004","name":"Peach Payments","m":10,"txns":74920,"gross":73328968.0,"mfees":2126540.07,"net":69735848.57,"cb":0.2,"fail":2.0},{"ft":"FT004","name":"Peach Payments","m":11,"txns":98640,"gross":96533304.0,"mfees":2799563.62,"net":91803074.3,"cb":0.2,"fail":2.0},{"ft":"FT004","name":"Peach Payments","m":12,"txns":118320,"gross":115838736.0,"mfees":3359323.34,"net":110162637.94,"cb":0.2,"fail":2.0},{"ft":"FT005","name":"PayGate","m":1,"txns":38420,"gross":72676694.0,"mfees":2034947.43,"net":69188212.69,"cb":0.2,"fail":2.0},{"ft":"FT005","name":"PayGate","m":2,"txns":35680,"gross":67490216.0,"mfees":1889726.05,"net":64250685.63,"cb":0.2,"fail":2.0},{"ft":"FT005","name":"PayGate","m":3,"txns":41560,"gross":78604016.0,"mfees":2200912.45,"net":74831023.23,"cb":0.2,"fail":2.0},{"ft":"FT005","name":"PayGate","m":4,"txns":43280,"gross":81883688.0,"mfees":2292743.26,"net":77953271.0,"cb":0.2,"fail":2.0},{"ft":"FT005","name":"PayGate","m":5,"txns":37640,"gross":71218804.0,"mfees":1994126.51,"net":67800301.41,"cb":0.2,"fail":2.0},{"ft":"FT005","name":"PayGate","m":6,"txns":35120,"gross":66429928.0,"mfees":1860037.98,"net":63241291.46,"cb":0.2,"fail":2.0},{"ft":"FT005","name":"PayGate","m":7,"txns":43840,"gross":82941392.0,"mfees":2322358.98,"net":78960205.18,"cb":0.2,"fail":2.0},{"ft":"FT005","name":"PayGate","m":8,"txns":47360,"gross":89607832.0,"mfees":2509019.3,"net":85306656.06,"cb":0.2,"fail":2.0},{"ft":"FT005","name":"PayGate","m":9,"txns":41980,"gross":79428878.0,"mfees":2223808.78,"net":75616491.66,"cb":0.2,"fail":2.0},{"ft":"FT005","name":"PayGate","m":10,"txns":52480,"gross":99274456.0,"mfees":2779484.77,"net":94509482.11,"cb":0.2,"fail":2.0},{"ft":"FT005","name":"PayGate","m":11,"txns":70960,"gross":134233496.0,"mfees":3758537.89,"net":127790288.19,"cb":0.2,"fail":2.0},{"ft":"FT005","name":"PayGate","m":12,"txns":86240,"gross":163117040.0,"mfees":4567277.12,"net":155287422.08,"cb":0.2,"fail":2.0}];
+const MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const PARTNERS=[...new Set(DATA.map(r=>r.name))];
+const COLORS={'Yoco':'#e74c3c','SnapScan':'#3498db','PayFast':'#27ae60','Peach Payments':'#8e44ad','PayGate':'#f39c12'};
+const MEAS={gross:{l:'Gross Volume',fmt:'R',agg:'sum'},net:{l:'Net Settlement',fmt:'R',agg:'sum'},
+  mfees:{l:'Merchant Fees',fmt:'R',agg:'sum'},txns:{l:'Transactions',fmt:'#',agg:'sum'},
+  mdr:{l:'Effective MDR',fmt:'%',agg:'mdr'},cb:{l:'Chargeback Ratio',fmt:'%',agg:'avg'},fail:{l:'Failure Rate',fmt:'%',agg:'avg'}};
+let sel={measure:'gross',partners:new Set(PARTNERS),from:1,to:12};
+
+const zar=n=>n.toLocaleString('en-ZA',{maximumFractionDigits:0});
+function fmtv(v,f){ if(v==null||isNaN(v))return '—'; if(f==='R')return 'R'+zar(v); if(f==='%')return v.toFixed(2)+'%'; return zar(v);}
+function val(r,m){ if(m==='mdr')return r.mfees/r.gross*100; return r[m]; }
+function aggList(list,m){ if(!list.length)return null; const meta=MEAS[m];
+  if(meta.agg==='sum')return list.reduce((a,r)=>a+val(r,m),0);
+  if(meta.agg==='avg')return list.reduce((a,r)=>a+val(r,m),0)/list.length;
+  if(meta.agg==='mdr'){const g=list.reduce((a,r)=>a+r.gross,0),f=list.reduce((a,r)=>a+r.mfees,0);return f/g*100;}
+}
+function filtered(){ return DATA.filter(r=>sel.partners.has(r.name)&&r.m>=sel.from&&r.m<=sel.to); }
+
+function buildSlicers(){
+  document.getElementById('partners').innerHTML=PARTNERS.map(p=>`<label class="slic-item"><input type="checkbox" data-p="${p}" checked><span style="width:10px;height:10px;border-radius:3px;background:${COLORS[p]};display:inline-block;"></span>${p}</label>`).join('');
+  document.querySelectorAll('[data-p]').forEach(cb=>cb.onchange=()=>{cb.checked?sel.partners.add(cb.dataset.p):sel.partners.delete(cb.dataset.p);render();});
+  const opt=MONTHS.map((m,i)=>`<option value="${i+1}">${m}</option>`).join('');
+  const mf=document.getElementById('mfrom'),mt=document.getElementById('mto');
+  mf.innerHTML=opt;mt.innerHTML=opt;mf.value=1;mt.value=12;
+  mf.onchange=()=>{sel.from=+mf.value;render();};mt.onchange=()=>{sel.to=+mt.value;render();};
+  document.getElementById('measure').onchange=e=>{sel.measure=e.target.value;render();};
+}
+function kpis(){
+  const f=filtered();
+  const cards=[['gross','Gross Volume'],['net','Net Settlement'],['mfees','Merchant Fees'],['txns','Transactions'],['mdr','Effective MDR']];
+  document.getElementById('kpis').innerHTML=cards.map(([m,l])=>{
+    const v=aggList(f,m); const meta=MEAS[m];
+    // MoM style delta: compare last vs first selected month totals
+    const mfrom=f.filter(r=>r.m===sel.from),mto=f.filter(r=>r.m===sel.to);
+    const a=aggList(mfrom,m),b=aggList(mto,m); const d=(a&&b)?((b-a)/a*100):0;
+    return `<div class="kpi"><div class="l">${l}</div><div class="n">${fmtv(v,meta.fmt)}</div>
+      <div class="d ${d>=0?'up':'down'}">${d>=0?'▲':'▼'} ${Math.abs(d).toFixed(1)}% ${MONTHS[sel.from-1]}→${MONTHS[sel.to-1]}</div></div>`;
+  }).join('');
+}
+function lineChart(){
+  const m=sel.measure,meta=MEAS[m]; const W=560,H=230,pad=44;
+  const months=[]; for(let i=sel.from;i<=sel.to;i++)months.push(i);
+  const parts=[...sel.partners];
+  let maxv=0; const series={};
+  parts.forEach(p=>{series[p]=months.map(mo=>{const r=DATA.find(x=>x.name===p&&x.m===mo);const v=r?val(r,m):0;maxv=Math.max(maxv,v);return v;});});
+  if(maxv===0)maxv=1;
+  const x=i=>pad+(months.length<2?0:i*(W-pad-14)/(months.length-1));
+  const y=v=>H-28-(v/maxv)*(H-28-14);
+  let svg=`<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:100%">`;
+  for(let g=0;g<=4;g++){const yy=14+g*(H-42)/4;svg+=`<line x1="${pad}" y1="${yy}" x2="${W-14}" y2="${yy}" stroke="#eef0f3"/><text x="${pad-6}" y="${yy+3}" text-anchor="end" font-size="9" fill="#9aa4b2">${fmtv(maxv*(1-g/4),meta.fmt==='R'?'R':meta.fmt)}</text>`;}
+  months.forEach((mo,i)=>{svg+=`<text x="${x(i)}" y="${H-10}" text-anchor="middle" font-size="9" fill="#9aa4b2">${MONTHS[mo-1]}</text>`;});
+  parts.forEach(p=>{const pts=series[p].map((v,i)=>`${x(i)},${y(v)}`).join(' ');
+    svg+=`<polyline points="${pts}" fill="none" stroke="${COLORS[p]}" stroke-width="2.5" stroke-linejoin="round"/>`;
+    series[p].forEach((v,i)=>svg+=`<circle cx="${x(i)}" cy="${y(v)}" r="2.6" fill="${COLORS[p]}"/>`);});
+  svg+='</svg>';
+  document.getElementById('lineChart').innerHTML=svg;
+  document.getElementById('lineLegend').innerHTML=parts.map(p=>`<span><i style="background:${COLORS[p]}"></i>${p}</span>`).join('');
+  document.getElementById('lineTitle').textContent=meta.l+' — monthly trend';
+}
+function barChart(){
+  const m=sel.measure,meta=MEAS[m]; const parts=[...sel.partners];
+  const f=filtered(); const vals=parts.map(p=>({p,v:aggList(f.filter(r=>r.name===p),m)||0}));
+  const maxv=Math.max(...vals.map(v=>v.v),1); const W=340,bh=26,gap=12,pad=8;
+  let svg=`<svg viewBox="0 0 ${W} ${vals.length*(bh+gap)+pad}" width="100%">`;
+  vals.forEach((d,i)=>{const y=pad+i*(bh+gap);const bw=(d.v/maxv)*(W-150);
+    svg+=`<text x="0" y="${y+bh/2+4}" font-size="11" fill="#4a5563">${d.p}</text>
+    <rect x="96" y="${y}" width="${bw}" height="${bh}" rx="4" fill="${COLORS[d.p]}" opacity="0.88"/>
+    <text x="${96+bw+6}" y="${y+bh/2+4}" font-size="10.5" fill="#33415a" font-family="Consolas">${fmtv(d.v,meta.fmt)}</text>`;});
+  svg+='</svg>';
+  document.getElementById('barChart').innerHTML=svg;
+  document.getElementById('barTitle').textContent=meta.l+' by partner';
+}
+function detail(){
+  const f=filtered().sort((a,b)=>a.name.localeCompare(b.name)||a.m-b.m);
+  document.getElementById('detailSub').textContent=`${f.length} rows · ${[...sel.partners].length} partners · ${MONTHS[sel.from-1]}–${MONTHS[sel.to-1]} 2024`;
+  document.getElementById('detail').innerHTML=f.map(r=>`<tr><td>${r.name}</td><td class="mono">${MONTHS[r.m-1]}</td>
+    <td class="amt">${zar(r.gross)}</td><td class="amt">${zar(r.mfees)}</td><td class="amt">${zar(r.net)}</td>
+    <td class="amt">${(r.mfees/r.gross*100).toFixed(2)}</td><td class="amt">${r.cb.toFixed(2)}</td></tr>`).join('');
+}
+function narrative(){
+  const f=filtered(); const g=aggList(f,'gross'),n=aggList(f,'net'),mdr=aggList(f,'mdr');
+  const parts=[...sel.partners]; const byp=parts.map(p=>({p,v:aggList(f.filter(r=>r.name===p),'gross')||0})).sort((a,b)=>b.v-a.v);
+  const top=byp[0];
+  document.getElementById('narr').innerHTML=`Across <b>${parts.length}</b> partner(s), ${MONTHS[sel.from-1]}–${MONTHS[sel.to-1]} 2024: gross volume <b>${fmtv(g,'R')}</b> settled to <b>${fmtv(n,'R')}</b> net at an effective MDR of <b>${mdr?mdr.toFixed(2):'—'}%</b>. ${top?`<b>${top.p}</b> leads with ${fmtv(top.v,'R')} gross.`:''} Adjust the slicers to answer your own question — no request needed.`;
+}
+function render(){ kpis(); lineChart(); barChart(); detail(); narrative(); }
+
+const DAX=`<span class="dax-c">-- Governed measures on the Gold fintech-settlement model</span>
+<span class="dax-n">Gross Volume</span> =
+    <span class="dax-f">SUM</span> ( fintech_settlements[gross_volume_zar] )
+
+<span class="dax-n">Net Settlement</span> =
+    <span class="dax-f">SUM</span> ( fintech_settlements[net_settlement_zar] )
+
+<span class="dax-n">Effective MDR %</span> =
+    <span class="dax-f">DIVIDE</span> ( [Merchant Fees], [Gross Volume] ) * 100
+
+<span class="dax-n">Gross Volume MoM %</span> =
+    <span class="dax-k">VAR</span> Prev = <span class="dax-f">CALCULATE</span> ( [Gross Volume], <span class="dax-f">PREVIOUSMONTH</span> ( 'Date'[Date] ) )
+    <span class="dax-k">RETURN</span> <span class="dax-f">DIVIDE</span> ( [Gross Volume] - Prev, Prev )
+
+<span class="dax-n">Value at Risk</span> =        <span class="dax-c">-- feeds the reconciliation exception mart</span>
+    <span class="dax-f">CALCULATE</span> (
+        <span class="dax-f">SUM</span> ( recon[variance_zar] ),
+        recon[status] <span class="dax-k">IN</span> { "PARTIAL", "EXCEPTION" }
+    )`;
+document.getElementById('daxcode').innerHTML=DAX;
+document.getElementById('daxBtn').onclick=()=>{document.getElementById('daxpanel').classList.toggle('show');};
+document.getElementById('exportBtn').onclick=()=>{
+  const f=filtered(); const hdr='partner,month,gross_zar,fees_zar,net_zar,mdr_pct,chargeback_pct';
+  const lines=f.map(r=>`${r.name},${MONTHS[r.m-1]},${r.gross},${r.mfees},${r.net},${(r.mfees/r.gross*100).toFixed(2)},${r.cb}`);
+  const blob=new Blob([hdr+'\n'+lines.join('\n')],{type:'text/csv'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='finance_selfserve_export.csv';a.click();
+};
+buildSlicers(); render();
+</script></body></html>
