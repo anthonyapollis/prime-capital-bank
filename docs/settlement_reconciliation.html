@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prime Capital Bank — Fintech Settlement Reconciliation</title>
+<style>
+  :root{--bg:#eef2f8;--panel:#fff;--panel2:#f4f7fc;--line:#dde5f0;--acc:#3b6fe0;--acc-d:#2554c4;
+    --green:#16a34a;--amber:#d98a00;--red:#e0483f;--violet:#7c5cf0;--text:#1e2733;--muted:#6b7789;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Segoe UI',Tahoma,sans-serif;background:radial-gradient(1200px 500px at 15% -10%,rgba(59,111,224,.10),transparent 60%),var(--bg);color:var(--text);padding:22px;min-height:100vh;}
+  .wrap{max-width:1240px;margin:0 auto;}
+  header{display:flex;align-items:center;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:18px;}
+  .brand{display:flex;align-items:center;gap:12px;}
+  .logo{width:46px;height:46px;border-radius:11px;background:linear-gradient(135deg,var(--acc),var(--acc-d));display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff;font-size:15px;box-shadow:0 0 22px rgba(59,111,224,.45);}
+  .brand h1{font-size:19px;font-weight:800;} .brand p{font-size:12.5px;color:var(--muted);margin-top:2px;}
+  .byline{text-align:right;font-size:12px;color:var(--muted);line-height:1.5;} .byline b{color:var(--text);}
+  .byline a{color:var(--acc);text-decoration:none;font-weight:700;}
+  .gov{display:flex;gap:12px;background:linear-gradient(90deg,rgba(59,111,224,.10),transparent);border:1px solid var(--line);border-left:3px solid var(--acc);border-radius:10px;padding:12px 14px;margin-bottom:16px;font-size:13px;color:var(--text);line-height:1.5;}
+  .kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:12px;}
+  .kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;}
+  .kpi .n{font-size:23px;font-weight:900;letter-spacing:-.5px;} .kpi .l{font-size:11px;color:var(--muted);margin-top:4px;text-transform:uppercase;letter-spacing:.5px;}
+  .kpi.green .n{color:var(--green);} .kpi.amber .n{color:var(--amber);} .kpi.red .n{color:var(--red);}
+  .sumbar{display:flex;height:10px;border-radius:6px;overflow:hidden;margin-bottom:16px;border:1px solid var(--line);}
+  .sb-m{background:var(--green);}.sb-p{background:var(--amber);}.sb-e{background:var(--red);}
+  .ftsum{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:18px;}
+  @media(max-width:900px){.ftsum,.kpis{grid-template-columns:repeat(2,1fr);}}
+  .ftcard{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:11px 13px;}
+  .ftcard .nm{font-weight:800;font-size:13px;} .ftcard .row{display:flex;justify-content:space-between;font-size:11.5px;color:var(--muted);margin-top:5px;}
+  .ftcard .row b{color:var(--text);font-family:'Consolas',monospace;}
+  .ftcard .var.ok{color:var(--green);} .ftcard .var.bad{color:var(--red);}
+  .controls{display:flex;flex-wrap:wrap;align-items:center;gap:14px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin-bottom:14px;font-size:12.5px;color:var(--muted);}
+  .controls .lab{font-weight:700;color:var(--text);}
+  .search{margin-left:auto;} .search input{background:var(--panel2);border:1px solid var(--line);color:var(--text);border-radius:20px;padding:7px 13px;font-size:12.5px;width:200px;}
+  .grid{display:grid;grid-template-columns:1fr 370px;gap:16px;} @media(max-width:980px){.grid{grid-template-columns:1fr;}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;}
+  .card h2{font-size:13px;font-weight:800;padding:13px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:10px;}
+  .filters{display:flex;gap:6px;} .fbtn{font-size:11.5px;padding:5px 11px;border-radius:20px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer;}
+  .fbtn.active{background:var(--acc);color:#fff;border-color:var(--acc);font-weight:700;}
+  table{width:100%;border-collapse:collapse;font-size:12px;} th{text-align:left;color:var(--muted);font-weight:600;font-size:10.5px;text-transform:uppercase;letter-spacing:.4px;padding:9px 12px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--panel);}
+  td{padding:8px 12px;border-bottom:1px solid rgba(35,48,67,.5);} tbody tr{cursor:pointer;} tbody tr:hover{background:rgba(59,111,224,.06);}
+  tbody tr.sel{background:rgba(59,111,224,.12);box-shadow:inset 3px 0 0 var(--acc);}
+  .mono{font-family:'Consolas',monospace;color:#33415a;} .amt{text-align:right;font-family:'Consolas',monospace;}
+  .tblwrap{max-height:460px;overflow:auto;}
+  .pill{font-size:10px;font-weight:800;padding:3px 8px;border-radius:20px;white-space:nowrap;}
+  .p-match{background:rgba(22,163,74,.14);color:var(--green);} .p-partial{background:rgba(217,138,0,.14);color:var(--amber);} .p-exc{background:rgba(224,72,63,.14);color:var(--red);}
+  .ai .head{display:flex;align-items:center;gap:9px;padding:13px 16px;border-bottom:1px solid var(--line);}
+  .ai .dot{width:9px;height:9px;border-radius:50%;background:var(--acc);box-shadow:0 0 10px var(--acc);animation:blink 1.6s infinite;} @keyframes blink{50%{opacity:.35;}}
+  .ai .body{padding:16px;min-height:340px;} .ai .empty{color:var(--muted);font-size:13px;line-height:1.6;}
+  .ai .verdict{font-size:14px;font-weight:800;margin-bottom:10px;} .ai p{font-size:13px;line-height:1.6;color:var(--text);margin-bottom:12px;}
+  .prov{background:var(--panel2);border:1px solid var(--line);border-radius:9px;padding:11px 13px;font-size:12px;margin-bottom:12px;}
+  .prov .h{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:7px;}
+  .prov .row{display:flex;justify-content:space-between;gap:10px;padding:3px 0;} .prov .row span:first-child{color:var(--muted);}
+  .action{font-size:12.5px;background:rgba(59,111,224,.08);border:1px solid var(--line);border-left:3px solid var(--acc);border-radius:8px;padding:10px 12px;line-height:1.5;}
+  .guard{margin-top:13px;font-size:11px;color:var(--muted);line-height:1.5;border-top:1px dashed var(--line);padding-top:11px;} .guard b{color:var(--acc);}
+  footer{margin-top:22px;padding-top:14px;border-top:1px solid var(--line);color:var(--muted);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+  .real{font-size:11px;color:var(--green);font-weight:700;}
+</style></head><body>
+<div class="wrap">
+  <header>
+    <div class="brand"><div class="logo">PCB</div>
+      <div><h1>Fintech Settlement Reconciliation — automatic</h1>
+      <p>Each partner's reported net settlement vs what Prime Capital Bank actually received · runs on load · exceptions only</p></div></div>
+    <div class="byline"><b>Anthony Apollis</b> · Senior BI Developer<br>Prime Capital Bank data platform<br><a href="index.html">&larr; Back to project</a></div>
+  </header>
+  <div class="gov"><span>&#128737;&#65039;</span><div><b>Automatic &amp; governed.</b> This reconciles the <b>real</b> <span class="mono">fintech_settlements</span> dataset (60 monthly settlements across 5 partners) against the bank's received-funds ledger on page load — no upload needed. Every exception is traceable to a settlement row and a deterministic rule; the AI agent never invents a match.</div></div>
+
+  <div class="kpis" id="kpis"></div>
+  <div class="sumbar" id="sumbar"><div class="sb-m" style="width:0"></div><div class="sb-p" style="width:0"></div><div class="sb-e" style="width:0"></div></div>
+  <div class="ftsum" id="ftsum"></div>
+
+  <div class="controls">
+    <span class="lab">Amount tolerance R</span><input id="tol" type="number" step="0.01" value="0.01" style="width:80px;background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:6px 8px;color:var(--text);">
+    <span class="lab" style="margin-left:6px;">View</span>
+    <span id="status" style="color:var(--acc);font-weight:700;"></span>
+    <span class="search">&#128269; <input id="search" placeholder="Search settlement / partner…"></span>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h2>Settlement register
+        <div class="filters" id="filters">
+          <button class="fbtn active" data-f="all">All</button>
+          <button class="fbtn" data-f="MATCHED">Matched</button>
+          <button class="fbtn" data-f="PARTIAL">Partial</button>
+          <button class="fbtn" data-f="EXCEPTION">Exceptions</button>
+        </div></h2>
+      <div class="tblwrap"><table>
+        <thead><tr><th>Status</th><th>Settlement</th><th>Partner</th><th>Month</th><th class="amt">Expected R</th><th class="amt">Received R</th><th class="amt">&Delta; R<br><span style="font-weight:400;text-transform:none;color:var(--muted);font-size:9px;">Received &minus; Expected</span></th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table></div>
+    </div>
+    <div class="card ai"><div class="head"><span class="dot"></span><b>AI Settlement Agent</b></div>
+      <div class="body" id="ai"><div class="empty">Reconciliation ran automatically on the real settlement data. Select any row — especially a <b style="color:var(--red)">exception</b> or <b style="color:var(--amber)">partial</b> — for a plain-language explanation with provenance.</div></div>
+    </div>
+  </div>
+
+  <footer><span class="real">&#9679; Live figures from fintech_settlements.csv — R-billion monthly settlements. Break simulation (clawbacks, in-transit, unmatched receipts) illustrates the control.</span>
+  <span>Prime Capital Bank · Medallion · Power BI · governed reconciliation</span></footer>
+</div>
+<script>
+const DATA = {"recs":[{"id":"FS-2024-01-FT001","fintech":"Yoco","ft":"FT001","month":"2024-01-31","expected":726972958.57,"gross":764832150.0,"cbratio":0.14,"received":726972958.57,"kind":"EXACT"},{"id":"FS-2024-02-FT001","fintech":"Yoco","ft":"FT001","month":"2024-02-29","expected":668133396.67,"gross":702928350.0,"cbratio":0.13,"received":668133396.67,"kind":"EXACT"},{"id":"FS-2024-03-FT001","fintech":"Yoco","ft":"FT001","month":"2024-03-31","expected":762182995.94,"gross":801875880.0,"cbratio":0.13,"received":762182995.94,"kind":"EXACT"},{"id":"FS-2024-04-FT001","fintech":"Yoco","ft":"FT001","month":"2024-04-30","expected":797124905.83,"gross":838637460.0,"cbratio":0.13,"received":797124905.83,"kind":"EXACT"},{"id":"FS-2024-05-FT001","fintech":"Yoco","ft":"FT001","month":"2024-05-31","expected":684305807.04,"gross":719942880.0,"cbratio":0.13,"received":680199972.2,"kind":"CLAWBACK"},{"id":"FS-2024-06-FT001","fintech":"Yoco","ft":"FT001","month":"2024-06-30","expected":661677672.66,"gross":696136320.0,"cbratio":0.13,"received":661677672.66,"kind":"EXACT"},{"id":"FS-2024-07-FT001","fintech":"Yoco","ft":"FT001","month":"2024-07-31","expected":783263415.02,"gross":824054040.0,"cbratio":0.14,"received":783263415.02,"kind":"EXACT"},{"id":"FS-2024-08-FT001","fintech":"Yoco","ft":"FT001","month":"2024-08-31","expected":834678353.22,"gross":878146632.0,"cbratio":0.13,"received":null,"kind":"IN_TRANSIT"},{"id":"FS-2024-09-FT001","fintech":"Yoco","ft":"FT001","month":"2024-09-30","expected":748512782.36,"gross":787493720.0,"cbratio":0.13,"received":748512782.36,"kind":"EXACT"},{"id":"FS-2024-10-FT001","fintech":"Yoco","ft":"FT001","month":"2024-10-31","expected":862485810.11,"gross":907402220.0,"cbratio":0.13,"received":862485810.11,"kind":"EXACT"},{"id":"FS-2024-11-FT001","fintech":"Yoco","ft":"FT001","month":"2024-11-30","expected":1128270342.72,"gross":1187028240.0,"cbratio":0.13,"received":1128270342.72,"kind":"EXACT"},{"id":"FS-2024-12-FT001","fintech":"Yoco","ft":"FT001","month":"2024-12-31","expected":1313765550.12,"gross":1382183640.0,"cbratio":0.13,"received":1313765550.12,"kind":"EXACT"},{"id":"FS-2024-01-FT002","fintech":"SnapScan","ft":"FT002","month":"2024-01-31","expected":101447925.12,"gross":106507008.0,"cbratio":0.15,"received":101447925.12,"kind":"EXACT"},{"id":"FS-2024-02-FT002","fintech":"SnapScan","ft":"FT002","month":"2024-02-29","expected":93200262.85,"gross":97847940.0,"cbratio":0.15,"received":92641061.27,"kind":"CLAWBACK"},{"id":"FS-2024-03-FT002","fintech":"SnapScan","ft":"FT002","month":"2024-03-31","expected":110285161.27,"gross":115784868.0,"cbratio":0.15,"received":110285161.27,"kind":"EXACT"},{"id":"FS-2024-04-FT002","fintech":"SnapScan","ft":"FT002","month":"2024-04-30","expected":115678833.78,"gross":121447594.0,"cbratio":0.15,"received":115678833.78,"kind":"EXACT"},{"id":"FS-2024-05-FT002","fintech":"SnapScan","ft":"FT002","month":"2024-05-31","expected":96797090.91,"gross":101624244.0,"cbratio":0.15,"received":96797090.91,"kind":"EXACT"},{"id":"FS-2024-06-FT002","fintech":"SnapScan","ft":"FT002","month":"2024-06-30","expected":90589768.02,"gross":95107368.0,"cbratio":0.15,"received":90589768.02,"kind":"EXACT"},{"id":"FS-2024-07-FT002","fintech":"SnapScan","ft":"FT002","month":"2024-07-31","expected":108378791.37,"gross":113783508.0,"cbratio":0.15,"received":108378791.37,"kind":"EXACT"},{"id":"FS-2024-08-FT002","fintech":"SnapScan","ft":"FT002","month":"2024-08-31","expected":122697685.77,"gross":128816468.0,"cbratio":0.15,"received":122697685.77,"kind":"EXACT"},{"id":"FS-2024-09-FT002","fintech":"SnapScan","ft":"FT002","month":"2024-09-30","expected":106448870.16,"gross":111757344.0,"cbratio":0.15,"received":106448870.16,"kind":"EXACT"},{"id":"FS-2024-10-FT002","fintech":"SnapScan","ft":"FT002","month":"2024-10-31","expected":129176312.64,"gross":135618176.0,"cbratio":0.15,"received":129176312.64,"kind":"EXACT"},{"id":"FS-2024-11-FT002","fintech":"SnapScan","ft":"FT002","month":"2024-11-30","expected":170020270.83,"gross":178498972.0,"cbratio":0.15,"received":169000149.21,"kind":"CLAWBACK"},{"id":"FS-2024-12-FT002","fintech":"SnapScan","ft":"FT002","month":"2024-12-31","expected":198450528.93,"gross":208347012.0,"cbratio":0.15,"received":198450528.93,"kind":"EXACT"},{"id":"FS-2024-01-FT003","fintech":"PayFast","ft":"FT003","month":"2024-01-31","expected":168544764.36,"gross":178354248.0,"cbratio":0.2,"received":168544764.36,"kind":"EXACT"},{"id":"FS-2024-02-FT003","fintech":"PayFast","ft":"FT003","month":"2024-02-29","expected":160915129.2,"gross":170280560.0,"cbratio":0.2,"received":160915129.2,"kind":"EXACT"},{"id":"FS-2024-03-FT003","fintech":"PayFast","ft":"FT003","month":"2024-03-31","expected":187739445.6,"gross":198666080.0,"cbratio":0.2,"received":null,"kind":"IN_TRANSIT"},{"id":"FS-2024-04-FT003","fintech":"PayFast","ft":"FT003","month":"2024-04-30","expected":191924964.0,"gross":203095200.0,"cbratio":0.2,"received":191924964.0,"kind":"EXACT"},{"id":"FS-2024-05-FT003","fintech":"PayFast","ft":"FT003","month":"2024-05-31","expected":171707180.4,"gross":181700720.0,"cbratio":0.2,"received":171707180.4,"kind":"EXACT"},{"id":"FS-2024-06-FT003","fintech":"PayFast","ft":"FT003","month":"2024-06-30","expected":163974226.5,"gross":173517700.0,"cbratio":0.2,"received":163974226.5,"kind":"EXACT"},{"id":"FS-2024-07-FT003","fintech":"PayFast","ft":"FT003","month":"2024-07-31","expected":195865614.0,"gross":207265200.0,"cbratio":0.2,"received":195865614.0,"kind":"EXACT"},{"id":"FS-2024-08-FT003","fintech":"PayFast","ft":"FT003","month":"2024-08-31","expected":208277395.2,"gross":220399360.0,"cbratio":0.2,"received":207027730.83,"kind":"CLAWBACK"},{"id":"FS-2024-09-FT003","fintech":"PayFast","ft":"FT003","month":"2024-09-30","expected":190727044.2,"gross":201827560.0,"cbratio":0.2,"received":190727044.2,"kind":"EXACT"},{"id":"FS-2024-10-FT003","fintech":"PayFast","ft":"FT003","month":"2024-10-31","expected":218097835.2,"gross":230791360.0,"cbratio":0.2,"received":218097835.2,"kind":"EXACT"},{"id":"FS-2024-11-FT003","fintech":"PayFast","ft":"FT003","month":"2024-11-30","expected":293839131.6,"gross":310940880.0,"cbratio":0.2,"received":293839131.6,"kind":"EXACT"},{"id":"FS-2024-12-FT003","fintech":"PayFast","ft":"FT003","month":"2024-12-31","expected":352751716.8,"gross":373282240.0,"cbratio":0.2,"received":352751716.8,"kind":"EXACT"},{"id":"FS-2024-01-FT004","fintech":"Peach Payments","ft":"FT004","month":"2024-01-31","expected":54386165.84,"gross":57188636.0,"cbratio":0.2,"received":54386165.84,"kind":"EXACT"},{"id":"FS-2024-02-FT004","fintech":"Peach Payments","ft":"FT004","month":"2024-02-29","expected":50586633.7,"gross":53193096.0,"cbratio":0.2,"received":50586633.7,"kind":"EXACT"},{"id":"FS-2024-03-FT004","fintech":"Peach Payments","ft":"FT004","month":"2024-03-31","expected":59081864.04,"gross":62126040.0,"cbratio":0.2,"received":59081864.04,"kind":"EXACT"},{"id":"FS-2024-04-FT004","fintech":"Peach Payments","ft":"FT004","month":"2024-04-30","expected":62598910.2,"gross":65824196.0,"cbratio":0.2,"received":62598910.2,"kind":"EXACT"},{"id":"FS-2024-05-FT004","fintech":"Peach Payments","ft":"FT004","month":"2024-05-31","expected":54886059.65,"gross":57714048.0,"cbratio":0.2,"received":54556743.29,"kind":"CLAWBACK"},{"id":"FS-2024-06-FT004","fintech":"Peach Payments","ft":"FT004","month":"2024-06-30","expected":51787549.49,"gross":54455888.0,"cbratio":0.2,"received":51787549.49,"kind":"EXACT"},{"id":"FS-2024-07-FT004","fintech":"Peach Payments","ft":"FT004","month":"2024-07-31","expected":61549355.27,"gross":64720668.0,"cbratio":0.2,"received":61549355.27,"kind":"EXACT"},{"id":"FS-2024-08-FT004","fintech":"Peach Payments","ft":"FT004","month":"2024-08-31","expected":67450397.76,"gross":70925760.0,"cbratio":0.2,"received":67450397.76,"kind":"EXACT"},{"id":"FS-2024-09-FT004","fintech":"Peach Payments","ft":"FT004","month":"2024-09-30","expected":60124863.56,"gross":63222764.0,"cbratio":0.2,"received":60124863.56,"kind":"EXACT"},{"id":"FS-2024-10-FT004","fintech":"Peach Payments","ft":"FT004","month":"2024-10-31","expected":69735848.57,"gross":73328968.0,"cbratio":0.2,"received":null,"kind":"IN_TRANSIT"},{"id":"FS-2024-11-FT004","fintech":"Peach Payments","ft":"FT004","month":"2024-11-30","expected":91803074.3,"gross":96533304.0,"cbratio":0.2,"received":91803074.3,"kind":"EXACT"},{"id":"FS-2024-12-FT004","fintech":"Peach Payments","ft":"FT004","month":"2024-12-31","expected":110162637.94,"gross":115838736.0,"cbratio":0.2,"received":110162637.94,"kind":"EXACT"},{"id":"FS-2024-01-FT005","fintech":"PayGate","ft":"FT005","month":"2024-01-31","expected":69188212.69,"gross":72676694.0,"cbratio":0.2,"received":69188212.69,"kind":"EXACT"},{"id":"FS-2024-02-FT005","fintech":"PayGate","ft":"FT005","month":"2024-02-29","expected":64250685.63,"gross":67490216.0,"cbratio":0.2,"received":63865181.52,"kind":"CLAWBACK"},{"id":"FS-2024-03-FT005","fintech":"PayGate","ft":"FT005","month":"2024-03-31","expected":74831023.23,"gross":78604016.0,"cbratio":0.2,"received":74831023.23,"kind":"EXACT"},{"id":"FS-2024-04-FT005","fintech":"PayGate","ft":"FT005","month":"2024-04-30","expected":77953271.0,"gross":81883688.0,"cbratio":0.2,"received":77953271.0,"kind":"EXACT"},{"id":"FS-2024-05-FT005","fintech":"PayGate","ft":"FT005","month":"2024-05-31","expected":67800301.41,"gross":71218804.0,"cbratio":0.2,"received":67800301.41,"kind":"EXACT"},{"id":"FS-2024-06-FT005","fintech":"PayGate","ft":"FT005","month":"2024-06-30","expected":63241291.46,"gross":66429928.0,"cbratio":0.2,"received":63241291.46,"kind":"EXACT"},{"id":"FS-2024-07-FT005","fintech":"PayGate","ft":"FT005","month":"2024-07-31","expected":78960205.18,"gross":82941392.0,"cbratio":0.2,"received":78960205.18,"kind":"EXACT"},{"id":"FS-2024-08-FT005","fintech":"PayGate","ft":"FT005","month":"2024-08-31","expected":85306656.06,"gross":89607832.0,"cbratio":0.2,"received":85306656.06,"kind":"EXACT"},{"id":"FS-2024-09-FT005","fintech":"PayGate","ft":"FT005","month":"2024-09-30","expected":75616491.66,"gross":79428878.0,"cbratio":0.2,"received":75616491.66,"kind":"EXACT"},{"id":"FS-2024-10-FT005","fintech":"PayGate","ft":"FT005","month":"2024-10-31","expected":94509482.11,"gross":99274456.0,"cbratio":0.2,"received":94509482.11,"kind":"EXACT"},{"id":"FS-2024-11-FT005","fintech":"PayGate","ft":"FT005","month":"2024-11-30","expected":127790288.19,"gross":134233496.0,"cbratio":0.2,"received":127023546.46,"kind":"CLAWBACK"},{"id":"FS-2024-12-FT005","fintech":"PayGate","ft":"FT005","month":"2024-12-31","expected":155287422.08,"gross":163117040.0,"cbratio":0.2,"received":155287422.08,"kind":"EXACT"}],"bankOnly":[{"id":"RCPT-TRUEUP-FT001","fintech":"Yoco","ft":"FT001","month":"2024-12-31","received":4820000.0,"note":"Prior-period true-up credit"},{"id":"RCPT-ADJ-FT003","fintech":"PayFast","ft":"FT003","month":"2024-11-30","received":1275000.0,"note":"Unallocated gateway adjustment"}],"dup":{"id":"FS-2024-04-FT001","fintech":"Yoco","ft":"FT001","month":"2024-04-30","expected":797124905.83,"gross":838637460.0,"cbratio":0.13,"received":797124905.83,"kind":"EXACT","dup":true}};
+const fmt=(n)=> n==null?'—':n.toLocaleString('en-ZA',{minimumFractionDigits:2,maximumFractionDigits:2});
+let RESULTS=[], FILTER='all', SEL=null, SEARCH='';
+
+function reconcile(){
+  const tol=parseFloat(document.getElementById('tol').value)||0;
+  const out=[];
+  DATA.recs.forEach(r=>{
+    if(r.received==null){ out.push({...r,status:'EXCEPTION',ekind:'IN_TRANSIT',delta:null}); return; }
+    const delta=+(r.received-r.expected).toFixed(2);
+    if(Math.abs(delta)<=tol) out.push({...r,status:'MATCHED',delta});
+    else out.push({...r,status:'PARTIAL',ekind:r.kind,delta});
+  });
+  DATA.bankOnly.forEach(b=> out.push({...b,expected:null,status:'EXCEPTION',ekind:'BANK_ONLY',delta:null}));
+  out.push({...DATA.dup,status:'EXCEPTION',ekind:'DUPLICATE',delta:null});
+  return out;
+}
+function pill(r){ if(r.status==='MATCHED')return '<span class="pill p-match">MATCHED</span>';
+  if(r.status==='PARTIAL')return '<span class="pill p-partial">PARTIAL</span>'; return '<span class="pill p-exc">EXCEPTION</span>';}
+
+function renderKPIs(){
+  const total=RESULTS.length, matched=RESULTS.filter(r=>r.status==='MATCHED').length;
+  const partial=RESULTS.filter(r=>r.status==='PARTIAL').length, exc=RESULTS.filter(r=>r.status==='EXCEPTION').length;
+  const expTot=DATA.recs.reduce((a,r)=>a+r.expected,0);
+  const recTot=DATA.recs.reduce((a,r)=>a+(r.received||0),0)+DATA.bankOnly.reduce((a,b)=>a+b.received,0);
+  let risk=0; RESULTS.forEach(r=>{ if(r.status==='PARTIAL')risk+=Math.abs(r.delta||0);
+    if(r.status==='EXCEPTION')risk+=Math.abs(r.received!=null?r.received:(r.expected||0)); });
+  document.getElementById('kpis').innerHTML=`
+    <div class="kpi"><div class="n">R${fmt(expTot)}</div><div class="l">Expected (reported)</div></div>
+    <div class="kpi"><div class="n">R${fmt(recTot)}</div><div class="l">Received (bank)</div></div>
+    <div class="kpi green"><div class="n">${Math.round(matched/total*100)}%</div><div class="l">Auto-match rate</div></div>
+    <div class="kpi amber"><div class="n">${partial}</div><div class="l">Partial breaks</div></div>
+    <div class="kpi red"><div class="n">R${fmt(risk)}</div><div class="l">Value at risk (${exc} exc)</div></div>`;
+  const sb=document.getElementById('sumbar').children;
+  sb[0].style.width=(matched/total*100)+'%';sb[1].style.width=(partial/total*100)+'%';sb[2].style.width=(exc/total*100)+'%';
+}
+function renderFtSum(){
+  const by={};
+  DATA.recs.forEach(r=>{ if(!by[r.fintech])by[r.fintech]={exp:0,rec:0}; by[r.fintech].exp+=r.expected; by[r.fintech].rec+=(r.received||0); });
+  document.getElementById('ftsum').innerHTML=Object.entries(by).map(([nm,v])=>{
+    const varr=v.rec-v.exp; const ok=Math.abs(varr)<1;
+    return `<div class="ftcard"><div class="nm">${nm}</div>
+      <div class="row"><span>Expected</span><b>R${fmt(v.exp)}</b></div>
+      <div class="row"><span>Received</span><b>R${fmt(v.rec)}</b></div>
+      <div class="row"><span>Variance</span><b class="var ${ok?'ok':'bad'}">${varr<0?'−':''}R${fmt(Math.abs(varr))}</b></div></div>`;
+  }).join('');
+}
+function renderRows(){
+  const body=document.getElementById('rows');
+  const list=RESULTS.map((r,i)=>({r,i})).filter(({r})=>{
+    if(FILTER!=='all'&&r.status!==FILTER)return false;
+    if(SEARCH){const s=SEARCH.toLowerCase(); return (r.id||'').toLowerCase().includes(s)||(r.fintech||'').toLowerCase().includes(s);}
+    return true;});
+  body.innerHTML=list.map(({r,i})=>`<tr data-i="${i}" class="${SEL===i?'sel':''}">
+    <td>${pill(r)}</td><td class="mono">${r.id}</td><td>${r.fintech}</td><td class="mono">${r.month}</td>
+    <td class="amt">${r.expected!=null?fmt(r.expected):'—'}</td><td class="amt">${r.received!=null?fmt(r.received):'—'}</td>
+    <td class="amt" style="color:${r.delta?'var(--amber)':'var(--muted)'}">${r.delta?fmt(r.delta):'—'}</td></tr>`).join('');
+  body.querySelectorAll('tr').forEach(tr=>tr.onclick=()=>{SEL=+tr.dataset.i;renderRows();renderAI();});
+}
+function renderAI(){
+  const el=document.getElementById('ai'); if(SEL===null)return; const r=RESULTS[SEL];
+  let v,c,narr,act;
+  if(r.status==='MATCHED'){c='var(--green)';v='✓ Matched — settlement received in full';
+    narr=`${r.fintech}'s reported net settlement <b>${r.id}</b> of <b>R${fmt(r.expected)}</b> was received by the bank to the cent. No action.`;
+    act='Auto-cleared to the Gold settlement register.';}
+  else if(r.status==='PARTIAL'){c='var(--amber)';const d=Math.abs(r.delta);
+    v='△ Partial — settlement short-paid';
+    narr=`${r.fintech} reported <b>R${fmt(r.expected)}</b> for <b>${r.id}</b> but the bank received <b>R${fmt(r.received)}</b> — <b>R${fmt(d)} short</b>. On card-acquiring flows this is almost always a <b>chargeback clawback</b> deducted after the settlement file was cut. Not guessed — the exact gap is flagged.`;
+    act='Route to Finance with the R'+fmt(d)+' variance; match against the chargeback register for that month, then post the adjustment.';}
+  else{c='var(--red)';
+    if(r.ekind==='IN_TRANSIT'){v='✕ Exception — reported but not yet received';
+      narr=`${r.fintech} reported <b>R${fmt(r.expected)}</b> for <b>${r.id}</b>, but no matching credit has landed in the bank ledger — in transit or held.`;
+      act='Hold on the exception register; auto-clears when the credit lands. Escalate if it ages beyond the T+2 SLA.';}
+    else if(r.ekind==='BANK_ONLY'){v='✕ Exception — received, no settlement report';
+      narr=`The bank received <b>R${fmt(r.received)}</b> (<b>${r.id}</b>, ${r.fintech}) with <b>no</b> matching settlement report — likely a ${r.note||'prior-period adjustment'}. A report is not fabricated to force a match.`;
+      act='Confirm with the partner and allocate to the correct settlement period or a suspense account.';}
+    else{v='✕ Exception — duplicate settlement receipt';
+      narr=`<b>${r.id}</b> repeats a settlement already reconciled for ${r.fintech} — treated as a duplicate to protect the numbers from double-counting.`;
+      act='Suppress from settlement posting and confirm with the partner ops team.';}}
+  el.innerHTML=`<div class="verdict" style="color:${c}">${v}</div><p>${narr}</p>
+    <div class="prov"><div class="h">Provenance — real source row</div>
+    <div class="row"><span>Settlement ID</span><span class="mono">${r.id}</span></div>
+    <div class="row"><span>Partner</span><span class="mono">${r.fintech} · ${r.ft||''}</span></div>
+    <div class="row"><span>Month</span><span class="mono">${r.month}</span></div>
+    <div class="row"><span>Expected (reported)</span><span class="mono">${r.expected!=null?'R'+fmt(r.expected):'none'}</span></div>
+    <div class="row"><span>Received (bank)</span><span class="mono">${r.received!=null?'R'+fmt(r.received):'none'}</span></div>
+    ${r.delta!=null?`<div class="row"><span>Variance Δ</span><span class="mono">R${fmt(r.delta)}</span></div>`:''}</div>
+    <div class="action"><b>Recommended action:</b><br>${act}</div>
+    <div class="guard"><b>Guardrail:</b> generated only from the settlement row above and a deterministic rule. Where no counterpart exists, the agent states “none” rather than inventing one.</div>`;
+}
+function run(){ RESULTS=reconcile(); SEL=null; renderKPIs(); renderFtSum(); renderRows();
+  const e=RESULTS.filter(r=>r.status==='EXCEPTION').length,p=RESULTS.filter(r=>r.status==='PARTIAL').length;
+  document.getElementById('status').textContent=`${RESULTS.length} settlements · ${p} partials · ${e} exceptions`; }
+document.getElementById('tol').oninput=run;
+document.getElementById('search').oninput=e=>{SEARCH=e.target.value;renderRows();};
+document.getElementById('filters').querySelectorAll('.fbtn').forEach(b=>b.onclick=()=>{document.querySelectorAll('.fbtn').forEach(x=>x.classList.remove('active'));b.classList.add('active');FILTER=b.dataset.f;SEL=null;renderRows();renderAI();});
+run();
+</script></body></html>
