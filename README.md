@@ -2,7 +2,7 @@
 
 **Enterprise Azure Databricks | Medallion Architecture | Delta Lake | Unity Catalog**
 
-> Portfolio project by Anthony Apollis · [anthony.apollis@gmail.com](mailto:anthony.apollis@gmail.com)
+> Completed project by Anthony Apollis · [anthony.apollis@gmail.com](mailto:anthony.apollis@gmail.com)
 
 ---
 
@@ -42,7 +42,6 @@ Prime Capital Bank/
 │   ├── data_dictionary/
 │   │   └── index.html                    # Searchable column-level docs (15 Gold tables)
 │   ├── Prime_Capital_Bank_Analytics.xlsx # Excel KPI + analytics workbook
-│   ├── hiring_manager_email.html         # Portfolio submission email
 │   └── pdf_exports/
 │       └── README.md                     # Chrome headless PDF export instructions
 │
