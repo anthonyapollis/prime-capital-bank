@@ -1,0 +1,10 @@
+{
+  "model": "Item-based collaborative filtering (cosine similarity on product ownership)",
+  "customers_with_accounts": 440,
+  "products": 22,
+  "holdings": 989,
+  "customers_evaluated": 301,
+  "hit_rate_at_3": 0.2359,
+  "random_baseline_hit_rate_at_3": 0.1495,
+  "lift_over_random": 1.58
+}

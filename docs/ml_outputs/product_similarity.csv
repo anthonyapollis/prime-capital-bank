@@ -1,0 +1,111 @@
+product,rank,related_product,similarity
+PCB Business Current,1,PCB Flexi Save,0.1938
+PCB Business Current,2,PCB Standard Credit Card,0.1409
+PCB Business Current,3,PCB Fixed 60M,0.1404
+PCB Business Current,4,PCB Premier Cheque,0.1223
+PCB Business Current,5,PCB Goal Saver,0.12
+PCB Business Premium,1,PCB Plus Cheque,0.1291
+PCB Business Premium,2,PCB Fixed 36M,0.1091
+PCB Business Premium,3,PCB SaveSmart,0.0739
+PCB Business Premium,4,PCB Goal Saver,0.0733
+PCB Business Premium,5,PCB Premier Cheque,0.0623
+PCB Enterprise Account,1,PCB Prestige Cheque,0.1284
+PCB Enterprise Account,2,PCB PocketSave,0.1246
+PCB Enterprise Account,3,PCB SaveSmart,0.1068
+PCB Enterprise Account,4,PCB Flexi Save,0.095
+PCB Enterprise Account,5,PCB Plus Cheque,0.0933
+PCB Fixed 12M,1,PCB Premier Cheque,0.1201
+PCB Fixed 12M,2,PCB Goal Saver,0.1179
+PCB Fixed 12M,3,PCB PocketSave,0.111
+PCB Fixed 12M,4,PCB Business Current,0.1053
+PCB Fixed 12M,5,PCB Treasury Plus,0.1017
+PCB Fixed 24M,1,PCB Gold Cheque,0.1027
+PCB Fixed 24M,2,PCB Flexi Save,0.095
+PCB Fixed 24M,3,PCB Premier Cheque,0.0899
+PCB Fixed 24M,4,PCB Enterprise Account,0.087
+PCB Fixed 24M,5,PCB Money Market 32-Day,0.0818
+PCB Fixed 36M,1,PCB Gold Credit Card,0.2236
+PCB Fixed 36M,2,PCB PocketSave,0.1355
+PCB Fixed 36M,3,PCB Prestige Cheque,0.1163
+PCB Fixed 36M,4,PCB Standard Credit Card,0.1127
+PCB Fixed 36M,5,PCB Business Premium,0.1091
+PCB Fixed 60M,1,PCB Business Current,0.1404
+PCB Fixed 60M,2,PCB PocketSave,0.111
+PCB Fixed 60M,3,PCB Premier Cheque,0.1001
+PCB Fixed 60M,4,PCB Gold Credit Card,0.0942
+PCB Fixed 60M,5,PCB Gold Cheque,0.0914
+PCB Flexi Save,1,PCB Business Current,0.1938
+PCB Flexi Save,2,PCB Premier Cheque,0.1843
+PCB Flexi Save,3,PCB Prestige Cheque,0.1754
+PCB Flexi Save,4,PCB PocketSave,0.1635
+PCB Flexi Save,5,PCB Gold Cheque,0.1543
+PCB Goal Saver,1,PCB Gold Cheque,0.2032
+PCB Goal Saver,2,PCB Prestige Cheque,0.1824
+PCB Goal Saver,3,PCB PocketSave,0.1518
+PCB Goal Saver,4,PCB Flexi Save,0.1447
+PCB Goal Saver,5,PCB Infinite Credit Card,0.144
+PCB Gold Cheque,1,PCB Infinite Credit Card,0.2559
+PCB Gold Cheque,2,PCB Goal Saver,0.2032
+PCB Gold Cheque,3,PCB Prestige Cheque,0.1768
+PCB Gold Cheque,4,PCB PocketSave,0.1765
+PCB Gold Cheque,5,PCB Flexi Save,0.1543
+PCB Gold Credit Card,1,PCB Fixed 36M,0.2236
+PCB Gold Credit Card,2,PCB Premier Cheque,0.164
+PCB Gold Credit Card,3,PCB Flexi Save,0.1541
+PCB Gold Credit Card,4,PCB Gold Cheque,0.1456
+PCB Gold Credit Card,5,PCB PocketSave,0.1414
+PCB Infinite Credit Card,1,PCB Gold Cheque,0.2559
+PCB Infinite Credit Card,2,PCB Goal Saver,0.144
+PCB Infinite Credit Card,3,PCB PocketSave,0.1355
+PCB Infinite Credit Card,4,PCB Flexi Save,0.1077
+PCB Infinite Credit Card,5,PCB Business Current,0.1071
+PCB Money Market 32-Day,1,PCB Money Market Call,0.1227
+PCB Money Market 32-Day,2,PCB Standard Credit Card,0.1169
+PCB Money Market 32-Day,3,PCB Premier Cheque,0.1057
+PCB Money Market 32-Day,4,PCB Gold Cheque,0.0966
+PCB Money Market 32-Day,5,PCB PocketSave,0.0938
+PCB Money Market Call,1,PCB Prestige Cheque,0.1711
+PCB Money Market Call,2,PCB Platinum Credit Card,0.1452
+PCB Money Market Call,3,PCB Plus Cheque,0.1399
+PCB Money Market Call,4,PCB Money Market 32-Day,0.1227
+PCB Money Market Call,5,PCB Treasury Plus,0.1142
+PCB Platinum Credit Card,1,PCB Premier Cheque,0.1877
+PCB Platinum Credit Card,2,PCB Treasury Plus,0.1589
+PCB Platinum Credit Card,3,PCB Money Market Call,0.1452
+PCB Platinum Credit Card,4,PCB PocketSave,0.104
+PCB Platinum Credit Card,5,PCB Flexi Save,0.0992
+PCB Plus Cheque,1,PCB Prestige Cheque,0.1606
+PCB Plus Cheque,2,PCB Flexi Save,0.1529
+PCB Plus Cheque,3,PCB Money Market Call,0.1399
+PCB Plus Cheque,4,PCB Gold Cheque,0.1376
+PCB Plus Cheque,5,PCB Business Premium,0.1291
+PCB PocketSave,1,PCB Standard Credit Card,0.1782
+PCB PocketSave,2,PCB Gold Cheque,0.1765
+PCB PocketSave,3,PCB Flexi Save,0.1635
+PCB PocketSave,4,PCB Prestige Cheque,0.1594
+PCB PocketSave,5,PCB Premier Cheque,0.1547
+PCB Premier Cheque,1,PCB SaveSmart,0.2071
+PCB Premier Cheque,2,PCB Platinum Credit Card,0.1877
+PCB Premier Cheque,3,PCB Flexi Save,0.1843
+PCB Premier Cheque,4,PCB Prestige Cheque,0.166
+PCB Premier Cheque,5,PCB Gold Credit Card,0.164
+PCB Prestige Cheque,1,PCB Goal Saver,0.1824
+PCB Prestige Cheque,2,PCB Gold Cheque,0.1768
+PCB Prestige Cheque,3,PCB Flexi Save,0.1754
+PCB Prestige Cheque,4,PCB Money Market Call,0.1711
+PCB Prestige Cheque,5,PCB Premier Cheque,0.166
+PCB SaveSmart,1,PCB Premier Cheque,0.2071
+PCB SaveSmart,2,PCB Prestige Cheque,0.1576
+PCB SaveSmart,3,PCB Flexi Save,0.1313
+PCB SaveSmart,4,PCB Goal Saver,0.1301
+PCB SaveSmart,5,PCB Plus Cheque,0.1145
+PCB Standard Credit Card,1,PCB PocketSave,0.1782
+PCB Standard Credit Card,2,PCB Business Current,0.1409
+PCB Standard Credit Card,3,PCB Goal Saver,0.1325
+PCB Standard Credit Card,4,PCB Prestige Cheque,0.1224
+PCB Standard Credit Card,5,PCB Money Market 32-Day,0.1169
+PCB Treasury Plus,1,PCB Platinum Credit Card,0.1589
+PCB Treasury Plus,2,PCB Money Market Call,0.1142
+PCB Treasury Plus,3,PCB Gold Cheque,0.1124
+PCB Treasury Plus,4,PCB Business Current,0.1035
+PCB Treasury Plus,5,PCB Infinite Credit Card,0.1035

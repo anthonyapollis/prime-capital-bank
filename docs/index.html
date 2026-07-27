@@ -136,6 +136,48 @@ footer{
   border-top:1px solid rgba(201,168,76,0.2);
 }
 footer a{color:var(--gold);text-decoration:none;}
+<!-- BEGIN widgets-css -->
+/* -- Next Best Product recommender -- */
+.nbp-box{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px;margin-bottom:40px;}
+.nbp-note{font-size:12px;color:var(--dim);line-height:1.6;margin-bottom:16px;}
+.nbp-metrics{display:flex;gap:24px;flex-wrap:wrap;margin-bottom:18px;}
+.nbp-metric{text-align:center;}
+.nbp-metric b{display:block;font-size:20px;font-weight:800;color:var(--cyan);}
+.nbp-metric span{font-size:10px;color:var(--dim);letter-spacing:.5px;text-transform:uppercase;}
+.nbp-cols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;}
+@media(max-width:760px){.nbp-cols{grid-template-columns:1fr;}}
+.nbp-cols select{width:100%;padding:9px;border-radius:8px;border:1px solid var(--border);font-size:13px;margin-bottom:12px;}
+.nbp-list{list-style:none;font-size:12.5px;}
+.nbp-list li{padding:7px 10px;background:var(--bg);border-radius:6px;margin-bottom:6px;}
+.nbp-list.rec li{background:rgba(0,180,204,0.10);color:#0A7A8C;font-weight:600;}
+.nbp-cols h4{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--dim);margin-bottom:8px;}
+
+/* -- Q&A assistant widget -- */
+#qa-toggle{
+  position:fixed;bottom:22px;right:22px;z-index:200;background:var(--navy);color:#fff;
+  border:none;border-radius:30px;padding:13px 20px;font-size:13px;font-weight:700;
+  box-shadow:0 6px 20px rgba(10,22,40,0.35);cursor:pointer;display:flex;align-items:center;gap:8px;
+}
+#qa-toggle:hover{background:var(--navy2);}
+#qa-panel{
+  position:fixed;bottom:78px;right:22px;z-index:200;width:360px;max-width:92vw;max-height:70vh;
+  background:var(--card);border-radius:14px;box-shadow:0 12px 40px rgba(10,22,40,0.28);
+  display:none;flex-direction:column;overflow:hidden;border:1px solid var(--border);
+}
+#qa-panel.open{display:flex;}
+#qa-head{background:var(--navy);color:#fff;padding:13px 16px;font-size:13px;font-weight:700;display:flex;justify-content:space-between;align-items:center;}
+#qa-head button{background:none;border:none;color:#fff;font-size:16px;cursor:pointer;opacity:.7;}
+#qa-log{flex:1;overflow-y:auto;padding:14px;font-size:12.5px;display:flex;flex-direction:column;gap:8px;}
+#qa-log .bubble{padding:9px 12px;border-radius:10px;max-width:88%;line-height:1.5;}
+#qa-log .bot{background:var(--bg);align-self:flex-start;}
+#qa-log .user{background:var(--navy);color:#fff;align-self:flex-end;}
+#qa-chips{display:flex;gap:6px;flex-wrap:wrap;padding:0 14px 10px;}
+#qa-chips button{font-size:10.5px;background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:5px 10px;cursor:pointer;color:var(--text);}
+#qa-chips button:hover{border-color:var(--cyan);}
+#qa-input-row{display:flex;border-top:1px solid var(--border);}
+#qa-input{flex:1;border:none;padding:11px 12px;font-size:12.5px;outline:none;}
+#qa-send{background:var(--cyan);color:#fff;border:none;padding:0 16px;font-weight:700;cursor:pointer;font-size:12px;}
+<!-- END widgets-css -->
 </style>
 </head>
 <body>
@@ -356,7 +398,101 @@ footer a{color:var(--gold);text-decoration:none;}
     </div>
   </div>
 
-  <!-- CODE ASSETS -->
+  <!-- BEGIN nbp-section -->
+<div class="section-title">Next Best Product &mdash; Cross-Sell Recommender</div>
+<div class="nbp-box">
+  <div class="nbp-note">
+    Item-based collaborative filtering over product ownership (which of the 22 PCB products each customer holds) &mdash;
+    &ldquo;customers who hold X also hold Y.&rdquo; Evaluated with a leave-one-product-out test, refitting the similarity
+    matrix per test to avoid leaking the held-out holding into its own evaluation.
+    Honest caveat: this synthetic generator assigns each account's product independently at random per customer rather
+    than by deliberate affinity (income, segment, or existing relationship), so the 1.58&times; lift
+    below reflects sampling structure in a small 22-product catalogue, not a designed behavioural signal &mdash; the same
+    limitation disclosed for the Pet Business Intelligence shop-assistant recommender this pattern is based on.
+  </div>
+  <div class="nbp-metrics">
+    <div class="nbp-metric"><b>23.6%</b><span>Hit rate @ 3</span></div>
+    <div class="nbp-metric"><b>14.9%</b><span>Random baseline</span></div>
+    <div class="nbp-metric"><b>1.58&times;</b><span>Lift</span></div>
+    <div class="nbp-metric"><b>440</b><span>Customers scored</span></div>
+    <div class="nbp-metric"><b>22</b><span>Products in catalogue</span></div>
+  </div>
+  <div class="nbp-cols">
+    <div>
+      <h4>Look up a customer</h4>
+      <select id="nbp-select"><option value="0">PCB3715308155 (7 products, Mass Market)</option>
+<option value="1">PCB7193796102 (6 products, Mass Market)</option>
+<option value="2">PCB2035989065 (6 products, Emerging Affluent)</option>
+<option value="3">PCB3435052229 (5 products, Mass Market)</option>
+<option value="4">PCB2067378614 (5 products, Mass Market)</option>
+<option value="5">PCB1888734391 (5 products, Mass Market)</option>
+<option value="6">PCB8940731272 (5 products, Affluent)</option>
+<option value="7">PCB1817657540 (5 products, Mass Market)</option>
+<option value="8">PCB5824092354 (5 products, Emerging Affluent)</option>
+<option value="9">PCB4301805593 (5 products, Mass Market)</option>
+<option value="10">PCB3065210717 (5 products, Mass Market)</option>
+<option value="11">PCB2553530199 (5 products, Mass Market)</option>
+<option value="12">PCB6563839027 (5 products, Mass Market)</option>
+<option value="13">PCB2634550216 (5 products, Mass Market)</option>
+<option value="14">PCB3625764422 (5 products, Mass Market)</option>
+<option value="15">PCB5433722159 (5 products, Mass Market)</option>
+<option value="16">PCB9012328127 (5 products, Mass Market)</option>
+<option value="17">PCB3820118608 (5 products, Mass Market)</option>
+<option value="18">PCB6184921425 (5 products, Emerging Affluent)</option>
+<option value="19">PCB7194208236 (5 products, Mass Market)</option>
+<option value="20">PCB7139177917 (4 products, Emerging Affluent)</option>
+<option value="21">PCB2817174845 (4 products, Mass Market)</option>
+<option value="22">PCB1519737760 (4 products, Emerging Affluent)</option>
+<option value="23">PCB2826025489 (4 products, Mass Market)</option>
+<option value="24">PCB7256190993 (4 products, Emerging Affluent)</option>
+<option value="25">PCB2567069461 (4 products, Affluent)</option>
+<option value="26">PCB7910439839 (4 products, Emerging Affluent)</option>
+<option value="27">PCB8008775062 (4 products, Mass Market)</option>
+<option value="28">PCB1521742718 (4 products, Mass Market)</option>
+<option value="29">PCB4169357602 (4 products, Mass Market)</option>
+<option value="30">PCB9759305846 (4 products, Mass Market)</option>
+<option value="31">PCB8561022829 (4 products, Mass Market)</option>
+<option value="32">PCB3853234069 (4 products, Mass Market)</option>
+<option value="33">PCB5572830027 (4 products, Mass Market)</option>
+<option value="34">PCB6447165060 (4 products, Affluent)</option>
+<option value="35">PCB3397657114 (4 products, Mass Market)</option>
+<option value="36">PCB3278563058 (4 products, Emerging Affluent)</option>
+<option value="37">PCB4075565814 (4 products, Mass Market)</option>
+<option value="38">PCB5316661404 (4 products, Emerging Affluent)</option>
+<option value="39">PCB8886832331 (4 products, Emerging Affluent)</option>
+<option value="40">PCB4012010269 (4 products, Emerging Affluent)</option>
+<option value="41">PCB9849367682 (4 products, Emerging Affluent)</option>
+<option value="42">PCB4296793876 (4 products, Emerging Affluent)</option>
+<option value="43">PCB9331879663 (4 products, Emerging Affluent)</option>
+<option value="44">PCB3072183247 (4 products, Mass Market)</option>
+<option value="45">PCB8390631634 (4 products, Affluent)</option>
+<option value="46">PCB4906542112 (4 products, Mass Market)</option>
+<option value="47">PCB5428855031 (4 products, Affluent)</option>
+<option value="48">PCB5654014006 (4 products, Mass Market)</option>
+<option value="49">PCB4167591308 (4 products, Emerging Affluent)</option>
+<option value="50">PCB9800965219 (4 products, Emerging Affluent)</option>
+<option value="51">PCB5336127859 (4 products, Mass Market)</option>
+<option value="52">PCB9784084995 (4 products, Mass Market)</option>
+<option value="53">PCB6146514161 (4 products, Mass Market)</option>
+<option value="54">PCB7650622478 (4 products, Emerging Affluent)</option>
+<option value="55">PCB9461564269 (4 products, Mass Market)</option>
+<option value="56">PCB9486494079 (4 products, Mass Market)</option>
+<option value="57">PCB3690714075 (4 products, Affluent)</option>
+<option value="58">PCB2674525521 (4 products, Mass Market)</option>
+<option value="59">PCB8774618469 (4 products, Mass Market)</option></select>
+    </div>
+    <div>
+      <h4>Current products</h4>
+      <ul class="nbp-list" id="nbp-current"></ul>
+    </div>
+    <div>
+      <h4>Recommended next</h4>
+      <ul class="nbp-list rec" id="nbp-rec"></ul>
+    </div>
+  </div>
+</div>
+<!-- END nbp-section -->
+<!-- CODE ASSETS -->
   <div class="section-title">Code &amp; SQL Assets</div>
   <div class="card-grid">
     <a class="card" href="https://github.com/anthonyapollis/prime-capital-bank/blob/main/notebooks/04_ml_credit_scoring.py" target="_blank" rel="noopener">
@@ -524,5 +660,93 @@ footer a{color:var(--gold);text-decoration:none;}
   Azure Databricks · Medallion Architecture · 12 ML Models · SARB Regulated
 </footer>
 
+<!-- BEGIN widgets-script -->
+<button id="qa-toggle">&#128172; Ask about this platform</button>
+<div id="qa-panel">
+  <div id="qa-head"><span>Ask about Prime Capital Bank</span><button id="qa-close">&times;</button></div>
+  <div id="qa-log"><div class="bubble bot">Hi! Ask me about the customers, portfolio, ML models, fraud, fintech partners, or tech stack.</div></div>
+  <div id="qa-chips">
+    <button>What is Prime Capital Bank?</button>
+    <button>How much data is in this?</button>
+    <button>Which model performs best?</button>
+    <button>What's the tech stack?</button>
+  </div>
+  <div id="qa-input-row">
+    <input id="qa-input" type="text" placeholder="Ask a question...">
+    <button id="qa-send">Send</button>
+  </div>
+</div>
+
+<script>
+var NBP_DEMO = [{"customer_id": "52c43632-653a-46c0-a7af-cb4c3a1026a2", "customer_number": "PCB3715308155", "segment": "Mass Market", "current_products": ["PCB Flexi Save", "PCB Money Market Call", "PCB Platinum Credit Card", "PCB Plus Cheque", "PCB Premier Cheque", "PCB SaveSmart", "PCB Standard Credit Card"], "recommended_next": ["PCB Prestige Cheque", "PCB PocketSave", "PCB Goal Saver", "PCB Gold Cheque", "PCB Gold Credit Card"]}, {"customer_id": "802e7e56-190c-41fd-a9d0-3d2880dd2cc3", "customer_number": "PCB7193796102", "segment": "Mass Market", "current_products": ["PCB Business Current", "PCB Flexi Save", "PCB Goal Saver", "PCB Infinite Credit Card", "PCB Prestige Cheque", "PCB Standard Credit Card"], "recommended_next": ["PCB Gold Cheque", "PCB PocketSave", "PCB Premier Cheque", "PCB Plus Cheque", "PCB SaveSmart"]}, {"customer_id": "c77092ad-e107-4373-89eb-0a50e994a500", "customer_number": "PCB2035989065", "segment": "Emerging Affluent", "current_products": ["PCB Goal Saver", "PCB Gold Cheque", "PCB Infinite Credit Card", "PCB PocketSave", "PCB Prestige Cheque", "PCB Treasury Plus"], "recommended_next": ["PCB Flexi Save", "PCB Premier Cheque", "PCB Standard Credit Card", "PCB Plus Cheque", "PCB SaveSmart"]}, {"customer_id": "01137316-1352-488d-a263-adc17ec0076e", "customer_number": "PCB3435052229", "segment": "Mass Market", "current_products": ["PCB Business Current", "PCB Fixed 36M", "PCB Gold Credit Card", "PCB Infinite Credit Card", "PCB Prestige Cheque"], "recommended_next": ["PCB Flexi Save", "PCB Premier Cheque", "PCB Gold Cheque", "PCB PocketSave", "PCB Goal Saver"]}, {"customer_id": "0da3aca3-eeff-48be-9870-f0b2cd2d53c6", "customer_number": "PCB2067378614", "segment": "Mass Market", "current_products": ["PCB Flexi Save", "PCB Gold Cheque", "PCB Gold Credit Card", "PCB Infinite Credit Card", "PCB SaveSmart"], "recommended_next": ["PCB Premier Cheque", "PCB Prestige Cheque", "PCB PocketSave", "PCB Goal Saver", "PCB Plus Cheque"]}, {"customer_id": "356fae70-133b-4719-9a47-5675f16f7ab2", "customer_number": "PCB1888734391", "segment": "Mass Market", "current_products": ["PCB Business Current", "PCB Fixed 12M", "PCB Goal Saver", "PCB Premier Cheque", "PCB SaveSmart"], "recommended_next": ["PCB Flexi Save", "PCB Prestige Cheque", "PCB Gold Cheque", "PCB PocketSave", "PCB Standard Credit Card"]}, {"customer_id": "4899ed45-9c58-43fc-a9b1-110f1e0da786", "customer_number": "PCB8940731272", "segment": "Affluent", "current_products": ["PCB Gold Cheque", "PCB Money Market 32-Day", "PCB PocketSave", "PCB SaveSmart", "PCB Standard Credit Card"], "recommended_next": ["PCB Prestige Cheque", "PCB Goal Saver", "PCB Premier Cheque", "PCB Flexi Save", "PCB Plus Cheque"]}, {"customer_id": "50f6d663-1915-47b1-87fd-38c31e37a363", "customer_number": "PCB1817657540", "segment": "Mass Market", "current_products": ["PCB Fixed 36M", "PCB Flexi Save", "PCB Gold Cheque", "PCB Gold Credit Card", "PCB Premier Cheque"], "recommended_next": ["PCB PocketSave", "PCB Prestige Cheque", "PCB Infinite Credit Card", "PCB SaveSmart", "PCB Platinum Credit Card"]}, {"customer_id": "526d7d1c-ebad-40c5-9ff2-b568477570ad", "customer_number": "PCB5824092354", "segment": "Emerging Affluent", "current_products": ["PCB Fixed 36M", "PCB Goal Saver", "PCB Platinum Credit Card", "PCB Premier Cheque", "PCB SaveSmart"], "recommended_next": ["PCB Prestige Cheque", "PCB Flexi Save", "PCB PocketSave", "PCB Gold Credit Card", "PCB Gold Cheque"]}, {"customer_id": "60e9b09c-e343-401f-9e56-3f88d8ea072a", "customer_number": "PCB4301805593", "segment": "Mass Market", "current_products": ["PCB Fixed 12M", "PCB Goal Saver", "PCB Infinite Credit Card", "PCB Platinum Credit Card", "PCB Treasury Plus"], "recommended_next": ["PCB Gold Cheque", "PCB Premier Cheque", "PCB PocketSave", "PCB Business Current", "PCB SaveSmart"]}, {"customer_id": "6ccbeb87-4cd6-46b3-81bc-6bc4ddb7301d", "customer_number": "PCB3065210717", "segment": "Mass Market", "current_products": ["PCB Enterprise Account", "PCB Flexi Save", "PCB Plus Cheque", "PCB Prestige Cheque", "PCB Standard Credit Card"], "recommended_next": ["PCB PocketSave", "PCB Gold Cheque", "PCB Goal Saver", "PCB SaveSmart", "PCB Premier Cheque"]}, {"customer_id": "7004ba49-cc98-4563-98c1-fb9294bc842a", "customer_number": "PCB2553530199", "segment": "Mass Market", "current_products": ["PCB Fixed 60M", "PCB Gold Cheque", "PCB Money Market 32-Day", "PCB PocketSave", "PCB Prestige Cheque"], "recommended_next": ["PCB Flexi Save", "PCB Premier Cheque", "PCB Goal Saver", "PCB Standard Credit Card", "PCB Infinite Credit Card"]}, {"customer_id": "90de2424-c3c9-493f-a5c9-9bb234518d61", "customer_number": "PCB6563839027", "segment": "Mass Market", "current_products": ["PCB Flexi Save", "PCB Gold Cheque", "PCB Money Market 32-Day", "PCB Plus Cheque", "PCB PocketSave"], "recommended_next": ["PCB Prestige Cheque", "PCB Goal Saver", "PCB Premier Cheque", "PCB Infinite Credit Card", "PCB Standard Credit Card"]}, {"customer_id": "91c9be29-eee1-4cde-a664-efe7e53212d5", "customer_number": "PCB2634550216", "segment": "Mass Market", "current_products": ["PCB Fixed 36M", "PCB Fixed 60M", "PCB Gold Credit Card", "PCB PocketSave", "PCB Standard Credit Card"], "recommended_next": ["PCB Premier Cheque", "PCB Prestige Cheque", "PCB Flexi Save", "PCB Gold Cheque", "PCB Infinite Credit Card"]}, {"customer_id": "a5b3d0e7-1c37-41b2-8e9b-c9b78f83cb2d", "customer_number": "PCB3625764422", "segment": "Mass Market", "current_products": ["PCB Gold Cheque", "PCB Gold Credit Card", "PCB Platinum Credit Card", "PCB Plus Cheque", "PCB Prestige Cheque"], "recommended_next": ["PCB Flexi Save", "PCB Premier Cheque", "PCB PocketSave", "PCB Infinite Credit Card", "PCB Money Market Call"]}, {"customer_id": "b2c4e28e-9d78-40ad-a44e-e4272355ff8d", "customer_number": "PCB5433722159", "segment": "Mass Market", "current_products": ["PCB Enterprise Account", "PCB Goal Saver", "PCB Gold Cheque", "PCB PocketSave", "PCB Prestige Cheque"], "recommended_next": ["PCB Flexi Save", "PCB Infinite Credit Card", "PCB Plus Cheque", "PCB Standard Credit Card", "PCB SaveSmart"]}, {"customer_id": "d289ca96-2681-47e6-97d3-3e049227ddd7", "customer_number": "PCB9012328127", "segment": "Mass Market", "current_products": ["PCB Enterprise Account", "PCB Fixed 24M", "PCB Flexi Save", "PCB Gold Cheque", "PCB PocketSave"], "recommended_next": ["PCB Prestige Cheque", "PCB Goal Saver", "PCB Infinite Credit Card", "PCB Premier Cheque", "PCB Plus Cheque"]}, {"customer_id": "eaf88bf2-93bd-40fc-bc6a-c6a64d63c873", "customer_number": "PCB3820118608", "segment": "Mass Market", "current_products": ["PCB Flexi Save", "PCB Gold Credit Card", "PCB Platinum Credit Card", "PCB PocketSave", "PCB Premier Cheque"], "recommended_next": ["PCB Prestige Cheque", "PCB Gold Cheque", "PCB Fixed 36M", "PCB SaveSmart", "PCB Infinite Credit Card"]}, {"customer_id": "f5385827-522c-4f2a-b11f-b00e9abc58f9", "customer_number": "PCB6184921425", "segment": "Emerging Affluent", "current_products": ["PCB Infinite Credit Card", "PCB Platinum Credit Card", "PCB Premier Cheque", "PCB Standard Credit Card", "PCB Treasury Plus"], "recommended_next": ["PCB Gold Cheque", "PCB PocketSave", "PCB Goal Saver", "PCB Prestige Cheque", "PCB SaveSmart"]}, {"customer_id": "f7e17a8d-c52e-4334-94e7-e1870e6b11c7", "customer_number": "PCB7194208236", "segment": "Mass Market", "current_products": ["PCB Business Current", "PCB Gold Cheque", "PCB Premier Cheque", "PCB SaveSmart", "PCB Treasury Plus"], "recommended_next": ["PCB Flexi Save", "PCB Goal Saver", "PCB Infinite Credit Card", "PCB Prestige Cheque", "PCB Platinum Credit Card"]}, {"customer_id": "052a0fcd-ee38-4e04-92e9-1ae87b732a42", "customer_number": "PCB7139177917", "segment": "Emerging Affluent", "current_products": ["PCB Fixed 12M", "PCB Flexi Save", "PCB Goal Saver", "PCB Premier Cheque"], "recommended_next": ["PCB PocketSave", "PCB SaveSmart", "PCB Prestige Cheque", "PCB Business Current", "PCB Gold Cheque"]}, {"customer_id": "056217c6-c731-4f79-b30f-c0d7ac911f00", "customer_number": "PCB2817174845", "segment": "Mass Market", "current_products": ["PCB Fixed 36M", "PCB Flexi Save", "PCB PocketSave", "PCB Standard Credit Card"], "recommended_next": ["PCB Prestige Cheque", "PCB Gold Credit Card", "PCB Premier Cheque", "PCB Goal Saver", "PCB Plus Cheque"]}, {"customer_id": "0ebc03c1-6701-445a-b1f1-b2a9bda64229", "customer_number": "PCB1519737760", "segment": "Emerging Affluent", "current_products": ["PCB Enterprise Account", "PCB Infinite Credit Card", "PCB Plus Cheque", "PCB Premier Cheque"], "recommended_next": ["PCB Gold Cheque", "PCB Flexi Save", "PCB PocketSave", "PCB Prestige Cheque", "PCB SaveSmart"]}, {"customer_id": "0efb1307-2e35-4775-952c-fccda5c4af82", "customer_number": "PCB2826025489", "segment": "Mass Market", "current_products": ["PCB Business Current", "PCB Flexi Save", "PCB Goal Saver", "PCB Plus Cheque"], "recommended_next": ["PCB Prestige Cheque", "PCB Gold Cheque", "PCB Premier Cheque", "PCB Standard Credit Card", "PCB SaveSmart"]}, {"customer_id": "1281fa70-afeb-4ce9-824d-8e9dca3d47e0", "customer_number": "PCB7256190993", "segment": "Emerging Affluent", "current_products": ["PCB Enterprise Account", "PCB Fixed 60M", "PCB Flexi Save", "PCB Prestige Cheque"], "recommended_next": ["PCB PocketSave", "PCB Gold Cheque", "PCB Premier Cheque", "PCB Plus Cheque", "PCB SaveSmart"]}, {"customer_id": "17c491c0-b59f-4e9f-8213-df727ebad8dc", "customer_number": "PCB2567069461", "segment": "Affluent", "current_products": ["PCB Money Market Call", "PCB Premier Cheque", "PCB Prestige Cheque", "PCB Treasury Plus"], "recommended_next": ["PCB Platinum Credit Card", "PCB SaveSmart", "PCB Flexi Save", "PCB Goal Saver", "PCB Gold Cheque"]}, {"customer_id": "1bf46838-92d1-4b07-adc1-26f9bc1a6bdd", "customer_number": "PCB7910439839", "segment": "Emerging Affluent", "current_products": ["PCB Gold Cheque", "PCB Gold Credit Card", "PCB Infinite Credit Card", "PCB Money Market 32-Day"], "recommended_next": ["PCB PocketSave", "PCB Flexi Save", "PCB Premier Cheque", "PCB Prestige Cheque", "PCB Goal Saver"]}, {"customer_id": "1e6bfc01-54e8-49f1-b039-a6bce14d302e", "customer_number": "PCB8008775062", "segment": "Mass Market", "current_products": ["PCB Fixed 12M", "PCB PocketSave", "PCB Premier Cheque", "PCB Standard Credit Card"], "recommended_next": ["PCB Goal Saver", "PCB SaveSmart", "PCB Flexi Save", "PCB Prestige Cheque", "PCB Gold Cheque"]}, {"customer_id": "2b230825-6b17-4ffe-9620-5f77ec1c9594", "customer_number": "PCB1521742718", "segment": "Mass Market", "current_products": ["PCB Gold Cheque", "PCB Gold Credit Card", "PCB Plus Cheque", "PCB PocketSave"], "recommended_next": ["PCB Flexi Save", "PCB Prestige Cheque", "PCB Infinite Credit Card", "PCB Premier Cheque", "PCB Fixed 36M"]}, {"customer_id": "35467d6b-f1b1-4241-815d-df93767762c1", "customer_number": "PCB4169357602", "segment": "Mass Market", "current_products": ["PCB Flexi Save", "PCB Goal Saver", "PCB Gold Cheque", "PCB Infinite Credit Card"], "recommended_next": ["PCB PocketSave", "PCB Prestige Cheque", "PCB Premier Cheque", "PCB Plus Cheque", "PCB Business Current"]}, {"customer_id": "35d4fecb-aeac-49eb-a349-ffa5fe6d0c3a", "customer_number": "PCB9759305846", "segment": "Mass Market", "current_products": ["PCB Flexi Save", "PCB Goal Saver", "PCB Gold Cheque", "PCB Prestige Cheque"], "recommended_next": ["PCB PocketSave", "PCB Infinite Credit Card", "PCB Premier Cheque", "PCB Plus Cheque", "PCB SaveSmart"]}, {"customer_id": "3f4aa40e-79e7-4a14-84a7-1bf79aaf67ac", "customer_number": "PCB8561022829", "segment": "Mass Market", "current_products": ["PCB Platinum Credit Card", "PCB Plus Cheque", "PCB Premier Cheque", "PCB SaveSmart"], "recommended_next": ["PCB Prestige Cheque", "PCB Flexi Save", "PCB PocketSave", "PCB Money Market Call", "PCB Gold Cheque"]}, {"customer_id": "3fccfc5f-188c-4979-a61b-0201410be359", "customer_number": "PCB3853234069", "segment": "Mass Market", "current_products": ["PCB Business Current", "PCB Fixed 60M", "PCB Flexi Save", "PCB Premier Cheque"], "recommended_next": ["PCB SaveSmart", "PCB Prestige Cheque", "PCB PocketSave", "PCB Gold Credit Card", "PCB Standard Credit Card"]}, {"customer_id": "47fae665-da74-4634-8788-06e6d4aef496", "customer_number": "PCB5572830027", "segment": "Mass Market", "current_products": ["PCB Flexi Save", "PCB PocketSave", "PCB Premier Cheque", "PCB Prestige Cheque"], "recommended_next": ["PCB Gold Cheque", "PCB Goal Saver", "PCB SaveSmart", "PCB Gold Credit Card", "PCB Plus Cheque"]}, {"customer_id": "56b81eb2-082d-4046-8431-6dd74a4f1d25", "customer_number": "PCB6447165060", "segment": "Affluent", "current_products": ["PCB Flexi Save", "PCB Plus Cheque", "PCB PocketSave", "PCB Premier Cheque"], "recommended_next": ["PCB Prestige Cheque", "PCB Gold Cheque", "PCB SaveSmart", "PCB Gold Credit Card", "PCB Goal Saver"]}, {"customer_id": "61f70e9e-9d2a-4b47-8dde-4eaa3aed22a6", "customer_number": "PCB3397657114", "segment": "Mass Market", "current_products": ["PCB Flexi Save", "PCB Gold Cheque", "PCB Prestige Cheque", "PCB SaveSmart"], "recommended_next": ["PCB Premier Cheque", "PCB Goal Saver", "PCB PocketSave", "PCB Plus Cheque", "PCB Gold Credit Card"]}, {"customer_id": "65fe26e8-06a8-4528-96e9-13c2d67b977c", "customer_number": "PCB3278563058", "segment": "Emerging Affluent", "current_products": ["PCB Fixed 36M", "PCB Flexi Save", "PCB Prestige Cheque", "PCB SaveSmart"], "recommended_next": ["PCB Premier Cheque", "PCB Gold Credit Card", "PCB PocketSave", "PCB Plus Cheque", "PCB Goal Saver"]}, {"customer_id": "66a5b361-8f0b-41dc-80c4-bc7aaa6cf6c6", "customer_number": "PCB4075565814", "segment": "Mass Market", "current_products": ["PCB Goal Saver", "PCB Gold Cheque", "PCB Infinite Credit Card", "PCB Plus Cheque"], "recommended_next": ["PCB Prestige Cheque", "PCB PocketSave", "PCB Flexi Save", "PCB Standard Credit Card", "PCB Premier Cheque"]}, {"customer_id": "67c9be79-bce5-4b32-a44d-98517a2477e3", "customer_number": "PCB5316661404", "segment": "Emerging Affluent", "current_products": ["PCB Business Current", "PCB Flexi Save", "PCB Platinum Credit Card", "PCB Treasury Plus"], "recommended_next": ["PCB Premier Cheque", "PCB Infinite Credit Card", "PCB Goal Saver", "PCB Gold Cheque", "PCB SaveSmart"]}, {"customer_id": "696dd856-e6af-4dd3-9595-cc197764d7c1", "customer_number": "PCB8886832331", "segment": "Emerging Affluent", "current_products": ["PCB Flexi Save", "PCB Gold Credit Card", "PCB PocketSave", "PCB Prestige Cheque"], "recommended_next": ["PCB Premier Cheque", "PCB Gold Cheque", "PCB Fixed 36M", "PCB Plus Cheque", "PCB Goal Saver"]}, {"customer_id": "7bebd5d3-e468-4e58-8ba1-a51e5494d51f", "customer_number": "PCB4012010269", "segment": "Emerging Affluent", "current_products": ["PCB Flexi Save", "PCB Money Market Call", "PCB Premier Cheque", "PCB Prestige Cheque"], "recommended_next": ["PCB SaveSmart", "PCB Plus Cheque", "PCB Goal Saver", "PCB Platinum Credit Card", "PCB Gold Credit Card"]}, {"customer_id": "8931f44e-bcba-4267-9d91-cf99c1259d56", "customer_number": "PCB9849367682", "segment": "Emerging Affluent", "current_products": ["PCB Fixed 12M", "PCB Gold Credit Card", "PCB PocketSave", "PCB SaveSmart"], "recommended_next": ["PCB Premier Cheque", "PCB Gold Cheque", "PCB Flexi Save", "PCB Prestige Cheque", "PCB Fixed 36M"]}, {"customer_id": "90ea58ca-5711-40f3-b12a-02f066ca42eb", "customer_number": "PCB4296793876", "segment": "Emerging Affluent", "current_products": ["PCB Flexi Save", "PCB Goal Saver", "PCB Money Market 32-Day", "PCB SaveSmart"], "recommended_next": ["PCB Premier Cheque", "PCB Prestige Cheque", "PCB Gold Cheque", "PCB PocketSave", "PCB Plus Cheque"]}, {"customer_id": "943b547a-caaf-4494-a2d8-c22932b3d538", "customer_number": "PCB9331879663", "segment": "Emerging Affluent", "current_products": ["PCB Gold Cheque", "PCB Infinite Credit Card", "PCB Plus Cheque", "PCB PocketSave"], "recommended_next": ["PCB Goal Saver", "PCB Flexi Save", "PCB Prestige Cheque", "PCB Standard Credit Card", "PCB Gold Credit Card"]}, {"customer_id": "96a0dd93-d9ee-4528-9173-61228081da8c", "customer_number": "PCB3072183247", "segment": "Mass Market", "current_products": ["PCB Fixed 60M", "PCB Gold Credit Card", "PCB Platinum Credit Card", "PCB Premier Cheque"], "recommended_next": ["PCB PocketSave", "PCB Flexi Save", "PCB Fixed 36M", "PCB Prestige Cheque", "PCB Gold Cheque"]}, {"customer_id": "a1dfb36c-cd18-4be2-bef0-9cfb5f7cdf0d", "customer_number": "PCB8390631634", "segment": "Affluent", "current_products": ["PCB Fixed 12M", "PCB Goal Saver", "PCB Gold Cheque", "PCB PocketSave"], "recommended_next": ["PCB Infinite Credit Card", "PCB Prestige Cheque", "PCB Flexi Save", "PCB Premier Cheque", "PCB Standard Credit Card"]}, {"customer_id": "a32070ba-f27b-4cdc-8e02-fb00804c240c", "customer_number": "PCB4906542112", "segment": "Mass Market", "current_products": ["PCB Flexi Save", "PCB Money Market 32-Day", "PCB Money Market Call", "PCB Plus Cheque"], "recommended_next": ["PCB Prestige Cheque", "PCB Premier Cheque", "PCB Gold Cheque", "PCB Goal Saver", "PCB PocketSave"]}, {"customer_id": "a6f2e94d-f410-4243-a848-ecf52b593958", "customer_number": "PCB5428855031", "segment": "Affluent", "current_products": ["PCB Enterprise Account", "PCB Gold Cheque", "PCB Premier Cheque", "PCB Treasury Plus"], "recommended_next": ["PCB PocketSave", "PCB Infinite Credit Card", "PCB Prestige Cheque", "PCB SaveSmart", "PCB Goal Saver"]}, {"customer_id": "ad4f5d57-e2cd-44ca-b6b9-a067b3961cc6", "customer_number": "PCB5654014006", "segment": "Mass Market", "current_products": ["PCB Fixed 36M", "PCB Goal Saver", "PCB PocketSave", "PCB Prestige Cheque"], "recommended_next": ["PCB Gold Cheque", "PCB Flexi Save", "PCB Premier Cheque", "PCB Standard Credit Card", "PCB Plus Cheque"]}, {"customer_id": "b2ebfe50-e47c-439c-abf6-a9f68942352d", "customer_number": "PCB4167591308", "segment": "Emerging Affluent", "current_products": ["PCB Fixed 36M", "PCB Gold Credit Card", "PCB Premier Cheque", "PCB SaveSmart"], "recommended_next": ["PCB Prestige Cheque", "PCB Flexi Save", "PCB PocketSave", "PCB Platinum Credit Card", "PCB Gold Cheque"]}, {"customer_id": "b4ebc28f-526a-45ea-823c-588724471955", "customer_number": "PCB9800965219", "segment": "Emerging Affluent", "current_products": ["PCB Fixed 60M", "PCB Prestige Cheque", "PCB SaveSmart", "PCB Standard Credit Card"], "recommended_next": ["PCB Premier Cheque", "PCB PocketSave", "PCB Gold Cheque", "PCB Flexi Save", "PCB Goal Saver"]}, {"customer_id": "b6d87c10-28ea-453a-9463-3da693da5073", "customer_number": "PCB5336127859", "segment": "Mass Market", "current_products": ["PCB Fixed 12M", "PCB Money Market 32-Day", "PCB Plus Cheque", "PCB PocketSave"], "recommended_next": ["PCB Gold Cheque", "PCB Standard Credit Card", "PCB Premier Cheque", "PCB Goal Saver", "PCB Flexi Save"]}, {"customer_id": "bbbac18e-3bf9-43fa-9184-da720b7e6c0d", "customer_number": "PCB9784084995", "segment": "Mass Market", "current_products": ["PCB Goal Saver", "PCB Plus Cheque", "PCB Prestige Cheque", "PCB Standard Credit Card"], "recommended_next": ["PCB Gold Cheque", "PCB PocketSave", "PCB Flexi Save", "PCB SaveSmart", "PCB Premier Cheque"]}, {"customer_id": "c978e671-abb7-4632-8b23-ab955c9acf81", "customer_number": "PCB6146514161", "segment": "Mass Market", "current_products": ["PCB Business Current", "PCB Goal Saver", "PCB Gold Cheque", "PCB Infinite Credit Card"], "recommended_next": ["PCB Flexi Save", "PCB PocketSave", "PCB Prestige Cheque", "PCB Standard Credit Card", "PCB Premier Cheque"]}, {"customer_id": "cb29fca6-4779-47de-b4d8-d702da77cbe5", "customer_number": "PCB7650622478", "segment": "Emerging Affluent", "current_products": ["PCB Money Market 32-Day", "PCB Plus Cheque", "PCB Prestige Cheque", "PCB Standard Credit Card"], "recommended_next": ["PCB PocketSave", "PCB Gold Cheque", "PCB Goal Saver", "PCB Flexi Save", "PCB Money Market Call"]}, {"customer_id": "d02aaa23-8d0f-485d-be99-dd27de191080", "customer_number": "PCB9461564269", "segment": "Mass Market", "current_products": ["PCB Business Premium", "PCB Goal Saver", "PCB Money Market Call", "PCB Plus Cheque"], "recommended_next": ["PCB Prestige Cheque", "PCB Flexi Save", "PCB Gold Cheque", "PCB Premier Cheque", "PCB SaveSmart"]}, {"customer_id": "e48bf09c-1d7e-4a66-9946-31e8e782c08e", "customer_number": "PCB9486494079", "segment": "Mass Market", "current_products": ["PCB Fixed 24M", "PCB Flexi Save", "PCB Money Market 32-Day", "PCB Platinum Credit Card"], "recommended_next": ["PCB Premier Cheque", "PCB Gold Cheque", "PCB PocketSave", "PCB Prestige Cheque", "PCB Plus Cheque"]}, {"customer_id": "e99f7956-cc34-4de2-8510-ed7a366f6fa5", "customer_number": "PCB3690714075", "segment": "Affluent", "current_products": ["PCB Flexi Save", "PCB Goal Saver", "PCB Plus Cheque", "PCB Premier Cheque"], "recommended_next": ["PCB Prestige Cheque", "PCB Gold Cheque", "PCB PocketSave", "PCB SaveSmart", "PCB Business Current"]}, {"customer_id": "f08a0cb8-0801-4ed0-bad6-d7251ed2fea2", "customer_number": "PCB2674525521", "segment": "Mass Market", "current_products": ["PCB Infinite Credit Card", "PCB Platinum Credit Card", "PCB PocketSave", "PCB Premier Cheque"], "recommended_next": ["PCB Gold Cheque", "PCB Flexi Save", "PCB Prestige Cheque", "PCB Gold Credit Card", "PCB Goal Saver"]}, {"customer_id": "f4be94ff-f06b-46a4-8cba-1a36fadcbac4", "customer_number": "PCB8774618469", "segment": "Mass Market", "current_products": ["PCB Enterprise Account", "PCB Fixed 60M", "PCB Infinite Credit Card", "PCB PocketSave"], "recommended_next": ["PCB Gold Cheque", "PCB Prestige Cheque", "PCB Flexi Save", "PCB Standard Credit Card", "PCB Premier Cheque"]}];
+var FAQ = [{"q": "What is Prime Capital Bank?", "kw": ["what is prime capital", "about prime capital", "about this project", "what company"], "a": "A fictional Fortune 500 South African retail and corporate bank invented for this portfolio project - not a real company. It's a production-shaped Azure Databricks data platform: 500,000 SA customers, 12M+ annual transactions, R500B loan portfolio, 200 branches across all 9 provinces."}, {"q": "How much data is in this?", "kw": ["how much data", "how many rows", "scale", "size of the data"], "a": "500,000 customers, 820K accounts, 10M+ transactions, 280K loans, 3.2M card transactions, 1.8M EFT/SWIFT/PayShap payments, 48K fraud alerts, across 14 Bronze, 11 Silver and 22 Gold tables."}, {"q": "Which ML model performs best?", "kw": ["best model", "which model", "highest auc", "top model"], "a": "Fraud Detection, at AUC 0.921 (Random Forest ensemble, real-time). Credit PD scoring (LightGBM) and AML risk scoring (Gradient Boost + GraphFrames) follow at 0.847 and 0.889."}, {"q": "What's the tech stack?", "kw": ["tech stack", "technology", "what's it built with", "stack"], "a": "Azure Databricks (Premium) on ADLS Gen2 with Delta Lake and Unity Catalog governance, dbt Core for transformation, MLflow + LightGBM/XGBoost/GraphFrames for ML, Structured Streaming (Auto Loader), Terraform + Azure CLI for IaC, and Power BI (DirectQuery) for consumption."}, {"q": "What regulations does it cover?", "kw": ["regulation", "regulatory", "compliance", "ifrs", "basel", "popia", "fica", "aml"], "a": "IFRS 9 (Stage 1/2/3, ECL), Basel III (RWA, CET1, LCR, NSFR), SARB BA700 capital adequacy reporting, POPIA (PII masking in Silver), FICA/KYC tracking, and AML/CFT transaction monitoring with SAR filing."}, {"q": "What are the fintech partners?", "kw": ["fintech", "partners", "yoco", "snapscan", "payfast", "settlement"], "a": "12 SA fintech partners settle into the bank's fintech settlement mart - Yoco, SnapScan, PayFast, Peach Payments, PayGate, Ozow, Zapper, iKhokha, Stitch, Kazang, Adumo and Mukuru - covering POS acquiring, QR payments, gateways, instant EFT, open banking and cross-border remittance."}, {"q": "What's the next-best-product recommender?", "kw": ["next best product", "recommender", "cross-sell", "recommendation"], "a": "An item-based collaborative filter over which of the 22 PCB products each customer holds - \"customers who hold X also hold Y.\" Leave-one-out tested: 23.6% hit rate @3 vs a 14.9% random baseline (1.58x lift) - modest and honestly caveated, since the generator assigns products independently rather than by designed customer affinity."}, {"q": "Where does the bank operate?", "kw": ["where", "branches", "provinces", "locations", "map"], "a": "200 branches across all 9 South African provinces. The Merchant Intelligence Map (Leaflet.js) plots merchant transaction volume and fraud hotspots province by province, with Sales/Fraud/AML view toggles."}, {"q": "Is the data real?", "kw": ["real data", "real customers", "is this real", "actual bank"], "a": "No - Prime Capital Bank and every customer, transaction and loan in it are synthetic, generated locally with numpy/pandas/Faker for this portfolio project. No real personal or financial data is used."}, {"q": "Who built this?", "kw": ["who built", "who made", "author", "anthony"], "a": "Anthony Apollis, as a portfolio project demonstrating enterprise data engineering, analytics engineering and ML on Azure - not a real bank."}];
+document.addEventListener("DOMContentLoaded", function () {
+
+  // ---------------- next-best-product selector ----------------
+  var sel = document.getElementById("nbp-select");
+  var curEl = document.getElementById("nbp-current");
+  var recEl = document.getElementById("nbp-rec");
+  function renderNbp(i) {
+    var c = NBP_DEMO[i];
+    if (!c) return;
+    curEl.innerHTML = c.current_products.map(function (p) { return "<li>" + p + "</li>"; }).join("");
+    recEl.innerHTML = c.recommended_next.length
+      ? c.recommended_next.map(function (p) { return "<li>" + p + "</li>"; }).join("")
+      : "<li>No confident recommendation (holds most of the catalogue already)</li>";
+  }
+  if (sel) {
+    sel.addEventListener("change", function () { renderNbp(this.value); });
+    renderNbp(0);
+  }
+
+  // ---------------- Q&A assistant ----------------
+  var toggle = document.getElementById("qa-toggle");
+  var panel = document.getElementById("qa-panel");
+  var log = document.getElementById("qa-log");
+  var input = document.getElementById("qa-input");
+  var send = document.getElementById("qa-send");
+
+  function addBubble(text, who) {
+    var b = document.createElement("div");
+    b.className = "bubble " + who;
+    b.textContent = text;
+    log.appendChild(b);
+    log.scrollTop = log.scrollHeight;
+  }
+
+  function answer(q) {
+    var ql = q.toLowerCase();
+    var best = null, bestScore = 0;
+    FAQ.forEach(function (item) {
+      var score = 0;
+      item.kw.forEach(function (k) { if (ql.indexOf(k) !== -1) score += k.length; });
+      if (score > bestScore) { bestScore = score; best = item; }
+    });
+    return best ? best.a : "I don't have a grounded answer for that yet - try asking about the customers, transactions, portfolio, fraud model, fintech partners, or tech stack.";
+  }
+
+  function ask(q) {
+    if (!q.trim()) return;
+    addBubble(q, "user");
+    input.value = "";
+    setTimeout(function () { addBubble(answer(q), "bot"); }, 200);
+  }
+
+  if (toggle) {
+    toggle.addEventListener("click", function () {
+      panel.classList.toggle("open");
+    });
+    document.getElementById("qa-close").addEventListener("click", function () {
+      panel.classList.remove("open");
+    });
+    send.addEventListener("click", function () { ask(input.value); });
+    input.addEventListener("keydown", function (e) { if (e.key === "Enter") ask(input.value); });
+    document.querySelectorAll("#qa-chips button").forEach(function (btn) {
+      btn.addEventListener("click", function () { ask(btn.textContent); });
+    });
+  }
+});
+</script>
+<!-- END widgets-script -->
 </body>
 </html>

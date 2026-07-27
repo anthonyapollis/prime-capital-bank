@@ -1,0 +1,7151 @@
+[
+  {
+    "customer_id": "52c43632-653a-46c0-a7af-cb4c3a1026a2",
+    "customer_number": "PCB3715308155",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Flexi Save",
+      "PCB Money Market Call",
+      "PCB Platinum Credit Card",
+      "PCB Plus Cheque",
+      "PCB Premier Cheque",
+      "PCB SaveSmart",
+      "PCB Standard Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB PocketSave",
+      "PCB Goal Saver",
+      "PCB Gold Cheque",
+      "PCB Gold Credit Card"
+    ]
+  },
+  {
+    "customer_id": "802e7e56-190c-41fd-a9d0-3d2880dd2cc3",
+    "customer_number": "PCB7193796102",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Business Current",
+      "PCB Flexi Save",
+      "PCB Goal Saver",
+      "PCB Infinite Credit Card",
+      "PCB Prestige Cheque",
+      "PCB Standard Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB PocketSave",
+      "PCB Premier Cheque",
+      "PCB Plus Cheque",
+      "PCB SaveSmart"
+    ]
+  },
+  {
+    "customer_id": "c77092ad-e107-4373-89eb-0a50e994a500",
+    "customer_number": "PCB2035989065",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Goal Saver",
+      "PCB Gold Cheque",
+      "PCB Infinite Credit Card",
+      "PCB PocketSave",
+      "PCB Prestige Cheque",
+      "PCB Treasury Plus"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB Premier Cheque",
+      "PCB Standard Credit Card",
+      "PCB Plus Cheque",
+      "PCB SaveSmart"
+    ]
+  },
+  {
+    "customer_id": "01137316-1352-488d-a263-adc17ec0076e",
+    "customer_number": "PCB3435052229",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Business Current",
+      "PCB Fixed 36M",
+      "PCB Gold Credit Card",
+      "PCB Infinite Credit Card",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB Premier Cheque",
+      "PCB Gold Cheque",
+      "PCB PocketSave",
+      "PCB Goal Saver"
+    ]
+  },
+  {
+    "customer_id": "0da3aca3-eeff-48be-9870-f0b2cd2d53c6",
+    "customer_number": "PCB2067378614",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Flexi Save",
+      "PCB Gold Cheque",
+      "PCB Gold Credit Card",
+      "PCB Infinite Credit Card",
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque",
+      "PCB PocketSave",
+      "PCB Goal Saver",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "356fae70-133b-4719-9a47-5675f16f7ab2",
+    "customer_number": "PCB1888734391",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Business Current",
+      "PCB Fixed 12M",
+      "PCB Goal Saver",
+      "PCB Premier Cheque",
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB Prestige Cheque",
+      "PCB Gold Cheque",
+      "PCB PocketSave",
+      "PCB Standard Credit Card"
+    ]
+  },
+  {
+    "customer_id": "4899ed45-9c58-43fc-a9b1-110f1e0da786",
+    "customer_number": "PCB8940731272",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Gold Cheque",
+      "PCB Money Market 32-Day",
+      "PCB PocketSave",
+      "PCB SaveSmart",
+      "PCB Standard Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Goal Saver",
+      "PCB Premier Cheque",
+      "PCB Flexi Save",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "50f6d663-1915-47b1-87fd-38c31e37a363",
+    "customer_number": "PCB1817657540",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 36M",
+      "PCB Flexi Save",
+      "PCB Gold Cheque",
+      "PCB Gold Credit Card",
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB PocketSave",
+      "PCB Prestige Cheque",
+      "PCB Infinite Credit Card",
+      "PCB SaveSmart",
+      "PCB Platinum Credit Card"
+    ]
+  },
+  {
+    "customer_id": "526d7d1c-ebad-40c5-9ff2-b568477570ad",
+    "customer_number": "PCB5824092354",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Fixed 36M",
+      "PCB Goal Saver",
+      "PCB Platinum Credit Card",
+      "PCB Premier Cheque",
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB PocketSave",
+      "PCB Gold Credit Card",
+      "PCB Gold Cheque"
+    ]
+  },
+  {
+    "customer_id": "60e9b09c-e343-401f-9e56-3f88d8ea072a",
+    "customer_number": "PCB4301805593",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 12M",
+      "PCB Goal Saver",
+      "PCB Infinite Credit Card",
+      "PCB Platinum Credit Card",
+      "PCB Treasury Plus"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Premier Cheque",
+      "PCB PocketSave",
+      "PCB Business Current",
+      "PCB SaveSmart"
+    ]
+  },
+  {
+    "customer_id": "6ccbeb87-4cd6-46b3-81bc-6bc4ddb7301d",
+    "customer_number": "PCB3065210717",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Enterprise Account",
+      "PCB Flexi Save",
+      "PCB Plus Cheque",
+      "PCB Prestige Cheque",
+      "PCB Standard Credit Card"
+    ],
+    "recommended_next": [
+      "PCB PocketSave",
+      "PCB Gold Cheque",
+      "PCB Goal Saver",
+      "PCB SaveSmart",
+      "PCB Premier Cheque"
+    ]
+  },
+  {
+    "customer_id": "7004ba49-cc98-4563-98c1-fb9294bc842a",
+    "customer_number": "PCB2553530199",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 60M",
+      "PCB Gold Cheque",
+      "PCB Money Market 32-Day",
+      "PCB PocketSave",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB Premier Cheque",
+      "PCB Goal Saver",
+      "PCB Standard Credit Card",
+      "PCB Infinite Credit Card"
+    ]
+  },
+  {
+    "customer_id": "90de2424-c3c9-493f-a5c9-9bb234518d61",
+    "customer_number": "PCB6563839027",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Flexi Save",
+      "PCB Gold Cheque",
+      "PCB Money Market 32-Day",
+      "PCB Plus Cheque",
+      "PCB PocketSave"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Goal Saver",
+      "PCB Premier Cheque",
+      "PCB Infinite Credit Card",
+      "PCB Standard Credit Card"
+    ]
+  },
+  {
+    "customer_id": "91c9be29-eee1-4cde-a664-efe7e53212d5",
+    "customer_number": "PCB2634550216",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 36M",
+      "PCB Fixed 60M",
+      "PCB Gold Credit Card",
+      "PCB PocketSave",
+      "PCB Standard Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Gold Cheque",
+      "PCB Infinite Credit Card"
+    ]
+  },
+  {
+    "customer_id": "a5b3d0e7-1c37-41b2-8e9b-c9b78f83cb2d",
+    "customer_number": "PCB3625764422",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Gold Cheque",
+      "PCB Gold Credit Card",
+      "PCB Platinum Credit Card",
+      "PCB Plus Cheque",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB Premier Cheque",
+      "PCB PocketSave",
+      "PCB Infinite Credit Card",
+      "PCB Money Market Call"
+    ]
+  },
+  {
+    "customer_id": "b2c4e28e-9d78-40ad-a44e-e4272355ff8d",
+    "customer_number": "PCB5433722159",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Enterprise Account",
+      "PCB Goal Saver",
+      "PCB Gold Cheque",
+      "PCB PocketSave",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB Infinite Credit Card",
+      "PCB Plus Cheque",
+      "PCB Standard Credit Card",
+      "PCB SaveSmart"
+    ]
+  },
+  {
+    "customer_id": "d289ca96-2681-47e6-97d3-3e049227ddd7",
+    "customer_number": "PCB9012328127",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Enterprise Account",
+      "PCB Fixed 24M",
+      "PCB Flexi Save",
+      "PCB Gold Cheque",
+      "PCB PocketSave"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Goal Saver",
+      "PCB Infinite Credit Card",
+      "PCB Premier Cheque",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "eaf88bf2-93bd-40fc-bc6a-c6a64d63c873",
+    "customer_number": "PCB3820118608",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Flexi Save",
+      "PCB Gold Credit Card",
+      "PCB Platinum Credit Card",
+      "PCB PocketSave",
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Gold Cheque",
+      "PCB Fixed 36M",
+      "PCB SaveSmart",
+      "PCB Infinite Credit Card"
+    ]
+  },
+  {
+    "customer_id": "f5385827-522c-4f2a-b11f-b00e9abc58f9",
+    "customer_number": "PCB6184921425",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Infinite Credit Card",
+      "PCB Platinum Credit Card",
+      "PCB Premier Cheque",
+      "PCB Standard Credit Card",
+      "PCB Treasury Plus"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB PocketSave",
+      "PCB Goal Saver",
+      "PCB Prestige Cheque",
+      "PCB SaveSmart"
+    ]
+  },
+  {
+    "customer_id": "f7e17a8d-c52e-4334-94e7-e1870e6b11c7",
+    "customer_number": "PCB7194208236",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Business Current",
+      "PCB Gold Cheque",
+      "PCB Premier Cheque",
+      "PCB SaveSmart",
+      "PCB Treasury Plus"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB Goal Saver",
+      "PCB Infinite Credit Card",
+      "PCB Prestige Cheque",
+      "PCB Platinum Credit Card"
+    ]
+  },
+  {
+    "customer_id": "052a0fcd-ee38-4e04-92e9-1ae87b732a42",
+    "customer_number": "PCB7139177917",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Fixed 12M",
+      "PCB Flexi Save",
+      "PCB Goal Saver",
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB PocketSave",
+      "PCB SaveSmart",
+      "PCB Prestige Cheque",
+      "PCB Business Current",
+      "PCB Gold Cheque"
+    ]
+  },
+  {
+    "customer_id": "056217c6-c731-4f79-b30f-c0d7ac911f00",
+    "customer_number": "PCB2817174845",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 36M",
+      "PCB Flexi Save",
+      "PCB PocketSave",
+      "PCB Standard Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Gold Credit Card",
+      "PCB Premier Cheque",
+      "PCB Goal Saver",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "0ebc03c1-6701-445a-b1f1-b2a9bda64229",
+    "customer_number": "PCB1519737760",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Enterprise Account",
+      "PCB Infinite Credit Card",
+      "PCB Plus Cheque",
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB PocketSave",
+      "PCB Prestige Cheque",
+      "PCB SaveSmart"
+    ]
+  },
+  {
+    "customer_id": "0efb1307-2e35-4775-952c-fccda5c4af82",
+    "customer_number": "PCB2826025489",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Business Current",
+      "PCB Flexi Save",
+      "PCB Goal Saver",
+      "PCB Plus Cheque"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Gold Cheque",
+      "PCB Premier Cheque",
+      "PCB Standard Credit Card",
+      "PCB SaveSmart"
+    ]
+  },
+  {
+    "customer_id": "1281fa70-afeb-4ce9-824d-8e9dca3d47e0",
+    "customer_number": "PCB7256190993",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Enterprise Account",
+      "PCB Fixed 60M",
+      "PCB Flexi Save",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB PocketSave",
+      "PCB Gold Cheque",
+      "PCB Premier Cheque",
+      "PCB Plus Cheque",
+      "PCB SaveSmart"
+    ]
+  },
+  {
+    "customer_id": "17c491c0-b59f-4e9f-8213-df727ebad8dc",
+    "customer_number": "PCB2567069461",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Money Market Call",
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque",
+      "PCB Treasury Plus"
+    ],
+    "recommended_next": [
+      "PCB Platinum Credit Card",
+      "PCB SaveSmart",
+      "PCB Flexi Save",
+      "PCB Goal Saver",
+      "PCB Gold Cheque"
+    ]
+  },
+  {
+    "customer_id": "1bf46838-92d1-4b07-adc1-26f9bc1a6bdd",
+    "customer_number": "PCB7910439839",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Gold Cheque",
+      "PCB Gold Credit Card",
+      "PCB Infinite Credit Card",
+      "PCB Money Market 32-Day"
+    ],
+    "recommended_next": [
+      "PCB PocketSave",
+      "PCB Flexi Save",
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque",
+      "PCB Goal Saver"
+    ]
+  },
+  {
+    "customer_id": "1e6bfc01-54e8-49f1-b039-a6bce14d302e",
+    "customer_number": "PCB8008775062",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 12M",
+      "PCB PocketSave",
+      "PCB Premier Cheque",
+      "PCB Standard Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Goal Saver",
+      "PCB SaveSmart",
+      "PCB Flexi Save",
+      "PCB Prestige Cheque",
+      "PCB Gold Cheque"
+    ]
+  },
+  {
+    "customer_id": "2b230825-6b17-4ffe-9620-5f77ec1c9594",
+    "customer_number": "PCB1521742718",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Gold Cheque",
+      "PCB Gold Credit Card",
+      "PCB Plus Cheque",
+      "PCB PocketSave"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB Prestige Cheque",
+      "PCB Infinite Credit Card",
+      "PCB Premier Cheque",
+      "PCB Fixed 36M"
+    ]
+  },
+  {
+    "customer_id": "35467d6b-f1b1-4241-815d-df93767762c1",
+    "customer_number": "PCB4169357602",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Flexi Save",
+      "PCB Goal Saver",
+      "PCB Gold Cheque",
+      "PCB Infinite Credit Card"
+    ],
+    "recommended_next": [
+      "PCB PocketSave",
+      "PCB Prestige Cheque",
+      "PCB Premier Cheque",
+      "PCB Plus Cheque",
+      "PCB Business Current"
+    ]
+  },
+  {
+    "customer_id": "35d4fecb-aeac-49eb-a349-ffa5fe6d0c3a",
+    "customer_number": "PCB9759305846",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Flexi Save",
+      "PCB Goal Saver",
+      "PCB Gold Cheque",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB PocketSave",
+      "PCB Infinite Credit Card",
+      "PCB Premier Cheque",
+      "PCB Plus Cheque",
+      "PCB SaveSmart"
+    ]
+  },
+  {
+    "customer_id": "3f4aa40e-79e7-4a14-84a7-1bf79aaf67ac",
+    "customer_number": "PCB8561022829",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Platinum Credit Card",
+      "PCB Plus Cheque",
+      "PCB Premier Cheque",
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB PocketSave",
+      "PCB Money Market Call",
+      "PCB Gold Cheque"
+    ]
+  },
+  {
+    "customer_id": "3fccfc5f-188c-4979-a61b-0201410be359",
+    "customer_number": "PCB3853234069",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Business Current",
+      "PCB Fixed 60M",
+      "PCB Flexi Save",
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB SaveSmart",
+      "PCB Prestige Cheque",
+      "PCB PocketSave",
+      "PCB Gold Credit Card",
+      "PCB Standard Credit Card"
+    ]
+  },
+  {
+    "customer_id": "47fae665-da74-4634-8788-06e6d4aef496",
+    "customer_number": "PCB5572830027",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Flexi Save",
+      "PCB PocketSave",
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Goal Saver",
+      "PCB SaveSmart",
+      "PCB Gold Credit Card",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "56b81eb2-082d-4046-8431-6dd74a4f1d25",
+    "customer_number": "PCB6447165060",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Flexi Save",
+      "PCB Plus Cheque",
+      "PCB PocketSave",
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Gold Cheque",
+      "PCB SaveSmart",
+      "PCB Gold Credit Card",
+      "PCB Goal Saver"
+    ]
+  },
+  {
+    "customer_id": "61f70e9e-9d2a-4b47-8dde-4eaa3aed22a6",
+    "customer_number": "PCB3397657114",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Flexi Save",
+      "PCB Gold Cheque",
+      "PCB Prestige Cheque",
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Goal Saver",
+      "PCB PocketSave",
+      "PCB Plus Cheque",
+      "PCB Gold Credit Card"
+    ]
+  },
+  {
+    "customer_id": "65fe26e8-06a8-4528-96e9-13c2d67b977c",
+    "customer_number": "PCB3278563058",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Fixed 36M",
+      "PCB Flexi Save",
+      "PCB Prestige Cheque",
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Gold Credit Card",
+      "PCB PocketSave",
+      "PCB Plus Cheque",
+      "PCB Goal Saver"
+    ]
+  },
+  {
+    "customer_id": "66a5b361-8f0b-41dc-80c4-bc7aaa6cf6c6",
+    "customer_number": "PCB4075565814",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Goal Saver",
+      "PCB Gold Cheque",
+      "PCB Infinite Credit Card",
+      "PCB Plus Cheque"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB PocketSave",
+      "PCB Flexi Save",
+      "PCB Standard Credit Card",
+      "PCB Premier Cheque"
+    ]
+  },
+  {
+    "customer_id": "67c9be79-bce5-4b32-a44d-98517a2477e3",
+    "customer_number": "PCB5316661404",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Business Current",
+      "PCB Flexi Save",
+      "PCB Platinum Credit Card",
+      "PCB Treasury Plus"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Infinite Credit Card",
+      "PCB Goal Saver",
+      "PCB Gold Cheque",
+      "PCB SaveSmart"
+    ]
+  },
+  {
+    "customer_id": "696dd856-e6af-4dd3-9595-cc197764d7c1",
+    "customer_number": "PCB8886832331",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Flexi Save",
+      "PCB Gold Credit Card",
+      "PCB PocketSave",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Gold Cheque",
+      "PCB Fixed 36M",
+      "PCB Plus Cheque",
+      "PCB Goal Saver"
+    ]
+  },
+  {
+    "customer_id": "7bebd5d3-e468-4e58-8ba1-a51e5494d51f",
+    "customer_number": "PCB4012010269",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Flexi Save",
+      "PCB Money Market Call",
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB SaveSmart",
+      "PCB Plus Cheque",
+      "PCB Goal Saver",
+      "PCB Platinum Credit Card",
+      "PCB Gold Credit Card"
+    ]
+  },
+  {
+    "customer_id": "8931f44e-bcba-4267-9d91-cf99c1259d56",
+    "customer_number": "PCB9849367682",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Fixed 12M",
+      "PCB Gold Credit Card",
+      "PCB PocketSave",
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB Prestige Cheque",
+      "PCB Fixed 36M"
+    ]
+  },
+  {
+    "customer_id": "90ea58ca-5711-40f3-b12a-02f066ca42eb",
+    "customer_number": "PCB4296793876",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Flexi Save",
+      "PCB Goal Saver",
+      "PCB Money Market 32-Day",
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque",
+      "PCB Gold Cheque",
+      "PCB PocketSave",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "943b547a-caaf-4494-a2d8-c22932b3d538",
+    "customer_number": "PCB9331879663",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Gold Cheque",
+      "PCB Infinite Credit Card",
+      "PCB Plus Cheque",
+      "PCB PocketSave"
+    ],
+    "recommended_next": [
+      "PCB Goal Saver",
+      "PCB Flexi Save",
+      "PCB Prestige Cheque",
+      "PCB Standard Credit Card",
+      "PCB Gold Credit Card"
+    ]
+  },
+  {
+    "customer_id": "96a0dd93-d9ee-4528-9173-61228081da8c",
+    "customer_number": "PCB3072183247",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 60M",
+      "PCB Gold Credit Card",
+      "PCB Platinum Credit Card",
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB PocketSave",
+      "PCB Flexi Save",
+      "PCB Fixed 36M",
+      "PCB Prestige Cheque",
+      "PCB Gold Cheque"
+    ]
+  },
+  {
+    "customer_id": "a1dfb36c-cd18-4be2-bef0-9cfb5f7cdf0d",
+    "customer_number": "PCB8390631634",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Fixed 12M",
+      "PCB Goal Saver",
+      "PCB Gold Cheque",
+      "PCB PocketSave"
+    ],
+    "recommended_next": [
+      "PCB Infinite Credit Card",
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Premier Cheque",
+      "PCB Standard Credit Card"
+    ]
+  },
+  {
+    "customer_id": "a32070ba-f27b-4cdc-8e02-fb00804c240c",
+    "customer_number": "PCB4906542112",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Flexi Save",
+      "PCB Money Market 32-Day",
+      "PCB Money Market Call",
+      "PCB Plus Cheque"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Premier Cheque",
+      "PCB Gold Cheque",
+      "PCB Goal Saver",
+      "PCB PocketSave"
+    ]
+  },
+  {
+    "customer_id": "a6f2e94d-f410-4243-a848-ecf52b593958",
+    "customer_number": "PCB5428855031",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Enterprise Account",
+      "PCB Gold Cheque",
+      "PCB Premier Cheque",
+      "PCB Treasury Plus"
+    ],
+    "recommended_next": [
+      "PCB PocketSave",
+      "PCB Infinite Credit Card",
+      "PCB Prestige Cheque",
+      "PCB SaveSmart",
+      "PCB Goal Saver"
+    ]
+  },
+  {
+    "customer_id": "ad4f5d57-e2cd-44ca-b6b9-a067b3961cc6",
+    "customer_number": "PCB5654014006",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 36M",
+      "PCB Goal Saver",
+      "PCB PocketSave",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB Premier Cheque",
+      "PCB Standard Credit Card",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "b2ebfe50-e47c-439c-abf6-a9f68942352d",
+    "customer_number": "PCB4167591308",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Fixed 36M",
+      "PCB Gold Credit Card",
+      "PCB Premier Cheque",
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB PocketSave",
+      "PCB Platinum Credit Card",
+      "PCB Gold Cheque"
+    ]
+  },
+  {
+    "customer_id": "b4ebc28f-526a-45ea-823c-588724471955",
+    "customer_number": "PCB9800965219",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Fixed 60M",
+      "PCB Prestige Cheque",
+      "PCB SaveSmart",
+      "PCB Standard Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB PocketSave",
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB Goal Saver"
+    ]
+  },
+  {
+    "customer_id": "b6d87c10-28ea-453a-9463-3da693da5073",
+    "customer_number": "PCB5336127859",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 12M",
+      "PCB Money Market 32-Day",
+      "PCB Plus Cheque",
+      "PCB PocketSave"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Standard Credit Card",
+      "PCB Premier Cheque",
+      "PCB Goal Saver",
+      "PCB Flexi Save"
+    ]
+  },
+  {
+    "customer_id": "bbbac18e-3bf9-43fa-9184-da720b7e6c0d",
+    "customer_number": "PCB9784084995",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Goal Saver",
+      "PCB Plus Cheque",
+      "PCB Prestige Cheque",
+      "PCB Standard Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB PocketSave",
+      "PCB Flexi Save",
+      "PCB SaveSmart",
+      "PCB Premier Cheque"
+    ]
+  },
+  {
+    "customer_id": "c978e671-abb7-4632-8b23-ab955c9acf81",
+    "customer_number": "PCB6146514161",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Business Current",
+      "PCB Goal Saver",
+      "PCB Gold Cheque",
+      "PCB Infinite Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB PocketSave",
+      "PCB Prestige Cheque",
+      "PCB Standard Credit Card",
+      "PCB Premier Cheque"
+    ]
+  },
+  {
+    "customer_id": "cb29fca6-4779-47de-b4d8-d702da77cbe5",
+    "customer_number": "PCB7650622478",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Money Market 32-Day",
+      "PCB Plus Cheque",
+      "PCB Prestige Cheque",
+      "PCB Standard Credit Card"
+    ],
+    "recommended_next": [
+      "PCB PocketSave",
+      "PCB Gold Cheque",
+      "PCB Goal Saver",
+      "PCB Flexi Save",
+      "PCB Money Market Call"
+    ]
+  },
+  {
+    "customer_id": "d02aaa23-8d0f-485d-be99-dd27de191080",
+    "customer_number": "PCB9461564269",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Business Premium",
+      "PCB Goal Saver",
+      "PCB Money Market Call",
+      "PCB Plus Cheque"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Gold Cheque",
+      "PCB Premier Cheque",
+      "PCB SaveSmart"
+    ]
+  },
+  {
+    "customer_id": "e48bf09c-1d7e-4a66-9946-31e8e782c08e",
+    "customer_number": "PCB9486494079",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 24M",
+      "PCB Flexi Save",
+      "PCB Money Market 32-Day",
+      "PCB Platinum Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Gold Cheque",
+      "PCB PocketSave",
+      "PCB Prestige Cheque",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "e99f7956-cc34-4de2-8510-ed7a366f6fa5",
+    "customer_number": "PCB3690714075",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Flexi Save",
+      "PCB Goal Saver",
+      "PCB Plus Cheque",
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Gold Cheque",
+      "PCB PocketSave",
+      "PCB SaveSmart",
+      "PCB Business Current"
+    ]
+  },
+  {
+    "customer_id": "f08a0cb8-0801-4ed0-bad6-d7251ed2fea2",
+    "customer_number": "PCB2674525521",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Infinite Credit Card",
+      "PCB Platinum Credit Card",
+      "PCB PocketSave",
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB Prestige Cheque",
+      "PCB Gold Credit Card",
+      "PCB Goal Saver"
+    ]
+  },
+  {
+    "customer_id": "f4be94ff-f06b-46a4-8cba-1a36fadcbac4",
+    "customer_number": "PCB8774618469",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Enterprise Account",
+      "PCB Fixed 60M",
+      "PCB Infinite Credit Card",
+      "PCB PocketSave"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Standard Credit Card",
+      "PCB Premier Cheque"
+    ]
+  },
+  {
+    "customer_id": "f560a11f-0a60-4875-a976-a07c45530d17",
+    "customer_number": "PCB4865487796",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Gold Credit Card",
+      "PCB Money Market Call",
+      "PCB Plus Cheque",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB Premier Cheque",
+      "PCB Gold Cheque",
+      "PCB PocketSave",
+      "PCB Fixed 36M"
+    ]
+  },
+  {
+    "customer_id": "f8d83d78-b82a-4c81-b612-0515b0350694",
+    "customer_number": "PCB1335079305",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Goal Saver",
+      "PCB Premier Cheque",
+      "PCB SaveSmart",
+      "PCB Standard Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB PocketSave",
+      "PCB Flexi Save",
+      "PCB Gold Cheque",
+      "PCB Business Current"
+    ]
+  },
+  {
+    "customer_id": "008f033c-9eb6-4faf-8215-fd595f6d3ab8",
+    "customer_number": "PCB1291605342",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Gold Cheque",
+      "PCB Plus Cheque",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Goal Saver",
+      "PCB Flexi Save",
+      "PCB PocketSave",
+      "PCB Infinite Credit Card",
+      "PCB SaveSmart"
+    ]
+  },
+  {
+    "customer_id": "010cbbdf-ca53-421b-91d3-b182b9531708",
+    "customer_number": "PCB6067703428",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Business Premium",
+      "PCB Premier Cheque",
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Plus Cheque",
+      "PCB Goal Saver",
+      "PCB Flexi Save",
+      "PCB Fixed 36M"
+    ]
+  },
+  {
+    "customer_id": "0197d7ef-b2fb-457c-9bdd-b76dc3b0d59e",
+    "customer_number": "PCB6036215200",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Gold Credit Card",
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB PocketSave",
+      "PCB SaveSmart",
+      "PCB Fixed 36M",
+      "PCB Gold Cheque"
+    ]
+  },
+  {
+    "customer_id": "04485172-9859-4d78-ab90-1473d401724d",
+    "customer_number": "PCB9993781295",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Gold Cheque",
+      "PCB Prestige Cheque",
+      "PCB Standard Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Goal Saver",
+      "PCB PocketSave",
+      "PCB Infinite Credit Card",
+      "PCB Plus Cheque",
+      "PCB Flexi Save"
+    ]
+  },
+  {
+    "customer_id": "04d8ed45-f4c5-422c-9678-d8c8ce690ee3",
+    "customer_number": "PCB8265834251",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Gold Cheque",
+      "PCB Platinum Credit Card",
+      "PCB PocketSave"
+    ],
+    "recommended_next": [
+      "PCB Infinite Credit Card",
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque",
+      "PCB Goal Saver",
+      "PCB Flexi Save"
+    ]
+  },
+  {
+    "customer_id": "0e35e1c3-d868-43bc-bb7a-d750d53414b9",
+    "customer_number": "PCB1318570313",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Flexi Save",
+      "PCB Plus Cheque",
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Premier Cheque",
+      "PCB Gold Cheque",
+      "PCB Goal Saver",
+      "PCB PocketSave"
+    ]
+  },
+  {
+    "customer_id": "106cb973-661a-496e-a060-9e09a57efbb5",
+    "customer_number": "PCB5085458167",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Infinite Credit Card",
+      "PCB Plus Cheque",
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Prestige Cheque",
+      "PCB Premier Cheque",
+      "PCB Flexi Save",
+      "PCB Goal Saver"
+    ]
+  },
+  {
+    "customer_id": "10b6de91-4e72-4c04-aca0-97c660004ffa",
+    "customer_number": "PCB3995115611",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Gold Cheque",
+      "PCB Plus Cheque",
+      "PCB PocketSave"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Infinite Credit Card",
+      "PCB Flexi Save",
+      "PCB Goal Saver",
+      "PCB Standard Credit Card"
+    ]
+  },
+  {
+    "customer_id": "1290affb-ecab-4eb6-867d-b61a9ccbe467",
+    "customer_number": "PCB1830728880",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Goal Saver",
+      "PCB PocketSave",
+      "PCB Treasury Plus"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Prestige Cheque",
+      "PCB Infinite Credit Card",
+      "PCB Premier Cheque",
+      "PCB Standard Credit Card"
+    ]
+  },
+  {
+    "customer_id": "13e73d20-b6c4-4bc0-9cd5-546497a8703b",
+    "customer_number": "PCB7527316141",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Flexi Save",
+      "PCB PocketSave",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Premier Cheque",
+      "PCB Goal Saver",
+      "PCB Plus Cheque",
+      "PCB Gold Credit Card"
+    ]
+  },
+  {
+    "customer_id": "19720c0b-051e-47ea-b902-9b819c88f5ca",
+    "customer_number": "PCB5959722992",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Business Current",
+      "PCB Premier Cheque",
+      "PCB Standard Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB SaveSmart",
+      "PCB Goal Saver",
+      "PCB PocketSave",
+      "PCB Prestige Cheque"
+    ]
+  },
+  {
+    "customer_id": "19a916c7-4417-4f73-8f40-2941f4eb8d48",
+    "customer_number": "PCB9975841619",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 24M",
+      "PCB Flexi Save",
+      "PCB Gold Cheque"
+    ],
+    "recommended_next": [
+      "PCB Infinite Credit Card",
+      "PCB Goal Saver",
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque",
+      "PCB Gold Credit Card"
+    ]
+  },
+  {
+    "customer_id": "1be44988-6b94-488c-8b74-8099fcf311ad",
+    "customer_number": "PCB1835882089",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Money Market 32-Day",
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB SaveSmart",
+      "PCB PocketSave",
+      "PCB Money Market Call",
+      "PCB Goal Saver"
+    ]
+  },
+  {
+    "customer_id": "209811af-6b34-4403-a553-a4aed09aaf0e",
+    "customer_number": "PCB3577335953",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Business Premium",
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB SaveSmart",
+      "PCB Goal Saver",
+      "PCB Plus Cheque",
+      "PCB Flexi Save",
+      "PCB Money Market Call"
+    ]
+  },
+  {
+    "customer_id": "21015d53-1711-41e6-9e60-7cf9cff185d0",
+    "customer_number": "PCB7146784303",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Business Current",
+      "PCB Business Premium",
+      "PCB Fixed 60M"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Flexi Save",
+      "PCB Fixed 12M",
+      "PCB Standard Credit Card",
+      "PCB Fixed 36M"
+    ]
+  },
+  {
+    "customer_id": "27e72397-804b-4346-a95f-d29af20c2e6b",
+    "customer_number": "PCB9326953041",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 12M",
+      "PCB Flexi Save",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Goal Saver",
+      "PCB PocketSave",
+      "PCB Gold Cheque",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "2c1f5492-41c0-4eb5-ac83-84e813685831",
+    "customer_number": "PCB1435979641",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Fixed 36M",
+      "PCB Platinum Credit Card",
+      "PCB Plus Cheque"
+    ],
+    "recommended_next": [
+      "PCB Gold Credit Card",
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque",
+      "PCB PocketSave",
+      "PCB Flexi Save"
+    ]
+  },
+  {
+    "customer_id": "2e55a89e-d749-4d86-862c-9b529be6064f",
+    "customer_number": "PCB4403349322",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Goal Saver",
+      "PCB Money Market Call",
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Platinum Credit Card",
+      "PCB SaveSmart",
+      "PCB Gold Cheque"
+    ]
+  },
+  {
+    "customer_id": "2ecc888d-d15b-4f39-b160-3e1801da08c9",
+    "customer_number": "PCB4831693156",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 12M",
+      "PCB Plus Cheque",
+      "PCB Standard Credit Card"
+    ],
+    "recommended_next": [
+      "PCB PocketSave",
+      "PCB Goal Saver",
+      "PCB Gold Cheque",
+      "PCB SaveSmart",
+      "PCB Prestige Cheque"
+    ]
+  },
+  {
+    "customer_id": "3313d442-8fb2-442e-8b5b-105ae70e7556",
+    "customer_number": "PCB9730103138",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Money Market Call",
+      "PCB Plus Cheque",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB Goal Saver",
+      "PCB Gold Cheque",
+      "PCB Premier Cheque",
+      "PCB SaveSmart"
+    ]
+  },
+  {
+    "customer_id": "3b306728-de33-45da-8613-34f78fd3ca6a",
+    "customer_number": "PCB2694799285",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Fixed 36M",
+      "PCB Flexi Save",
+      "PCB Gold Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB PocketSave",
+      "PCB Prestige Cheque",
+      "PCB Plus Cheque",
+      "PCB Gold Cheque"
+    ]
+  },
+  {
+    "customer_id": "3d67fcbd-6beb-4aed-b77d-5e1e53dd0cb2",
+    "customer_number": "PCB8978676786",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Gold Credit Card",
+      "PCB Money Market Call",
+      "PCB Treasury Plus"
+    ],
+    "recommended_next": [
+      "PCB Platinum Credit Card",
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque",
+      "PCB Gold Cheque",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "3e12b679-d262-4e5f-abb3-e50d983421e2",
+    "customer_number": "PCB6422260735",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Enterprise Account",
+      "PCB Goal Saver",
+      "PCB Standard Credit Card"
+    ],
+    "recommended_next": [
+      "PCB PocketSave",
+      "PCB Prestige Cheque",
+      "PCB Gold Cheque",
+      "PCB SaveSmart",
+      "PCB Flexi Save"
+    ]
+  },
+  {
+    "customer_id": "443feac0-db02-4215-bac3-8466225e9316",
+    "customer_number": "PCB6418365941",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Goal Saver",
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB SaveSmart",
+      "PCB Gold Cheque",
+      "PCB PocketSave",
+      "PCB Money Market Call"
+    ]
+  },
+  {
+    "customer_id": "447cf377-fced-4c3f-8591-b9520197daf7",
+    "customer_number": "PCB3173028996",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 36M",
+      "PCB Infinite Credit Card",
+      "PCB PocketSave"
+    ],
+    "recommended_next": [
+      "PCB Gold Credit Card",
+      "PCB Gold Cheque",
+      "PCB Standard Credit Card",
+      "PCB Goal Saver",
+      "PCB Premier Cheque"
+    ]
+  },
+  {
+    "customer_id": "447d47dd-c3d3-4915-91f1-c57c342584de",
+    "customer_number": "PCB6837342064",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Fixed 60M",
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB PocketSave",
+      "PCB Flexi Save",
+      "PCB SaveSmart",
+      "PCB Gold Credit Card",
+      "PCB Gold Cheque"
+    ]
+  },
+  {
+    "customer_id": "459d70ae-5ef9-4801-b372-a47c6f8b9336",
+    "customer_number": "PCB2192581843",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Goal Saver",
+      "PCB Plus Cheque",
+      "PCB PocketSave"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Standard Credit Card",
+      "PCB Infinite Credit Card"
+    ]
+  },
+  {
+    "customer_id": "486ed9cf-3f99-439b-a292-305d038605bf",
+    "customer_number": "PCB8780521609",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Goal Saver",
+      "PCB Prestige Cheque",
+      "PCB Standard Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB PocketSave",
+      "PCB Flexi Save",
+      "PCB Plus Cheque",
+      "PCB Premier Cheque"
+    ]
+  },
+  {
+    "customer_id": "489a6541-a54b-4982-ab84-00aa5d9b5247",
+    "customer_number": "PCB2579418510",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Goal Saver",
+      "PCB Money Market 32-Day",
+      "PCB Standard Credit Card"
+    ],
+    "recommended_next": [
+      "PCB PocketSave",
+      "PCB Gold Cheque",
+      "PCB Prestige Cheque",
+      "PCB Premier Cheque",
+      "PCB Flexi Save"
+    ]
+  },
+  {
+    "customer_id": "4cfc8c61-65a0-4af9-b76e-627bb3429f67",
+    "customer_number": "PCB1216706931",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Money Market Call",
+      "PCB Prestige Cheque",
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Plus Cheque",
+      "PCB Flexi Save",
+      "PCB Goal Saver",
+      "PCB Gold Cheque"
+    ]
+  },
+  {
+    "customer_id": "4da51901-aadc-43ae-bfc1-0006c9ee2b58",
+    "customer_number": "PCB1522713644",
+    "segment": "Private Banking",
+    "current_products": [
+      "PCB PocketSave",
+      "PCB Prestige Cheque",
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Flexi Save",
+      "PCB Goal Saver",
+      "PCB Gold Cheque",
+      "PCB Standard Credit Card"
+    ]
+  },
+  {
+    "customer_id": "4ea440d8-ce17-45ae-9037-e5677b3c173e",
+    "customer_number": "PCB7510701005",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Platinum Credit Card",
+      "PCB Prestige Cheque",
+      "PCB Treasury Plus"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Money Market Call",
+      "PCB Gold Cheque",
+      "PCB PocketSave",
+      "PCB Goal Saver"
+    ]
+  },
+  {
+    "customer_id": "52347243-9079-4ddd-b580-f6bf33305faa",
+    "customer_number": "PCB8152161448",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Goal Saver",
+      "PCB Gold Cheque",
+      "PCB Platinum Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Infinite Credit Card",
+      "PCB Prestige Cheque",
+      "PCB PocketSave",
+      "PCB Premier Cheque",
+      "PCB Flexi Save"
+    ]
+  },
+  {
+    "customer_id": "5427a72c-adea-4248-901b-4111111cdd4b",
+    "customer_number": "PCB4847969893",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Platinum Credit Card",
+      "PCB Premier Cheque",
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB Prestige Cheque",
+      "PCB PocketSave",
+      "PCB Gold Credit Card",
+      "PCB Treasury Plus"
+    ]
+  },
+  {
+    "customer_id": "5701b798-9883-49d5-9c4b-4a596582d4b3",
+    "customer_number": "PCB7944732371",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Fixed 36M",
+      "PCB Premier Cheque",
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Gold Credit Card",
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB PocketSave",
+      "PCB Platinum Credit Card"
+    ]
+  },
+  {
+    "customer_id": "668aa1f6-0941-44cb-9c52-07b3cb7e79c7",
+    "customer_number": "PCB9318793788",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 36M",
+      "PCB Money Market 32-Day",
+      "PCB Platinum Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Gold Credit Card",
+      "PCB PocketSave",
+      "PCB Standard Credit Card",
+      "PCB Prestige Cheque"
+    ]
+  },
+  {
+    "customer_id": "72735915-e495-4cdb-8670-8fd2e9bdf8d1",
+    "customer_number": "PCB6131986440",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Business Current",
+      "PCB Fixed 36M",
+      "PCB Standard Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB PocketSave",
+      "PCB Goal Saver",
+      "PCB Premier Cheque",
+      "PCB Gold Credit Card"
+    ]
+  },
+  {
+    "customer_id": "792cf5fa-6e6c-47f4-8b08-8b279135255f",
+    "customer_number": "PCB3624656441",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Money Market Call",
+      "PCB Platinum Credit Card",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Plus Cheque",
+      "PCB Flexi Save",
+      "PCB Treasury Plus",
+      "PCB Goal Saver"
+    ]
+  },
+  {
+    "customer_id": "796496b2-fedc-473f-b0ad-08543529cc77",
+    "customer_number": "PCB7128366328",
+    "segment": "Private Banking",
+    "current_products": [
+      "PCB Gold Credit Card",
+      "PCB PocketSave",
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB Fixed 36M",
+      "PCB Prestige Cheque",
+      "PCB Gold Cheque",
+      "PCB SaveSmart"
+    ]
+  },
+  {
+    "customer_id": "79a9ad0b-9d69-468e-ac89-6261e5263044",
+    "customer_number": "PCB5660584367",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Fixed 24M",
+      "PCB Premier Cheque",
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB Prestige Cheque",
+      "PCB Gold Credit Card",
+      "PCB Gold Cheque",
+      "PCB Platinum Credit Card"
+    ]
+  },
+  {
+    "customer_id": "7a82fc95-2e3f-4291-bcd9-16146d4b26f8",
+    "customer_number": "PCB1304205279",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Flexi Save",
+      "PCB Goal Saver",
+      "PCB PocketSave"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Prestige Cheque",
+      "PCB Premier Cheque",
+      "PCB Standard Credit Card",
+      "PCB Infinite Credit Card"
+    ]
+  },
+  {
+    "customer_id": "7b0bdc0b-7461-4af0-9d90-cccfe247c659",
+    "customer_number": "PCB1384313264",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Plus Cheque",
+      "PCB SaveSmart",
+      "PCB Treasury Plus"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque",
+      "PCB Gold Cheque",
+      "PCB Platinum Credit Card",
+      "PCB Goal Saver"
+    ]
+  },
+  {
+    "customer_id": "7b6b59d2-c460-4e97-b24f-535647c53c9c",
+    "customer_number": "PCB2679784362",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 36M",
+      "PCB PocketSave",
+      "PCB Standard Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Gold Credit Card",
+      "PCB Prestige Cheque",
+      "PCB Goal Saver",
+      "PCB Premier Cheque",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "7c1c57bc-fea1-40c0-b55c-c843f9ddd24b",
+    "customer_number": "PCB2350701477",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Business Current",
+      "PCB Fixed 12M",
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Goal Saver",
+      "PCB Flexi Save",
+      "PCB Standard Credit Card",
+      "PCB Treasury Plus"
+    ]
+  },
+  {
+    "customer_id": "80a0e354-f0ed-4c02-8581-df6ad8d9e5b4",
+    "customer_number": "PCB6164826959",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Gold Cheque",
+      "PCB Plus Cheque",
+      "PCB Standard Credit Card"
+    ],
+    "recommended_next": [
+      "PCB PocketSave",
+      "PCB Prestige Cheque",
+      "PCB Goal Saver",
+      "PCB Infinite Credit Card",
+      "PCB Flexi Save"
+    ]
+  },
+  {
+    "customer_id": "816dc65f-d7ce-4214-a3f0-1291f7e1b5bc",
+    "customer_number": "PCB3666637135",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Business Current",
+      "PCB Flexi Save",
+      "PCB Goal Saver"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Gold Cheque",
+      "PCB Prestige Cheque",
+      "PCB Infinite Credit Card",
+      "PCB Standard Credit Card"
+    ]
+  },
+  {
+    "customer_id": "81d5c97c-f0ed-4d5e-b2dd-bb46d98a0f9f",
+    "customer_number": "PCB1595351227",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 12M",
+      "PCB SaveSmart",
+      "PCB Treasury Plus"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Goal Saver",
+      "PCB Business Current",
+      "PCB Gold Cheque",
+      "PCB PocketSave"
+    ]
+  },
+  {
+    "customer_id": "82342e76-2880-4405-b49b-784e5cede8db",
+    "customer_number": "PCB8040800825",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Fixed 60M",
+      "PCB Gold Cheque",
+      "PCB Gold Credit Card"
+    ],
+    "recommended_next": [
+      "PCB PocketSave",
+      "PCB Infinite Credit Card",
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Premier Cheque"
+    ]
+  },
+  {
+    "customer_id": "8acfa629-f833-45b6-9bd2-7eaf52e81aff",
+    "customer_number": "PCB4852628125",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB PocketSave",
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB Gold Cheque",
+      "PCB Goal Saver",
+      "PCB SaveSmart",
+      "PCB Gold Credit Card"
+    ]
+  },
+  {
+    "customer_id": "8fba209e-c55a-4360-b9f8-88afbea95510",
+    "customer_number": "PCB5787216589",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Fixed 60M",
+      "PCB Gold Cheque",
+      "PCB Treasury Plus"
+    ],
+    "recommended_next": [
+      "PCB Infinite Credit Card",
+      "PCB PocketSave",
+      "PCB Platinum Credit Card",
+      "PCB Prestige Cheque",
+      "PCB Premier Cheque"
+    ]
+  },
+  {
+    "customer_id": "8fdd3db7-43ef-48c3-ae0d-b2a85bd42e81",
+    "customer_number": "PCB7747581391",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Goal Saver",
+      "PCB Gold Cheque",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB PocketSave",
+      "PCB Infinite Credit Card",
+      "PCB Flexi Save",
+      "PCB Plus Cheque",
+      "PCB SaveSmart"
+    ]
+  },
+  {
+    "customer_id": "93e49ad9-221b-44ed-8d8b-837f2221b03a",
+    "customer_number": "PCB7333854872",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Gold Credit Card",
+      "PCB Plus Cheque",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB Gold Cheque",
+      "PCB Fixed 36M",
+      "PCB PocketSave",
+      "PCB Premier Cheque"
+    ]
+  },
+  {
+    "customer_id": "93f9fa03-dac5-4e41-9efc-095e69a3d4e4",
+    "customer_number": "PCB3171512258",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 24M",
+      "PCB Gold Cheque",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Goal Saver",
+      "PCB Flexi Save",
+      "PCB Infinite Credit Card",
+      "PCB Premier Cheque",
+      "PCB PocketSave"
+    ]
+  },
+  {
+    "customer_id": "95c94f51-1c42-4219-bd5d-6d7d5f07f30b",
+    "customer_number": "PCB4946965703",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Infinite Credit Card",
+      "PCB PocketSave",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Goal Saver",
+      "PCB Flexi Save",
+      "PCB Premier Cheque",
+      "PCB Standard Credit Card"
+    ]
+  },
+  {
+    "customer_id": "9730d667-2481-4b8e-9e5f-b736067f3107",
+    "customer_number": "PCB2298481206",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Enterprise Account",
+      "PCB Plus Cheque",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB PocketSave",
+      "PCB Gold Cheque",
+      "PCB SaveSmart",
+      "PCB Goal Saver"
+    ]
+  },
+  {
+    "customer_id": "974b6582-5a81-48d4-935e-a9de4753d206",
+    "customer_number": "PCB3241147073",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 12M",
+      "PCB Fixed 60M",
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB PocketSave",
+      "PCB Business Current",
+      "PCB SaveSmart",
+      "PCB Gold Credit Card",
+      "PCB Flexi Save"
+    ]
+  },
+  {
+    "customer_id": "97996329-6e3f-48fe-bc36-b36c88817145",
+    "customer_number": "PCB9533595495",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB PocketSave",
+      "PCB Standard Credit Card",
+      "PCB Treasury Plus"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Goal Saver",
+      "PCB Premier Cheque",
+      "PCB Platinum Credit Card",
+      "PCB Prestige Cheque"
+    ]
+  },
+  {
+    "customer_id": "97ddac20-2ab1-412a-aa23-deabd20e4497",
+    "customer_number": "PCB6354673685",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Fixed 24M",
+      "PCB Gold Credit Card",
+      "PCB Standard Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Fixed 36M",
+      "PCB Gold Cheque",
+      "PCB Premier Cheque",
+      "PCB PocketSave",
+      "PCB Flexi Save"
+    ]
+  },
+  {
+    "customer_id": "99bb606a-d40c-4df5-9890-d18086d5f335",
+    "customer_number": "PCB9593556142",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Gold Cheque",
+      "PCB Infinite Credit Card",
+      "PCB Money Market Call"
+    ],
+    "recommended_next": [
+      "PCB Goal Saver",
+      "PCB Prestige Cheque",
+      "PCB Plus Cheque",
+      "PCB Flexi Save",
+      "PCB PocketSave"
+    ]
+  },
+  {
+    "customer_id": "9a3f7ed0-8efc-4452-905c-031240e0733f",
+    "customer_number": "PCB4961067014",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Infinite Credit Card",
+      "PCB Premier Cheque",
+      "PCB Standard Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB PocketSave",
+      "PCB Goal Saver",
+      "PCB Flexi Save",
+      "PCB Business Current"
+    ]
+  },
+  {
+    "customer_id": "9ec1fa1b-150e-4929-9302-27b04c992487",
+    "customer_number": "PCB6263212814",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Enterprise Account",
+      "PCB PocketSave",
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Premier Cheque",
+      "PCB Flexi Save",
+      "PCB Gold Cheque",
+      "PCB Goal Saver"
+    ]
+  },
+  {
+    "customer_id": "9ff3b164-d84e-4657-873b-3852d2ffea37",
+    "customer_number": "PCB1234238999",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Goal Saver",
+      "PCB PocketSave",
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Gold Cheque",
+      "PCB SaveSmart",
+      "PCB Standard Credit Card"
+    ]
+  },
+  {
+    "customer_id": "a230f313-bffe-4fb1-884a-180392f85ad8",
+    "customer_number": "PCB8433124121",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Enterprise Account",
+      "PCB Fixed 36M",
+      "PCB Gold Credit Card"
+    ],
+    "recommended_next": [
+      "PCB PocketSave",
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Premier Cheque",
+      "PCB SaveSmart"
+    ]
+  },
+  {
+    "customer_id": "a254cce0-f0f6-4979-bc16-bdd50b601ff9",
+    "customer_number": "PCB1966662179",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Business Premium",
+      "PCB Fixed 12M",
+      "PCB Plus Cheque"
+    ],
+    "recommended_next": [
+      "PCB Goal Saver",
+      "PCB SaveSmart",
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque",
+      "PCB PocketSave"
+    ]
+  },
+  {
+    "customer_id": "a97c8ade-97f8-47e0-8d05-75fbfdef84b4",
+    "customer_number": "PCB6810727866",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Fixed 60M",
+      "PCB Flexi Save",
+      "PCB Infinite Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Business Current",
+      "PCB PocketSave",
+      "PCB Premier Cheque",
+      "PCB Gold Credit Card"
+    ]
+  },
+  {
+    "customer_id": "b3d39bd1-cd6f-46d9-a1c7-e921bcb43550",
+    "customer_number": "PCB2397729435",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Enterprise Account",
+      "PCB Money Market Call",
+      "PCB PocketSave"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Plus Cheque",
+      "PCB Premier Cheque",
+      "PCB Goal Saver"
+    ]
+  },
+  {
+    "customer_id": "b821c31f-2e81-4027-8aca-b6593c5f836c",
+    "customer_number": "PCB5654961069",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Flexi Save",
+      "PCB PocketSave",
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Gold Credit Card",
+      "PCB Gold Cheque",
+      "PCB SaveSmart",
+      "PCB Goal Saver"
+    ]
+  },
+  {
+    "customer_id": "b936840a-f46d-48a0-bc42-0b8a911b72ff",
+    "customer_number": "PCB1661759010",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Goal Saver",
+      "PCB Prestige Cheque",
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB PocketSave",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "ba099f63-97fe-4ebb-a93d-48ccaac8e11d",
+    "customer_number": "PCB7539441086",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Money Market 32-Day",
+      "PCB Money Market Call",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Plus Cheque",
+      "PCB Premier Cheque",
+      "PCB Flexi Save",
+      "PCB Goal Saver",
+      "PCB Gold Cheque"
+    ]
+  },
+  {
+    "customer_id": "bb3745a9-3830-4172-8ac8-eec5251a31cf",
+    "customer_number": "PCB1004201248",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque",
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB Goal Saver",
+      "PCB PocketSave",
+      "PCB Gold Cheque",
+      "PCB Gold Credit Card"
+    ]
+  },
+  {
+    "customer_id": "bc80fda9-a265-4cc7-a7a8-0b409e702e86",
+    "customer_number": "PCB6498703287",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Business Current",
+      "PCB Fixed 60M",
+      "PCB PocketSave"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB Standard Credit Card",
+      "PCB Premier Cheque",
+      "PCB Gold Cheque",
+      "PCB Infinite Credit Card"
+    ]
+  },
+  {
+    "customer_id": "bc8c5479-2c80-4d0c-a1c8-dff8c7e77791",
+    "customer_number": "PCB1330486187",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Fixed 12M",
+      "PCB Gold Cheque",
+      "PCB Treasury Plus"
+    ],
+    "recommended_next": [
+      "PCB Infinite Credit Card",
+      "PCB Goal Saver",
+      "PCB PocketSave",
+      "PCB Premier Cheque",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "bca80148-e7b8-4cd0-9ed4-29ebc0a69045",
+    "customer_number": "PCB5602730904",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Flexi Save",
+      "PCB Gold Cheque",
+      "PCB Infinite Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Goal Saver",
+      "PCB PocketSave",
+      "PCB Prestige Cheque",
+      "PCB Gold Credit Card",
+      "PCB Premier Cheque"
+    ]
+  },
+  {
+    "customer_id": "bf2b334b-61d9-4d8b-839b-e5b3731c244a",
+    "customer_number": "PCB1477329638",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB PocketSave",
+      "PCB Premier Cheque",
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Goal Saver",
+      "PCB Gold Cheque",
+      "PCB Gold Credit Card"
+    ]
+  },
+  {
+    "customer_id": "bf42d39f-94ef-4cfd-92e5-ae91fb8ea8b6",
+    "customer_number": "PCB5573821760",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 60M",
+      "PCB Gold Cheque",
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB PocketSave",
+      "PCB Infinite Credit Card",
+      "PCB Prestige Cheque",
+      "PCB Gold Credit Card",
+      "PCB Flexi Save"
+    ]
+  },
+  {
+    "customer_id": "c1dc20be-75a1-4a1d-ac08-a8936903ed07",
+    "customer_number": "PCB9680447616",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Platinum Credit Card",
+      "PCB PocketSave",
+      "PCB Standard Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Gold Cheque",
+      "PCB Prestige Cheque",
+      "PCB Goal Saver",
+      "PCB Flexi Save"
+    ]
+  },
+  {
+    "customer_id": "c34d10db-f402-4a96-a953-b27ad8feb022",
+    "customer_number": "PCB6031378588",
+    "segment": "Private Banking",
+    "current_products": [
+      "PCB Business Current",
+      "PCB Flexi Save",
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Goal Saver",
+      "PCB Prestige Cheque",
+      "PCB Standard Credit Card",
+      "PCB Gold Cheque"
+    ]
+  },
+  {
+    "customer_id": "c3d68512-ee39-41cc-9791-0586599d9721",
+    "customer_number": "PCB2178229686",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Goal Saver",
+      "PCB Gold Cheque",
+      "PCB Standard Credit Card"
+    ],
+    "recommended_next": [
+      "PCB PocketSave",
+      "PCB Infinite Credit Card",
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "c7468853-ec6f-4a05-b929-c1121429714f",
+    "customer_number": "PCB9614048844",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Fixed 36M",
+      "PCB Plus Cheque",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Gold Credit Card",
+      "PCB PocketSave",
+      "PCB Flexi Save",
+      "PCB SaveSmart",
+      "PCB Goal Saver"
+    ]
+  },
+  {
+    "customer_id": "c76a3d3f-ac7d-41bd-a286-6a944270b471",
+    "customer_number": "PCB6319807982",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Gold Cheque",
+      "PCB Premier Cheque",
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Goal Saver",
+      "PCB PocketSave",
+      "PCB Infinite Credit Card"
+    ]
+  },
+  {
+    "customer_id": "c78a0d18-6aa0-49e8-8fae-3d1bafc78948",
+    "customer_number": "PCB7938423009",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Fixed 24M",
+      "PCB Plus Cheque",
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Flexi Save",
+      "PCB Gold Cheque",
+      "PCB Prestige Cheque",
+      "PCB Goal Saver"
+    ]
+  },
+  {
+    "customer_id": "c8e5d190-e13e-4704-b6a5-36344d58f206",
+    "customer_number": "PCB8337324204",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 36M",
+      "PCB Goal Saver",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB PocketSave",
+      "PCB Flexi Save",
+      "PCB Gold Cheque",
+      "PCB Premier Cheque",
+      "PCB SaveSmart"
+    ]
+  },
+  {
+    "customer_id": "c9ca7a54-56dd-4c60-a8cf-de37d2a8a959",
+    "customer_number": "PCB3192202822",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Flexi Save",
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB SaveSmart",
+      "PCB PocketSave",
+      "PCB Goal Saver",
+      "PCB Gold Credit Card",
+      "PCB Gold Cheque"
+    ]
+  },
+  {
+    "customer_id": "ca32bc99-ff8b-4b9d-9ca0-72f790ef992c",
+    "customer_number": "PCB6266589423",
+    "segment": "Private Banking",
+    "current_products": [
+      "PCB Enterprise Account",
+      "PCB Goal Saver",
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Gold Cheque",
+      "PCB Premier Cheque",
+      "PCB Flexi Save",
+      "PCB PocketSave"
+    ]
+  },
+  {
+    "customer_id": "cb99875a-50db-48ce-b53a-ee02b61fd057",
+    "customer_number": "PCB6374643838",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Flexi Save",
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB SaveSmart",
+      "PCB PocketSave",
+      "PCB Goal Saver",
+      "PCB Gold Credit Card",
+      "PCB Gold Cheque"
+    ]
+  },
+  {
+    "customer_id": "d008e9b4-a86d-491e-bb43-dcf5c491c1cc",
+    "customer_number": "PCB8600894452",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Business Current",
+      "PCB Plus Cheque",
+      "PCB Standard Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB Goal Saver",
+      "PCB Prestige Cheque",
+      "PCB PocketSave",
+      "PCB SaveSmart"
+    ]
+  },
+  {
+    "customer_id": "d05b076a-00d5-4750-8444-6b46a1e3d2dd",
+    "customer_number": "PCB9470614506",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Goal Saver",
+      "PCB Gold Cheque",
+      "PCB Money Market Call"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Infinite Credit Card",
+      "PCB Flexi Save",
+      "PCB Plus Cheque",
+      "PCB PocketSave"
+    ]
+  },
+  {
+    "customer_id": "d2367ea1-c1ad-4362-85ba-3f1645a7dde8",
+    "customer_number": "PCB6595603986",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Money Market Call",
+      "PCB Plus Cheque",
+      "PCB Treasury Plus"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Platinum Credit Card",
+      "PCB Gold Cheque",
+      "PCB Premier Cheque",
+      "PCB Flexi Save"
+    ]
+  },
+  {
+    "customer_id": "d2a252aa-3d52-420a-b18f-5c134e1fa217",
+    "customer_number": "PCB5202696802",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 24M",
+      "PCB Gold Cheque",
+      "PCB Standard Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Goal Saver",
+      "PCB Infinite Credit Card",
+      "PCB PocketSave",
+      "PCB Flexi Save",
+      "PCB Prestige Cheque"
+    ]
+  },
+  {
+    "customer_id": "d652bd9c-9352-4d5f-a454-cdcd83f77bcb",
+    "customer_number": "PCB7410114897",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Flexi Save",
+      "PCB Gold Cheque",
+      "PCB Plus Cheque"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Goal Saver",
+      "PCB PocketSave",
+      "PCB Infinite Credit Card",
+      "PCB Gold Credit Card"
+    ]
+  },
+  {
+    "customer_id": "d7243b67-f245-405d-aa9e-5320dfd3fe49",
+    "customer_number": "PCB5177816551",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Prestige Cheque",
+      "PCB SaveSmart",
+      "PCB Standard Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Goal Saver",
+      "PCB PocketSave",
+      "PCB Gold Cheque",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "dcfecbca-5653-435d-87a6-aafd3d6ffb52",
+    "customer_number": "PCB1399206328",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 12M",
+      "PCB Gold Credit Card",
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB PocketSave",
+      "PCB SaveSmart",
+      "PCB Flexi Save",
+      "PCB Fixed 36M",
+      "PCB Gold Cheque"
+    ]
+  },
+  {
+    "customer_id": "e2036727-9aa9-4d66-8e3c-ecf418907d7b",
+    "customer_number": "PCB4870516577",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Business Premium",
+      "PCB Enterprise Account",
+      "PCB Fixed 24M"
+    ],
+    "recommended_next": [
+      "PCB Plus Cheque",
+      "PCB SaveSmart",
+      "PCB Prestige Cheque",
+      "PCB Goal Saver",
+      "PCB Premier Cheque"
+    ]
+  },
+  {
+    "customer_id": "e8f6d470-c1ad-4f42-924e-738385d4901e",
+    "customer_number": "PCB7017906777",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Fixed 12M",
+      "PCB Fixed 24M",
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB SaveSmart",
+      "PCB Flexi Save",
+      "PCB Gold Credit Card",
+      "PCB Goal Saver",
+      "PCB PocketSave"
+    ]
+  },
+  {
+    "customer_id": "ea388ea5-57ca-4b6e-aa00-840efed21569",
+    "customer_number": "PCB1353183979",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Plus Cheque",
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB SaveSmart",
+      "PCB PocketSave",
+      "PCB Money Market Call",
+      "PCB Gold Cheque"
+    ]
+  },
+  {
+    "customer_id": "f1223908-ced9-4191-98a2-7223e90fc330",
+    "customer_number": "PCB2112380464",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Enterprise Account",
+      "PCB Flexi Save",
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Premier Cheque",
+      "PCB PocketSave",
+      "PCB Plus Cheque",
+      "PCB Goal Saver"
+    ]
+  },
+  {
+    "customer_id": "f47cf1a9-3dd7-4779-925a-8b00d4d9459b",
+    "customer_number": "PCB7763447547",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Business Premium",
+      "PCB Fixed 36M",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Plus Cheque",
+      "PCB Gold Credit Card",
+      "PCB Premier Cheque",
+      "PCB SaveSmart",
+      "PCB Goal Saver"
+    ]
+  },
+  {
+    "customer_id": "f57764d2-0f1d-4b35-81f2-6587b8513e24",
+    "customer_number": "PCB5937408591",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Business Premium",
+      "PCB Fixed 36M",
+      "PCB Plus Cheque"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Gold Credit Card",
+      "PCB SaveSmart",
+      "PCB Goal Saver",
+      "PCB PocketSave"
+    ]
+  },
+  {
+    "customer_id": "f794df90-7eeb-476c-80ce-223f387b0ed7",
+    "customer_number": "PCB6082544784",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Money Market 32-Day",
+      "PCB Money Market Call",
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Platinum Credit Card",
+      "PCB Flexi Save",
+      "PCB Plus Cheque",
+      "PCB SaveSmart"
+    ]
+  },
+  {
+    "customer_id": "fcf5d8ac-333b-417a-aa64-de0532425209",
+    "customer_number": "PCB7588919626",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Business Current",
+      "PCB Premier Cheque",
+      "PCB Treasury Plus"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB Platinum Credit Card",
+      "PCB SaveSmart",
+      "PCB Fixed 12M",
+      "PCB Goal Saver"
+    ]
+  },
+  {
+    "customer_id": "005acb16-83f0-4423-a42f-150fbdebffc9",
+    "customer_number": "PCB5011397503",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Gold Cheque",
+      "PCB Gold Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Infinite Credit Card",
+      "PCB PocketSave",
+      "PCB Flexi Save",
+      "PCB Prestige Cheque",
+      "PCB Premier Cheque"
+    ]
+  },
+  {
+    "customer_id": "00a189c0-4f82-4e48-80fd-1cbd70ae9eee",
+    "customer_number": "PCB7514332909",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB PocketSave",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB Goal Saver",
+      "PCB Premier Cheque",
+      "PCB Standard Credit Card"
+    ]
+  },
+  {
+    "customer_id": "06b4cbf1-5e59-4e2f-93b9-72bec63fdd0f",
+    "customer_number": "PCB6336171726",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Platinum Credit Card",
+      "PCB PocketSave"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Flexi Save",
+      "PCB Gold Cheque",
+      "PCB Standard Credit Card",
+      "PCB Prestige Cheque"
+    ]
+  },
+  {
+    "customer_id": "07fa5644-7fcb-437a-a066-665b06bf8685",
+    "customer_number": "PCB9586242978",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Money Market Call",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Plus Cheque",
+      "PCB Premier Cheque",
+      "PCB Flexi Save",
+      "PCB Goal Saver",
+      "PCB Platinum Credit Card"
+    ]
+  },
+  {
+    "customer_id": "081f8c64-539d-4d69-9af4-6afab4860f5c",
+    "customer_number": "PCB4672214312",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Goal Saver",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB PocketSave",
+      "PCB Premier Cheque",
+      "PCB SaveSmart"
+    ]
+  },
+  {
+    "customer_id": "0de05a17-3803-4134-9816-0c80ea477aa9",
+    "customer_number": "PCB8171143901",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Plus Cheque",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB Gold Cheque",
+      "PCB Money Market Call",
+      "PCB Goal Saver",
+      "PCB PocketSave"
+    ]
+  },
+  {
+    "customer_id": "0e4109e4-e46f-422d-8b9f-ab4ffcffd69a",
+    "customer_number": "PCB8385505320",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Plus Cheque",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB Gold Cheque",
+      "PCB Money Market Call",
+      "PCB Goal Saver",
+      "PCB PocketSave"
+    ]
+  },
+  {
+    "customer_id": "0e966c8c-5a43-44c1-94e3-bcf9c8023182",
+    "customer_number": "PCB8235474949",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 36M",
+      "PCB Plus Cheque"
+    ],
+    "recommended_next": [
+      "PCB Gold Credit Card",
+      "PCB Prestige Cheque",
+      "PCB PocketSave",
+      "PCB Flexi Save",
+      "PCB Business Premium"
+    ]
+  },
+  {
+    "customer_id": "0f365b68-bb19-4fe7-8ba6-11bf8ee9517b",
+    "customer_number": "PCB5218155484",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Gold Cheque",
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Goal Saver",
+      "PCB Premier Cheque",
+      "PCB Infinite Credit Card",
+      "PCB Flexi Save"
+    ]
+  },
+  {
+    "customer_id": "0f56db33-98fd-4cf3-a1b3-5cbfb0f72301",
+    "customer_number": "PCB3754792544",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 12M",
+      "PCB Fixed 60M"
+    ],
+    "recommended_next": [
+      "PCB Business Current",
+      "PCB PocketSave",
+      "PCB Premier Cheque",
+      "PCB Gold Cheque",
+      "PCB Gold Credit Card"
+    ]
+  },
+  {
+    "customer_id": "120e15d6-f9c3-4220-8c64-351d4fe9fb53",
+    "customer_number": "PCB5037328522",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Fixed 24M",
+      "PCB Goal Saver"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque",
+      "PCB Standard Credit Card"
+    ]
+  },
+  {
+    "customer_id": "122bed0b-4808-451c-bd47-58db96f860bc",
+    "customer_number": "PCB6920114673",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Flexi Save",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Gold Cheque",
+      "PCB Goal Saver",
+      "PCB PocketSave",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "1232ee60-2ac3-47d6-90fd-51bedb5987b0",
+    "customer_number": "PCB7692685951",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Prestige Cheque",
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Goal Saver",
+      "PCB Flexi Save",
+      "PCB Gold Cheque",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "124ec93d-f7de-4fe4-9ff8-56fcac806005",
+    "customer_number": "PCB9758519013",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Prestige Cheque",
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Goal Saver",
+      "PCB Flexi Save",
+      "PCB Gold Cheque",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "12f2f83e-8dda-4197-ad36-0a7ffee58769",
+    "customer_number": "PCB2984507492",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB SaveSmart",
+      "PCB Flexi Save",
+      "PCB PocketSave",
+      "PCB Goal Saver",
+      "PCB Gold Credit Card"
+    ]
+  },
+  {
+    "customer_id": "182d8fa8-7063-4dba-9157-80cb655f3a46",
+    "customer_number": "PCB2545798406",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Enterprise Account",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB PocketSave",
+      "PCB Flexi Save",
+      "PCB SaveSmart",
+      "PCB Goal Saver",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "19c5ba73-e18f-49a2-a104-e01ab37e74f4",
+    "customer_number": "PCB9829918066",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Prestige Cheque",
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Goal Saver",
+      "PCB Flexi Save",
+      "PCB Gold Cheque",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "19dad456-f184-41ac-95ac-937b9f1dd07e",
+    "customer_number": "PCB1536125194",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Business Current",
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB SaveSmart",
+      "PCB Goal Saver",
+      "PCB Fixed 60M",
+      "PCB Standard Credit Card"
+    ]
+  },
+  {
+    "customer_id": "1bc35f30-4d58-4c03-9e0a-7fa17c008883",
+    "customer_number": "PCB6374644126",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Flexi Save",
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB SaveSmart",
+      "PCB Gold Credit Card",
+      "PCB PocketSave",
+      "PCB Business Current"
+    ]
+  },
+  {
+    "customer_id": "1d8706dd-c6cf-479c-92a0-90c81229ba91",
+    "customer_number": "PCB3685585090",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Goal Saver",
+      "PCB Plus Cheque"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB PocketSave",
+      "PCB Standard Credit Card"
+    ]
+  },
+  {
+    "customer_id": "1e1c0a15-403d-4187-8c88-eabcdf85a18b",
+    "customer_number": "PCB8792778835",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Business Current",
+      "PCB Money Market 32-Day"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB Standard Credit Card",
+      "PCB Premier Cheque",
+      "PCB Fixed 60M",
+      "PCB Goal Saver"
+    ]
+  },
+  {
+    "customer_id": "1e784948-2b98-409a-92fa-11ded27eb023",
+    "customer_number": "PCB4254625665",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Business Current",
+      "PCB Flexi Save"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Goal Saver",
+      "PCB SaveSmart",
+      "PCB Standard Credit Card",
+      "PCB Infinite Credit Card"
+    ]
+  },
+  {
+    "customer_id": "22dbb7eb-1dd1-4d80-8cb9-73cf52e8c294",
+    "customer_number": "PCB2593765711",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Business Current",
+      "PCB Fixed 60M"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB Standard Credit Card",
+      "PCB Premier Cheque",
+      "PCB Infinite Credit Card",
+      "PCB Fixed 12M"
+    ]
+  },
+  {
+    "customer_id": "239ae69f-6fe0-4b40-91cf-cea7b0f8cec4",
+    "customer_number": "PCB6845987005",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB PocketSave",
+      "PCB Standard Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Goal Saver",
+      "PCB Prestige Cheque",
+      "PCB Premier Cheque",
+      "PCB Flexi Save"
+    ]
+  },
+  {
+    "customer_id": "27b64371-9beb-43d4-b155-f5264a48d714",
+    "customer_number": "PCB6582684973",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Flexi Save",
+      "PCB Gold Cheque"
+    ],
+    "recommended_next": [
+      "PCB Infinite Credit Card",
+      "PCB Prestige Cheque",
+      "PCB Goal Saver",
+      "PCB PocketSave",
+      "PCB Gold Credit Card"
+    ]
+  },
+  {
+    "customer_id": "27cf3535-ec87-4531-ae61-98411ccdf94e",
+    "customer_number": "PCB4979742135",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Business Current",
+      "PCB Enterprise Account"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB Fixed 60M",
+      "PCB SaveSmart",
+      "PCB Standard Credit Card",
+      "PCB Goal Saver"
+    ]
+  },
+  {
+    "customer_id": "2949a668-9ea3-4b41-9f9a-136b86be274f",
+    "customer_number": "PCB1383236692",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Gold Credit Card",
+      "PCB PocketSave"
+    ],
+    "recommended_next": [
+      "PCB Fixed 36M",
+      "PCB Gold Cheque",
+      "PCB Premier Cheque",
+      "PCB Flexi Save",
+      "PCB Prestige Cheque"
+    ]
+  },
+  {
+    "customer_id": "29b3d1af-ac90-48cb-a851-6e0f45b13ed7",
+    "customer_number": "PCB3228851436",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Fixed 24M",
+      "PCB Money Market 32-Day"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Premier Cheque",
+      "PCB Flexi Save",
+      "PCB Standard Credit Card",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "29de0f00-71e0-4673-9a83-7340a28f9433",
+    "customer_number": "PCB7467776722",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Platinum Credit Card",
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB SaveSmart",
+      "PCB Flexi Save",
+      "PCB PocketSave",
+      "PCB Money Market Call",
+      "PCB Treasury Plus"
+    ]
+  },
+  {
+    "customer_id": "3001ae7b-e598-4597-b01f-785b9e560f73",
+    "customer_number": "PCB5262101582",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Plus Cheque",
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Premier Cheque",
+      "PCB Flexi Save",
+      "PCB Gold Cheque",
+      "PCB Goal Saver"
+    ]
+  },
+  {
+    "customer_id": "30a09d30-c046-45de-bf2e-c137e0b6d6f9",
+    "customer_number": "PCB8058382074",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB PocketSave",
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Gold Cheque",
+      "PCB Goal Saver"
+    ]
+  },
+  {
+    "customer_id": "31e7d721-e2e5-4bc2-8b0f-1c16bf58e45e",
+    "customer_number": "PCB9842255707",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Fixed 12M",
+      "PCB Infinite Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Goal Saver",
+      "PCB PocketSave",
+      "PCB Premier Cheque",
+      "PCB Business Current"
+    ]
+  },
+  {
+    "customer_id": "3660ff61-f76e-4046-8507-588f48849b22",
+    "customer_number": "PCB8080359881",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB PocketSave",
+      "PCB Treasury Plus"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Platinum Credit Card",
+      "PCB Premier Cheque",
+      "PCB Infinite Credit Card",
+      "PCB Standard Credit Card"
+    ]
+  },
+  {
+    "customer_id": "39a37908-d451-46c7-97f5-9a204956adb5",
+    "customer_number": "PCB8100770118",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Gold Cheque",
+      "PCB PocketSave"
+    ],
+    "recommended_next": [
+      "PCB Infinite Credit Card",
+      "PCB Goal Saver",
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Standard Credit Card"
+    ]
+  },
+  {
+    "customer_id": "3a4c12f8-f431-4de8-a06f-0c3b122f71c4",
+    "customer_number": "PCB6139905102",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Flexi Save",
+      "PCB PocketSave"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque",
+      "PCB Gold Cheque",
+      "PCB Goal Saver",
+      "PCB Gold Credit Card"
+    ]
+  },
+  {
+    "customer_id": "3acebc57-2f2f-4565-9336-7b9605009e45",
+    "customer_number": "PCB2880899340",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Platinum Credit Card",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Money Market Call",
+      "PCB Flexi Save",
+      "PCB PocketSave",
+      "PCB Gold Cheque"
+    ]
+  },
+  {
+    "customer_id": "3cf71fd4-b2c6-4ecc-899f-6afc30c1c359",
+    "customer_number": "PCB1343868435",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB PocketSave",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB Goal Saver",
+      "PCB Premier Cheque",
+      "PCB Standard Credit Card"
+    ]
+  },
+  {
+    "customer_id": "4036648a-b3d3-40a6-84a5-0e91c27de9a9",
+    "customer_number": "PCB2196045940",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Goal Saver",
+      "PCB Gold Cheque"
+    ],
+    "recommended_next": [
+      "PCB Infinite Credit Card",
+      "PCB Prestige Cheque",
+      "PCB PocketSave",
+      "PCB Flexi Save",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "4112f97a-6f29-4e5e-b68a-6549774068b5",
+    "customer_number": "PCB4467433849",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Flexi Save",
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB SaveSmart",
+      "PCB Gold Credit Card",
+      "PCB PocketSave",
+      "PCB Business Current"
+    ]
+  },
+  {
+    "customer_id": "47e98437-1f5c-4443-b71e-a25ebc899c03",
+    "customer_number": "PCB3312574703",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Gold Cheque",
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Goal Saver",
+      "PCB Premier Cheque",
+      "PCB Infinite Credit Card",
+      "PCB Flexi Save"
+    ]
+  },
+  {
+    "customer_id": "486a746b-2d35-4be5-8a5b-9aa5365c8ecb",
+    "customer_number": "PCB8389750357",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Goal Saver",
+      "PCB Money Market 32-Day"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Prestige Cheque",
+      "PCB Standard Credit Card",
+      "PCB PocketSave",
+      "PCB Flexi Save"
+    ]
+  },
+  {
+    "customer_id": "49d32bba-878f-4f02-ac43-1e6387e33059",
+    "customer_number": "PCB3707166618",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Plus Cheque",
+      "PCB Treasury Plus"
+    ],
+    "recommended_next": [
+      "PCB Money Market Call",
+      "PCB Gold Cheque",
+      "PCB Platinum Credit Card",
+      "PCB Prestige Cheque",
+      "PCB PocketSave"
+    ]
+  },
+  {
+    "customer_id": "4af379b7-a754-4e27-8034-84548f1160fc",
+    "customer_number": "PCB8018933340",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB PocketSave",
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB Prestige Cheque",
+      "PCB Gold Credit Card",
+      "PCB SaveSmart",
+      "PCB Platinum Credit Card"
+    ]
+  },
+  {
+    "customer_id": "4ba230a6-5e15-47e5-83ef-a692d23a7128",
+    "customer_number": "PCB7703819127",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Platinum Credit Card",
+      "PCB Treasury Plus"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Money Market Call",
+      "PCB Infinite Credit Card",
+      "PCB Gold Cheque",
+      "PCB PocketSave"
+    ]
+  },
+  {
+    "customer_id": "4d59d6cc-1e24-4b38-886d-8ac3919f25ae",
+    "customer_number": "PCB1957668578",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 24M",
+      "PCB Fixed 36M"
+    ],
+    "recommended_next": [
+      "PCB Gold Credit Card",
+      "PCB Premier Cheque",
+      "PCB Flexi Save",
+      "PCB Standard Credit Card",
+      "PCB Business Premium"
+    ]
+  },
+  {
+    "customer_id": "5136d8b2-a93b-41aa-92f7-db3139d0a2d3",
+    "customer_number": "PCB3914601601",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Flexi Save",
+      "PCB Standard Credit Card"
+    ],
+    "recommended_next": [
+      "PCB PocketSave",
+      "PCB Business Current",
+      "PCB Prestige Cheque",
+      "PCB Premier Cheque",
+      "PCB Goal Saver"
+    ]
+  },
+  {
+    "customer_id": "58b6ea81-b316-4f19-a7eb-6ad8b9be5b12",
+    "customer_number": "PCB3169561289",
+    "segment": "Private Banking",
+    "current_products": [
+      "PCB Money Market 32-Day",
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB SaveSmart",
+      "PCB Platinum Credit Card",
+      "PCB PocketSave",
+      "PCB Prestige Cheque"
+    ]
+  },
+  {
+    "customer_id": "5a59e0f6-712f-461e-8506-d79ff0bf9914",
+    "customer_number": "PCB7759781156",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Fixed 24M",
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB SaveSmart",
+      "PCB Gold Credit Card",
+      "PCB Platinum Credit Card",
+      "PCB Gold Cheque"
+    ]
+  },
+  {
+    "customer_id": "5c256c19-19f1-4458-9097-1493fe628d0c",
+    "customer_number": "PCB1109673244",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Enterprise Account",
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Premier Cheque",
+      "PCB Flexi Save",
+      "PCB PocketSave",
+      "PCB Goal Saver"
+    ]
+  },
+  {
+    "customer_id": "5c30c669-985f-41d5-9d16-cc9d5ced03b3",
+    "customer_number": "PCB3358361363",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB PocketSave",
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB Prestige Cheque",
+      "PCB Gold Credit Card",
+      "PCB SaveSmart",
+      "PCB Platinum Credit Card"
+    ]
+  },
+  {
+    "customer_id": "5dc3590a-e85a-47c0-a0be-edad14fb1ddb",
+    "customer_number": "PCB8325529753",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Business Premium",
+      "PCB Plus Cheque"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Fixed 36M",
+      "PCB Money Market Call",
+      "PCB SaveSmart",
+      "PCB Goal Saver"
+    ]
+  },
+  {
+    "customer_id": "5f91b043-7d72-40ec-8c92-c61cb0c1833c",
+    "customer_number": "PCB7695960480",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Gold Credit Card",
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Fixed 36M",
+      "PCB Flexi Save",
+      "PCB Prestige Cheque",
+      "PCB Gold Cheque"
+    ]
+  },
+  {
+    "customer_id": "633df561-127d-4591-bf74-5e729ecac50e",
+    "customer_number": "PCB6490579087",
+    "segment": "Private Banking",
+    "current_products": [
+      "PCB Gold Cheque",
+      "PCB Plus Cheque"
+    ],
+    "recommended_next": [
+      "PCB Infinite Credit Card",
+      "PCB Prestige Cheque",
+      "PCB Goal Saver",
+      "PCB Flexi Save",
+      "PCB PocketSave"
+    ]
+  },
+  {
+    "customer_id": "63e25cb7-d122-4d8b-9625-ed86260128dd",
+    "customer_number": "PCB3097484316",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Flexi Save",
+      "PCB Plus Cheque"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Gold Cheque",
+      "PCB PocketSave",
+      "PCB Premier Cheque",
+      "PCB Goal Saver"
+    ]
+  },
+  {
+    "customer_id": "69a41e41-6acb-4658-847d-8f0ff4992a00",
+    "customer_number": "PCB2255176241",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 60M",
+      "PCB Standard Credit Card"
+    ],
+    "recommended_next": [
+      "PCB PocketSave",
+      "PCB Business Current",
+      "PCB Gold Cheque",
+      "PCB Prestige Cheque",
+      "PCB Premier Cheque"
+    ]
+  },
+  {
+    "customer_id": "6a2a6c9d-bc95-4782-9f4c-bb6fda12996e",
+    "customer_number": "PCB3498187046",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Gold Cheque",
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB Infinite Credit Card",
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB PocketSave",
+      "PCB Goal Saver"
+    ]
+  },
+  {
+    "customer_id": "6bbe05a2-51ff-4b96-b97f-bfac093c215e",
+    "customer_number": "PCB7891351401",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Goal Saver",
+      "PCB Plus Cheque"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB PocketSave",
+      "PCB Standard Credit Card"
+    ]
+  },
+  {
+    "customer_id": "6f7c7fc1-83b4-4940-94af-fdb7c6f73e64",
+    "customer_number": "PCB6706554814",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 12M",
+      "PCB Plus Cheque"
+    ],
+    "recommended_next": [
+      "PCB Goal Saver",
+      "PCB PocketSave",
+      "PCB SaveSmart",
+      "PCB Gold Cheque",
+      "PCB Premier Cheque"
+    ]
+  },
+  {
+    "customer_id": "7485cdbb-65ba-42a2-a49c-9f40d2f7a197",
+    "customer_number": "PCB7438628899",
+    "segment": "Private Banking",
+    "current_products": [
+      "PCB Fixed 36M",
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB Gold Credit Card",
+      "PCB SaveSmart",
+      "PCB PocketSave",
+      "PCB Platinum Credit Card",
+      "PCB Prestige Cheque"
+    ]
+  },
+  {
+    "customer_id": "76b85659-01fe-405a-84a4-11f51d8dba1b",
+    "customer_number": "PCB2396793314",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Goal Saver",
+      "PCB PocketSave"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Prestige Cheque",
+      "PCB Standard Credit Card",
+      "PCB Flexi Save",
+      "PCB Infinite Credit Card"
+    ]
+  },
+  {
+    "customer_id": "77595890-46d2-4f84-ba33-d6e12b874937",
+    "customer_number": "PCB7663237365",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Gold Credit Card",
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB Fixed 36M",
+      "PCB PocketSave",
+      "PCB SaveSmart",
+      "PCB Prestige Cheque"
+    ]
+  },
+  {
+    "customer_id": "7bfaa120-090a-4fb9-8675-9dc0fc952ff3",
+    "customer_number": "PCB7583445057",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 12M",
+      "PCB Gold Cheque"
+    ],
+    "recommended_next": [
+      "PCB Infinite Credit Card",
+      "PCB Goal Saver",
+      "PCB PocketSave",
+      "PCB Premier Cheque",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "7c3e20ce-4d78-41a8-b392-d7bf5e6f6aa6",
+    "customer_number": "PCB6390808142",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Fixed 24M",
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB SaveSmart",
+      "PCB Gold Credit Card",
+      "PCB Platinum Credit Card",
+      "PCB Gold Cheque"
+    ]
+  },
+  {
+    "customer_id": "7d4231d8-3c31-40d7-b590-408208c140a4",
+    "customer_number": "PCB1601385551",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Business Current",
+      "PCB Standard Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB Goal Saver",
+      "PCB Fixed 60M",
+      "PCB Premier Cheque",
+      "PCB PocketSave"
+    ]
+  },
+  {
+    "customer_id": "7f164959-ebef-49cb-89cd-6a303fdad6f3",
+    "customer_number": "PCB9098848718",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Platinum Credit Card",
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB SaveSmart",
+      "PCB Flexi Save",
+      "PCB PocketSave",
+      "PCB Money Market Call",
+      "PCB Treasury Plus"
+    ]
+  },
+  {
+    "customer_id": "80078d77-7e19-49eb-a92c-2b332a8dd506",
+    "customer_number": "PCB2631355498",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Gold Cheque",
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB Infinite Credit Card",
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB PocketSave",
+      "PCB Goal Saver"
+    ]
+  },
+  {
+    "customer_id": "80e19395-81b4-4fc1-9f98-2557a76a8316",
+    "customer_number": "PCB5054496823",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Business Premium",
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Plus Cheque",
+      "PCB Prestige Cheque",
+      "PCB Fixed 36M",
+      "PCB Goal Saver"
+    ]
+  },
+  {
+    "customer_id": "832d42ba-e77f-42ef-abf1-389ea7cf4842",
+    "customer_number": "PCB4538244882",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Fixed 36M",
+      "PCB Plus Cheque"
+    ],
+    "recommended_next": [
+      "PCB Gold Credit Card",
+      "PCB Prestige Cheque",
+      "PCB PocketSave",
+      "PCB Flexi Save",
+      "PCB Business Premium"
+    ]
+  },
+  {
+    "customer_id": "83f7973c-e132-4c9a-987e-1e4aee189ddb",
+    "customer_number": "PCB1908459040",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 60M",
+      "PCB Money Market 32-Day"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB PocketSave",
+      "PCB Standard Credit Card",
+      "PCB Gold Cheque",
+      "PCB Business Current"
+    ]
+  },
+  {
+    "customer_id": "85ad99d1-6a69-48ec-9dab-cef2a6e2dc73",
+    "customer_number": "PCB9130688289",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Business Current",
+      "PCB Fixed 24M"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB Premier Cheque",
+      "PCB Standard Credit Card",
+      "PCB Fixed 60M",
+      "PCB Goal Saver"
+    ]
+  },
+  {
+    "customer_id": "85b82117-2d26-41b2-a71e-0b9a810d82e6",
+    "customer_number": "PCB1241941984",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Business Current",
+      "PCB Flexi Save"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Goal Saver",
+      "PCB SaveSmart",
+      "PCB Standard Credit Card",
+      "PCB Infinite Credit Card"
+    ]
+  },
+  {
+    "customer_id": "87805b14-50da-45b2-b8d0-37963f00a73b",
+    "customer_number": "PCB3362751242",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Plus Cheque",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB Gold Cheque",
+      "PCB Money Market Call",
+      "PCB Goal Saver",
+      "PCB PocketSave"
+    ]
+  },
+  {
+    "customer_id": "8ae8649d-15a3-4909-a8f1-1a3ee8cc2f3b",
+    "customer_number": "PCB7432215734",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 24M",
+      "PCB Goal Saver"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque",
+      "PCB Standard Credit Card"
+    ]
+  },
+  {
+    "customer_id": "8e0d7958-06fb-4aef-9428-c7704641cfaf",
+    "customer_number": "PCB6103447686",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Money Market 32-Day",
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB SaveSmart",
+      "PCB Platinum Credit Card",
+      "PCB PocketSave",
+      "PCB Prestige Cheque"
+    ]
+  },
+  {
+    "customer_id": "8ee2937d-cbf4-4701-ac9a-23976d45eacb",
+    "customer_number": "PCB7742040508",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Business Current",
+      "PCB Fixed 12M"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Goal Saver",
+      "PCB Flexi Save",
+      "PCB Fixed 60M",
+      "PCB Treasury Plus"
+    ]
+  },
+  {
+    "customer_id": "8f737087-08dc-4f04-8ac2-54f2df51532c",
+    "customer_number": "PCB1400524723",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Gold Cheque",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Goal Saver",
+      "PCB PocketSave",
+      "PCB Infinite Credit Card",
+      "PCB Flexi Save",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "8faad975-760d-4b08-916c-7797fd6f153f",
+    "customer_number": "PCB4262396395",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Flexi Save",
+      "PCB Plus Cheque"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Gold Cheque",
+      "PCB PocketSave",
+      "PCB Premier Cheque",
+      "PCB Goal Saver"
+    ]
+  },
+  {
+    "customer_id": "919f035a-d76e-41e6-b5d5-bf87e5a78404",
+    "customer_number": "PCB7402059279",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Goal Saver",
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Premier Cheque",
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB PocketSave"
+    ]
+  },
+  {
+    "customer_id": "927f9c91-979b-412b-838d-69e9b4cacaa7",
+    "customer_number": "PCB9043210080",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Gold Cheque",
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB Infinite Credit Card",
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB PocketSave",
+      "PCB Goal Saver"
+    ]
+  },
+  {
+    "customer_id": "92c7a67a-0282-45bd-b9e5-b0c203b7dba1",
+    "customer_number": "PCB8186816707",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Money Market Call",
+      "PCB Standard Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Plus Cheque",
+      "PCB Money Market 32-Day",
+      "PCB Platinum Credit Card",
+      "PCB Goal Saver"
+    ]
+  },
+  {
+    "customer_id": "93c73736-9251-4422-849a-28d5d4bdc725",
+    "customer_number": "PCB8252006746",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Enterprise Account",
+      "PCB Plus Cheque"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB PocketSave",
+      "PCB SaveSmart",
+      "PCB Gold Cheque"
+    ]
+  },
+  {
+    "customer_id": "9a189484-cd9f-435c-b424-c12d0a715eb2",
+    "customer_number": "PCB6000111501",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Gold Cheque",
+      "PCB Infinite Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Goal Saver",
+      "PCB PocketSave",
+      "PCB Flexi Save",
+      "PCB Prestige Cheque",
+      "PCB Gold Credit Card"
+    ]
+  },
+  {
+    "customer_id": "9c929fca-0c97-4d17-9ce5-7d14328fba3e",
+    "customer_number": "PCB5102611752",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Goal Saver",
+      "PCB PocketSave"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Prestige Cheque",
+      "PCB Standard Credit Card",
+      "PCB Flexi Save",
+      "PCB Infinite Credit Card"
+    ]
+  },
+  {
+    "customer_id": "9ea34091-686a-455c-b717-750778b00e4e",
+    "customer_number": "PCB2784883819",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB SaveSmart",
+      "PCB Flexi Save",
+      "PCB PocketSave",
+      "PCB Goal Saver",
+      "PCB Gold Credit Card"
+    ]
+  },
+  {
+    "customer_id": "9fae9dde-abd5-48cd-90df-e0d091beca4e",
+    "customer_number": "PCB1164565091",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Business Current",
+      "PCB Flexi Save"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Goal Saver",
+      "PCB SaveSmart",
+      "PCB Standard Credit Card",
+      "PCB Infinite Credit Card"
+    ]
+  },
+  {
+    "customer_id": "a12a2645-12e2-4598-80ad-c5ef43c7195e",
+    "customer_number": "PCB2791260069",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Flexi Save",
+      "PCB Goal Saver"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Gold Cheque",
+      "PCB PocketSave",
+      "PCB Business Current",
+      "PCB Premier Cheque"
+    ]
+  },
+  {
+    "customer_id": "a19093bd-f153-4dbc-bcd8-fb5ad1a36321",
+    "customer_number": "PCB5652601077",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Gold Credit Card",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Fixed 36M",
+      "PCB Premier Cheque",
+      "PCB Flexi Save",
+      "PCB Gold Cheque",
+      "PCB PocketSave"
+    ]
+  },
+  {
+    "customer_id": "a2685fd3-3ce3-4265-8358-1bda3a908030",
+    "customer_number": "PCB9083864810",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Flexi Save",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Gold Cheque",
+      "PCB Goal Saver",
+      "PCB PocketSave",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "a402e265-cc8d-46d1-9ec2-5bd8cf1ace26",
+    "customer_number": "PCB3107125807",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Goal Saver",
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB SaveSmart",
+      "PCB Flexi Save",
+      "PCB Gold Cheque",
+      "PCB PocketSave"
+    ]
+  },
+  {
+    "customer_id": "a947356f-b250-4f75-b46b-22635efa9d45",
+    "customer_number": "PCB8924675684",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Gold Cheque",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Goal Saver",
+      "PCB PocketSave",
+      "PCB Infinite Credit Card",
+      "PCB Flexi Save",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "aa0cf632-0446-46d5-9ce0-006948caa2ce",
+    "customer_number": "PCB2204127801",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Fixed 60M",
+      "PCB Platinum Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB PocketSave",
+      "PCB Treasury Plus",
+      "PCB Gold Credit Card",
+      "PCB Gold Cheque"
+    ]
+  },
+  {
+    "customer_id": "aa99ad02-e5e4-4906-9b2b-94fdb2a88683",
+    "customer_number": "PCB3782033128",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Flexi Save",
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque",
+      "PCB Business Current",
+      "PCB Goal Saver",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "aabcc99d-15c7-42bc-969c-dae285cb001e",
+    "customer_number": "PCB1982023149",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Money Market 32-Day",
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB SaveSmart",
+      "PCB Platinum Credit Card",
+      "PCB PocketSave",
+      "PCB Prestige Cheque"
+    ]
+  },
+  {
+    "customer_id": "ad3dff39-64c0-46e4-b8c4-a173a501b2a0",
+    "customer_number": "PCB9470861195",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Flexi Save",
+      "PCB PocketSave"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque",
+      "PCB Gold Cheque",
+      "PCB Goal Saver",
+      "PCB Gold Credit Card"
+    ]
+  },
+  {
+    "customer_id": "b1adeca9-4aa9-4e7a-9c81-23e8dcd187dd",
+    "customer_number": "PCB8294178468",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Plus Cheque",
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB Prestige Cheque",
+      "PCB SaveSmart",
+      "PCB PocketSave",
+      "PCB Platinum Credit Card"
+    ]
+  },
+  {
+    "customer_id": "b2a41524-5f95-4187-a0bd-d30fa615eeb7",
+    "customer_number": "PCB2542943951",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Fixed 12M",
+      "PCB PocketSave"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Goal Saver",
+      "PCB Gold Cheque",
+      "PCB Standard Credit Card",
+      "PCB Flexi Save"
+    ]
+  },
+  {
+    "customer_id": "b3f61315-ace4-4dca-a992-df188b689d68",
+    "customer_number": "PCB3243130794",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 12M",
+      "PCB Goal Saver"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB PocketSave",
+      "PCB Premier Cheque",
+      "PCB Business Current",
+      "PCB SaveSmart"
+    ]
+  },
+  {
+    "customer_id": "b4b59e19-8f45-47b7-a9df-b6f96235253a",
+    "customer_number": "PCB9483102271",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB PocketSave",
+      "PCB Standard Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Goal Saver",
+      "PCB Prestige Cheque",
+      "PCB Premier Cheque",
+      "PCB Flexi Save"
+    ]
+  },
+  {
+    "customer_id": "ba5dd48f-c112-4397-bc7a-8933ff5b11dc",
+    "customer_number": "PCB5604055120",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Flexi Save",
+      "PCB Gold Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Fixed 36M",
+      "PCB PocketSave",
+      "PCB Gold Cheque",
+      "PCB Prestige Cheque"
+    ]
+  },
+  {
+    "customer_id": "bc102d0c-3acf-4601-878f-8dfa75aa8f45",
+    "customer_number": "PCB4909199720",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 24M",
+      "PCB Flexi Save"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Gold Cheque",
+      "PCB Business Current",
+      "PCB Gold Credit Card",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "bd5e639e-5096-4b8e-ab11-dd6fbdee615b",
+    "customer_number": "PCB8798047141",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Gold Cheque",
+      "PCB Platinum Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Infinite Credit Card",
+      "PCB Premier Cheque",
+      "PCB PocketSave",
+      "PCB Treasury Plus",
+      "PCB Goal Saver"
+    ]
+  },
+  {
+    "customer_id": "c046d20f-f8d8-4553-bbfd-4056d99a8e05",
+    "customer_number": "PCB7516379744",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Fixed 60M",
+      "PCB Plus Cheque"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB PocketSave",
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB Standard Credit Card"
+    ]
+  },
+  {
+    "customer_id": "c26b6bc3-c481-42a7-8ad7-be5e29997d59",
+    "customer_number": "PCB3176335330",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Flexi Save",
+      "PCB Plus Cheque"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Gold Cheque",
+      "PCB PocketSave",
+      "PCB Premier Cheque",
+      "PCB Goal Saver"
+    ]
+  },
+  {
+    "customer_id": "c28536e5-1fb2-4b00-bea2-87a174a49c09",
+    "customer_number": "PCB4630196130",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Goal Saver",
+      "PCB Gold Cheque"
+    ],
+    "recommended_next": [
+      "PCB Infinite Credit Card",
+      "PCB Prestige Cheque",
+      "PCB PocketSave",
+      "PCB Flexi Save",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "c8820851-2ec7-4e56-bd06-b18baf89be0c",
+    "customer_number": "PCB9071271723",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 36M",
+      "PCB PocketSave"
+    ],
+    "recommended_next": [
+      "PCB Gold Credit Card",
+      "PCB Standard Credit Card",
+      "PCB Prestige Cheque",
+      "PCB Premier Cheque",
+      "PCB Flexi Save"
+    ]
+  },
+  {
+    "customer_id": "ca8927ca-2a48-4bdf-89d1-f61715f7f11b",
+    "customer_number": "PCB8368974986",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Flexi Save",
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB SaveSmart",
+      "PCB Gold Credit Card",
+      "PCB PocketSave",
+      "PCB Business Current"
+    ]
+  },
+  {
+    "customer_id": "cec5e0c3-6738-44ea-ad52-629e935afa47",
+    "customer_number": "PCB7949105797",
+    "segment": "Private Banking",
+    "current_products": [
+      "PCB Gold Cheque",
+      "PCB Infinite Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Goal Saver",
+      "PCB PocketSave",
+      "PCB Flexi Save",
+      "PCB Prestige Cheque",
+      "PCB Gold Credit Card"
+    ]
+  },
+  {
+    "customer_id": "cfb6b46a-57ca-4813-a5e8-ca78f77e473a",
+    "customer_number": "PCB1599727985",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Money Market Call",
+      "PCB Platinum Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Treasury Plus",
+      "PCB Prestige Cheque",
+      "PCB Plus Cheque",
+      "PCB Flexi Save"
+    ]
+  },
+  {
+    "customer_id": "d185f9f0-8fc7-406e-8e5a-ca0aeae36542",
+    "customer_number": "PCB4953305212",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Gold Cheque",
+      "PCB Standard Credit Card"
+    ],
+    "recommended_next": [
+      "PCB PocketSave",
+      "PCB Infinite Credit Card",
+      "PCB Goal Saver",
+      "PCB Prestige Cheque",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "d29864d0-31fd-4f9f-883a-7f503b38f90f",
+    "customer_number": "PCB4964570811",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 24M",
+      "PCB Gold Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Fixed 36M",
+      "PCB Premier Cheque",
+      "PCB Flexi Save",
+      "PCB Gold Cheque",
+      "PCB PocketSave"
+    ]
+  },
+  {
+    "customer_id": "d2b28c0c-9630-4a24-a568-7adb38f9d83c",
+    "customer_number": "PCB9590774810",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Goal Saver",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB PocketSave",
+      "PCB Premier Cheque",
+      "PCB SaveSmart"
+    ]
+  },
+  {
+    "customer_id": "d340fab8-3fed-45e5-8930-489b55f86261",
+    "customer_number": "PCB8272302214",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Premier Cheque",
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Platinum Credit Card",
+      "PCB Goal Saver",
+      "PCB Gold Credit Card"
+    ]
+  },
+  {
+    "customer_id": "d4dbe0ab-3cb7-4948-9463-d5e7e5690023",
+    "customer_number": "PCB3729897436",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 60M",
+      "PCB PocketSave"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Standard Credit Card",
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque",
+      "PCB Gold Credit Card"
+    ]
+  },
+  {
+    "customer_id": "d5e70d32-7e80-43b8-ae5c-0cbbaf4cd864",
+    "customer_number": "PCB2782508879",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Goal Saver",
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Premier Cheque",
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB PocketSave"
+    ]
+  },
+  {
+    "customer_id": "d7867a56-0757-4fd2-a165-ce93bae23f55",
+    "customer_number": "PCB4919649984",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Infinite Credit Card",
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB PocketSave",
+      "PCB Platinum Credit Card",
+      "PCB Goal Saver"
+    ]
+  },
+  {
+    "customer_id": "dadbdb7a-ad83-4e90-9356-19f735b66d27",
+    "customer_number": "PCB9661772834",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Flexi Save",
+      "PCB Gold Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Fixed 36M",
+      "PCB PocketSave",
+      "PCB Gold Cheque",
+      "PCB Prestige Cheque"
+    ]
+  },
+  {
+    "customer_id": "dc0c602b-3ae4-4693-9a3a-8741991aff33",
+    "customer_number": "PCB3836126778",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Gold Cheque",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Goal Saver",
+      "PCB PocketSave",
+      "PCB Infinite Credit Card",
+      "PCB Flexi Save",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "e04dd813-e742-4c4d-bb5d-55efda8742ab",
+    "customer_number": "PCB6111730477",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 36M",
+      "PCB Gold Credit Card"
+    ],
+    "recommended_next": [
+      "PCB PocketSave",
+      "PCB Premier Cheque",
+      "PCB Flexi Save",
+      "PCB Prestige Cheque",
+      "PCB Platinum Credit Card"
+    ]
+  },
+  {
+    "customer_id": "e147bc36-a123-431d-a8a8-0dda8386d54b",
+    "customer_number": "PCB2643668468",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 36M",
+      "PCB Treasury Plus"
+    ],
+    "recommended_next": [
+      "PCB Platinum Credit Card",
+      "PCB Gold Credit Card",
+      "PCB PocketSave",
+      "PCB Premier Cheque",
+      "PCB Business Current"
+    ]
+  },
+  {
+    "customer_id": "e1fe6d61-a613-458f-a563-89664c94c4c8",
+    "customer_number": "PCB5297093830",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 24M",
+      "PCB Fixed 60M"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Premier Cheque",
+      "PCB Business Current",
+      "PCB Gold Credit Card",
+      "PCB Enterprise Account"
+    ]
+  },
+  {
+    "customer_id": "e2ecc6fb-55cd-42e1-be41-3182bc1305ad",
+    "customer_number": "PCB1104046463",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Plus Cheque",
+      "PCB PocketSave"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Gold Cheque",
+      "PCB Standard Credit Card",
+      "PCB Goal Saver"
+    ]
+  },
+  {
+    "customer_id": "e417ee31-9fd2-4d0e-9e0a-8c66465bdcf4",
+    "customer_number": "PCB7414480314",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Plus Cheque",
+      "PCB PocketSave"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Gold Cheque",
+      "PCB Standard Credit Card",
+      "PCB Goal Saver"
+    ]
+  },
+  {
+    "customer_id": "e43d0d53-a043-4f1a-8480-9b429f35c31f",
+    "customer_number": "PCB9518504093",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Goal Saver",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB PocketSave",
+      "PCB Premier Cheque",
+      "PCB SaveSmart"
+    ]
+  },
+  {
+    "customer_id": "e468483b-cf18-479d-8b10-3fc7f309a13a",
+    "customer_number": "PCB6383227541",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Flexi Save",
+      "PCB Gold Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Fixed 36M",
+      "PCB PocketSave",
+      "PCB Gold Cheque",
+      "PCB Prestige Cheque"
+    ]
+  },
+  {
+    "customer_id": "e54eb950-2764-4ad5-bf06-ee2957c26cf5",
+    "customer_number": "PCB9539945315",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Prestige Cheque",
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Goal Saver",
+      "PCB Flexi Save",
+      "PCB Gold Cheque",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "e67fb514-f205-44b3-8ad0-92adffde1fbe",
+    "customer_number": "PCB5444546673",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB PocketSave",
+      "PCB Standard Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Goal Saver",
+      "PCB Prestige Cheque",
+      "PCB Premier Cheque",
+      "PCB Flexi Save"
+    ]
+  },
+  {
+    "customer_id": "e7668c2c-8c8f-4de3-8db4-90ad16ae9b92",
+    "customer_number": "PCB6975857369",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Money Market 32-Day",
+      "PCB Standard Credit Card"
+    ],
+    "recommended_next": [
+      "PCB PocketSave",
+      "PCB Goal Saver",
+      "PCB Gold Cheque",
+      "PCB Plus Cheque",
+      "PCB Prestige Cheque"
+    ]
+  },
+  {
+    "customer_id": "e8cd891b-d14c-4b29-993a-3fe065cc8842",
+    "customer_number": "PCB4467514661",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Enterprise Account",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB PocketSave",
+      "PCB Flexi Save",
+      "PCB SaveSmart",
+      "PCB Goal Saver",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "ea7e11b4-f9f8-4196-811a-38bd00b09c13",
+    "customer_number": "PCB9213654445",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Business Premium",
+      "PCB Goal Saver"
+    ],
+    "recommended_next": [
+      "PCB Plus Cheque",
+      "PCB Prestige Cheque",
+      "PCB SaveSmart",
+      "PCB Gold Cheque",
+      "PCB Premier Cheque"
+    ]
+  },
+  {
+    "customer_id": "ebd29172-bc11-4332-a0a3-495a9dccc198",
+    "customer_number": "PCB3754702956",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Gold Cheque",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Goal Saver",
+      "PCB PocketSave",
+      "PCB Infinite Credit Card",
+      "PCB Flexi Save",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "ee7269b4-5c6a-47bd-abbc-c9fa164cc8dd",
+    "customer_number": "PCB2811432415",
+    "segment": "Private Banking",
+    "current_products": [
+      "PCB PocketSave",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB Goal Saver",
+      "PCB Premier Cheque",
+      "PCB Standard Credit Card"
+    ]
+  },
+  {
+    "customer_id": "f1584ac8-e703-493b-b684-5079521cb443",
+    "customer_number": "PCB7807919405",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Flexi Save",
+      "PCB Platinum Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB PocketSave",
+      "PCB Prestige Cheque",
+      "PCB Gold Credit Card",
+      "PCB Money Market Call"
+    ]
+  },
+  {
+    "customer_id": "f4c6ccdb-a51a-4510-86ba-88d159496887",
+    "customer_number": "PCB3887823121",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Flexi Save",
+      "PCB Money Market Call"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Premier Cheque",
+      "PCB Plus Cheque",
+      "PCB Platinum Credit Card",
+      "PCB Gold Credit Card"
+    ]
+  },
+  {
+    "customer_id": "f5706e19-f23a-4611-b644-52e87b465555",
+    "customer_number": "PCB1435681141",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Fixed 24M",
+      "PCB Plus Cheque"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB Gold Cheque",
+      "PCB Business Premium",
+      "PCB Prestige Cheque",
+      "PCB Enterprise Account"
+    ]
+  },
+  {
+    "customer_id": "f59ba850-c93d-46d4-b851-b4a1cdf0a89c",
+    "customer_number": "PCB4470302359",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Plus Cheque",
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Premier Cheque",
+      "PCB Flexi Save",
+      "PCB Gold Cheque",
+      "PCB Goal Saver"
+    ]
+  },
+  {
+    "customer_id": "f72d813d-996f-430d-ae57-13eb80207635",
+    "customer_number": "PCB7808480880",
+    "segment": "Private Banking",
+    "current_products": [
+      "PCB Fixed 24M",
+      "PCB Infinite Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB Goal Saver",
+      "PCB Premier Cheque",
+      "PCB Gold Credit Card"
+    ]
+  },
+  {
+    "customer_id": "fd250f7b-e79e-409d-82f0-7d0f61426f0b",
+    "customer_number": "PCB2358961337",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Money Market Call",
+      "PCB Platinum Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Treasury Plus",
+      "PCB Prestige Cheque",
+      "PCB Plus Cheque",
+      "PCB Flexi Save"
+    ]
+  },
+  {
+    "customer_id": "fe1a8c18-0675-4320-8f1e-042b27d85a51",
+    "customer_number": "PCB3548280128",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Gold Credit Card",
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB Fixed 36M",
+      "PCB PocketSave",
+      "PCB SaveSmart",
+      "PCB Prestige Cheque"
+    ]
+  },
+  {
+    "customer_id": "fe7e677d-74e5-49b5-b656-0b6c8f1374bb",
+    "customer_number": "PCB3700768869",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Platinum Credit Card",
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Money Market Call",
+      "PCB Flexi Save",
+      "PCB PocketSave",
+      "PCB Gold Cheque"
+    ]
+  },
+  {
+    "customer_id": "0164c302-4300-4edf-bd9b-380907bfda6a",
+    "customer_number": "PCB3205542649",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Plus Cheque"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Money Market Call",
+      "PCB Gold Cheque",
+      "PCB Business Premium"
+    ]
+  },
+  {
+    "customer_id": "02523414-87f6-4817-8cf2-297f40600402",
+    "customer_number": "PCB8875273236",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Standard Credit Card"
+    ],
+    "recommended_next": [
+      "PCB PocketSave",
+      "PCB Business Current",
+      "PCB Goal Saver",
+      "PCB Prestige Cheque",
+      "PCB Money Market 32-Day"
+    ]
+  },
+  {
+    "customer_id": "06d8b200-1ce9-464d-8b7a-2848f4a67a90",
+    "customer_number": "PCB4161938464",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Goal Saver",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "07f75e2b-6b47-4d97-b9e5-aca8bffa8ad4",
+    "customer_number": "PCB6248817328",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Goal Saver",
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB Money Market Call",
+      "PCB Premier Cheque"
+    ]
+  },
+  {
+    "customer_id": "08e86fa6-91bc-46ac-a63a-ccbb741f22be",
+    "customer_number": "PCB5715870675",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB PocketSave"
+    ],
+    "recommended_next": [
+      "PCB Standard Credit Card",
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB Prestige Cheque",
+      "PCB Premier Cheque"
+    ]
+  },
+  {
+    "customer_id": "09b9d0bb-c032-4e23-a911-bae00f7df4ca",
+    "customer_number": "PCB4009805180",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Platinum Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Treasury Plus",
+      "PCB Money Market Call",
+      "PCB PocketSave",
+      "PCB Flexi Save"
+    ]
+  },
+  {
+    "customer_id": "09e0935e-269c-4f51-8b7a-017b90623e9f",
+    "customer_number": "PCB7383890366",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Plus Cheque"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Money Market Call",
+      "PCB Gold Cheque",
+      "PCB Business Premium"
+    ]
+  },
+  {
+    "customer_id": "0a384245-7e7b-4b1a-a2ea-24375a52e344",
+    "customer_number": "PCB2637750783",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Plus Cheque"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Money Market Call",
+      "PCB Gold Cheque",
+      "PCB Business Premium"
+    ]
+  },
+  {
+    "customer_id": "0b719cd2-7a5a-498e-93cd-85ee7b521bff",
+    "customer_number": "PCB3619124771",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Business Current"
+    ],
+    "recommended_next": [
+      "PCB Flexi Save",
+      "PCB Standard Credit Card",
+      "PCB Fixed 60M",
+      "PCB Premier Cheque",
+      "PCB Goal Saver"
+    ]
+  },
+  {
+    "customer_id": "0cd02dcb-48ca-4fcc-9f36-237f3d836497",
+    "customer_number": "PCB1684078591",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 12M"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Goal Saver",
+      "PCB PocketSave",
+      "PCB Business Current",
+      "PCB Treasury Plus"
+    ]
+  },
+  {
+    "customer_id": "0ec62bd1-42db-4ffd-b12d-f1738b4fdec9",
+    "customer_number": "PCB1055395069",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Standard Credit Card"
+    ],
+    "recommended_next": [
+      "PCB PocketSave",
+      "PCB Business Current",
+      "PCB Goal Saver",
+      "PCB Prestige Cheque",
+      "PCB Money Market 32-Day"
+    ]
+  },
+  {
+    "customer_id": "102faf5d-060a-45ca-bf9a-343f07c64a57",
+    "customer_number": "PCB1034114705",
+    "segment": "Private Banking",
+    "current_products": [
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Goal Saver",
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB Money Market Call",
+      "PCB Premier Cheque"
+    ]
+  },
+  {
+    "customer_id": "116ca17d-f098-4e6a-930e-690e65fb70eb",
+    "customer_number": "PCB1267698902",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Plus Cheque"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Money Market Call",
+      "PCB Gold Cheque",
+      "PCB Business Premium"
+    ]
+  },
+  {
+    "customer_id": "125e18dc-69cb-4250-8e67-86ad59f26a09",
+    "customer_number": "PCB5878096289",
+    "segment": "Private Banking",
+    "current_products": [
+      "PCB Flexi Save"
+    ],
+    "recommended_next": [
+      "PCB Business Current",
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque",
+      "PCB PocketSave",
+      "PCB Gold Cheque"
+    ]
+  },
+  {
+    "customer_id": "12db6aa0-0390-4394-a2b6-2809e25100ce",
+    "customer_number": "PCB3780439666",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Plus Cheque"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Money Market Call",
+      "PCB Gold Cheque",
+      "PCB Business Premium"
+    ]
+  },
+  {
+    "customer_id": "12e6b9ee-2be7-4214-ad3c-2fd93578dfc5",
+    "customer_number": "PCB5785590330",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Gold Cheque"
+    ],
+    "recommended_next": [
+      "PCB Infinite Credit Card",
+      "PCB Goal Saver",
+      "PCB Prestige Cheque",
+      "PCB PocketSave",
+      "PCB Flexi Save"
+    ]
+  },
+  {
+    "customer_id": "14407c92-24a5-4b5f-9183-82abcbe690e4",
+    "customer_number": "PCB9989974968",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Goal Saver",
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB Money Market Call",
+      "PCB Premier Cheque"
+    ]
+  },
+  {
+    "customer_id": "148694da-57d4-425a-9f97-96d8293011be",
+    "customer_number": "PCB8298511580",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Infinite Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Goal Saver",
+      "PCB PocketSave",
+      "PCB Flexi Save",
+      "PCB Business Current"
+    ]
+  },
+  {
+    "customer_id": "1665e346-afc9-4443-aaaf-51e2aca1f94a",
+    "customer_number": "PCB1498600785",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Plus Cheque"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Money Market Call",
+      "PCB Gold Cheque",
+      "PCB Business Premium"
+    ]
+  },
+  {
+    "customer_id": "16f56b1b-30e3-4e4a-bb8b-8df59fd9396b",
+    "customer_number": "PCB2159295684",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB SaveSmart",
+      "PCB Platinum Credit Card",
+      "PCB Flexi Save",
+      "PCB Prestige Cheque",
+      "PCB Gold Credit Card"
+    ]
+  },
+  {
+    "customer_id": "175ee67e-b6bf-4c61-ab3e-60cb4c9c4bac",
+    "customer_number": "PCB8442341367",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Plus Cheque"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Money Market Call",
+      "PCB Gold Cheque",
+      "PCB Business Premium"
+    ]
+  },
+  {
+    "customer_id": "1a66d7ba-014a-4a92-a941-d9d48ae44bbd",
+    "customer_number": "PCB1378561387",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Flexi Save"
+    ],
+    "recommended_next": [
+      "PCB Business Current",
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque",
+      "PCB PocketSave",
+      "PCB Gold Cheque"
+    ]
+  },
+  {
+    "customer_id": "1a7a1249-df24-4bdc-bfc9-0cd2d33e45f1",
+    "customer_number": "PCB1487587350",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB SaveSmart",
+      "PCB Platinum Credit Card",
+      "PCB Flexi Save",
+      "PCB Prestige Cheque",
+      "PCB Gold Credit Card"
+    ]
+  },
+  {
+    "customer_id": "1aac1299-dea3-4197-9a4c-c7957eb8ebec",
+    "customer_number": "PCB8373053113",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Goal Saver"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Prestige Cheque",
+      "PCB PocketSave",
+      "PCB Flexi Save",
+      "PCB Infinite Credit Card"
+    ]
+  },
+  {
+    "customer_id": "1b11cb58-1fc0-4e6b-862b-67d24124c2ba",
+    "customer_number": "PCB1585965093",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 36M"
+    ],
+    "recommended_next": [
+      "PCB Gold Credit Card",
+      "PCB PocketSave",
+      "PCB Prestige Cheque",
+      "PCB Standard Credit Card",
+      "PCB Business Premium"
+    ]
+  },
+  {
+    "customer_id": "1f752c62-b00d-40bc-b0eb-8ba757d5b8c1",
+    "customer_number": "PCB2752536389",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Money Market 32-Day"
+    ],
+    "recommended_next": [
+      "PCB Money Market Call",
+      "PCB Standard Credit Card",
+      "PCB Premier Cheque",
+      "PCB Gold Cheque",
+      "PCB PocketSave"
+    ]
+  },
+  {
+    "customer_id": "1f93b432-d6da-4e9f-bad2-c685be275cfa",
+    "customer_number": "PCB6195790140",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Business Premium"
+    ],
+    "recommended_next": [
+      "PCB Plus Cheque",
+      "PCB Fixed 36M",
+      "PCB SaveSmart",
+      "PCB Goal Saver",
+      "PCB Premier Cheque"
+    ]
+  },
+  {
+    "customer_id": "1fe3e378-9091-4233-9e69-1da574274ee9",
+    "customer_number": "PCB8394040015",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Goal Saver",
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB Money Market Call",
+      "PCB Premier Cheque"
+    ]
+  },
+  {
+    "customer_id": "1fecb188-f348-4185-a3b2-43db92f007c6",
+    "customer_number": "PCB5598615444",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Flexi Save"
+    ],
+    "recommended_next": [
+      "PCB Business Current",
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque",
+      "PCB PocketSave",
+      "PCB Gold Cheque"
+    ]
+  },
+  {
+    "customer_id": "220b2dce-668f-4bcc-bdfd-2839e0ce5208",
+    "customer_number": "PCB5093296976",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Flexi Save"
+    ],
+    "recommended_next": [
+      "PCB Business Current",
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque",
+      "PCB PocketSave",
+      "PCB Gold Cheque"
+    ]
+  },
+  {
+    "customer_id": "25f2f3a2-bd91-43b7-9779-28b375591b38",
+    "customer_number": "PCB7745191003",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Enterprise Account"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB PocketSave",
+      "PCB SaveSmart",
+      "PCB Flexi Save",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "279affd9-9190-4f95-9791-21936bec80d8",
+    "customer_number": "PCB8069879617",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Plus Cheque"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Money Market Call",
+      "PCB Gold Cheque",
+      "PCB Business Premium"
+    ]
+  },
+  {
+    "customer_id": "28720e79-2cb0-4e43-86b0-8b3a863c5f5b",
+    "customer_number": "PCB6167450976",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Platinum Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Treasury Plus",
+      "PCB Money Market Call",
+      "PCB PocketSave",
+      "PCB Flexi Save"
+    ]
+  },
+  {
+    "customer_id": "2922581a-18f3-4084-a1c6-4cb798d57bff",
+    "customer_number": "PCB1764998225",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 12M"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Goal Saver",
+      "PCB PocketSave",
+      "PCB Business Current",
+      "PCB Treasury Plus"
+    ]
+  },
+  {
+    "customer_id": "2a8c2591-114b-46b0-8347-b0c208b7cc07",
+    "customer_number": "PCB1879033600",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 12M"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Goal Saver",
+      "PCB PocketSave",
+      "PCB Business Current",
+      "PCB Treasury Plus"
+    ]
+  },
+  {
+    "customer_id": "2b9c33ca-c7d9-4624-8f8f-968961825448",
+    "customer_number": "PCB1792406808",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Goal Saver",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "2bf9de13-9294-43b6-a752-e7ae75d08267",
+    "customer_number": "PCB1625453276",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Plus Cheque"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Money Market Call",
+      "PCB Gold Cheque",
+      "PCB Business Premium"
+    ]
+  },
+  {
+    "customer_id": "2d3e12b7-908b-4db3-910f-ad4b6ada7101",
+    "customer_number": "PCB5376458227",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 60M"
+    ],
+    "recommended_next": [
+      "PCB Business Current",
+      "PCB PocketSave",
+      "PCB Premier Cheque",
+      "PCB Gold Credit Card",
+      "PCB Gold Cheque"
+    ]
+  },
+  {
+    "customer_id": "2ea14f7d-a56a-4f64-86f9-a70de9fdfd34",
+    "customer_number": "PCB9199886397",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Goal Saver"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Prestige Cheque",
+      "PCB PocketSave",
+      "PCB Flexi Save",
+      "PCB Infinite Credit Card"
+    ]
+  },
+  {
+    "customer_id": "2f418199-1049-4389-83b4-2ea755610f9d",
+    "customer_number": "PCB9192433568",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Platinum Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Treasury Plus",
+      "PCB Money Market Call",
+      "PCB PocketSave",
+      "PCB Flexi Save"
+    ]
+  },
+  {
+    "customer_id": "2f4dae42-e4ae-461b-83e0-616daab69d60",
+    "customer_number": "PCB5760130713",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Flexi Save"
+    ],
+    "recommended_next": [
+      "PCB Business Current",
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque",
+      "PCB PocketSave",
+      "PCB Gold Cheque"
+    ]
+  },
+  {
+    "customer_id": "30c2e83a-3ad0-4c9e-8a9d-2ec15dd897f2",
+    "customer_number": "PCB6505706239",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Goal Saver",
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB Money Market Call",
+      "PCB Premier Cheque"
+    ]
+  },
+  {
+    "customer_id": "310ce0a8-71d7-4cb8-88fe-eca99f973241",
+    "customer_number": "PCB6494453109",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Goal Saver",
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB Money Market Call",
+      "PCB Premier Cheque"
+    ]
+  },
+  {
+    "customer_id": "35e59c7c-9a46-4988-8fc4-2599a32bcf51",
+    "customer_number": "PCB2684371781",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Goal Saver",
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB Money Market Call",
+      "PCB Premier Cheque"
+    ]
+  },
+  {
+    "customer_id": "3a750a1e-facd-4936-a5e1-a2a814fa4e32",
+    "customer_number": "PCB8340948569",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Gold Cheque"
+    ],
+    "recommended_next": [
+      "PCB Infinite Credit Card",
+      "PCB Goal Saver",
+      "PCB Prestige Cheque",
+      "PCB PocketSave",
+      "PCB Flexi Save"
+    ]
+  },
+  {
+    "customer_id": "3d86d943-61bb-4eb8-bc52-e8468a7b8ea8",
+    "customer_number": "PCB9944478245",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Treasury Plus"
+    ],
+    "recommended_next": [
+      "PCB Platinum Credit Card",
+      "PCB Money Market Call",
+      "PCB Gold Cheque",
+      "PCB Business Current",
+      "PCB Infinite Credit Card"
+    ]
+  },
+  {
+    "customer_id": "413febb5-cfb1-4b7f-9add-063ad4816f97",
+    "customer_number": "PCB4235480178",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Goal Saver",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "426a3c34-1075-4848-b803-ece2f262acb4",
+    "customer_number": "PCB4337385343",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Goal Saver"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Prestige Cheque",
+      "PCB PocketSave",
+      "PCB Flexi Save",
+      "PCB Infinite Credit Card"
+    ]
+  },
+  {
+    "customer_id": "42e9216b-dd83-4608-8cad-1ed2c7e20a66",
+    "customer_number": "PCB1255790920",
+    "segment": "Private Banking",
+    "current_products": [
+      "PCB Treasury Plus"
+    ],
+    "recommended_next": [
+      "PCB Platinum Credit Card",
+      "PCB Money Market Call",
+      "PCB Gold Cheque",
+      "PCB Business Current",
+      "PCB Infinite Credit Card"
+    ]
+  },
+  {
+    "customer_id": "445d1261-31b5-4737-96e9-9f67918894a2",
+    "customer_number": "PCB4998892039",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Gold Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Fixed 36M",
+      "PCB Premier Cheque",
+      "PCB Flexi Save",
+      "PCB Gold Cheque",
+      "PCB PocketSave"
+    ]
+  },
+  {
+    "customer_id": "4518f02f-717f-4e54-872f-6cb32c2cdbf3",
+    "customer_number": "PCB7189122676",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB SaveSmart",
+      "PCB Platinum Credit Card",
+      "PCB Flexi Save",
+      "PCB Prestige Cheque",
+      "PCB Gold Credit Card"
+    ]
+  },
+  {
+    "customer_id": "4748be49-42c6-4b78-88c8-86a3ffc8df90",
+    "customer_number": "PCB1966088651",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Goal Saver",
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB Money Market Call",
+      "PCB Premier Cheque"
+    ]
+  },
+  {
+    "customer_id": "475c2f67-b3cb-4fac-8e1a-0ed764b9a2fe",
+    "customer_number": "PCB8756460189",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Goal Saver",
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB Money Market Call",
+      "PCB Premier Cheque"
+    ]
+  },
+  {
+    "customer_id": "4989f769-f5ee-4ff3-8a2e-29a32a8bb920",
+    "customer_number": "PCB7732162114",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Plus Cheque"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Money Market Call",
+      "PCB Gold Cheque",
+      "PCB Business Premium"
+    ]
+  },
+  {
+    "customer_id": "4a035d91-94df-4696-9323-c122be95d715",
+    "customer_number": "PCB9878167585",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB PocketSave"
+    ],
+    "recommended_next": [
+      "PCB Standard Credit Card",
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB Prestige Cheque",
+      "PCB Premier Cheque"
+    ]
+  },
+  {
+    "customer_id": "4e2c4f0e-bb0a-431c-b54e-50a61aca98d4",
+    "customer_number": "PCB7957316436",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 60M"
+    ],
+    "recommended_next": [
+      "PCB Business Current",
+      "PCB PocketSave",
+      "PCB Premier Cheque",
+      "PCB Gold Credit Card",
+      "PCB Gold Cheque"
+    ]
+  },
+  {
+    "customer_id": "524d01df-0017-49ad-b36a-5acc1767602c",
+    "customer_number": "PCB6768555384",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 60M"
+    ],
+    "recommended_next": [
+      "PCB Business Current",
+      "PCB PocketSave",
+      "PCB Premier Cheque",
+      "PCB Gold Credit Card",
+      "PCB Gold Cheque"
+    ]
+  },
+  {
+    "customer_id": "5695af93-72f8-45b0-8581-09cf6b0fd54d",
+    "customer_number": "PCB3576212952",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Infinite Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Goal Saver",
+      "PCB PocketSave",
+      "PCB Flexi Save",
+      "PCB Business Current"
+    ]
+  },
+  {
+    "customer_id": "578ebe00-340f-40ba-bac8-25fda508217f",
+    "customer_number": "PCB7180569787",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Treasury Plus"
+    ],
+    "recommended_next": [
+      "PCB Platinum Credit Card",
+      "PCB Money Market Call",
+      "PCB Gold Cheque",
+      "PCB Business Current",
+      "PCB Infinite Credit Card"
+    ]
+  },
+  {
+    "customer_id": "584338c8-a8fa-4613-a76d-b07760b87e8c",
+    "customer_number": "PCB8387373027",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Plus Cheque"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Money Market Call",
+      "PCB Gold Cheque",
+      "PCB Business Premium"
+    ]
+  },
+  {
+    "customer_id": "5ab5c897-3eeb-45ec-b3b9-ee1be43e5652",
+    "customer_number": "PCB9422285317",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Standard Credit Card"
+    ],
+    "recommended_next": [
+      "PCB PocketSave",
+      "PCB Business Current",
+      "PCB Goal Saver",
+      "PCB Prestige Cheque",
+      "PCB Money Market 32-Day"
+    ]
+  },
+  {
+    "customer_id": "5e443f39-223f-42a8-9033-f0fbd9d5b667",
+    "customer_number": "PCB9873476605",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Goal Saver"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Prestige Cheque",
+      "PCB PocketSave",
+      "PCB Flexi Save",
+      "PCB Infinite Credit Card"
+    ]
+  },
+  {
+    "customer_id": "5f07ee40-578a-4751-985d-4e36af164992",
+    "customer_number": "PCB3497983389",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Standard Credit Card"
+    ],
+    "recommended_next": [
+      "PCB PocketSave",
+      "PCB Business Current",
+      "PCB Goal Saver",
+      "PCB Prestige Cheque",
+      "PCB Money Market 32-Day"
+    ]
+  },
+  {
+    "customer_id": "61cdcdd8-4966-4981-aa70-e98cfbe4d8eb",
+    "customer_number": "PCB8828130662",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Flexi Save"
+    ],
+    "recommended_next": [
+      "PCB Business Current",
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque",
+      "PCB PocketSave",
+      "PCB Gold Cheque"
+    ]
+  },
+  {
+    "customer_id": "639ca5b5-8ec9-4282-83ae-1b8ccff312f7",
+    "customer_number": "PCB7180242731",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Plus Cheque"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Money Market Call",
+      "PCB Gold Cheque",
+      "PCB Business Premium"
+    ]
+  },
+  {
+    "customer_id": "6a4cf21c-e0b7-404e-89fe-d84429dbcf21",
+    "customer_number": "PCB5724657556",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB SaveSmart",
+      "PCB Platinum Credit Card",
+      "PCB Flexi Save",
+      "PCB Prestige Cheque",
+      "PCB Gold Credit Card"
+    ]
+  },
+  {
+    "customer_id": "6df5afd4-10bc-4798-b0fb-196086237cd2",
+    "customer_number": "PCB3799033030",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 12M"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Goal Saver",
+      "PCB PocketSave",
+      "PCB Business Current",
+      "PCB Treasury Plus"
+    ]
+  },
+  {
+    "customer_id": "70028cc6-1375-43f1-9ff4-06252c233a53",
+    "customer_number": "PCB2732553940",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Goal Saver",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "7349cfc0-6156-437d-9508-0db5fe365a3e",
+    "customer_number": "PCB8475438378",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Treasury Plus"
+    ],
+    "recommended_next": [
+      "PCB Platinum Credit Card",
+      "PCB Money Market Call",
+      "PCB Gold Cheque",
+      "PCB Business Current",
+      "PCB Infinite Credit Card"
+    ]
+  },
+  {
+    "customer_id": "75219f36-177a-4fcf-9a9f-8838c52ad8ab",
+    "customer_number": "PCB4094152811",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Money Market 32-Day"
+    ],
+    "recommended_next": [
+      "PCB Money Market Call",
+      "PCB Standard Credit Card",
+      "PCB Premier Cheque",
+      "PCB Gold Cheque",
+      "PCB PocketSave"
+    ]
+  },
+  {
+    "customer_id": "76ab0908-fcc6-4524-a064-d86c08c77bc0",
+    "customer_number": "PCB8696719645",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB PocketSave"
+    ],
+    "recommended_next": [
+      "PCB Standard Credit Card",
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB Prestige Cheque",
+      "PCB Premier Cheque"
+    ]
+  },
+  {
+    "customer_id": "77c7f50d-d85a-43d0-9048-612057f39580",
+    "customer_number": "PCB8084139498",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Goal Saver"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Prestige Cheque",
+      "PCB PocketSave",
+      "PCB Flexi Save",
+      "PCB Infinite Credit Card"
+    ]
+  },
+  {
+    "customer_id": "79ed2e81-d033-4bea-a3d9-faeb7e9b80e5",
+    "customer_number": "PCB9851745648",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Money Market 32-Day"
+    ],
+    "recommended_next": [
+      "PCB Money Market Call",
+      "PCB Standard Credit Card",
+      "PCB Premier Cheque",
+      "PCB Gold Cheque",
+      "PCB PocketSave"
+    ]
+  },
+  {
+    "customer_id": "7edc5bbc-c15d-4f7c-ac6b-6d1a88618009",
+    "customer_number": "PCB6000952470",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Money Market 32-Day"
+    ],
+    "recommended_next": [
+      "PCB Money Market Call",
+      "PCB Standard Credit Card",
+      "PCB Premier Cheque",
+      "PCB Gold Cheque",
+      "PCB PocketSave"
+    ]
+  },
+  {
+    "customer_id": "7f87ebe9-3e20-4ae7-a1bb-7ccf7e95daad",
+    "customer_number": "PCB4979553207",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Goal Saver",
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB Money Market Call",
+      "PCB Premier Cheque"
+    ]
+  },
+  {
+    "customer_id": "831e25ee-c1ad-42db-9095-edb225bf8f2e",
+    "customer_number": "PCB2057617830",
+    "segment": "Private Banking",
+    "current_products": [
+      "PCB Flexi Save"
+    ],
+    "recommended_next": [
+      "PCB Business Current",
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque",
+      "PCB PocketSave",
+      "PCB Gold Cheque"
+    ]
+  },
+  {
+    "customer_id": "838bbd02-157b-4453-ab40-9da0e6d4a59e",
+    "customer_number": "PCB4663992245",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Gold Cheque"
+    ],
+    "recommended_next": [
+      "PCB Infinite Credit Card",
+      "PCB Goal Saver",
+      "PCB Prestige Cheque",
+      "PCB PocketSave",
+      "PCB Flexi Save"
+    ]
+  },
+  {
+    "customer_id": "85ce4f3b-c7f7-4a94-bb92-3bd49ee0b3b2",
+    "customer_number": "PCB8635334634",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB SaveSmart",
+      "PCB Platinum Credit Card",
+      "PCB Flexi Save",
+      "PCB Prestige Cheque",
+      "PCB Gold Credit Card"
+    ]
+  },
+  {
+    "customer_id": "8727046e-94d8-4370-a997-f46ef68689c9",
+    "customer_number": "PCB1220580048",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Gold Cheque"
+    ],
+    "recommended_next": [
+      "PCB Infinite Credit Card",
+      "PCB Goal Saver",
+      "PCB Prestige Cheque",
+      "PCB PocketSave",
+      "PCB Flexi Save"
+    ]
+  },
+  {
+    "customer_id": "88f0857d-3184-452d-9502-038eb4a61091",
+    "customer_number": "PCB5564684670",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Treasury Plus"
+    ],
+    "recommended_next": [
+      "PCB Platinum Credit Card",
+      "PCB Money Market Call",
+      "PCB Gold Cheque",
+      "PCB Business Current",
+      "PCB Infinite Credit Card"
+    ]
+  },
+  {
+    "customer_id": "88faa5c9-4534-4792-8d20-8b7f6ca3c0fd",
+    "customer_number": "PCB6960329328",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Standard Credit Card"
+    ],
+    "recommended_next": [
+      "PCB PocketSave",
+      "PCB Business Current",
+      "PCB Goal Saver",
+      "PCB Prestige Cheque",
+      "PCB Money Market 32-Day"
+    ]
+  },
+  {
+    "customer_id": "8902db05-3812-414e-92df-e5dfe03de324",
+    "customer_number": "PCB3475678519",
+    "segment": "Private Banking",
+    "current_products": [
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB SaveSmart",
+      "PCB Platinum Credit Card",
+      "PCB Flexi Save",
+      "PCB Prestige Cheque",
+      "PCB Gold Credit Card"
+    ]
+  },
+  {
+    "customer_id": "8ccc0741-e1dc-4266-adac-1702b4237132",
+    "customer_number": "PCB8822438146",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Gold Cheque"
+    ],
+    "recommended_next": [
+      "PCB Infinite Credit Card",
+      "PCB Goal Saver",
+      "PCB Prestige Cheque",
+      "PCB PocketSave",
+      "PCB Flexi Save"
+    ]
+  },
+  {
+    "customer_id": "8da1a481-6fdc-4f90-b170-a31161a6f4d7",
+    "customer_number": "PCB9475504077",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Plus Cheque"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Money Market Call",
+      "PCB Gold Cheque",
+      "PCB Business Premium"
+    ]
+  },
+  {
+    "customer_id": "8f16d71b-084e-4609-9ded-09077e4d8d48",
+    "customer_number": "PCB9081684463",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 24M"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB Premier Cheque",
+      "PCB Enterprise Account",
+      "PCB Money Market 32-Day"
+    ]
+  },
+  {
+    "customer_id": "8f55d494-420b-4705-987b-b6ec11ce864d",
+    "customer_number": "PCB8062770940",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Treasury Plus"
+    ],
+    "recommended_next": [
+      "PCB Platinum Credit Card",
+      "PCB Money Market Call",
+      "PCB Gold Cheque",
+      "PCB Business Current",
+      "PCB Infinite Credit Card"
+    ]
+  },
+  {
+    "customer_id": "91d4ac74-7434-41a2-ba19-73c7da83ea78",
+    "customer_number": "PCB8622566062",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Goal Saver",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "92c6dc2b-7b16-4fd7-a618-1e8f1015a418",
+    "customer_number": "PCB5737789650",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Enterprise Account"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB PocketSave",
+      "PCB SaveSmart",
+      "PCB Flexi Save",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "94a3fefa-e23a-42f5-927c-f729e92aef60",
+    "customer_number": "PCB2902586094",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Flexi Save"
+    ],
+    "recommended_next": [
+      "PCB Business Current",
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque",
+      "PCB PocketSave",
+      "PCB Gold Cheque"
+    ]
+  },
+  {
+    "customer_id": "987c9523-819c-4f0d-bd70-b63e7dc303d2",
+    "customer_number": "PCB3987809626",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Treasury Plus"
+    ],
+    "recommended_next": [
+      "PCB Platinum Credit Card",
+      "PCB Money Market Call",
+      "PCB Gold Cheque",
+      "PCB Business Current",
+      "PCB Infinite Credit Card"
+    ]
+  },
+  {
+    "customer_id": "9a9d31d4-f9f8-4cf1-9cd8-0ab438e86ec7",
+    "customer_number": "PCB1244313440",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Standard Credit Card"
+    ],
+    "recommended_next": [
+      "PCB PocketSave",
+      "PCB Business Current",
+      "PCB Goal Saver",
+      "PCB Prestige Cheque",
+      "PCB Money Market 32-Day"
+    ]
+  },
+  {
+    "customer_id": "9b877f7b-3c24-4b91-9233-e2e766e5468d",
+    "customer_number": "PCB1620123277",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Plus Cheque"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Money Market Call",
+      "PCB Gold Cheque",
+      "PCB Business Premium"
+    ]
+  },
+  {
+    "customer_id": "9e408d90-f7f3-4d45-8029-09016f6613b1",
+    "customer_number": "PCB3640917193",
+    "segment": "Private Banking",
+    "current_products": [
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Goal Saver",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "a027a9f3-e762-474c-a0df-f665d2a25956",
+    "customer_number": "PCB2075819942",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Fixed 60M"
+    ],
+    "recommended_next": [
+      "PCB Business Current",
+      "PCB PocketSave",
+      "PCB Premier Cheque",
+      "PCB Gold Credit Card",
+      "PCB Gold Cheque"
+    ]
+  },
+  {
+    "customer_id": "a067f2ef-5014-4e93-ba76-85c2c7807493",
+    "customer_number": "PCB2778948768",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Treasury Plus"
+    ],
+    "recommended_next": [
+      "PCB Platinum Credit Card",
+      "PCB Money Market Call",
+      "PCB Gold Cheque",
+      "PCB Business Current",
+      "PCB Infinite Credit Card"
+    ]
+  },
+  {
+    "customer_id": "a4743f65-c55e-4a81-a1a0-ff9b8aea3402",
+    "customer_number": "PCB5227974252",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Plus Cheque"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Money Market Call",
+      "PCB Gold Cheque",
+      "PCB Business Premium"
+    ]
+  },
+  {
+    "customer_id": "aa5b3d75-e648-47ad-ade0-0b9e530ca808",
+    "customer_number": "PCB5376656120",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB PocketSave"
+    ],
+    "recommended_next": [
+      "PCB Standard Credit Card",
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB Prestige Cheque",
+      "PCB Premier Cheque"
+    ]
+  },
+  {
+    "customer_id": "ab89aa9f-66e2-4754-bec4-86f8d62d6503",
+    "customer_number": "PCB1996817103",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Gold Credit Card"
+    ],
+    "recommended_next": [
+      "PCB Fixed 36M",
+      "PCB Premier Cheque",
+      "PCB Flexi Save",
+      "PCB Gold Cheque",
+      "PCB PocketSave"
+    ]
+  },
+  {
+    "customer_id": "ac84016c-2bef-4069-bd21-97b5fa73e5d4",
+    "customer_number": "PCB5996418672",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 12M"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Goal Saver",
+      "PCB PocketSave",
+      "PCB Business Current",
+      "PCB Treasury Plus"
+    ]
+  },
+  {
+    "customer_id": "b0d6b70d-63ae-466a-bc5d-dcd27e6a5966",
+    "customer_number": "PCB2837384013",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Plus Cheque"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Money Market Call",
+      "PCB Gold Cheque",
+      "PCB Business Premium"
+    ]
+  },
+  {
+    "customer_id": "b1cff421-174d-47d7-9eb4-7458889b02c5",
+    "customer_number": "PCB2990510491",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Enterprise Account"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB PocketSave",
+      "PCB SaveSmart",
+      "PCB Flexi Save",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "b2a4b8cd-3ee1-4fd3-9f98-69927b359607",
+    "customer_number": "PCB3538508163",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Fixed 60M"
+    ],
+    "recommended_next": [
+      "PCB Business Current",
+      "PCB PocketSave",
+      "PCB Premier Cheque",
+      "PCB Gold Credit Card",
+      "PCB Gold Cheque"
+    ]
+  },
+  {
+    "customer_id": "b2de4f88-ac8a-44df-8297-4c40d7d082e9",
+    "customer_number": "PCB5842885728",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB PocketSave"
+    ],
+    "recommended_next": [
+      "PCB Standard Credit Card",
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB Prestige Cheque",
+      "PCB Premier Cheque"
+    ]
+  },
+  {
+    "customer_id": "b50188f4-7953-4ae2-923a-3ba84c79c311",
+    "customer_number": "PCB9131344493",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Plus Cheque"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Money Market Call",
+      "PCB Gold Cheque",
+      "PCB Business Premium"
+    ]
+  },
+  {
+    "customer_id": "b51de595-a81c-4f1a-b6bd-8d8c8b2114ac",
+    "customer_number": "PCB4222051513",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Flexi Save"
+    ],
+    "recommended_next": [
+      "PCB Business Current",
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque",
+      "PCB PocketSave",
+      "PCB Gold Cheque"
+    ]
+  },
+  {
+    "customer_id": "b5b3882d-b5aa-4d83-a6db-9eb5e22b1902",
+    "customer_number": "PCB1330916371",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Goal Saver",
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB Money Market Call",
+      "PCB Premier Cheque"
+    ]
+  },
+  {
+    "customer_id": "ba514b81-7ce2-4fc4-8c11-312504268c01",
+    "customer_number": "PCB1283850417",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Goal Saver"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Prestige Cheque",
+      "PCB PocketSave",
+      "PCB Flexi Save",
+      "PCB Infinite Credit Card"
+    ]
+  },
+  {
+    "customer_id": "baeeb0d1-b8c2-4ec7-838f-f9142ad97ae9",
+    "customer_number": "PCB4961295113",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Money Market Call"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Platinum Credit Card",
+      "PCB Plus Cheque",
+      "PCB Money Market 32-Day",
+      "PCB Treasury Plus"
+    ]
+  },
+  {
+    "customer_id": "be96b23c-020b-42fb-a22f-02e5b4ab71f9",
+    "customer_number": "PCB5681286605",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB SaveSmart",
+      "PCB Platinum Credit Card",
+      "PCB Flexi Save",
+      "PCB Prestige Cheque",
+      "PCB Gold Credit Card"
+    ]
+  },
+  {
+    "customer_id": "bed3e96b-6b34-4f69-a6b3-76fa24c840c0",
+    "customer_number": "PCB1413599241",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Goal Saver",
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB Money Market Call",
+      "PCB Premier Cheque"
+    ]
+  },
+  {
+    "customer_id": "bf38210c-e175-4c2a-8c30-3978907aa7e6",
+    "customer_number": "PCB2664260498",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 12M"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Goal Saver",
+      "PCB PocketSave",
+      "PCB Business Current",
+      "PCB Treasury Plus"
+    ]
+  },
+  {
+    "customer_id": "c26b9ed9-4e90-4932-be71-7790b8b198f4",
+    "customer_number": "PCB5248097310",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB SaveSmart",
+      "PCB Platinum Credit Card",
+      "PCB Flexi Save",
+      "PCB Prestige Cheque",
+      "PCB Gold Credit Card"
+    ]
+  },
+  {
+    "customer_id": "c642863a-b5db-4a27-a064-b2f335477dce",
+    "customer_number": "PCB4952342924",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Goal Saver",
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB Money Market Call",
+      "PCB Premier Cheque"
+    ]
+  },
+  {
+    "customer_id": "c90b10fd-a511-488a-9e8d-0fbec48e1af4",
+    "customer_number": "PCB7480397097",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Flexi Save"
+    ],
+    "recommended_next": [
+      "PCB Business Current",
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque",
+      "PCB PocketSave",
+      "PCB Gold Cheque"
+    ]
+  },
+  {
+    "customer_id": "cc480a15-7278-4d4b-aa9a-dec9772c06df",
+    "customer_number": "PCB8841061174",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Gold Cheque"
+    ],
+    "recommended_next": [
+      "PCB Infinite Credit Card",
+      "PCB Goal Saver",
+      "PCB Prestige Cheque",
+      "PCB PocketSave",
+      "PCB Flexi Save"
+    ]
+  },
+  {
+    "customer_id": "ccfb2fd8-3927-4ffc-bb87-d12a67ce37a5",
+    "customer_number": "PCB4588976489",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Standard Credit Card"
+    ],
+    "recommended_next": [
+      "PCB PocketSave",
+      "PCB Business Current",
+      "PCB Goal Saver",
+      "PCB Prestige Cheque",
+      "PCB Money Market 32-Day"
+    ]
+  },
+  {
+    "customer_id": "cd2e6f39-f46e-4121-baa3-933966d859b5",
+    "customer_number": "PCB5956589581",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Flexi Save"
+    ],
+    "recommended_next": [
+      "PCB Business Current",
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque",
+      "PCB PocketSave",
+      "PCB Gold Cheque"
+    ]
+  },
+  {
+    "customer_id": "d0cf3d14-3b43-44c8-a21f-c8180ff47b4d",
+    "customer_number": "PCB4940490072",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Goal Saver",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "d287f928-f6d1-4afa-9353-7914edfdc45e",
+    "customer_number": "PCB3676763729",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Goal Saver"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Prestige Cheque",
+      "PCB PocketSave",
+      "PCB Flexi Save",
+      "PCB Infinite Credit Card"
+    ]
+  },
+  {
+    "customer_id": "d28ae05f-10ee-46ba-9d8f-be7af8ec21ce",
+    "customer_number": "PCB7935843605",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB PocketSave"
+    ],
+    "recommended_next": [
+      "PCB Standard Credit Card",
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB Prestige Cheque",
+      "PCB Premier Cheque"
+    ]
+  },
+  {
+    "customer_id": "d431baaa-bbd0-4a79-983a-6f5d7e41b0be",
+    "customer_number": "PCB9178736108",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Plus Cheque"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Money Market Call",
+      "PCB Gold Cheque",
+      "PCB Business Premium"
+    ]
+  },
+  {
+    "customer_id": "d5374c4f-2eaa-4516-affc-770060c183f9",
+    "customer_number": "PCB1340975920",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Flexi Save"
+    ],
+    "recommended_next": [
+      "PCB Business Current",
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque",
+      "PCB PocketSave",
+      "PCB Gold Cheque"
+    ]
+  },
+  {
+    "customer_id": "de2e10df-2de0-42e9-9e87-9ee6b625bb39",
+    "customer_number": "PCB2906775938",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Goal Saver",
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB Money Market Call",
+      "PCB Premier Cheque"
+    ]
+  },
+  {
+    "customer_id": "e0b5f00e-16ba-45c5-a3b3-a04b555efc7c",
+    "customer_number": "PCB8636756590",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Goal Saver",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "e197f9b8-1623-4f83-ac81-bcd6906f8499",
+    "customer_number": "PCB6701174987",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Plus Cheque"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Money Market Call",
+      "PCB Gold Cheque",
+      "PCB Business Premium"
+    ]
+  },
+  {
+    "customer_id": "e32daaf2-1ce6-4682-bb35-186c9b592598",
+    "customer_number": "PCB1526925167",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Goal Saver",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "e3aaa105-dc10-4e17-8ed3-72500bb770a7",
+    "customer_number": "PCB4019219484",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Goal Saver",
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB Money Market Call",
+      "PCB Premier Cheque"
+    ]
+  },
+  {
+    "customer_id": "e4058409-133d-4f37-90a4-b3078d106b2c",
+    "customer_number": "PCB5422798091",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Fixed 60M"
+    ],
+    "recommended_next": [
+      "PCB Business Current",
+      "PCB PocketSave",
+      "PCB Premier Cheque",
+      "PCB Gold Credit Card",
+      "PCB Gold Cheque"
+    ]
+  },
+  {
+    "customer_id": "e47078f3-ad8c-4911-9a05-d5760dcfd8a7",
+    "customer_number": "PCB5689974759",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB SaveSmart",
+      "PCB Platinum Credit Card",
+      "PCB Flexi Save",
+      "PCB Prestige Cheque",
+      "PCB Gold Credit Card"
+    ]
+  },
+  {
+    "customer_id": "e6e7d099-6377-4f56-9c78-3074a614ae39",
+    "customer_number": "PCB8925856505",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Treasury Plus"
+    ],
+    "recommended_next": [
+      "PCB Platinum Credit Card",
+      "PCB Money Market Call",
+      "PCB Gold Cheque",
+      "PCB Business Current",
+      "PCB Infinite Credit Card"
+    ]
+  },
+  {
+    "customer_id": "e7095fef-429f-48cc-8b19-165c99b972fa",
+    "customer_number": "PCB1402153307",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Goal Saver"
+    ],
+    "recommended_next": [
+      "PCB Gold Cheque",
+      "PCB Prestige Cheque",
+      "PCB PocketSave",
+      "PCB Flexi Save",
+      "PCB Infinite Credit Card"
+    ]
+  },
+  {
+    "customer_id": "e71a08cf-be56-47a3-b46e-9ecf60c33100",
+    "customer_number": "PCB8710494605",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB SaveSmart",
+      "PCB Platinum Credit Card",
+      "PCB Flexi Save",
+      "PCB Prestige Cheque",
+      "PCB Gold Credit Card"
+    ]
+  },
+  {
+    "customer_id": "ed2c3419-2ef1-452c-ab3b-5b1419839625",
+    "customer_number": "PCB1576951818",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Flexi Save"
+    ],
+    "recommended_next": [
+      "PCB Business Current",
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque",
+      "PCB PocketSave",
+      "PCB Gold Cheque"
+    ]
+  },
+  {
+    "customer_id": "edc5cccc-59e5-4482-a422-e4b6dcc6aefc",
+    "customer_number": "PCB3707344826",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB PocketSave"
+    ],
+    "recommended_next": [
+      "PCB Standard Credit Card",
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB Prestige Cheque",
+      "PCB Premier Cheque"
+    ]
+  },
+  {
+    "customer_id": "ee6f77ce-459c-42e0-aee7-42d3ef45e6e5",
+    "customer_number": "PCB8513044549",
+    "segment": "Affluent",
+    "current_products": [
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Goal Saver",
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB Money Market Call",
+      "PCB Premier Cheque"
+    ]
+  },
+  {
+    "customer_id": "f555d33d-f80b-4502-ab66-8e64ef1b51f0",
+    "customer_number": "PCB8624454880",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Premier Cheque"
+    ],
+    "recommended_next": [
+      "PCB SaveSmart",
+      "PCB Platinum Credit Card",
+      "PCB Flexi Save",
+      "PCB Prestige Cheque",
+      "PCB Gold Credit Card"
+    ]
+  },
+  {
+    "customer_id": "fad584d7-e349-456b-9979-82653a51d413",
+    "customer_number": "PCB8938610457",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB Prestige Cheque"
+    ],
+    "recommended_next": [
+      "PCB Goal Saver",
+      "PCB Gold Cheque",
+      "PCB Flexi Save",
+      "PCB Money Market Call",
+      "PCB Premier Cheque"
+    ]
+  },
+  {
+    "customer_id": "fae82f21-c50c-4408-91fe-f9fea4c01159",
+    "customer_number": "PCB1128677744",
+    "segment": "Emerging Affluent",
+    "current_products": [
+      "PCB SaveSmart"
+    ],
+    "recommended_next": [
+      "PCB Premier Cheque",
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Goal Saver",
+      "PCB Plus Cheque"
+    ]
+  },
+  {
+    "customer_id": "fc63c61d-1fe8-418c-8286-0f134014b2da",
+    "customer_number": "PCB3742746204",
+    "segment": "Mass Market",
+    "current_products": [
+      "PCB Plus Cheque"
+    ],
+    "recommended_next": [
+      "PCB Prestige Cheque",
+      "PCB Flexi Save",
+      "PCB Money Market Call",
+      "PCB Gold Cheque",
+      "PCB Business Premium"
+    ]
+  }
+]
