@@ -117,8 +117,8 @@
    "pct": 17.3,
    "return_12m_pct": 12.8,
    "benchmark": "ALBI",
-   "benchmark_pct": 9.5,
-   "alpha_pct": 3.3
+   "benchmark_pct": 6.39,
+   "alpha_pct": 6.42
   },
   {
    "mandate": "Absolute Return",
@@ -126,8 +126,8 @@
    "pct": 14.4,
    "return_12m_pct": 17.15,
    "benchmark": "STeFI + 4%",
-   "benchmark_pct": 12.1,
-   "alpha_pct": 5.05
+   "benchmark_pct": 9.87,
+   "alpha_pct": 7.29
   },
   {
    "mandate": "Money Market",
@@ -135,8 +135,8 @@
    "pct": 13.9,
    "return_12m_pct": 5.98,
    "benchmark": "STeFI",
-   "benchmark_pct": 8.1,
-   "alpha_pct": -2.12
+   "benchmark_pct": 5.87,
+   "alpha_pct": 0.11
   },
   {
    "mandate": "Property Focus",
@@ -144,8 +144,8 @@
    "pct": 13.7,
    "return_12m_pct": 25.68,
    "benchmark": "SAPY",
-   "benchmark_pct": 8.8,
-   "alpha_pct": 16.88
+   "benchmark_pct": 33.07,
+   "alpha_pct": -7.39
   },
   {
    "mandate": "Aggressive Equity",
@@ -153,8 +153,8 @@
    "pct": 13.6,
    "return_12m_pct": 24.61,
    "benchmark": "SWIX",
-   "benchmark_pct": 11.1,
-   "alpha_pct": 13.51
+   "benchmark_pct": 25.11,
+   "alpha_pct": -0.5
   },
   {
    "mandate": "Offshore Feeder",
@@ -162,8 +162,8 @@
    "pct": 13.5,
    "return_12m_pct": 23.79,
    "benchmark": "MSCI World",
-   "benchmark_pct": 13.8,
-   "alpha_pct": 9.99
+   "benchmark_pct": 24.66,
+   "alpha_pct": -0.87
   },
   {
    "mandate": "Balanced Growth",
@@ -171,8 +171,8 @@
    "pct": 13.5,
    "return_12m_pct": 20.45,
    "benchmark": "ALSI",
-   "benchmark_pct": 12.4,
-   "alpha_pct": 8.05
+   "benchmark_pct": 25.88,
+   "alpha_pct": -5.43
   }
  ],
  "by_province": [

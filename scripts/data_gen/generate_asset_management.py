@@ -229,13 +229,39 @@ breaches.sort(key=lambda b: -b["excess_zar"])
 def ret(tk):
     s = series[tk]
     return (s[-1][1]/s[0][1] - 1) if s and s[0][1] else 0.0
+mandate_by_pf = {p[0]: p[2] for p in portfolios}     # index once, not per holding
+ret_cache = {t: ret(t) for t in series}               # price lookup is O(n), cache it
 mandate_perf = {}
 for pid, tk, u, c, lp, val, _ in holdings:
-    m = next(p[2] for p in portfolios if p[0] == pid)
-    d = mandate_perf.setdefault(m, [0.0, 0.0])
-    d[0] += ret(tk)*val; d[1] += val
-BM = {"ALSI":0.124,"SWIX":0.111,"ALBI":0.095,"MSCI World":0.138,
-      "STeFI":0.081,"STeFI + 4%":0.121,"SAPY":0.088}
+    d = mandate_perf.setdefault(mandate_by_pf[pid], [0.0, 0.0])
+    d[0] += ret_cache[tk]*val; d[1] += val
+# Benchmarks are DERIVED from the same simulated price series, not hardcoded.
+# Hardcoding them produced alpha of +13% to +17% per mandate, which no
+# discretionary manager achieves - the benchmark simply wasn't tracking the
+# market the portfolios were invested in. Deriving it means alpha measures what
+# it should: the selection effect within an asset class, not the market's move.
+_r = {t: ret(t) for t in series}
+def _class_return(classes):
+    num = den = 0.0
+    for pid, tk, u, c, lp, val, _ in holdings:
+        if cls[tk] in classes:
+            num += _r[tk]*val; den += val
+    return num/den if den else 0.0
+
+_eq   = _class_return({"Equity","ETF"})
+_bond = _class_return({"Bond"})
+_off  = _class_return({"Offshore"})
+_prop = _class_return({"Property"})
+_cash = _class_return({"Cash"})
+BM = {
+ "ALSI":       _eq,
+ "SWIX":       _eq * 0.97,      # shareholder-weighted, slightly lower beta to resources
+ "ALBI":       _bond,
+ "MSCI World": _off,
+ "STeFI":      _cash,
+ "STeFI + 4%": _cash + 0.04,
+ "SAPY":       _prop,
+}
 
 summary = {
  "generated": TODAY.isoformat(),
