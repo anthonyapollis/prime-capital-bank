@@ -42,6 +42,23 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .badge-gold{background:rgba(201,168,76,0.2);color:var(--gold);border:1px solid rgba(201,168,76,0.4);}
 .badge-ml{background:rgba(0,180,204,0.2);color:var(--cyan);border:1px solid rgba(0,180,204,0.35);}
 
+
+/* ── TAB BAR ── */
+.tabbar{
+  background:var(--navy);border-bottom:1px solid rgba(201,168,76,0.25);
+  display:flex;justify-content:center;gap:4px;flex-wrap:wrap;
+  position:sticky;top:0;z-index:50;padding:0 12px;
+}
+.tabbar a{
+  color:rgba(255,255,255,0.62);text-decoration:none;font-size:12.5px;font-weight:600;
+  letter-spacing:.3px;padding:13px 18px;border-bottom:2px solid transparent;
+  transition:color .15s,border-color .15s;white-space:nowrap;
+}
+.tabbar a:hover{color:#fff;border-bottom-color:rgba(201,168,76,.5);}
+.tabbar a.active{color:var(--gold);border-bottom-color:var(--gold);}
+.tabbar a .dot{font-size:13px;margin-right:6px;}
+@media(max-width:760px){.tabbar a{padding:11px 12px;font-size:11.5px;}}
+
 /* ── STATS BAR ── */
 .stats-bar{
   background:var(--navy2);border-bottom:1px solid rgba(201,168,76,0.2);
@@ -196,10 +213,21 @@ footer a{color:var(--gold);text-decoration:none;}
   </div>
 </div>
 
+<nav class="tabbar">
+  <a href="index.html" class="active"><span class="dot">🏛</span>Overview</a>
+  <a href="asset_management.html"><span class="dot">📈</span>Asset Management</a>
+  <a href="settlement_reconciliation.html"><span class="dot">⚖️</span>Settlements</a>
+  <a href="finance_selfserve_report.html"><span class="dot">📊</span>Self-Serve BI</a>
+  <a href="ebook/index.html"><span class="dot">📖</span>Ebook</a>
+  <a href="ebook/assets/PCB_COMPLETE_ERD.html"><span class="dot">🗂</span>ERD</a>
+  <a href="data_dictionary/index.html"><span class="dot">📕</span>Data Dictionary</a>
+</nav>
+
 <div class="stats-bar">
   <div class="stat"><div class="stat-value">500K</div><div class="stat-label">Customers</div></div>
   <div class="stat"><div class="stat-value">12M+</div><div class="stat-label">Transactions</div></div>
   <div class="stat"><div class="stat-value">R500B</div><div class="stat-label">Portfolio</div></div>
+  <div class="stat"><div class="stat-value">R64.6B</div><div class="stat-label">AUM</div></div>
   <div class="stat"><div class="stat-value">200</div><div class="stat-label">Branches</div></div>
   <div class="stat"><div class="stat-value">12</div><div class="stat-label">ML Models</div></div>
   <div class="stat"><div class="stat-value">9</div><div class="stat-label">Provinces</div></div>
@@ -210,6 +238,17 @@ footer a{color:var(--gold);text-decoration:none;}
   <!-- PRIMARY DELIVERABLES -->
   <div class="section-title">Primary Deliverables</div>
   <div class="card-grid">
+
+    <a class="card" href="asset_management.html">
+      <div class="card-accent" style="background:linear-gradient(90deg,#C9A84C,#00B4CC)"></div>
+      <div class="card-body">
+        <div class="card-icon">📈</div>
+        <div class="card-title">Asset Management &amp; Portfolio Analytics</div>
+        <div class="card-desc">The bank's wealth book: R64.6bn AUM across 3,400 discretionary portfolios in JSE equities, SA government bonds and offshore feeders. Allocation look-through, alpha against ALSI/SWIX/ALBI/MSCI benchmarks, concentration risk and live Regulation 28 breach monitoring.</div>
+        <span class="tag">R64.6bn AUM</span><span class="tag">Reg 28</span><span class="tag">Portfolio Risk</span>
+      </div>
+      <div class="card-footer">docs/asset_management.html <span class="arrow">→</span></div>
+    </a>
 
     <a class="card" href="settlement_reconciliation.html">
       <div class="card-accent" style="background:#16a34a"></div>

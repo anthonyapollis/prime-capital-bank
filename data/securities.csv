@@ -1,0 +1,43 @@
+ticker,security_name,asset_class,sector,listing,base_price_cents
+NPN,Naspers Ltd,Equity,Technology,JSE,3450.0
+PRX,Prosus NV,Equity,Technology,JSE,1180.0
+BHG,BHP Group,Equity,Resources,JSE,5200.0
+AGL,Anglo American,Equity,Resources,JSE,5850.0
+FSR,FirstRand Ltd,Equity,Financials,JSE,7150.0
+SBK,Standard Bank Group,Equity,Financials,JSE,21500.0
+CPI,Capitec Bank Holdings,Equity,Financials,JSE,265000.0
+ABG,Absa Group,Equity,Financials,JSE,17200.0
+NED,Nedbank Group,Equity,Financials,JSE,24800.0
+INL,Investec Ltd,Equity,Financials,JSE,13100.0
+SOL,Sasol Ltd,Equity,Energy,JSE,11400.0
+MTN,MTN Group,Equity,Telecoms,JSE,9800.0
+VOD,Vodacom Group,Equity,Telecoms,JSE,10600.0
+SHP,Shoprite Holdings,Equity,Consumer,JSE,27400.0
+WHL,Woolworths Holdings,Equity,Consumer,JSE,6250.0
+MRP,Mr Price Group,Equity,Consumer,JSE,21300.0
+CLS,Clicks Group,Equity,Consumer,JSE,31200.0
+TBS,Tiger Brands,Equity,Consumer,JSE,18900.0
+CFR,Richemont,Equity,Luxury,JSE,26500.0
+GFI,Gold Fields,Equity,Resources,JSE,29800.0
+ANG,AngloGold Ashanti,Equity,Resources,JSE,42500.0
+SSW,Sibanye Stillwater,Equity,Resources,JSE,2180.0
+EXX,Exxaro Resources,Equity,Resources,JSE,16400.0
+BVT,Bidvest Group,Equity,Industrials,JSE,27600.0
+REM,Remgro Ltd,Equity,Industrials,JSE,14300.0
+DSY,Discovery Ltd,Equity,Insurance,JSE,17800.0
+SLM,Sanlam Ltd,Equity,Insurance,JSE,8450.0
+OMU,Old Mutual Ltd,Equity,Insurance,JSE,1290.0
+GRT,Growthpoint Properties,Property,REIT,JSE,1340.0
+RDF,Redefine Properties,Property,REIT,JSE,470.0
+APN,Aspen Pharmacare,Equity,Healthcare,JSE,19700.0
+R186,RSA 10.5% 2026 Bond,Bond,Government,BESA,10850.0
+R2030,RSA 8.0% 2030 Bond,Bond,Government,BESA,9420.0
+R2032,RSA 8.25% 2032 Bond,Bond,Government,BESA,9180.0
+R2035,RSA 8.875% 2035 Bond,Bond,Government,BESA,8760.0
+R2040,RSA 9.0% 2040 Bond,Bond,Government,BESA,8310.0
+STX40,Satrix Top 40 ETF,ETF,Index,JSE,8950.0
+STXWDM,Satrix MSCI World ETF,Offshore,Global Equity,JSE,9840.0
+STX500,Satrix S&P 500 ETF,Offshore,US Equity,JSE,12650.0
+ASHGEQ,Ashburton Global Equity,Offshore,Global Equity,JSE,7420.0
+STXCLR,Satrix SA Bond ETF,Bond,Corporate,JSE,5680.0
+MMKT,PCB Money Market Fund,Cash,Money Market,OTC,100.0

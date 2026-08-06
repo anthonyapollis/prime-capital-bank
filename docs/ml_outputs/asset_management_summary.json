@@ -1,0 +1,477 @@
+{
+ "generated": "2026-07-31",
+ "aum_zar": 64549017251.36,
+ "portfolios": 3400,
+ "holdings": 33287,
+ "trades": 16941,
+ "securities": 42,
+ "advisers": 28,
+ "avg_portfolio_zar": 18985005.07,
+ "avg_fee_bps": 91.1,
+ "annual_fee_zar": 580299575.89,
+ "reg28_regulated": 2527,
+ "reg28_breaches": 376,
+ "reg28_breach_value_zar": 2671363626.29,
+ "top_breaches": [
+  {
+   "portfolio_id": "PF00178",
+   "mandate": "Offshore Feeder",
+   "limit": "Offshore",
+   "actual_pct": 91.0,
+   "limit_pct": 45.0,
+   "excess_zar": 164788343.07
+  },
+  {
+   "portfolio_id": "PF01942",
+   "mandate": "Offshore Feeder",
+   "limit": "Offshore",
+   "actual_pct": 92.2,
+   "limit_pct": 45.0,
+   "excess_zar": 107442316.29
+  },
+  {
+   "portfolio_id": "PF02885",
+   "mandate": "Offshore Feeder",
+   "limit": "Offshore",
+   "actual_pct": 89.5,
+   "limit_pct": 45.0,
+   "excess_zar": 103935309.82
+  },
+  {
+   "portfolio_id": "PF01550",
+   "mandate": "Property Focus",
+   "limit": "Property",
+   "actual_pct": 54.4,
+   "limit_pct": 25.0,
+   "excess_zar": 98632780.45
+  },
+  {
+   "portfolio_id": "PF03158",
+   "mandate": "Offshore Feeder",
+   "limit": "Offshore",
+   "actual_pct": 91.0,
+   "limit_pct": 45.0,
+   "excess_zar": 94709321.43
+  },
+  {
+   "portfolio_id": "PF01885",
+   "mandate": "Property Focus",
+   "limit": "Property",
+   "actual_pct": 58.2,
+   "limit_pct": 25.0,
+   "excess_zar": 82434615.29
+  },
+  {
+   "portfolio_id": "PF00918",
+   "mandate": "Offshore Feeder",
+   "limit": "Offshore",
+   "actual_pct": 91.6,
+   "limit_pct": 45.0,
+   "excess_zar": 60964335.71
+  },
+  {
+   "portfolio_id": "PF03017",
+   "mandate": "Offshore Feeder",
+   "limit": "Offshore",
+   "actual_pct": 91.3,
+   "limit_pct": 45.0,
+   "excess_zar": 51519640.21
+  }
+ ],
+ "allocation": [
+  {
+   "asset_class": "Offshore",
+   "value_zar": 16566437620.91,
+   "pct": 25.3
+  },
+  {
+   "asset_class": "Equity",
+   "value_zar": 15356504903.33,
+   "pct": 23.5
+  },
+  {
+   "asset_class": "Cash",
+   "value_zar": 13686291166.41,
+   "pct": 20.9
+  },
+  {
+   "asset_class": "Bond",
+   "value_zar": 12637852827.44,
+   "pct": 19.3
+  },
+  {
+   "asset_class": "Property",
+   "value_zar": 6619325443.76,
+   "pct": 10.1
+  },
+  {
+   "asset_class": "ETF",
+   "value_zar": 546294410.67,
+   "pct": 0.8
+  }
+ ],
+ "by_mandate": [
+  {
+   "mandate": "Conservative Income",
+   "aum_zar": 11192131458.48,
+   "pct": 17.3,
+   "return_12m_pct": 12.8,
+   "benchmark": "ALBI",
+   "benchmark_pct": 9.5,
+   "alpha_pct": 3.3
+  },
+  {
+   "mandate": "Absolute Return",
+   "aum_zar": 9308232313.27,
+   "pct": 14.4,
+   "return_12m_pct": 17.15,
+   "benchmark": "STeFI + 4%",
+   "benchmark_pct": 12.1,
+   "alpha_pct": 5.05
+  },
+  {
+   "mandate": "Money Market",
+   "aum_zar": 8996576231.99,
+   "pct": 13.9,
+   "return_12m_pct": 5.98,
+   "benchmark": "STeFI",
+   "benchmark_pct": 8.1,
+   "alpha_pct": -2.12
+  },
+  {
+   "mandate": "Property Focus",
+   "aum_zar": 8854838718.28,
+   "pct": 13.7,
+   "return_12m_pct": 25.68,
+   "benchmark": "SAPY",
+   "benchmark_pct": 8.8,
+   "alpha_pct": 16.88
+  },
+  {
+   "mandate": "Aggressive Equity",
+   "aum_zar": 8765727649.89,
+   "pct": 13.6,
+   "return_12m_pct": 24.61,
+   "benchmark": "SWIX",
+   "benchmark_pct": 11.1,
+   "alpha_pct": 13.51
+  },
+  {
+   "mandate": "Offshore Feeder",
+   "aum_zar": 8739611084.63,
+   "pct": 13.5,
+   "return_12m_pct": 23.79,
+   "benchmark": "MSCI World",
+   "benchmark_pct": 13.8,
+   "alpha_pct": 9.99
+  },
+  {
+   "mandate": "Balanced Growth",
+   "aum_zar": 8691899794.82,
+   "pct": 13.5,
+   "return_12m_pct": 20.45,
+   "benchmark": "ALSI",
+   "benchmark_pct": 12.4,
+   "alpha_pct": 8.05
+  }
+ ],
+ "by_province": [
+  {
+   "province": "Gauteng",
+   "aum_zar": 23833457774.51,
+   "pct": 36.9
+  },
+  {
+   "province": "Western Cape",
+   "aum_zar": 15348148125.52,
+   "pct": 23.8
+  },
+  {
+   "province": "KwaZulu-Natal",
+   "aum_zar": 8669537338.15,
+   "pct": 13.4
+  },
+  {
+   "province": "Mpumalanga",
+   "aum_zar": 4037693995.99,
+   "pct": 6.3
+  },
+  {
+   "province": "Eastern Cape",
+   "aum_zar": 4013633259.52,
+   "pct": 6.2
+  },
+  {
+   "province": "Free State",
+   "aum_zar": 3622443898.76,
+   "pct": 5.6
+  },
+  {
+   "province": "Limpopo",
+   "aum_zar": 2471143497.58,
+   "pct": 3.8
+  },
+  {
+   "province": "North West",
+   "aum_zar": 1887073381.06,
+   "pct": 2.9
+  },
+  {
+   "province": "Northern Cape",
+   "aum_zar": 665885980.27,
+   "pct": 1.0
+  }
+ ],
+ "top_holdings": [
+  {
+   "ticker": "MMKT",
+   "name": "PCB Money Market Fund",
+   "asset_class": "Cash",
+   "value_zar": 13686291166.41,
+   "pct": 20.92,
+   "return_12m_pct": 5.9
+  },
+  {
+   "ticker": "STXWDM",
+   "name": "Satrix MSCI World ETF",
+   "asset_class": "Offshore",
+   "value_zar": 5664432606.42,
+   "pct": 8.66,
+   "return_12m_pct": 26.5
+  },
+  {
+   "ticker": "STX500",
+   "name": "Satrix S&P 500 ETF",
+   "asset_class": "Offshore",
+   "value_zar": 5543473908.64,
+   "pct": 8.47,
+   "return_12m_pct": 16.7
+  },
+  {
+   "ticker": "ASHGEQ",
+   "name": "Ashburton Global Equity",
+   "asset_class": "Offshore",
+   "value_zar": 5358531105.85,
+   "pct": 8.19,
+   "return_12m_pct": 31.0
+  },
+  {
+   "ticker": "GRT",
+   "name": "Growthpoint Properties",
+   "asset_class": "Property",
+   "value_zar": 3342392923.81,
+   "pct": 5.11,
+   "return_12m_pct": 33.3
+  },
+  {
+   "ticker": "RDF",
+   "name": "Redefine Properties",
+   "asset_class": "Property",
+   "value_zar": 3276932519.95,
+   "pct": 5.01,
+   "return_12m_pct": 32.8
+  },
+  {
+   "ticker": "STXCLR",
+   "name": "Satrix SA Bond ETF",
+   "asset_class": "Bond",
+   "value_zar": 2265294448.89,
+   "pct": 3.46,
+   "return_12m_pct": 0.1
+  },
+  {
+   "ticker": "R2030",
+   "name": "RSA 8.0% 2030 Bond",
+   "asset_class": "Bond",
+   "value_zar": 2182383325.42,
+   "pct": 3.34,
+   "return_12m_pct": 14.3
+  },
+  {
+   "ticker": "R2035",
+   "name": "RSA 8.875% 2035 Bond",
+   "asset_class": "Bond",
+   "value_zar": 2165777665.8,
+   "pct": 3.31,
+   "return_12m_pct": 0.6
+  },
+  {
+   "ticker": "R2032",
+   "name": "RSA 8.25% 2032 Bond",
+   "asset_class": "Bond",
+   "value_zar": 2157585345.81,
+   "pct": 3.3,
+   "return_12m_pct": 11.5
+  },
+  {
+   "ticker": "R2040",
+   "name": "RSA 9.0% 2040 Bond",
+   "asset_class": "Bond",
+   "value_zar": 2115801493.32,
+   "pct": 3.23,
+   "return_12m_pct": 8.9
+  },
+  {
+   "ticker": "R186",
+   "name": "RSA 10.5% 2026 Bond",
+   "asset_class": "Bond",
+   "value_zar": 1751010548.2,
+   "pct": 2.68,
+   "return_12m_pct": 2.5
+  }
+ ],
+ "market_series": [
+  {
+   "date": "2025-11-14",
+   "index": 8620.53
+  },
+  {
+   "date": "2025-11-21",
+   "index": 9397.06
+  },
+  {
+   "date": "2025-11-28",
+   "index": 9088.46
+  },
+  {
+   "date": "2025-12-05",
+   "index": 9294.46
+  },
+  {
+   "date": "2025-12-12",
+   "index": 8978.08
+  },
+  {
+   "date": "2025-12-19",
+   "index": 8947.01
+  },
+  {
+   "date": "2025-12-26",
+   "index": 9065.76
+  },
+  {
+   "date": "2026-01-02",
+   "index": 8965.43
+  },
+  {
+   "date": "2026-01-09",
+   "index": 9142.04
+  },
+  {
+   "date": "2026-01-16",
+   "index": 8848.71
+  },
+  {
+   "date": "2026-01-23",
+   "index": 8832.51
+  },
+  {
+   "date": "2026-01-30",
+   "index": 8890.81
+  },
+  {
+   "date": "2026-02-06",
+   "index": 9212.61
+  },
+  {
+   "date": "2026-02-13",
+   "index": 9139.0
+  },
+  {
+   "date": "2026-02-20",
+   "index": 9747.0
+  },
+  {
+   "date": "2026-02-27",
+   "index": 9971.61
+  },
+  {
+   "date": "2026-03-06",
+   "index": 9515.23
+  },
+  {
+   "date": "2026-03-13",
+   "index": 9603.29
+  },
+  {
+   "date": "2026-03-20",
+   "index": 9573.14
+  },
+  {
+   "date": "2026-03-27",
+   "index": 9666.81
+  },
+  {
+   "date": "2026-04-03",
+   "index": 9092.44
+  },
+  {
+   "date": "2026-04-10",
+   "index": 9150.81
+  },
+  {
+   "date": "2026-04-17",
+   "index": 8960.56
+  },
+  {
+   "date": "2026-04-24",
+   "index": 9101.11
+  },
+  {
+   "date": "2026-05-01",
+   "index": 8766.25
+  },
+  {
+   "date": "2026-05-08",
+   "index": 8716.91
+  },
+  {
+   "date": "2026-05-15",
+   "index": 9231.19
+  },
+  {
+   "date": "2026-05-22",
+   "index": 9264.12
+  },
+  {
+   "date": "2026-05-29",
+   "index": 8897.95
+  },
+  {
+   "date": "2026-06-05",
+   "index": 9567.92
+  },
+  {
+   "date": "2026-06-12",
+   "index": 9515.36
+  },
+  {
+   "date": "2026-06-19",
+   "index": 9385.75
+  },
+  {
+   "date": "2026-06-26",
+   "index": 8836.47
+  },
+  {
+   "date": "2026-07-03",
+   "index": 9207.75
+  },
+  {
+   "date": "2026-07-10",
+   "index": 9578.38
+  },
+  {
+   "date": "2026-07-17",
+   "index": 10239.3
+  },
+  {
+   "date": "2026-07-24",
+   "index": 9971.69
+  },
+  {
+   "date": "2026-07-31",
+   "index": 10102.33
+  }
+ ]
+}

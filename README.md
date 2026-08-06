@@ -17,10 +17,11 @@ systems into a single governed, cloud-native data intelligence layer.
 | Customers | 500,000 SA retail & corporate |
 | Transactions | 12M+ (annual) |
 | Loan Portfolio | R500B outstanding |
+| Assets Under Management | R64.6B across 3,400 discretionary portfolios |
 | Branch Network | 200 branches across 9 provinces |
 | ML Models | 12 (credit, fraud, AML, CLV, churn, NLP, anomaly detection…) |
 | Fintech Partners | 5 (Yoco, SnapScan, PayFast, Peach Payments, PayGate) |
-| Regulatory Coverage | IFRS 9, Basel III, SARB BA700, POPIA, FICA, AML/CFT |
+| Regulatory Coverage | IFRS 9, Basel III, SARB BA700, POPIA, FICA, AML/CFT, **Regulation 28** |
 
 ---
 
@@ -123,6 +124,9 @@ Prime Capital Bank/
 pip install pandas numpy faker
 python "scripts\data_gen\generate_bank_data.py"
 # Output: data\ folder — 9 CSV files, ~12M+ rows
+
+python scripts\data_gen\generate_asset_management.py
+# Output: 5 further CSVs — securities, prices, portfolios, holdings, trades
 ```
 
 ### 2. Provision Azure Infrastructure
@@ -173,10 +177,59 @@ python "scripts\azure\run_pipeline.py"         # trigger + monitor
 
 | Layer | Tables | Rows (target) | Refresh |
 |-------|--------|--------------|---------|
-| Bronze | 14 | 12M+ | Daily / Streaming |
-| Silver | 11 | 12M+ | Daily |
+| Bronze | 19 | 12M+ | Daily / Streaming |
+| Silver | 13 | 12M+ | Daily |
 | Gold — Dimensions | 15 | ~3M total | Daily SCD1/SCD2 |
 | Gold — Facts | 7+ | 15M+ / year | Daily / Streaming |
+
+
+---
+
+## Asset Management & Wealth
+
+The investment side of the bank, alongside retail, lending and fintech.
+
+| Metric | Value |
+|--------|-------|
+| Assets under management | **R64.6bn** |
+| Discretionary portfolios | 3,400 |
+| Instruments | 42 (JSE equities, RSA government bonds, local ETFs, offshore feeders) |
+| Holdings | 33,287 positions |
+| Trades | 16,941 (12 months) |
+| Annual fee income | R580m at 91 bps average |
+| Reg 28 regulated | 2,527 portfolios |
+| Reg 28 breaches | 376 portfolios, R2.67bn above statutory limits |
+
+**Mandates** — Balanced Growth, Conservative Income, Aggressive Equity, Offshore
+Feeder, Absolute Return, Money Market, Property Focus. Each benchmarked against
+ALSI, SWIX, ALBI, MSCI World, STeFI or SAPY.
+
+**Regulation 28 compliance.** Retirement vehicles are capped by the Pension Funds
+Act at 75% equity, 45% offshore and 25% property. `mart_portfolio_analytics`
+pivots every portfolio into those buckets, tests the limits, and reports the
+excess in rand as well as percentage points. Most breaches are drift rather than
+intent — a rally moves the weights after the last rebalance — but they are
+reportable either way.
+
+**Tables**
+
+| Table | Grain | Rows |
+|-------|-------|------|
+| `securities` | instrument | 42 |
+| `security_prices` | instrument × trading day | 7,812 |
+| `portfolios` | portfolio | 3,400 |
+| `portfolio_holdings` | portfolio × instrument | 33,287 |
+| `portfolio_trades` | trade | 16,941 |
+
+**Models** — `stg_portfolios`, `stg_portfolio_holdings`, `mart_portfolio_analytics`.
+
+**Dashboard** — [`docs/asset_management.html`](docs/asset_management.html): allocation
+look-through, alpha against benchmark by mandate, largest positions, AUM by
+province and the Reg 28 breach register.
+
+**Note on the data.** Every portfolio, holding, price and client is synthetic.
+JSE tickers and Regulation 28 limits are real market references used for
+authenticity; no actual client, issuer or price data is used.
 
 ---
 

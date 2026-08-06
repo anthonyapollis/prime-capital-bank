@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Asset Management &amp; Portfolio Analytics — Prime Capital Bank</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--navy:#0A1628;--navy2:#0F2040;--gold:#C9A84C;--cyan:#00B4CC;
+--bg:#F0F4FA;--card:#FFF;--text:#1C2B3A;--dim:#6B7E92;--border:#DDE5F0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text)}
+.hero{background:linear-gradient(135deg,var(--navy),var(--navy2) 60%,#0A2545);
+padding:34px 40px 30px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;
+background:radial-gradient(ellipse 80% 60% at 50% 130%,rgba(201,168,76,.14),transparent)}
+.back{color:rgba(255,255,255,.5);text-decoration:none;font-size:12px;position:relative;z-index:1}
+.back:hover{color:var(--gold)}
+.hero h1{font-size:27px;font-weight:800;color:#fff;margin-top:10px;position:relative;z-index:1}
+.hero h1 span{color:var(--gold)}
+.hero p{font-size:13px;color:rgba(255,255,255,.55);margin-top:7px;position:relative;z-index:1}
+.stats-bar{background:var(--navy2);border-bottom:1px solid rgba(201,168,76,.2);
+display:flex;justify-content:center;flex-wrap:wrap}
+.stat{padding:14px 28px;text-align:center;border-right:1px solid rgba(255,255,255,.06)}
+.stat-value{font-size:19px;font-weight:800;color:var(--gold)}
+.stat-label{font-size:9.5px;color:rgba(255,255,255,.42);letter-spacing:1px;
+text-transform:uppercase;margin-top:2px}
+.main{max-width:1240px;margin:0 auto;padding:28px 22px 50px}
+.section-title{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+color:var(--dim);margin:26px 0 12px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;box-shadow:0 1px 3px rgba(10,22,40,.05)}
+.card h3{font-size:13px;font-weight:700;margin-bottom:14px}
+.card .note{font-size:11.5px;color:var(--dim);margin-top:12px;line-height:1.65}
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:6px}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 18px}
+.kpi .l{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+.kpi .v{font-size:26px;font-weight:800;margin-top:7px;letter-spacing:-.5px}
+.kpi .s{font-size:11px;color:var(--dim);margin-top:4px}
+.gold{color:var(--gold)}.cy{color:var(--cyan)}.pos{color:#16a34a}.neg{color:#dc2626}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th{text-align:left;font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;
+color:var(--dim);padding:0 9px 9px 0;border-bottom:1px solid var(--border)}
+td{padding:9px 9px 9px 0;border-bottom:1px solid #EEF2F8}
+.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.nm{font-weight:600}.tk{font-family:ui-monospace,Consolas,monospace;font-size:11.5px;color:var(--dim)}
+.pill{background:#EEF3FA;border:1px solid var(--border);border-radius:20px;
+padding:2px 9px;font-size:10.5px;color:var(--dim)}
+.pill.warn{background:#FEF2F2;border-color:#FECACA;color:#B91C1C}
+.ok{color:#16a34a;text-align:center;padding:16px}
+.donut .dn{fill:var(--text);font-size:17px;font-weight:800}
+.donut .dl{fill:var(--dim);font-size:10px}
+.chart .bl{fill:var(--text);font-size:11px}
+.chart .bv{fill:var(--dim);font-size:10.5px;font-variant-numeric:tabular-nums}
+.chart .bs{fill:var(--dim);font-size:9.5px}
+.lg{display:flex;align-items:center;gap:9px;padding:7px 0;border-bottom:1px solid #EEF2F8;font-size:12.5px}
+.lg:last-child{border:0}
+.lg i{width:10px;height:10px;border-radius:3px;flex:0 0 auto}
+.lg b{margin-left:auto;font-variant-numeric:tabular-nums}
+.lg em{font-style:normal;color:var(--dim);width:64px;text-align:right;font-size:11.5px}
+.alloc-wrap{display:flex;gap:22px;align-items:center}
+footer{max-width:1240px;margin:0 auto;padding:0 22px 40px;color:var(--dim);
+font-size:11.5px;line-height:1.75}
+@media(max-width:1000px){.kpis{grid-template-columns:repeat(2,1fr)}.grid2{grid-template-columns:1fr}
+.alloc-wrap{flex-direction:column}}
+
+.tabbar{background:#0A1628;border-bottom:1px solid rgba(201,168,76,.25);display:flex;
+justify-content:center;gap:4px;flex-wrap:wrap;position:sticky;top:0;z-index:50;padding:0 12px}
+.tabbar a{color:rgba(255,255,255,.62);text-decoration:none;font-size:12.5px;font-weight:600;
+padding:13px 18px;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;white-space:nowrap}
+.tabbar a:hover{color:#fff;border-bottom-color:rgba(201,168,76,.5)}
+.tabbar a.active{color:#C9A84C;border-bottom-color:#C9A84C}
+.tabbar a .dot{font-size:13px;margin-right:6px}
+@media(max-width:760px){.tabbar a{padding:11px 12px;font-size:11.5px}}
+</style></head><body>
+<nav class="tabbar">
+  <a href="index.html"><span class="dot">🏛</span>Overview</a>
+  <a href="asset_management.html" class="active"><span class="dot">📈</span>Asset Management</a>
+  <a href="settlement_reconciliation.html"><span class="dot">⚖️</span>Settlements</a>
+  <a href="finance_selfserve_report.html"><span class="dot">📊</span>Self-Serve BI</a>
+  <a href="ebook/index.html"><span class="dot">📖</span>Ebook</a>
+  <a href="ebook/assets/PCB_COMPLETE_ERD.html"><span class="dot">🗂</span>ERD</a>
+  <a href="data_dictionary/index.html"><span class="dot">📕</span>Data Dictionary</a>
+</nav>
+
+
+<div class="hero">
+  <a class="back" href="index.html">← Prime Capital Bank · Data Intelligence Platform</a>
+  <h1>Asset Management &amp; <span>Portfolio Analytics</span></h1>
+  <p>Discretionary wealth · 3,400 portfolios · JSE equities, SA government bonds,
+     offshore feeders · Regulation 28 compliance monitoring</p>
+</div>
+
+<div class="stats-bar">
+  <div class="stat"><div class="stat-value">R64.55bn</div><div class="stat-label">Assets Under Management</div></div>
+  <div class="stat"><div class="stat-value">3,400</div><div class="stat-label">Portfolios</div></div>
+  <div class="stat"><div class="stat-value">42</div><div class="stat-label">Instruments</div></div>
+  <div class="stat"><div class="stat-value">33,287</div><div class="stat-label">Holdings</div></div>
+  <div class="stat"><div class="stat-value">16,941</div><div class="stat-label">Trades</div></div>
+  <div class="stat"><div class="stat-value">28</div><div class="stat-label">Advisers</div></div>
+</div>
+
+<div class="main">
+  <div class="kpis">
+    <div class="kpi"><div class="l">AUM</div><div class="v gold">R64.55bn</div>
+      <div class="s">across 3,400 mandates</div></div>
+    <div class="kpi"><div class="l">Annual fee income</div><div class="v cy">R580.3m</div>
+      <div class="s">91.1 bps average</div></div>
+    <div class="kpi"><div class="l">Average portfolio</div><div class="v">R19.0m</div>
+      <div class="s">median well below mean</div></div>
+    <div class="kpi"><div class="l">Reg 28 breaches</div><div class="v neg">376</div>
+      <div class="s">of 2,527 regulated</div></div>
+    <div class="kpi"><div class="l">Excess exposure</div><div class="v neg">R2.7bn</div>
+      <div class="s">above statutory limits</div></div>
+  </div>
+
+  <div class="section-title">Market · Satrix Top 40 proxy, trailing 12 months</div>
+  <div class="card"><svg viewBox="0 0 1180 200" class="chart" preserveAspectRatio="none"><path d="M0,192 L0.0,192.0 L31.9,114.3 L63.8,145.2 L95.7,124.6 L127.6,156.2 L159.5,159.3 L191.4,147.4 L223.2,157.5 L255.1,139.8 L287.0,169.2 L318.9,170.8 L350.8,165.0 L382.7,132.7 L414.6,140.1 L446.5,79.3 L478.4,56.8 L510.3,102.5 L542.2,93.6 L574.1,96.7 L605.9,87.3 L637.8,144.8 L669.7,138.9 L701.6,158.0 L733.5,143.9 L765.4,177.4 L797.3,182.4 L829.2,130.9 L861.1,127.6 L893.0,164.2 L924.9,97.2 L956.8,102.4 L988.6,115.4 L1020.5,170.4 L1052.4,133.2 L1084.3,96.1 L1116.2,30.0 L1148.1,56.8 L1180.0,43.7 L1180,192 Z" fill="#16a34a" opacity="0.10"/><polyline points="0.0,192.0 31.9,114.3 63.8,145.2 95.7,124.6 127.6,156.2 159.5,159.3 191.4,147.4 223.2,157.5 255.1,139.8 287.0,169.2 318.9,170.8 350.8,165.0 382.7,132.7 414.6,140.1 446.5,79.3 478.4,56.8 510.3,102.5 542.2,93.6 574.1,96.7 605.9,87.3 637.8,144.8 669.7,138.9 701.6,158.0 733.5,143.9 765.4,177.4 797.3,182.4 829.2,130.9 861.1,127.6 893.0,164.2 924.9,97.2 956.8,102.4 988.6,115.4 1020.5,170.4 1052.4,133.2 1084.3,96.1 1116.2,30.0 1148.1,56.8 1180.0,43.7" fill="none" stroke="#16a34a" stroke-width="2.5"/></svg>
+    <div class="note">Index level over the trailing year, <b class="pos">+17.2%</b>.
+    All security prices are simulated with a shared market factor plus instrument-specific
+    beta, drift and volatility, so correlations behave realistically across the book.</div>
+  </div>
+
+  <div class="section-title">Allocation &amp; mandate performance</div>
+  <div class="grid2">
+    <div class="card"><h3>Asset allocation</h3>
+      <div class="alloc-wrap"><div><svg viewBox="0 0 210 210" class="donut"><path d="M105.0,4.0 A101.0,101.0 0 0,1 206.0,107.1 L164.0,106.2 A59.0,59.0 0 0,0 105.0,46.0 Z" fill="#C9A84C"/><path d="M206.0,107.1 A101.0,101.0 0 0,1 112.6,205.7 L109.4,163.8 A59.0,59.0 0 0,0 164.0,106.2 Z" fill="#00B4CC"/><path d="M112.6,205.7 A101.0,101.0 0 0,1 9.5,137.9 L49.2,124.2 A59.0,59.0 0 0,0 109.4,163.8 Z" fill="#16a34a"/><path d="M9.5,137.9 A101.0,101.0 0 0,1 40.8,27.0 L67.5,59.4 A59.0,59.0 0 0,0 49.2,124.2 Z" fill="#7C6BD6"/><path d="M40.8,27.0 A101.0,101.0 0 0,1 99.7,4.1 L101.9,46.1 A59.0,59.0 0 0,0 67.5,59.4 Z" fill="#E8845C"/><path d="M99.7,4.1 A101.0,101.0 0 0,1 105.0,4.0 L105.0,46.0 A59.0,59.0 0 0,0 101.9,46.1 Z" fill="#4C8FD9"/><text x="105.0" y="101.0" class="dn" text-anchor="middle">R65.4bn</text><text x="105.0" y="120.0" class="dl" text-anchor="middle">invested</text></svg></div>
+      <div style="flex:1"><div class="lg"><i style="background:#C9A84C"></i><span>Offshore</span><b>25.3%</b><em>R16.6bn</em></div><div class="lg"><i style="background:#00B4CC"></i><span>Equity</span><b>23.5%</b><em>R15.4bn</em></div><div class="lg"><i style="background:#16a34a"></i><span>Cash</span><b>20.9%</b><em>R13.7bn</em></div><div class="lg"><i style="background:#7C6BD6"></i><span>Bond</span><b>19.3%</b><em>R12.6bn</em></div><div class="lg"><i style="background:#E8845C"></i><span>Property</span><b>10.1%</b><em>R6.6bn</em></div><div class="lg"><i style="background:#4C8FD9"></i><span>ETF</span><b>0.8%</b><em>R546.3m</em></div></div></div>
+      <div class="note">Aggregate look-through across every mandate. Offshore exposure is the
+      binding Reg 28 constraint for most retirement vehicles.</div>
+    </div>
+    <div class="card"><h3>Alpha vs benchmark — 12 months</h3>
+      <svg viewBox="0 0 560 250" class="chart"><line x1="0" y1="177.9" x2="560" y2="177.9" stroke="#DDE5F0"/><rect x="6.0" y="146.7" width="66.0" height="31.3" rx="3" fill="#16a34a"/><text x="39.0" y="140.7" class="bv" text-anchor="middle">+3.3</text><text x="39.0" y="244" class="bs" text-anchor="middle" transform="rotate(-16 39.0 244)">Conservative Inc</text><rect x="86.0" y="130.1" width="66.0" height="47.8" rx="3" fill="#16a34a"/><text x="119.0" y="124.1" class="bv" text-anchor="middle">+5.0</text><text x="119.0" y="244" class="bs" text-anchor="middle" transform="rotate(-16 119.0 244)">Absolute Return</text><rect x="166.0" y="177.9" width="66.0" height="20.1" rx="3" fill="#dc2626"/><text x="199.0" y="212.0" class="bv" text-anchor="middle">-2.1</text><text x="199.0" y="244" class="bs" text-anchor="middle" transform="rotate(-16 199.0 244)">Money Market</text><rect x="246.0" y="18.0" width="66.0" height="159.9" rx="3" fill="#16a34a"/><text x="279.0" y="12.0" class="bv" text-anchor="middle">+16.9</text><text x="279.0" y="244" class="bs" text-anchor="middle" transform="rotate(-16 279.0 244)">Property Focus</text><rect x="326.0" y="49.9" width="66.0" height="128.0" rx="3" fill="#16a34a"/><text x="359.0" y="43.9" class="bv" text-anchor="middle">+13.5</text><text x="359.0" y="244" class="bs" text-anchor="middle" transform="rotate(-16 359.0 244)">Aggressive Equit</text><rect x="406.0" y="83.3" width="66.0" height="94.6" rx="3" fill="#16a34a"/><text x="439.0" y="77.3" class="bv" text-anchor="middle">+10.0</text><text x="439.0" y="244" class="bs" text-anchor="middle" transform="rotate(-16 439.0 244)">Offshore Feeder</text><rect x="486.0" y="101.7" width="66.0" height="76.3" rx="3" fill="#16a34a"/><text x="519.0" y="95.7" class="bv" text-anchor="middle">+8.1</text><text x="519.0" y="244" class="bs" text-anchor="middle" transform="rotate(-16 519.0 244)">Balanced Growth</text></svg>
+      <div class="note">Return above (green) or below (red) each mandate's stated benchmark:
+      ALSI, SWIX, ALBI, MSCI World, STeFI and SAPY.</div>
+    </div>
+  </div>
+
+  <div class="section-title">Mandate book</div>
+  <div class="card">
+    <table><thead><tr><th>Mandate</th><th class="num">AUM</th><th class="num">Share</th>
+    <th class="num">Return 12m</th><th>Benchmark</th><th class="num">Bmk</th>
+    <th class="num">Alpha</th></tr></thead><tbody><tr><td class="nm">Conservative Income</td><td class="num">R11.2bn</td><td class="num">17.3%</td><td class="num">+12.80%</td><td>ALBI</td><td class="num">+9.50%</td><td class="num pos">+3.30%</td></tr><tr><td class="nm">Absolute Return</td><td class="num">R9.3bn</td><td class="num">14.4%</td><td class="num">+17.15%</td><td>STeFI + 4%</td><td class="num">+12.10%</td><td class="num pos">+5.05%</td></tr><tr><td class="nm">Money Market</td><td class="num">R9.0bn</td><td class="num">13.9%</td><td class="num">+5.98%</td><td>STeFI</td><td class="num">+8.10%</td><td class="num neg">-2.12%</td></tr><tr><td class="nm">Property Focus</td><td class="num">R8.9bn</td><td class="num">13.7%</td><td class="num">+25.68%</td><td>SAPY</td><td class="num">+8.80%</td><td class="num pos">+16.88%</td></tr><tr><td class="nm">Aggressive Equity</td><td class="num">R8.8bn</td><td class="num">13.6%</td><td class="num">+24.61%</td><td>SWIX</td><td class="num">+11.10%</td><td class="num pos">+13.51%</td></tr><tr><td class="nm">Offshore Feeder</td><td class="num">R8.7bn</td><td class="num">13.5%</td><td class="num">+23.79%</td><td>MSCI World</td><td class="num">+13.80%</td><td class="num pos">+9.99%</td></tr><tr><td class="nm">Balanced Growth</td><td class="num">R8.7bn</td><td class="num">13.5%</td><td class="num">+20.45%</td><td>ALSI</td><td class="num">+12.40%</td><td class="num pos">+8.05%</td></tr></tbody></table>
+  </div>
+
+  <div class="section-title">Concentration &amp; regional split</div>
+  <div class="grid2">
+    <div class="card"><h3>Largest positions</h3>
+      <table><thead><tr><th>Ticker</th><th>Security</th><th>Class</th>
+      <th class="num">Value</th><th class="num">Book %</th><th class="num">12m</th></tr></thead>
+      <tbody><tr><td class="tk">MMKT</td><td class="nm">PCB Money Market Fund</td><td><span class="pill">Cash</span></td><td class="num">R13.7bn</td><td class="num">20.92%</td><td class="num pos">+5.9%</td></tr><tr><td class="tk">STXWDM</td><td class="nm">Satrix MSCI World ETF</td><td><span class="pill">Offshore</span></td><td class="num">R5.7bn</td><td class="num">8.66%</td><td class="num pos">+26.5%</td></tr><tr><td class="tk">STX500</td><td class="nm">Satrix S&amp;P 500 ETF</td><td><span class="pill">Offshore</span></td><td class="num">R5.5bn</td><td class="num">8.47%</td><td class="num pos">+16.7%</td></tr><tr><td class="tk">ASHGEQ</td><td class="nm">Ashburton Global Equity</td><td><span class="pill">Offshore</span></td><td class="num">R5.4bn</td><td class="num">8.19%</td><td class="num pos">+31.0%</td></tr><tr><td class="tk">GRT</td><td class="nm">Growthpoint Properties</td><td><span class="pill">Property</span></td><td class="num">R3.3bn</td><td class="num">5.11%</td><td class="num pos">+33.3%</td></tr><tr><td class="tk">RDF</td><td class="nm">Redefine Properties</td><td><span class="pill">Property</span></td><td class="num">R3.3bn</td><td class="num">5.01%</td><td class="num pos">+32.8%</td></tr><tr><td class="tk">STXCLR</td><td class="nm">Satrix SA Bond ETF</td><td><span class="pill">Bond</span></td><td class="num">R2.3bn</td><td class="num">3.46%</td><td class="num pos">+0.1%</td></tr><tr><td class="tk">R2030</td><td class="nm">RSA 8.0% 2030 Bond</td><td><span class="pill">Bond</span></td><td class="num">R2.2bn</td><td class="num">3.34%</td><td class="num pos">+14.3%</td></tr><tr><td class="tk">R2035</td><td class="nm">RSA 8.875% 2035 Bond</td><td><span class="pill">Bond</span></td><td class="num">R2.2bn</td><td class="num">3.31%</td><td class="num pos">+0.6%</td></tr><tr><td class="tk">R2032</td><td class="nm">RSA 8.25% 2032 Bond</td><td><span class="pill">Bond</span></td><td class="num">R2.2bn</td><td class="num">3.30%</td><td class="num pos">+11.5%</td></tr><tr><td class="tk">R2040</td><td class="nm">RSA 9.0% 2040 Bond</td><td><span class="pill">Bond</span></td><td class="num">R2.1bn</td><td class="num">3.23%</td><td class="num pos">+8.9%</td></tr><tr><td class="tk">R186</td><td class="nm">RSA 10.5% 2026 Bond</td><td><span class="pill">Bond</span></td><td class="num">R1.8bn</td><td class="num">2.68%</td><td class="num pos">+2.5%</td></tr></tbody></table>
+      <div class="note">Single-issuer concentration is the second-order risk after Reg 28:
+      a large aggregate position is a house view, whether intended or not.</div>
+    </div>
+    <div class="card"><h3>AUM by province</h3>
+      <svg viewBox="0 0 560 276" class="chart"><text x="0" y="19" class="bl">Gauteng</text><rect x="150" y="7" width="322.0" height="15" rx="3" fill="#00B4CC"/><text x="480.0" y="19" class="bv">R23.8bn</text><text x="0" y="49" class="bl">Western Cape</text><rect x="150" y="37" width="207.4" height="15" rx="3" fill="#00B4CC"/><text x="365.4" y="49" class="bv">R15.3bn</text><text x="0" y="79" class="bl">KwaZulu-Natal</text><rect x="150" y="67" width="117.1" height="15" rx="3" fill="#00B4CC"/><text x="275.1" y="79" class="bv">R8.7bn</text><text x="0" y="109" class="bl">Mpumalanga</text><rect x="150" y="97" width="54.6" height="15" rx="3" fill="#00B4CC"/><text x="212.6" y="109" class="bv">R4.0bn</text><text x="0" y="139" class="bl">Eastern Cape</text><rect x="150" y="127" width="54.2" height="15" rx="3" fill="#00B4CC"/><text x="212.2" y="139" class="bv">R4.0bn</text><text x="0" y="169" class="bl">Free State</text><rect x="150" y="157" width="48.9" height="15" rx="3" fill="#00B4CC"/><text x="206.9" y="169" class="bv">R3.6bn</text><text x="0" y="199" class="bl">Limpopo</text><rect x="150" y="187" width="33.4" height="15" rx="3" fill="#00B4CC"/><text x="191.4" y="199" class="bv">R2.5bn</text><text x="0" y="229" class="bl">North West</text><rect x="150" y="217" width="25.5" height="15" rx="3" fill="#00B4CC"/><text x="183.5" y="229" class="bv">R1.9bn</text><text x="0" y="259" class="bl">Northern Cape</text><rect x="150" y="247" width="9.0" height="15" rx="3" fill="#00B4CC"/><text x="167.0" y="259" class="bv">R665.9m</text></svg>
+      <div class="note">Client domicile. Gauteng and the Western Cape dominate private
+      wealth, consistent with the bank's branch and adviser footprint.</div>
+    </div>
+  </div>
+
+  <div class="section-title">Regulation 28 compliance</div>
+  <div class="card">
+    <table><thead><tr><th>Portfolio</th><th>Mandate</th><th>Limit breached</th>
+    <th class="num">Actual</th><th class="num">Limit</th><th class="num">Excess</th></tr></thead>
+    <tbody><tr><td class="tk">PF00178</td><td class="nm">Offshore Feeder</td><td><span class="pill warn">Offshore</span></td><td class="num neg">91.0%</td><td class="num">45.0%</td><td class="num neg">R164.8m</td></tr><tr><td class="tk">PF01942</td><td class="nm">Offshore Feeder</td><td><span class="pill warn">Offshore</span></td><td class="num neg">92.2%</td><td class="num">45.0%</td><td class="num neg">R107.4m</td></tr><tr><td class="tk">PF02885</td><td class="nm">Offshore Feeder</td><td><span class="pill warn">Offshore</span></td><td class="num neg">89.5%</td><td class="num">45.0%</td><td class="num neg">R103.9m</td></tr><tr><td class="tk">PF01550</td><td class="nm">Property Focus</td><td><span class="pill warn">Property</span></td><td class="num neg">54.4%</td><td class="num">25.0%</td><td class="num neg">R98.6m</td></tr><tr><td class="tk">PF03158</td><td class="nm">Offshore Feeder</td><td><span class="pill warn">Offshore</span></td><td class="num neg">91.0%</td><td class="num">45.0%</td><td class="num neg">R94.7m</td></tr><tr><td class="tk">PF01885</td><td class="nm">Property Focus</td><td><span class="pill warn">Property</span></td><td class="num neg">58.2%</td><td class="num">25.0%</td><td class="num neg">R82.4m</td></tr><tr><td class="tk">PF00918</td><td class="nm">Offshore Feeder</td><td><span class="pill warn">Offshore</span></td><td class="num neg">91.6%</td><td class="num">45.0%</td><td class="num neg">R61.0m</td></tr><tr><td class="tk">PF03017</td><td class="nm">Offshore Feeder</td><td><span class="pill warn">Offshore</span></td><td class="num neg">91.3%</td><td class="num">45.0%</td><td class="num neg">R51.5m</td></tr></tbody></table>
+    <div class="note"><b>376 of 2,527</b> regulated portfolios
+    breach a statutory limit, R2.7bn above cap in aggregate.
+    Regulation 28 of the Pension Funds Act caps equity at 75%, offshore at 45% and property at 25%
+    for retirement vehicles. Breaches are usually drift, not intent — markets move the weights
+    after the last rebalance — but they must be corrected regardless.</div>
+  </div>
+</div>
+
+<footer>
+  <b>Prime Capital Bank — Asset Management.</b> Generated by
+  <code>scripts/data_gen/generate_asset_management.py</code>; page rendered by
+  <code>scripts/build_asset_management_page.py</code>. Source tables:
+  <code>securities</code>, <code>security_prices</code>, <code>portfolios</code>,
+  <code>portfolio_holdings</code>, <code>portfolio_trades</code>.<br>
+  <b>Synthetic data.</b> Every portfolio, holding, price and client is generated. JSE tickers and
+  Regulation 28 limits are real market references used for authenticity; no actual client,
+  issuer or price data is used. Valuation date 2026-07-31.
+</footer>
+</body></html>
