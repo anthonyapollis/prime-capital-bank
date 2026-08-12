@@ -172,9 +172,28 @@ padding:2px 9px;font-size:10.5px;color:var(--dim)}}
 .alloc-wrap{{display:flex;gap:22px;align-items:center}}
 footer{{max-width:1240px;margin:0 auto;padding:0 22px 40px;color:var(--dim);
 font-size:11.5px;line-height:1.75}}
+.tabbar{{background:var(--navy);border-bottom:1px solid rgba(201,168,76,.25);display:flex;
+justify-content:center;gap:4px;flex-wrap:wrap;position:sticky;top:0;z-index:50;padding:0 12px}}
+.tabbar a{{color:rgba(255,255,255,.62);text-decoration:none;font-size:12.5px;font-weight:600;
+padding:13px 18px;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;white-space:nowrap}}
+.tabbar a:hover{{color:#fff;border-bottom-color:rgba(201,168,76,.5)}}
+.tabbar a.active{{color:var(--gold);border-bottom-color:var(--gold)}}
+.tabbar a .dot{{font-size:13px;margin-right:6px}}
 @media(max-width:1000px){{.kpis{{grid-template-columns:repeat(2,1fr)}}.grid2{{grid-template-columns:1fr}}
 .alloc-wrap{{flex-direction:column}}}}
+@media(max-width:760px){{.tabbar a{{padding:11px 12px;font-size:11.5px}}}}
 </style></head><body>
+
+<nav class="tabbar">
+  <a href="index.html"><span class="dot">🏛</span>Overview</a>
+  <a href="asset_management.html" class="active"><span class="dot">📈</span>Asset Management</a>
+  <a href="fintech_analytics.html"><span class="dot">🔌</span>Fintech Partners</a>
+  <a href="settlement_reconciliation.html"><span class="dot">⚖️</span>Settlements</a>
+  <a href="finance_selfserve_report.html"><span class="dot">📊</span>Self-Serve BI</a>
+  <a href="ebook/index.html"><span class="dot">📖</span>Ebook</a>
+  <a href="ebook/assets/PCB_COMPLETE_ERD.html"><span class="dot">🗂</span>ERD</a>
+  <a href="data_dictionary/index.html"><span class="dot">📕</span>Data Dictionary</a>
+</nav>
 
 <div class="hero">
   <a class="back" href="index.html">← Prime Capital Bank · Data Intelligence Platform</a>

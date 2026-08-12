@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Fintech Partner Analytics — Prime Capital Bank</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--navy:#0A1628;--navy2:#0F2040;--gold:#C9A84C;--cyan:#00B4CC;
+--bg:#F0F4FA;--card:#FFF;--text:#1C2B3A;--dim:#6B7E92;--border:#DDE5F0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text)}
+.tabbar{background:var(--navy);border-bottom:1px solid rgba(201,168,76,.25);display:flex;
+justify-content:center;gap:4px;flex-wrap:wrap;position:sticky;top:0;z-index:50;padding:0 12px}
+.tabbar a{color:rgba(255,255,255,.62);text-decoration:none;font-size:12.5px;font-weight:600;
+padding:13px 18px;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;white-space:nowrap}
+.tabbar a:hover{color:#fff;border-bottom-color:rgba(201,168,76,.5)}
+.tabbar a.active{color:var(--gold);border-bottom-color:var(--gold)}
+.tabbar a .dot{font-size:13px;margin-right:6px}
+@media(max-width:760px){.tabbar a{padding:11px 12px;font-size:11.5px}}
+.hero{background:linear-gradient(135deg,var(--navy),var(--navy2) 60%,#0A2545);
+padding:34px 40px 30px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;
+background:radial-gradient(ellipse 80% 60% at 50% 130%,rgba(0,180,204,.14),transparent)}
+.back{color:rgba(255,255,255,.5);text-decoration:none;font-size:12px}
+.back:hover{color:var(--gold)}
+.hero h1{font-size:27px;font-weight:800;color:#fff;margin-top:10px}
+.hero h1 span{color:var(--gold)}
+.hero p{font-size:13px;color:rgba(255,255,255,.55);margin-top:7px}
+.stats-bar{background:var(--navy2);border-bottom:1px solid rgba(201,168,76,.2);
+display:flex;justify-content:center;flex-wrap:wrap}
+.stat{padding:14px 28px;text-align:center;border-right:1px solid rgba(255,255,255,.06)}
+.stat-value{font-size:19px;font-weight:800;color:var(--gold)}
+.stat-label{font-size:9.5px;color:rgba(255,255,255,.42);letter-spacing:1px;
+text-transform:uppercase;margin-top:2px}
+.main{max-width:1240px;margin:0 auto;padding:28px 22px 50px}
+.section-title{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+color:var(--dim);margin:26px 0 12px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px;box-shadow:0 1px 3px rgba(10,22,40,.05)}
+.card h3{font-size:13px;font-weight:700;margin-bottom:14px}
+.card .note{font-size:11.5px;color:var(--dim);margin-top:12px;line-height:1.65}
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:6px}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 18px}
+.kpi .l{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+.kpi .v{font-size:26px;font-weight:800;margin-top:7px;letter-spacing:-.5px}
+.kpi .s{font-size:11px;color:var(--dim);margin-top:4px}
+.gold{color:var(--gold)}.cy{color:var(--cyan)}.pos{color:#16a34a}.neg{color:#dc2626}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th{text-align:left;font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;
+color:var(--dim);padding:0 9px 9px 0;border-bottom:1px solid var(--border)}
+td{padding:9px 9px 9px 0;border-bottom:1px solid #EEF2F8}
+.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.nm{font-weight:600}.sub{display:block;font-weight:400;color:var(--dim);font-size:11px;margin-top:2px}
+.ic{font-size:16px}
+.donut .dn{fill:var(--text);font-size:17px;font-weight:800}
+.donut .dl{fill:var(--dim);font-size:10px}
+.chart .bl{fill:var(--text);font-size:11px}
+.chart .bv{fill:var(--dim);font-size:10.5px;font-variant-numeric:tabular-nums}
+.chart .bs{fill:var(--dim);font-size:9.5px}
+.lg{display:flex;align-items:center;gap:9px;padding:6px 0;border-bottom:1px solid #EEF2F8;font-size:12px}
+.lg:last-child{border:0}
+.lg i{width:10px;height:10px;border-radius:3px;flex:0 0 auto}
+.lg b{margin-left:auto;font-variant-numeric:tabular-nums}
+.lg em{font-style:normal;color:var(--dim);width:60px;text-align:right;font-size:11px}
+.alloc-wrap{display:flex;gap:22px;align-items:center}
+.pdgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.pdcard{background:var(--card);border:1px solid var(--border);border-radius:12px;
+padding:16px 18px;scroll-margin-top:60px}
+.pdcard:target{border-color:var(--gold);box-shadow:0 0 0 2px rgba(201,168,76,.35)}
+.pdhead{display:flex;gap:10px;align-items:flex-start}
+.pdhead .ic{font-size:22px}
+.pdname{font-weight:700;font-size:13.5px}
+.pdsub{font-size:11px;color:var(--dim);margin-top:2px}
+.pdnote{font-size:11.5px;color:var(--text);opacity:.82;margin:10px 0;line-height:1.6}
+.pdstats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px 4px;border-top:1px solid #EEF2F8;padding-top:10px}
+.pdstats div{text-align:center}
+.pdstats b{display:block;font-size:14px;font-weight:800}
+.pdstats span{font-size:9px;color:var(--dim);letter-spacing:.03em;text-transform:uppercase}
+footer{max-width:1240px;margin:0 auto;padding:0 22px 40px;color:var(--dim);
+font-size:11.5px;line-height:1.75}
+@media(max-width:1000px){.kpis{grid-template-columns:repeat(2,1fr)}.grid2,.pdgrid{grid-template-columns:1fr}
+.alloc-wrap{flex-direction:column}}
+</style></head><body>
+
+<nav class="tabbar">
+  <a href="index.html"><span class="dot">🏛</span>Overview</a>
+  <a href="asset_management.html"><span class="dot">📈</span>Asset Management</a>
+  <a href="fintech_analytics.html" class="active"><span class="dot">🔌</span>Fintech Partners</a>
+  <a href="settlement_reconciliation.html"><span class="dot">⚖️</span>Settlements</a>
+  <a href="finance_selfserve_report.html"><span class="dot">📊</span>Self-Serve BI</a>
+  <a href="ebook/index.html"><span class="dot">📖</span>Ebook</a>
+  <a href="ebook/assets/PCB_COMPLETE_ERD.html"><span class="dot">🗂</span>ERD</a>
+  <a href="data_dictionary/index.html"><span class="dot">📕</span>Data Dictionary</a>
+</nav>
+
+<div class="hero">
+  <a class="back" href="index.html">← Prime Capital Bank · Data Intelligence Platform</a>
+  <h1>Fintech Partner <span>Analytics</span></h1>
+  <p>12 settlement partners · acquiring, gateway, instant-EFT, QR, open-banking and
+     remittance · 12 months of settlement volume feeding the reconciliation engine</p>
+</div>
+
+<div class="stats-bar">
+  <div class="stat"><div class="stat-value">R27.74bn</div><div class="stat-label">Gross Volume (12m)</div></div>
+  <div class="stat"><div class="stat-value">12</div><div class="stat-label">Partners</div></div>
+  <div class="stat"><div class="stat-value">58.1M</div><div class="stat-label">Transactions</div></div>
+  <div class="stat"><div class="stat-value">R808.3m</div><div class="stat-label">Fee Income</div></div>
+  <div class="stat"><div class="stat-value">57,199</div><div class="stat-label">Chargebacks</div></div>
+  <div class="stat"><div class="stat-value">760,032</div><div class="stat-label">Active Merchants</div></div>
+</div>
+
+<div class="main">
+  <div class="kpis">
+    <div class="kpi"><div class="l">Gross volume</div><div class="v gold">R27.74bn</div>
+      <div class="s">across 12 partners, 12 months</div></div>
+    <div class="kpi"><div class="l">Net settlement</div><div class="v cy">R26.40bn</div>
+      <div class="s">after fees &amp; interchange</div></div>
+    <div class="kpi"><div class="l">Take rate</div><div class="v">2.91%</div>
+      <div class="s">blended merchant fee</div></div>
+    <div class="kpi"><div class="l">Largest partner</div><div class="v">Yoco</div>
+      <div class="s">R9.6bn · 35% of volume</div></div>
+    <div class="kpi"><div class="l">Avg chargeback ratio</div><div class="v ">0.14%</div>
+      <div class="s">across all partners</div></div>
+  </div>
+
+  <div class="section-title">Volume trend · 12 months</div>
+  <div class="card"><svg viewBox="0 0 1180 220" class="chart" preserveAspectRatio="none"><polyline points="0.0,114.9 107.3,120.8 214.5,106.5 321.8,103.6 429.1,117.6 536.4,120.8 643.6,105.3 750.9,100.7 858.2,113.1 965.5,96.1 1072.7,62.8 1180.0,32.0" fill="none" stroke="#C9A84C" stroke-width="2.5"/><polyline points="0.0,170.8 107.3,175.4 214.5,170.8 321.8,168.0 429.1,174.6 536.4,174.8 643.6,167.7 750.9,164.9 858.2,169.9 965.5,163.6 1072.7,149.5 1180.0,138.3" fill="none" stroke="#00B4CC" stroke-width="2.5"/><polyline points="0.0,188.2 107.3,190.6 214.5,186.8 321.8,186.6 429.1,189.2 536.4,190.0 643.6,187.1 750.9,185.3 858.2,187.1 965.5,183.8 1072.7,175.2 1180.0,168.9" fill="none" stroke="#16a34a" stroke-width="2.5"/><polyline points="0.0,188.5 107.3,190.3 214.5,188.4 321.8,186.9 429.1,190.3 536.4,191.3 643.6,187.6 750.9,185.3 858.2,188.5 965.5,184.4 1072.7,175.8 1180.0,170.3" fill="none" stroke="#7C6BD6" stroke-width="2.5"/><polyline points="0.0,191.8 107.3,193.5 214.5,191.6 321.8,190.1 429.1,193.4 536.4,193.8 643.6,189.7 750.9,189.4 858.2,191.0 965.5,188.9 1072.7,180.6 1180.0,175.0" fill="none" stroke="#E8845C" stroke-width="2.5"/><polyline points="0.0,194.5 107.3,196.0 214.5,194.0 321.8,192.8 429.1,195.0 536.4,196.0 643.6,192.9 750.9,191.8 858.2,194.0 965.5,191.1 1072.7,185.4 1180.0,180.2" fill="none" stroke="#4C8FD9" stroke-width="2.5"/><text x="0.0" y="214" class="bs" text-anchor="middle">01</text><text x="214.5" y="214" class="bs" text-anchor="middle">03</text><text x="429.1" y="214" class="bs" text-anchor="middle">05</text><text x="643.6" y="214" class="bs" text-anchor="middle">07</text><text x="858.2" y="214" class="bs" text-anchor="middle">09</text><text x="1072.7" y="214" class="bs" text-anchor="middle">11</text></svg>
+    <div class="note">Top 6 partners by volume, one line each. Colours match the allocation legend below.
+    Black Friday (Nov) and festive-season (Dec) seasonality is applied uniformly across partners.</div>
+  </div>
+
+  <div class="section-title">Volume share &amp; economics</div>
+  <div class="grid2">
+    <div class="card"><h3>Gross volume by partner</h3>
+      <div class="alloc-wrap"><div><svg viewBox="0 0 210 210" class="donut"><path d="M105.0,4.0 A101.0,101.0 0 0,1 188.5,161.9 L153.8,138.2 A59.0,59.0 0 0,0 105.0,46.0 Z" fill="#C9A84C"/><path d="M188.5,161.9 A101.0,101.0 0 0,1 112.9,205.7 L109.6,163.8 A59.0,59.0 0 0,0 153.8,138.2 Z" fill="#00B4CC"/><path d="M112.9,205.7 A101.0,101.0 0 0,1 61.4,196.1 L79.6,158.2 A59.0,59.0 0 0,0 109.6,163.8 Z" fill="#16a34a"/><path d="M61.4,196.1 A101.0,101.0 0 0,1 22.5,163.2 L56.8,139.0 A59.0,59.0 0 0,0 79.6,158.2 Z" fill="#7C6BD6"/><path d="M22.5,163.2 A101.0,101.0 0 0,1 5.5,122.1 L46.9,115.0 A59.0,59.0 0 0,0 56.8,139.0 Z" fill="#E8845C"/><path d="M5.5,122.1 A101.0,101.0 0 0,1 6.4,83.2 L47.4,92.3 A59.0,59.0 0 0,0 46.9,115.0 Z" fill="#4C8FD9"/><path d="M6.4,83.2 A101.0,101.0 0 0,1 21.3,48.5 L56.1,72.0 A59.0,59.0 0 0,0 47.4,92.3 Z" fill="#D96BA0"/><path d="M21.3,48.5 A101.0,101.0 0 0,1 42.3,25.8 L68.4,58.7 A59.0,59.0 0 0,0 56.1,72.0 Z" fill="#F59E0B"/><path d="M42.3,25.8 A101.0,101.0 0 0,1 62.8,13.2 L80.4,51.4 A59.0,59.0 0 0,0 68.4,58.7 Z" fill="#0EA5A0"/><path d="M62.8,13.2 A101.0,101.0 0 0,1 83.4,6.3 L92.4,47.4 A59.0,59.0 0 0,0 80.4,51.4 Z" fill="#DC2626"/><path d="M83.4,6.3 A101.0,101.0 0 0,1 100.0,4.1 L102.1,46.1 A59.0,59.0 0 0,0 92.4,47.4 Z" fill="#8B5CF6"/><path d="M100.0,4.1 A101.0,101.0 0 0,1 105.0,4.0 L105.0,46.0 A59.0,59.0 0 0,0 102.1,46.1 Z" fill="#65A30D"/><text x="105.0" y="101.0" class="dn" text-anchor="middle">R27.7bn</text><text x="105.0" y="120.0" class="dl" text-anchor="middle">gross volume</text></svg></div>
+      <div style="flex:1"><div class="lg"><i style="background:#C9A84C"></i><span>Yoco</span><b>34.5%</b><em>R9.6bn</em></div><div class="lg"><i style="background:#00B4CC"></i><span>iKhokha</span><b>14.2%</b><em>R3.9bn</em></div><div class="lg"><i style="background:#16a34a"></i><span>PayFast</span><b>8.3%</b><em>R2.3bn</em></div><div class="lg"><i style="background:#7C6BD6"></i><span>Ozow</span><b>8.1%</b><em>R2.3bn</em></div><div class="lg"><i style="background:#E8845C"></i><span>Kazang</span><b>7.1%</b><em>R2.0bn</em></div><div class="lg"><i style="background:#4C8FD9"></i><span>Mukuru</span><b>6.2%</b><em>R1.7bn</em></div><div class="lg"><i style="background:#D96BA0"></i><span>Adumo</span><b>6.0%</b><em>R1.7bn</em></div><div class="lg"><i style="background:#F59E0B"></i><span>SnapScan</span><b>4.9%</b><em>R1.4bn</em></div><div class="lg"><i style="background:#0EA5A0"></i><span>Zapper</span><b>3.8%</b><em>R1.1bn</em></div><div class="lg"><i style="background:#DC2626"></i><span>PayGate</span><b>3.4%</b><em>R950.7m</em></div><div class="lg"><i style="background:#8B5CF6"></i><span>Peach Payments</span><b>2.6%</b><em>R731.8m</em></div><div class="lg"><i style="background:#65A30D"></i><span>Stitch</span><b>0.8%</b><em>R220.2m</em></div></div></div>
+    </div>
+    <div class="card"><h3>Fee rate vs merchant growth</h3>
+      <svg viewBox="0 0 560 280" class="chart"><line x1="34" y1="246" x2="550" y2="246" stroke="#DDE5F0"/><line x1="34" y1="10" x2="34" y2="246" stroke="#DDE5F0"/><circle cx="300.2" cy="214.0" r="7" fill="#C9A84C" opacity="0.88"/><text x="300.2" y="203.0" class="bs" text-anchor="middle">Yoco</text><circle cx="269.8" cy="185.9" r="7" fill="#00B4CC" opacity="0.88"/><text x="269.8" y="174.9" class="bs" text-anchor="middle">iKhokha</text><circle cx="383.9" cy="178.8" r="7" fill="#16a34a" opacity="0.88"/><text x="383.9" y="167.8" class="bs" text-anchor="middle">PayFast</text><circle cx="79.6" cy="107.6" r="7" fill="#7C6BD6" opacity="0.88"/><text x="79.6" y="96.6" class="bs" text-anchor="middle">Ozow</text><circle cx="338.2" cy="214.4" r="7" fill="#E8845C" opacity="0.88"/><text x="338.2" y="203.4" class="bs" text-anchor="middle">Kazang</text><circle cx="536.0" cy="44.7" r="7" fill="#4C8FD9" opacity="0.88"/><text x="536.0" y="33.7" class="bs" text-anchor="middle">Mukuru</text><circle cx="285.0" cy="145.4" r="7" fill="#D96BA0" opacity="0.88"/><text x="285.0" y="134.4" class="bs" text-anchor="middle">Adumo</text><circle cx="269.8" cy="227.9" r="7" fill="#F59E0B" opacity="0.88"/><text x="269.8" y="216.9" class="bs" text-anchor="middle">SnapScan</text><circle cx="247.0" cy="246.0" r="7" fill="#0EA5A0" opacity="0.88"/><text x="247.0" y="235.0" class="bs" text-anchor="middle">Zapper</text><circle cx="277.4" cy="77.6" r="7" fill="#DC2626" opacity="0.88"/><text x="277.4" y="66.6" class="bs" text-anchor="middle">PayGate</text><circle cx="292.6" cy="20.0" r="7" fill="#8B5CF6" opacity="0.88"/><text x="292.6" y="9.0" class="bs" text-anchor="middle">Peach Paym</text><circle cx="34.0" cy="38.0" r="7" fill="#65A30D" opacity="0.88"/><text x="34.0" y="27.0" class="bs" text-anchor="middle">Stitch</text><text x="34" y="272" class="bs">MDR %</text><text x="6" y="16" class="bs">Merchant growth % →</text></svg>
+      <div class="note">Cheaper rails (instant EFT, open banking) tend to grow merchant count faster
+      than higher-MDR card acquiring — visible as points trending up-left.</div>
+    </div>
+  </div>
+
+  <div class="section-title">Partner comparison</div>
+  <div class="card" style="overflow-x:auto">
+    <table><thead><tr><th></th><th>Partner</th><th class="num">Gross volume</th>
+    <th class="num">MDR</th><th class="num">Fee income</th><th class="num">Transactions</th>
+    <th class="num">Active merchants</th><th class="num">Merchant growth</th>
+    <th class="num">Chargeback %</th></tr></thead><tbody><tr id="FT001"><td class="ic">🟥</td><td class="nm">Yoco<span class="sub">FT001 · POS Card Acquiring</span></td><td class="num">R9.6bn</td><td class="num">2.95%</td><td class="num">R282.5m</td><td class="num">11,180,754</td><td class="num">267,650</td><td class="num pos">+8.2%</td><td class="num ">0.13%</td></tr><tr id="FT008"><td class="ic">💳</td><td class="nm">iKhokha<span class="sub">FT008 · POS Card Acquiring</span></td><td class="num">R3.9bn</td><td class="num">2.75%</td><td class="num">R108.6m</td><td class="num">6,447,687</td><td class="num">140,500</td><td class="num pos">+9.4%</td><td class="num ">0.14%</td></tr><tr id="FT003"><td class="ic">🛒</td><td class="nm">PayFast<span class="sub">FT003 · Online Payment Gateway</span></td><td class="num">R2.3bn</td><td class="num">3.50%</td><td class="num">R81.1m</td><td class="num">1,851,734</td><td class="num">48,410</td><td class="num pos">+9.7%</td><td class="num neg">0.20%</td></tr><tr id="FT006"><td class="ic">⚡</td><td class="nm">Ozow<span class="sub">FT006 · Instant EFT Gateway</span></td><td class="num">R2.3bn</td><td class="num">1.50%</td><td class="num">R33.8m</td><td class="num">3,126,552</td><td class="num">31,120</td><td class="num pos">+12.8%</td><td class="num ">0.08%</td></tr><tr id="FT010"><td class="ic">🏪</td><td class="nm">Kazang<span class="sub">FT010 · Prepaid &amp; Bill Payment Terminal</span></td><td class="num">R2.0bn</td><td class="num">3.20%</td><td class="num">R62.7m</td><td class="num">23,174,650</td><td class="num">69,580</td><td class="num pos">+8.2%</td><td class="num ">0.03%</td></tr><tr id="FT012"><td class="ic">🌍</td><td class="nm">Mukuru<span class="sub">FT012 · Cross-Border Remittance</span></td><td class="num">R1.7bn</td><td class="num">4.50%</td><td class="num">R77.1m</td><td class="num">1,157,635</td><td class="num">5,102</td><td class="num pos">+15.4%</td><td class="num neg">0.22%</td></tr><tr id="FT011"><td class="ic">🖥️</td><td class="nm">Adumo<span class="sub">FT011 · POS Card Acquiring</span></td><td class="num">R1.7bn</td><td class="num">2.85%</td><td class="num">R47.4m</td><td class="num">2,323,450</td><td class="num">41,680</td><td class="num pos">+11.1%</td><td class="num ">0.18%</td></tr><tr id="FT002"><td class="ic">📱</td><td class="nm">SnapScan<span class="sub">FT002 · QR Code Payment</span></td><td class="num">R1.4bn</td><td class="num">2.75%</td><td class="num">R37.3m</td><td class="num">3,991,428</td><td class="num">85,290</td><td class="num pos">+7.6%</td><td class="num ">0.15%</td></tr><tr id="FT007"><td class="ic">🍽️</td><td class="nm">Zapper<span class="sub">FT007 · QR Code Payment</span></td><td class="num">R1.1bn</td><td class="num">2.60%</td><td class="num">R27.4m</td><td class="num">3,524,738</td><td class="num">44,510</td><td class="num pos">+6.9%</td><td class="num ">0.15%</td></tr><tr id="FT005"><td class="ic">🏦</td><td class="nm">PayGate<span class="sub">FT005 · Online Payment Gateway</span></td><td class="num">R950.7m</td><td class="num">2.80%</td><td class="num">R26.6m</td><td class="num">502,817</td><td class="num">8,940</td><td class="num pos">+14.0%</td><td class="num neg">0.20%</td></tr><tr id="FT004"><td class="ic">🔗</td><td class="nm">Peach Payments<span class="sub">FT004 · Online Payment Gateway</span></td><td class="num">R731.8m</td><td class="num">2.90%</td><td class="num">R21.2m</td><td class="num">746,540</td><td class="num">13,605</td><td class="num pos">+16.5%</td><td class="num neg">0.20%</td></tr><tr id="FT009"><td class="ic">🔌</td><td class="nm">Stitch<span class="sub">FT009 · Open Banking / Payments API</span></td><td class="num">R220.2m</td><td class="num">1.20%</td><td class="num">R2.6m</td><td class="num">102,844</td><td class="num">3,645</td><td class="num pos">+15.7%</td><td class="num ">0.04%</td></tr></tbody></table>
+    <div class="note">Click a partner name to jump to its detail card below. Fee income is what the
+    partner pays Prime Capital Bank for acquiring/gateway services — the revenue line this business
+    contributes, separate from net settlement (what flows back to the partner after fees).</div>
+  </div>
+
+  <div class="section-title">Partner profiles</div>
+  <div class="pdgrid"><div class="pdcard" id="detail-FT001"><div class="pdhead"><span class="ic">🟥</span><div><div class="pdname">Yoco · FT001</div><div class="pdsub">POS Card Acquiring · SME · Cape Town, Western Cape · est. 2013 · Yoco Technologies</div></div></div><div class="pdnote">SAs largest independent payment provider. Card machines: Yoco Go (R599), Yoco Khumo (R699), Yoco Neo (R1499), Yoco Counter+Neo Touch (R2999). Raised USD83M Series C (2021). 250K+ merchants in retail, hospitality, and services.</div><div class="pdstats"><div><b>R9.6bn</b><span>Gross volume (12m)</span></div><div><b>2.95%</b><span>MDR</span></div><div><b>R282.5m</b><span>Fee income</span></div><div><b>267,650</b><span>Active merchants</span></div><div><b class="pos">+8.2%</b><span>Merchant growth (12m)</span></div><div><b>0.13%</b><span>Chargeback ratio</span></div></div></div><div class="pdcard" id="detail-FT008"><div class="pdhead"><span class="ic">💳</span><div><div class="pdname">iKhokha · FT008</div><div class="pdsub">POS Card Acquiring · SME · Durban, KwaZulu-Natal · est. 2012 · iKhokha (Pty) Ltd</div></div></div><div class="pdnote">Card-machine acquirer competing directly with Yoco in the SME segment, strongest outside the Western Cape. Bundles working-capital advances against processing history — a direct input to PCB&#x27;s SME credit scoring where iKhokha cash flow is used as alt-data.</div><div class="pdstats"><div><b>R3.9bn</b><span>Gross volume (12m)</span></div><div><b>2.75%</b><span>MDR</span></div><div><b>R108.6m</b><span>Fee income</span></div><div><b>140,500</b><span>Active merchants</span></div><div><b class="pos">+9.4%</b><span>Merchant growth (12m)</span></div><div><b>0.14%</b><span>Chargeback ratio</span></div></div></div><div class="pdcard" id="detail-FT003"><div class="pdhead"><span class="ic">🛒</span><div><div class="pdname">PayFast · FT003</div><div class="pdsub">Online Payment Gateway · E-Commerce · Cape Town, Western Cape · est. 2007 · DPO Group (Network International)</div></div></div><div class="pdnote">SAs most widely used online gateway. Supports 20+ payment methods including instant EFT, credit/debit cards, Mobicred, and Zapper. Critical for e-commerce with Takealot Marketplace integration. Acquired by DPO Group (2021).</div><div class="pdstats"><div><b>R2.3bn</b><span>Gross volume (12m)</span></div><div><b>3.50%</b><span>MDR</span></div><div><b>R81.1m</b><span>Fee income</span></div><div><b>48,410</b><span>Active merchants</span></div><div><b class="pos">+9.7%</b><span>Merchant growth (12m)</span></div><div><b>0.20%</b><span>Chargeback ratio</span></div></div></div><div class="pdcard" id="detail-FT006"><div class="pdhead"><span class="ic">⚡</span><div><div class="pdname">Ozow · FT006</div><div class="pdsub">Instant EFT Gateway · E-Commerce · Cape Town, Western Cape · est. 2015 · Ozow (Pty) Ltd</div></div></div><div class="pdnote">Instant EFT gateway — customer authorises payment directly in their own banking app, no card details captured. Lower merchant fees than card acquiring since it bypasses interchange. Strong in gaming, utilities, and airtime/data top-up.</div><div class="pdstats"><div><b>R2.3bn</b><span>Gross volume (12m)</span></div><div><b>1.50%</b><span>MDR</span></div><div><b>R33.8m</b><span>Fee income</span></div><div><b>31,120</b><span>Active merchants</span></div><div><b class="pos">+12.8%</b><span>Merchant growth (12m)</span></div><div><b>0.08%</b><span>Chargeback ratio</span></div></div></div><div class="pdcard" id="detail-FT010"><div class="pdhead"><span class="ic">🏪</span><div><div class="pdname">Kazang · FT010</div><div class="pdsub">Prepaid &amp; Bill Payment Terminal · Informal Trader · Johannesburg, Gauteng · est. 2007 · Blue Label Telecoms</div></div></div><div class="pdnote">Prepaid airtime, electricity and bill-payment terminal network reaching spaza shops and informal traders that card acquirers rarely reach. High transaction count, very low average basket — the transaction-count outlier of the twelve partners.</div><div class="pdstats"><div><b>R2.0bn</b><span>Gross volume (12m)</span></div><div><b>3.20%</b><span>MDR</span></div><div><b>R62.7m</b><span>Fee income</span></div><div><b>69,580</b><span>Active merchants</span></div><div><b class="pos">+8.2%</b><span>Merchant growth (12m)</span></div><div><b>0.03%</b><span>Chargeback ratio</span></div></div></div><div class="pdcard" id="detail-FT012"><div class="pdhead"><span class="ic">🌍</span><div><div class="pdname">Mukuru · FT012</div><div class="pdsub">Cross-Border Remittance · Remittance / Consumer · Cape Town, Western Cape · est. 2004 · Mukuru Africa</div></div></div><div class="pdnote">Cross-border remittance for the SADC migrant-worker corridor — cash-in at an agent or the app, cash-out in Zimbabwe, Mozambique, Malawi and other regional destinations. Highest fee rate of the twelve, reflecting FX conversion and cross-border compliance cost.</div><div class="pdstats"><div><b>R1.7bn</b><span>Gross volume (12m)</span></div><div><b>4.50%</b><span>MDR</span></div><div><b>R77.1m</b><span>Fee income</span></div><div><b>5,102</b><span>Active merchants</span></div><div><b class="pos">+15.4%</b><span>Merchant growth (12m)</span></div><div><b>0.22%</b><span>Chargeback ratio</span></div></div></div><div class="pdcard" id="detail-FT011"><div class="pdhead"><span class="ic">🖥️</span><div><div class="pdname">Adumo · FT011</div><div class="pdsub">POS Card Acquiring · SME and Enterprise · Johannesburg, Gauteng · est. 2019 · Adumo Holdings</div></div></div><div class="pdnote">Payment technology group formed from the merger of several legacy SA acquirers (including SwitchPay and iVeri), spanning in-store card machines and online gateway under one brand.</div><div class="pdstats"><div><b>R1.7bn</b><span>Gross volume (12m)</span></div><div><b>2.85%</b><span>MDR</span></div><div><b>R47.4m</b><span>Fee income</span></div><div><b>41,680</b><span>Active merchants</span></div><div><b class="pos">+11.1%</b><span>Merchant growth (12m)</span></div><div><b>0.18%</b><span>Chargeback ratio</span></div></div></div><div class="pdcard" id="detail-FT002"><div class="pdhead"><span class="ic">📱</span><div><div class="pdname">SnapScan · FT002</div><div class="pdsub">QR Code Payment · SME and Consumer · Cape Town, Western Cape · est. 2012 · Standard Bank Group</div></div></div><div class="pdnote">Acquired by Standard Bank (2014). QR-code payments — no card machine required. Popular in restaurants, markets, pop-up stores, and events. Competes directly with Yoco for the SME hospitality segment.</div><div class="pdstats"><div><b>R1.4bn</b><span>Gross volume (12m)</span></div><div><b>2.75%</b><span>MDR</span></div><div><b>R37.3m</b><span>Fee income</span></div><div><b>85,290</b><span>Active merchants</span></div><div><b class="pos">+7.6%</b><span>Merchant growth (12m)</span></div><div><b>0.15%</b><span>Chargeback ratio</span></div></div></div><div class="pdcard" id="detail-FT007"><div class="pdhead"><span class="ic">🍽️</span><div><div class="pdname">Zapper · FT007</div><div class="pdsub">QR Code Payment · SME and Consumer · Cape Town, Western Cape · est. 2013 · Zapper (Pty) Ltd</div></div></div><div class="pdnote">One of SAs original QR-code payment apps. Also processes loyalty and voucher redemption alongside payment, positioning it as an engagement layer for retail and QSR chains rather than a pure acquirer.</div><div class="pdstats"><div><b>R1.1bn</b><span>Gross volume (12m)</span></div><div><b>2.60%</b><span>MDR</span></div><div><b>R27.4m</b><span>Fee income</span></div><div><b>44,510</b><span>Active merchants</span></div><div><b class="pos">+6.9%</b><span>Merchant growth (12m)</span></div><div><b>0.15%</b><span>Chargeback ratio</span></div></div></div><div class="pdcard" id="detail-FT005"><div class="pdhead"><span class="ic">🏦</span><div><div class="pdname">PayGate · FT005</div><div class="pdsub">Online Payment Gateway · Enterprise E-Commerce · Johannesburg, Gauteng · est. 2000 · DPO Group (Network International)</div></div></div><div class="pdnote">One of SAs oldest gateways (est. 2000). Enterprise merchants including large retailers, travel agencies, and government e-services. Strong in recurring billing. Complementary to PayFast in the DPO portfolio.</div><div class="pdstats"><div><b>R950.7m</b><span>Gross volume (12m)</span></div><div><b>2.80%</b><span>MDR</span></div><div><b>R26.6m</b><span>Fee income</span></div><div><b>8,940</b><span>Active merchants</span></div><div><b class="pos">+14.0%</b><span>Merchant growth (12m)</span></div><div><b>0.20%</b><span>Chargeback ratio</span></div></div></div><div class="pdcard" id="detail-FT004"><div class="pdhead"><span class="ic">🔗</span><div><div class="pdname">Peach Payments · FT004</div><div class="pdsub">Online Payment Gateway · Mid-Market E-Commerce · Cape Town, Western Cape · est. 2012 · Peach Payments (Pty) Ltd</div></div></div><div class="pdnote">API-first developer-friendly gateway. Serves mid-to-large merchants including Superbalist and OneDayOnly. Supports 3D Secure 2.0, tokenisation, and recurring billing. Growing in B2B SaaS vertical.</div><div class="pdstats"><div><b>R731.8m</b><span>Gross volume (12m)</span></div><div><b>2.90%</b><span>MDR</span></div><div><b>R21.2m</b><span>Fee income</span></div><div><b>13,605</b><span>Active merchants</span></div><div><b class="pos">+16.5%</b><span>Merchant growth (12m)</span></div><div><b>0.20%</b><span>Chargeback ratio</span></div></div></div><div class="pdcard" id="detail-FT009"><div class="pdhead"><span class="ic">🔌</span><div><div class="pdname">Stitch · FT009</div><div class="pdsub">Open Banking / Payments API · Developer / Enterprise · Cape Town, Western Cape · est. 2020 · Stitch Money (Pty) Ltd</div></div></div><div class="pdnote">Open-banking infrastructure: pay-by-bank, account verification and recurring debit orders via direct bank API connections rather than card rails. Smallest merchant base of the twelve but highest average transaction size — used mainly for high-value B2B and subscription flows.</div><div class="pdstats"><div><b>R220.2m</b><span>Gross volume (12m)</span></div><div><b>1.20%</b><span>MDR</span></div><div><b>R2.6m</b><span>Fee income</span></div><div><b>3,645</b><span>Active merchants</span></div><div><b class="pos">+15.7%</b><span>Merchant growth (12m)</span></div><div><b>0.04%</b><span>Chargeback ratio</span></div></div></div></div>
+</div>
+
+<footer>
+  <b>Prime Capital Bank — Fintech Partner Analytics.</b> Generated by
+  <code>scripts/build_fintech_analytics_page.py</code> from
+  <code>data/fintech_partners.csv</code> (12 partners) and
+  <code>data/fintech_settlements.csv</code> (144 monthly settlement rows, 2024).
+  Reconciliation of these settlements against bank receipts — including clawback,
+  in-transit and unmatched-receipt detection — is on the
+  <a href="settlement_reconciliation.html" style="color:var(--cyan)">Settlements</a> page.<br>
+  <b>Synthetic data.</b> Every settlement figure is generated. Partner names, platform types,
+  headquarters and founding years are real market references used for authenticity; no actual
+  merchant, transaction or partner financial data is used.
+</footer>
+</body></html>

@@ -336,6 +336,123 @@ SA_FINTECH_PARTNERS = [
             "recurring billing. Complementary to PayFast in the DPO portfolio."
         ),
     },
+    {
+        "fintech_id": "FT006", "fintech_name": "Ozow",
+        "platform_type": "Instant EFT Gateway", "settlement_currency": "ZAR",
+        "fee_rate_pct": 1.50, "min_fee_zar": 1.00,
+        "target_segment": "E-Commerce", "founded_year": 2015,
+        "hq_city": "Cape Town", "hq_province": "Western Cape",
+        "parent_company": "Ozow (Pty) Ltd", "is_active": True,
+        "integration_type": "REST API / Bank Redirect",
+        "avg_basket_zar": 720.90, "active_merchants_est": 28_000,
+        "annual_volume_zar_bn": 4.6, "settlement_days": 1,
+        "notes": (
+            "Instant EFT gateway — customer authorises payment directly in their own "
+            "banking app, no card details captured. Lower merchant fees than card "
+            "acquiring since it bypasses interchange. Strong in gaming, utilities, "
+            "and airtime/data top-up."
+        ),
+    },
+    {
+        "fintech_id": "FT007", "fintech_name": "Zapper",
+        "platform_type": "QR Code Payment", "settlement_currency": "ZAR",
+        "fee_rate_pct": 2.60, "min_fee_zar": 0.00,
+        "target_segment": "SME and Consumer", "founded_year": 2013,
+        "hq_city": "Cape Town", "hq_province": "Western Cape",
+        "parent_company": "Zapper (Pty) Ltd", "is_active": True,
+        "integration_type": "QR Integration / App SDK",
+        "avg_basket_zar": 298.50, "active_merchants_est": 42_000,
+        "annual_volume_zar_bn": 2.1, "settlement_days": 1,
+        "notes": (
+            "One of SAs original QR-code payment apps. Also processes loyalty and "
+            "voucher redemption alongside payment, positioning it as an engagement "
+            "layer for retail and QSR chains rather than a pure acquirer."
+        ),
+    },
+    {
+        "fintech_id": "FT008", "fintech_name": "iKhokha",
+        "platform_type": "POS Card Acquiring", "settlement_currency": "ZAR",
+        "fee_rate_pct": 2.75, "min_fee_zar": 0.00,
+        "target_segment": "SME", "founded_year": 2012,
+        "hq_city": "Durban", "hq_province": "KwaZulu-Natal",
+        "parent_company": "iKhokha (Pty) Ltd", "is_active": True,
+        "integration_type": "REST API / Mobile SDK",
+        "avg_basket_zar": 612.30, "active_merchants_est": 130_000,
+        "annual_volume_zar_bn": 7.8, "settlement_days": 1,
+        "notes": (
+            "Card-machine acquirer competing directly with Yoco in the SME segment, "
+            "strongest outside the Western Cape. Bundles working-capital advances "
+            "against processing history — a direct input to PCB's SME credit "
+            "scoring where iKhokha cash flow is used as alt-data."
+        ),
+    },
+    {
+        "fintech_id": "FT009", "fintech_name": "Stitch",
+        "platform_type": "Open Banking / Payments API", "settlement_currency": "ZAR",
+        "fee_rate_pct": 1.20, "min_fee_zar": 0.50,
+        "target_segment": "Developer / Enterprise", "founded_year": 2020,
+        "hq_city": "Cape Town", "hq_province": "Western Cape",
+        "parent_company": "Stitch Money (Pty) Ltd", "is_active": True,
+        "integration_type": "REST API / Open Banking",
+        "avg_basket_zar": 2140.80, "active_merchants_est": 3_200,
+        "annual_volume_zar_bn": 1.4, "settlement_days": 1,
+        "notes": (
+            "Open-banking infrastructure: pay-by-bank, account verification and "
+            "recurring debit orders via direct bank API connections rather than "
+            "card rails. Smallest merchant base of the twelve but highest average "
+            "transaction size — used mainly for high-value B2B and subscription flows."
+        ),
+    },
+    {
+        "fintech_id": "FT010", "fintech_name": "Kazang",
+        "platform_type": "Prepaid & Bill Payment Terminal", "settlement_currency": "ZAR",
+        "fee_rate_pct": 3.20, "min_fee_zar": 0.00,
+        "target_segment": "Informal Trader", "founded_year": 2007,
+        "hq_city": "Johannesburg", "hq_province": "Gauteng",
+        "parent_company": "Blue Label Telecoms", "is_active": True,
+        "integration_type": "Terminal / USSD",
+        "avg_basket_zar": 84.60, "active_merchants_est": 65_000,
+        "annual_volume_zar_bn": 3.9, "settlement_days": 1,
+        "notes": (
+            "Prepaid airtime, electricity and bill-payment terminal network reaching "
+            "spaza shops and informal traders that card acquirers rarely reach. "
+            "High transaction count, very low average basket — the transaction-count "
+            "outlier of the twelve partners."
+        ),
+    },
+    {
+        "fintech_id": "FT011", "fintech_name": "Adumo",
+        "platform_type": "POS Card Acquiring", "settlement_currency": "ZAR",
+        "fee_rate_pct": 2.85, "min_fee_zar": 0.00,
+        "target_segment": "SME and Enterprise", "founded_year": 2019,
+        "hq_city": "Johannesburg", "hq_province": "Gauteng",
+        "parent_company": "Adumo Holdings", "is_active": True,
+        "integration_type": "REST API / Mobile SDK / Hosted Page",
+        "avg_basket_zar": 715.20, "active_merchants_est": 38_000,
+        "annual_volume_zar_bn": 3.3, "settlement_days": 2,
+        "notes": (
+            "Payment technology group formed from the merger of several legacy SA "
+            "acquirers (including SwitchPay and iVeri), spanning in-store card "
+            "machines and online gateway under one brand."
+        ),
+    },
+    {
+        "fintech_id": "FT012", "fintech_name": "Mukuru",
+        "platform_type": "Cross-Border Remittance", "settlement_currency": "ZAR",
+        "fee_rate_pct": 4.50, "min_fee_zar": 15.00,
+        "target_segment": "Remittance / Consumer", "founded_year": 2004,
+        "hq_city": "Cape Town", "hq_province": "Western Cape",
+        "parent_company": "Mukuru Africa", "is_active": True,
+        "integration_type": "Agent Network / App / API",
+        "avg_basket_zar": 1480.00, "active_merchants_est": 4_500,
+        "annual_volume_zar_bn": 3.5, "settlement_days": 1,
+        "notes": (
+            "Cross-border remittance for the SADC migrant-worker corridor — "
+            "cash-in at an agent or the app, cash-out in Zimbabwe, Mozambique, "
+            "Malawi and other regional destinations. Highest fee rate of the "
+            "twelve, reflecting FX conversion and cross-border compliance cost."
+        ),
+    },
 ]
 
 # Monthly seasonality multipliers for fintech settlement volume (Jan–Dec)
@@ -1245,12 +1362,25 @@ def generate_fintech_settlements() -> pd.DataFrame:
         "FT003": 152_000,   # PayFast
         "FT004":  62_000,   # Peach Payments
         "FT005":  41_000,   # PayGate
+        "FT006": 258_000,   # Ozow
+        "FT007": 293_000,   # Zapper
+        "FT008": 530_000,   # iKhokha
+        "FT009":   8_500,   # Stitch — smallest merchant base, highest ticket
+        "FT010": 1_900_000, # Kazang — highest transaction count, lowest basket
+        "FT011": 190_000,   # Adumo
+        "FT012":  95_000,   # Mukuru
     }
     # Chargeback rate per partner (annualised %)
-    CB_RATE = {"FT001": 0.0013, "FT002": 0.0015, "FT003": 0.0020, "FT004": 0.0020, "FT005": 0.0020}
+    CB_RATE = {"FT001": 0.0013, "FT002": 0.0015, "FT003": 0.0020, "FT004": 0.0020, "FT005": 0.0020,
+               "FT006": 0.0008, "FT007": 0.0015, "FT008": 0.0014, "FT009": 0.0005,
+               "FT010": 0.0003, "FT011": 0.0018, "FT012": 0.0022}
     # Base active merchant count at Jan 2024 and monthly growth
-    MERCH_BASE   = {"FT001": 247_300, "FT002": 79_240, "FT003": 44_120, "FT004": 11_680, "FT005": 7_840}
-    MERCH_GROWTH = {"FT001": 1_850,   "FT002": 550,    "FT003": 390,    "FT004": 175,    "FT005": 100}
+    MERCH_BASE   = {"FT001": 247_300, "FT002": 79_240, "FT003": 44_120, "FT004": 11_680, "FT005": 7_840,
+                     "FT006": 27_600, "FT007": 41_650, "FT008": 128_400, "FT009": 3_150,
+                     "FT010": 64_300, "FT011": 37_500, "FT012": 4_420}
+    MERCH_GROWTH = {"FT001": 1_850,   "FT002": 550,    "FT003": 390,    "FT004": 175,    "FT005": 100,
+                     "FT006": 320,    "FT007": 260,    "FT008": 1_100,  "FT009": 45,
+                     "FT010": 480,    "FT011": 380,    "FT012": 62}
 
     for partner in SA_FINTECH_PARTNERS:
         pid   = partner["fintech_id"]

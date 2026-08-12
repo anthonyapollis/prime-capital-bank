@@ -2,7 +2,7 @@
 
 **Enterprise Azure Databricks | Medallion Architecture | Delta Lake | Unity Catalog**
 
-> Completed project by Anthony Apollis · [anthony.apollis@gmail.com](mailto:anthony.apollis@gmail.com)
+> Portfolio project by Anthony Apollis
 
 ---
 
@@ -312,5 +312,5 @@ authenticity; no actual client, issuer or price data is used.
 
 ## Contact
 
-**Anthony Apollis** · [anthony.apollis@gmail.com](mailto:anthony.apollis@gmail.com)  
+**Anthony Apollis**  
 Prime Capital Bank Data Intelligence Platform · v3.0 · 2026
